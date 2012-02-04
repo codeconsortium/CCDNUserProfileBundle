@@ -1,0 +1,44 @@
+sidebar.header.tools: Tools
+sidebar.link.account.view: View Account
+sidebar.link.profile.view: View Profile
+sidebar.link.profile.edit: Edit Profile
+
+crumbs.profile: "%user_name% Profile"
+crumbs.profile.edit: Edit Profile
+                  
+title.profile: 'Profile: %user_name%'
+title.profile.edit: "Profile: Edit %user_name%'s Profile"
+title.account: 'Account: %user_name%'
+
+link.profile.edit: Edit
+link.user.message: 'Send Message'
+link.user.administrate: 'Administrate User'
+
+flash.profile.edit.success: 'Profile updated successfully.'
+    
+profile.table.body.username: 'Username:'
+profile.table.body.location: 'Location:'
+profile.table.body.website: 'Website:'
+profile.table.body.aim: 'AIM:'
+profile.table.body.msn: 'MSN:'
+profile.table.body.icq: 'ICQ:'
+profile.table.body.yahoo: 'Yahoo:'
+profile.table.body.member_since: 'Member Since:'
+profile.table.body.last_logged_in: 'Last Login:'
+
+form.label.profile.edit.username: 'Username: '
+form.label.profile.edit.location: 'Location: '
+form.label.profile.edit.website: 'Website: '
+form.label.profile.edit.aim: 'AIM: '
+form.label.profile.edit.aim_is_public: 'AIM is public? '
+form.label.profile.edit.msn: 'MSN: '
+form.label.profile.edit.msn_is_public: 'MSN is public? '
+form.label.profile.edit.icq: 'ICQ: '
+form.label.profile.edit.icq_is_public: 'ICQ is public? '
+form.label.profile.edit.yahoo: 'Yahoo: '
+form.label.profile.edit.yahoo_is_public: 'Yahoo is public? '
+form.label.profile.edit.bio: 'Bio: '
+form.label.profile.edit.avatar: 'Avatar: '
+form.label.profile.edit.avatar_is_remote: 'This avatar is remote? '
+form.label.profile.edit.signature: 'Signature: '
+form.button.profile.edit.update: Update

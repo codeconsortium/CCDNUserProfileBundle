@@ -1,0 +1,23 @@
+parameters:
+    ccdn_user_profile.profile.form.handler.class:   CCDNUser\ProfileBundle\Form\Handler\ProfileFormHandler
+    ccdn_user_profile.profile.form.type.class:      CCDNUser\ProfileBundle\Form\Type\ProfileType
+
+    ccdn_user_profile.profile.manager.class:        CCDNUser\ProfileBundle\Entity\Manager\ProfileManager
+    ccdn_user_profile.profile.repository.class:     CCDNUser\ProfileBundle\Repository\ProfileRepository
+    
+services:
+    profile.repository:
+        class: %ccdn_user_profile.profile.repository.class%
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - 'CCDNUser\ProfileBundle\Entity\Profile'
+    profile.manager:
+        class:  %ccdn_user_profile.profile.manager.class%
+        arguments:  [@doctrine, @service_container]
+    profile.form.handler:
+        class:  %ccdn_user_profile.profile.form.handler.class%
+        arguments:  [@form.factory, @service_container, @profile.manager]
+    profile.form.type:
+        class:  %ccdn_user_profile.profile.form.type.class%
+        arguments:  [@doctrine]
