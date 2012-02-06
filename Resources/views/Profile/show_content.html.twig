@@ -5,15 +5,15 @@
 				{% if user.getProfile.getAvatar %}
 					<img class="avatar" width="100px" height="100px" src="{{ user.getProfile.getAvatar }}" />
 				{% else %}
-					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncommoncommon/images/profile/anonymous_avatar.gif') }}" />
+					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" />
 				{% endif %}
 			{% else %}
 				{% if user.getProfile.getAvatar %}
 					{# later on this will reference the avatarBundle asset and append the avatar onto the end #}
 					{# e.g: {{ asset('bundles/ccdnuseravatar/images/avatars/') }}{{ post.getCreatedBy.getProfile.getAvatar }} #}
-					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncommoncommon/images/profile/anonymous_avatar.gif') }}" />
+					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" />
 				{% else %}
-					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncommoncommon/images/profile/anonymous_avatar.gif') }}" />
+					<img class="avatar" width="100px" height="100px" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" />
 				{% endif %}
 			{% endif %}
 		</div>
@@ -23,11 +23,11 @@
 				<a class="username_medium" href="{{ path(app.request.attributes.get('_route')) }}">{{ user.getUsername }}</a>
 			</div>
 			<div class="row h_align_centre padding_5">
-				<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_star.png') }}" 
-				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_star.png') }}" 
-				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_star.png') }}" 
-				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_star.png') }}" 
-				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_star.png') }}"/>
+				<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" 
+				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" 
+				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" 
+				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" 
+				/><img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}"/>
 			</div>
 			{#<div class="row h_align_centre padding_5">{{ 'post.user.post_count' | trans({'%post_count%': '50'}, 'CCDNForumForumBundle') }}</div>#}
 		</div>
@@ -36,7 +36,7 @@
 
 <div class="common_box_panel common_tool_strip">
 	<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">
-		<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncommoncommon/images/icons/Black/16x16/16x16_email.png') }}" />&nbsp;{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+		<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_email.png') }}" />&nbsp;{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 </div>
 
 <div class="common_box_panel">
