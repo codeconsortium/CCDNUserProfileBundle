@@ -36,7 +36,6 @@ Installation:
 
 	new CCDNUser\MemberBundle\CCDNUserMemberBundle(),    
 	new CCDNUser\ProfileBundle\CCDNUserProfileBundle(),    
-	new CCDNUser\RefererBundle\CCDNUserRefererBundle(),    
 	new CCDNUser\UserAdminBundle\CCDNUserUserAdminBundle(),    
 	new CCDNUser\UserBundle\CCDNUserUserBundle(),    
 	
