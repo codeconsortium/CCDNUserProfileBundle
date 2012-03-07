@@ -55,7 +55,7 @@ class ProfileController extends ContainerAware
 		{
 			$user = $this->container->get('security.context')->getToken()->getUser();
 		} else {
-			$user = $this->container->get('profile.repository')->findOneByIdJoinedToUser($user_id);			
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
 		}
 
 		if ( ! is_object($user) || ! ($user instanceof UserInterface))
@@ -73,7 +73,7 @@ class ProfileController extends ContainerAware
 			$editable = 0;
 		}
 
-		$crumb_trail = $this->container->get('crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), 
 				$this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user");
 				
@@ -104,7 +104,7 @@ class ProfileController extends ContainerAware
 		{
 			$user = $this->container->get('security.context')->getToken()->getUser();
 		} else {
-			$user = $this->container->get('profile.repository')->findOneByIdJoinedToUser($user_id);			
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
 		}
         
 		if ( ! is_object($user) || ! $user instanceof UserInterface)
@@ -130,10 +130,10 @@ class ProfileController extends ContainerAware
 
 		if ( ! $profile->getId())
 		{
-			$this->container->get('profile.manager')->insert($profile);
+			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile);
 		}
 			
-        $formHandler = $this->container->get('profile.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.profile.form.handler');
 
         $process = $formHandler->process($profile);
 
@@ -146,7 +146,7 @@ class ProfileController extends ContainerAware
 
 		$form = $formHandler->getForm();
 		
-		$crumb_trail = $this->container->get('crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), 
 				$this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user")
 			->add($this->container->get('translator')->trans('crumbs.profile.edit', array(), 'CCDNUserProfileBundle'),

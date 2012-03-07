@@ -141,7 +141,7 @@ class ProfileFormHandler
 	{
 		if (!$this->form)
 		{
-			$profileType = $this->container->get('profile.form.type');
+			$profileType = $this->container->get('ccdn_user_profile.profile.form.type');
 			$this->form = $this->factory->create($profileType, $this->options['profile']);
 		}
 
