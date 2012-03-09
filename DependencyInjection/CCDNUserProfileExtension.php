@@ -28,6 +28,9 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class CCDNUserProfileExtension extends Extension
 {
+	
+	
+	
     /**
      * {@inheritDoc}
      */
@@ -38,5 +41,26 @@ class CCDNUserProfileExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+		$container->setParameter('ccdn_user_profile.user.profile_route', $config['user']['profile_route']);
+		$container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
+		$container->setParameter('ccdn_user_profile.template.theme', $config['template']['theme']);
+		
+		$this->getProfileSection($container, $config);
     }
+	
+	
+	
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */
+	private function getProfileSection($container, $config)
+	{
+		$container->setParameter('ccdn_user_profile.profile.layout_templates.edit', $config['profile']['layout_templates']['edit']);
+		$container->setParameter('ccdn_user_profile.profile.layout_templates.show', $config['profile']['layout_templates']['show']);
+	}
+	
+	
 }
