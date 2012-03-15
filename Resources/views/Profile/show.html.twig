@@ -3,7 +3,6 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css" />
-	<link href="{{ asset('bundles/ccdncomponentcommon/css/form.css') }}" rel="stylesheet" type="text/css" />	
 {% endblock %}
 
 {% block title %}{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}{% endblock %}
@@ -75,9 +74,8 @@
 		</div>		
 	</div>
 
-	<div class="common_box_panel common_tool_strip">
-		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">
-			<img class="icon_16x16" width="16px" height="16px" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_email.png') }}" />&nbsp;{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+	<div class="common_tool_strip">
+		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 	</div>
 
 	<div class="common_box_panel">

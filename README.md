@@ -197,14 +197,14 @@ ccdn_user_user:
         profile_route: cc_profile_show_by_id 
     template:
         engine: twig
-        theme: CCDNUserProfileBundle:Form:fields.html.twig
+        theme: CCDNUserUserBundle:Form:fields.html.twig
     account:
         layout_templates:
             edit: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
             show: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig     
     password:
         layout_templates:
-            change_password:  CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
+            change_password: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
     registration:
         layout_templates:
             check_email: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
@@ -219,7 +219,6 @@ ccdn_user_user:
     security:
         layout_templates:
             login: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-
 ```   
 
 4) In your app/config/routing.yml add:  
