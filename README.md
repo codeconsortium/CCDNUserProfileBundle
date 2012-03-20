@@ -30,6 +30,7 @@ Dependencies:
 5. [CCDNComponent CommonBundle](https://github.com/codeconsortium/CommonBundle).
 6. [CCDNComponent BBCodeBundle](https://github.com/codeconsortium/BBCodeBundle).
 7. [CCDNComponent CrumbTrailBundle](https://github.com/codeconsortium/CrumbTrailBundle).
+8. [CCDNComponent DashboardBundle](https://github.com/codeconsortium/DashboardBundle).
 
 
 Installation:
@@ -55,17 +56,21 @@ Installation:
     git=http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git
     target=/bundles/WhiteOctober/PagerfantaBundle
 
-[CommonBundle]
+[CCDNComponentCommonBundle]
     git=http://github.com/codeconsortium/CommonBundle.git
     target=/bundles/CCDNComponent/CommonBundle
 
-[BBCodeBundle]
+[CCDNComponentBBCodeBundle]
     git=http://github.com/codeconsortium/BBCodeBundle.git
     target=/bundles/CCDNComponent/BBCodeBundle
 
-[CrumbTrailBundle]
+[CCDNComponentCrumbTrailBundle]
     git=http://github.com/codeconsortium/CrumbTrailBundle.git
     target=/bundles/CCDNComponent/CrumbTrailBundle
+
+[CCDNComponentDashboardBundle]
+    git=http://github.com/codeconsortium/DashboardBundle.git
+    target=/bundles/CCDNComponent/DashboardBundle
 ```
 add to your autoload:
 
@@ -77,6 +82,11 @@ add to your autoload:
 2) In your AppKernel.php add the following bundles to the registerBundles method array:  
 
 ```php
+	new CCDNComponent\CommonBundle\CCDNComponentCommonBundle(),
+	new CCDNComponent\CrumbTrailBundle\CCDNComponentCrumbTrailBundle(),
+	new CCDNComponent\DashboardBundle\CCDNComponentDashboardBundle(),
+	new CCDNComponent\BBCodeBundle\CCDNComponentBBCodeBundle(),
+	
     new CCDNUser\MemberBundle\CCDNUserMemberBundle(),    
     new CCDNUser\ProfileBundle\CCDNUserProfileBundle(),    
     new CCDNUser\UserAdminBundle\CCDNUserUserAdminBundle(),    
@@ -224,14 +234,26 @@ ccdn_user_user:
 4) In your app/config/routing.yml add:  
 
 ```php
-member:  
-    resource: "@CCDNUserMemberBundle/Resources/config/routing.yml"  
-profile:
-    resource: "@CCDNUserProfileBundle/Resources/config/routing.yml"  
-user_admin:
-    resource: "@CCDNUserUserAdminBundle/Resources/config/routing.yml"  
-user:
-    resource: "@CCDNUserUserBundle/Resources/config/routing.yml"  
+CCDNComponentDashboardBundle:
+    resource: "@CCDNComponentDashboardBundle/Resources/config/routing.yml"
+    prefix: /
+
+# CCDNUser bundles
+CCDNUserMemberBundle:
+    resource: "@CCDNUserMemberBundle/Resources/config/routing.yml"
+    prefix: /
+
+CCDNUserProfileBundle:
+    resource: "@CCDNUserProfileBundle/Resources/config/routing.yml"
+    prefix: /
+
+CCDNUserUserAdminBundle:
+    resource: "@CCDNUserUserAdminBundle/Resources/config/routing.yml"
+    prefix: /
+
+CCDNUserUserBundle:
+    resource: "@CCDNUserUserBundle/Resources/config/routing.yml"
+    prefix: /
 ```
 
 5) Symlink assets to your public web directory by running this in the command line:
