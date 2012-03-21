@@ -95,11 +95,6 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-//		if ($user->getId() == $this->container->get('security.context')->getToken()->getUser()->getId())
-//		{
-//		    throw new AccessDeniedException('You do not have access to this section.');
-//		}
-
 		// get the user associated profile
 		$profile = $user->getProfile();
 
@@ -107,7 +102,7 @@ class ProfileController extends ContainerAware
 		// does not exist, so create one.
 		if ( ! $profile->getId())
 		{
-			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile);
+			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
 		}
 			
         $formHandler = $this->container->get('ccdn_user_profile.profile.form.handler');

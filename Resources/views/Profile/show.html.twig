@@ -37,6 +37,16 @@
 	<div class="common_box_header">
 		<span class="heading_glow">{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</span>
 	</div>
+	<div class="common_tool_strip">
+		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+		{% if app.user.getId == user.getId %}
+		<a class="button_link" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
+		{% endif %}
+
+		{% if is_granted('ROLE_ADMIN') %}
+		<a class="button_link" href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
+		{% endif %}
+	</div>
 
 	<div class="common_box_panel bg_item_light">
 		<div class="row padding_10">
@@ -72,10 +82,6 @@
 				{#<div class="row h_align_centre padding_5">{{ 'post.user.post_count' | trans({'%post_count%': '50'}, 'CCDNForumForumBundle') }}</div>#}
 			</div>
 		</div>		
-	</div>
-
-	<div class="common_tool_strip">
-		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 	</div>
 
 	<div class="common_box_panel">
@@ -133,37 +139,27 @@
 				</tr>
 				{% endif %}
 
-				{% if user.getProfile.getBio %}
+				{% if user.getProfile.getBio or user.getProfile.getSignature %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
 					<td class="form_tool_strip" colspan="2">
-						<div class="padding_10 common_box user_bio">
-						{{ user.getProfile.getBio }}
+						<div class="text_bubble">
+							<div class="text_bubble_header">
+							</div>
+						{% if user.getProfile.getBio %}
+							<div class="text_bubble_body">
+							{{ user.getProfile.getBio }}
+							</div>
+						{% endif %}
+
+						{% if user.getProfile.getSignature %}
+							<div class="text_bubble_footer">
+							{{ user.getProfile.getSignature }}
+							</div>
+						{% endif %}
 						</div>
 					</td>
 				</tr>
 				{% endif %}
-
-				{% if user.getProfile.getSignature %}
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_tool_strip" colspan="2">
-						<div class="padding_10 common_box user_bio">
-						{{ user.getProfile.getSignature }}
-						</div>
-					</td>
-				</tr>
-				{% endif %}
-
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_tool_strip" colspan="2">
-						{% if app.user.getId == user.getId %}
-						<a href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
-						{% endif %}
-
-						{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
-						{% endif %}
-					</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
