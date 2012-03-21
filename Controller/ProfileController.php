@@ -62,25 +62,13 @@ class ProfileController extends ContainerAware
 		{
             throw new AccessDeniedException('You do not have access to this section.');
         }
-		
-		if ($user->getId() == $this->container->get('security.context')->getToken()->getUser()->getId()
-		|| $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')
-		|| $this->container->get('security.context')->isGranted('ROLE_ADMIN')
-		|| $this->container->get('security.context')->isGranted('ROLE_MODERATOR'))
-		{
-			$editable = 1;		
-		} else {
-			$editable = 0;
-		}
 
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), 
-				$this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user");
+			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user");
 				
         return $this->container->get('templating')->
 			renderResponse('CCDNUserProfileBundle:Profile:show.html.twig', array(
 				'user' => $user,
-				'editable' => $editable,
 				'crumbs' => $crumb_trail,
         ));
     }
@@ -100,34 +88,23 @@ class ProfileController extends ContainerAware
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
 			
-		if ( ! $user_id || $user_id == 0)
-		{
-			$user = $this->container->get('security.context')->getToken()->getUser();
-		} else {
-			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
-		}
+		$user = $this->container->get('security.context')->getToken()->getUser();
         
 		if ( ! is_object($user) || ! $user instanceof UserInterface)
 		{
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		if ($user->getId() == $this->container->get('security.context')->getToken()->getUser()->getId()
-		|| $this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')
-		|| $this->container->get('security.context')->isGranted('ROLE_ADMIN')
-		|| $this->container->get('security.context')->isGranted('ROLE_MODERATOR'))
-		{
-			
-		} else {
-		    throw new AccessDeniedException('You do not have access to this section.');
-		}
+//		if ($user->getId() == $this->container->get('security.context')->getToken()->getUser()->getId())
+//		{
+//		    throw new AccessDeniedException('You do not have access to this section.');
+//		}
 
-/*		$profile = $this->container->get('doctrine')->getEntityManager()
-			->getRepository('CCDNUserProfileBundle:Profile')
-			->findOneById($user->getId());*/
-
+		// get the user associated profile
 		$profile = $user->getProfile();
 
+		// if the profile has no id then it
+		// does not exist, so create one.
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile);
@@ -138,24 +115,19 @@ class ProfileController extends ContainerAware
         $process = $formHandler->process($profile);
 
         if ($process) {
-			$this->container->get('session')->setFlash('notice', 
-				$this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
         }
-
-		$form = $formHandler->getForm();
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
-			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), 
-				$this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user")
-			->add($this->container->get('translator')->trans('crumbs.profile.edit', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('cc_profile_edit_by_id', array('user_id' => $user->getId())), "edit");
+			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user")
+			->add($this->container->get('translator')->trans('crumbs.profile.edit', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_edit', array('user_id' => $user->getId())), "edit");
 				
         return $this->container->get('templating')->renderResponse(
             'CCDNUserProfileBundle:Profile:edit.html.twig',
             array(
-				'form' => $form->createView(),
+				'form' => $formHandler->getForm()->createView(),
 				'theme' => $this->container->getParameter('fos_user.template.theme'),
 				'user' => $user,
 				'crumbs' => $crumb_trail,

@@ -44,7 +44,7 @@
 	</div>
 	<div class="common_box_panel">
 		{% form_theme form param('ccdn_user_profile.template.theme') %}
-		<form action="{{ path('cc_profile_edit_by_id', {'user_id': user.getId }) }}" {{ form_enctype(form) }} method="POST">
+		<form action="{{ path('cc_profile_edit') }}" {{ form_enctype(form) }} method="POST">
 			{{ form_row(form._token) }}
 			<table class="common_list">
 				<tbody>

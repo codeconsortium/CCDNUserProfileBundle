@@ -153,16 +153,17 @@
 				</tr>
 				{% endif %}
 
-				{% if editable %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
 					<td class="form_tool_strip" colspan="2">
-						<a href="{{ path('cc_profile_edit_by_id', {'user_id': user.getId }) }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
+						{% if app.user.getId == user.getId %}
+						<a href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
+						{% endif %}
+
 						{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
 						{% endif %}
 					</td>
 				</tr>
-				{% endif %}
 			</tbody>
 		</table>
 	</div>
