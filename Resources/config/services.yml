@@ -5,7 +5,7 @@ parameters:
     ccdn_user_profile.profile.manager.class:        CCDNUser\ProfileBundle\Entity\Manager\ProfileManager
     ccdn_user_profile.profile.repository.class:     CCDNUser\ProfileBundle\Repository\ProfileRepository
     
-    ccdn_user_profile.dashboard_integrator.class:   CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
+    ccdn_user_profile.dashboard.integrator.class:   CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
     
 services:
     ccdn_user_profile.profile.repository:
@@ -25,8 +25,8 @@ services:
         arguments:  [@doctrine]
         
         
-    ccdn_user_profile.dashboard_integrator:
-        class: %ccdn_user_profile.dashboard_integrator.class%
+    ccdn_user_profile.dashboard.integrator:
+        class: %ccdn_user_profile.dashboard.integrator.class%
         arguments: [@service_container]
         tags:
-            - { name: ccdn_component_dashboard.registry }
+            - { name: ccdn_component_dashboard.integrator }
