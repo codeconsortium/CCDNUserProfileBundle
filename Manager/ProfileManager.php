@@ -1,16 +1,16 @@
 <?php
 
-namespace CCDNUser\ProfileBundle\Entity\Manager;
+namespace CCDNUser\ProfileBundle\Manager;
 
-use CCDNComponent\CommonBundle\Entity\Manager\EntityManagerInterface;
-use CCDNComponent\CommonBundle\Entity\Manager\BaseManager;
+use CCDNComponent\CommonBundle\Manager\ManagerInterface;
+use CCDNComponent\CommonBundle\Manager\BaseManager;
 
 /**
  * 
  * @author Reece Fowell <reece@codeconsortium.com> 
  * @version 1.0
  */
-class ProfileManager extends BaseManager implements EntityManagerInterface
+class ProfileManager extends BaseManager implements ManagerInterface
 {
 	
 	

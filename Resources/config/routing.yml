@@ -1,25 +1,14 @@
-# All profile routes
+#
+# Profile.
+#
 cc_profile_show:
     pattern: /{_locale}/user/my/profile
     defaults: { _controller: CCDNUserProfileBundle:Profile:show, user_id: 0, _locale: en }
-    requirements:
-        _locale: en
 
 cc_profile_show_by_id:
     pattern: /{_locale}/user/{user_id}/profile
     defaults: { _controller: CCDNUserProfileBundle:Profile:show , user_id: 0, _locale: en }
-    requirements:
-        _locale: en
         
 cc_profile_edit:
     pattern: /{_locale}/user/my/profile/edit
     defaults: { _controller: CCDNUserProfileBundle:Profile:edit, user_id: 0, _locale: en }
-    requirements:
-        _locale: en
-
-# originally for admins, now defunct
-#cc_profile_edit_by_id:
-#    pattern: /{_locale}/user/{user_id}/profile/edit
-#    defaults: { _controller: CCDNUserProfileBundle:Profile:edit, user_id: 0, _locale: en }
-#    requirements:
-#        _locale: en

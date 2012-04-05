@@ -43,8 +43,8 @@ class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
 		$resources = array(
 			'user' => array(
 				'Account' => array(
-					'cc_profile_show' => array('auth' => 'ROLE_USER', 'url' => $this->baseUrl . '/' . $this->locale . '/user/my/profile', 'name' => 'My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
-					'cc_profile_edit' => array('auth' => 'ROLE_USER', 'url' => $this->baseUrl . '/' . $this->locale . '/user/my/profile/edit', 'name' => 'Edit My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
+					'cc_profile_show' => array('auth' => 'ROLE_USER', 'name' => 'My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
+					'cc_profile_edit' => array('auth' => 'ROLE_USER', 'name' => 'Edit My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
 				),
 			),
 
