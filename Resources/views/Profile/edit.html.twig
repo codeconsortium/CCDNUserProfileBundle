@@ -42,7 +42,7 @@
 	<div class="common_box_header">
 		<span class="heading_glow">{{ 'title.profile.edit' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</span>
 	</div>
-	<div class="common_box_panel">
+	<div class="common_table_panel">
 		{% form_theme form param('ccdn_user_profile.template.theme') %}
 		<form action="{{ path('cc_profile_edit') }}" {{ form_enctype(form) }} method="POST">
 			{{ form_row(form._token) }}
