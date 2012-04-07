@@ -71,7 +71,7 @@
 
 			<div style="width: auto;" class="column v_align_top h_align_left padding_5">
 				<div class="row h_align_centre padding_5">
-					<a class="username_medium" href="{{ path(app.request.attributes.get('_route')) }}">{{ user.getUsername }}</a>
+					<a href="{{ path(app.request.attributes.get('_route')) }}">{{ user.getUsername }}</a>
 				</div>
 				<div class="row h_align_centre padding_5">
 					<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
