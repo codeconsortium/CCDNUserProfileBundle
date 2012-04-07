@@ -9,20 +9,20 @@
 
 {% block sidebar %}
 	{% if is_granted('ROLE_MODERATOR') %}
-	<div class="common_box_5 bg_header_smoke">
-		<div class="common_box_header"><span class="heading_glow">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
-		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+	<div class="sidebar">
+		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.special' | trans({}, 'CCDNComponentCommonBundle') }}</span></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_moderator_forum_cp') }}">{{ 'general.view.link_moderate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
 		{% if is_granted('ROLE_ADMIN') %}
-		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_admin_forum_cp') }}">{{ 'general.view.link_administrate' | trans({}, 'CCDNComponentCommonBundle') }}</a></div>
 		{% endif %}
 	</div>
 	{% endif %}
 	
-	<div class="common_box_5 bg_header_smoke">
-		<div class="common_box_header"><span class="heading_glow">{{ 'sidebar.header.tools'|trans({}, 'CCDNUserProfileBundle') }}</span></div>
+	<div class="sidebar">
+		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.tools'|trans({}, 'CCDNUserProfileBundle') }}</span></div>
 		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_user_account_show') }}">{{ 'sidebar.link.account.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
-		<div class="common_box_panel"><a class="sidebar" href="{{ path('cc_profile_show') }}">{{ 'sidebar.link.profile.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_user_account_show') }}">{{ 'sidebar.link.account.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
+		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_profile_show') }}">{{ 'sidebar.link.profile.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
 		{% endif %}
 	</div>
 {% endblock %}
@@ -33,11 +33,12 @@
 
 {% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="common_box_5 bg_header_smoke">
-	<div class="common_box_header">
-		<span class="heading_glow">{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</span>
+<div class="section_wrap_square">
+	<div class="section_header">
+		<h2>{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</h2>
 	</div>
-	<div class="common_tool_strip">
+	
+	<div class="section_tool_strip">
 		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% if app.user.getId == user.getId %}
 		<a class="button_link" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
@@ -48,7 +49,7 @@
 		{% endif %}
 	</div>
 
-	<div class="common_box_panel bg_item_light">
+	<div class="section_panel bg_item_light">
 		<div class="row padding_10">
 			<div style="width: auto;" class="column v_align_top h_align_left">
 				{% if user.getProfile.getAvatarIsRemote %}
@@ -73,89 +74,85 @@
 					<a class="username_medium" href="{{ path(app.request.attributes.get('_route')) }}">{{ user.getUsername }}</a>
 				</div>
 				<div class="row h_align_centre padding_5">
-					<img class="icon_16x16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon_16x16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon_16x16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon_16x16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon_16x16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon">
+					<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
+					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
+					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
+					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
+					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon">
 				</div>
 				{#<div class="row h_align_centre padding_5">{{ 'post.user.post_count' | trans({'%post_count%': '50'}, 'CCDNForumForumBundle') }}</div>#}
 			</div>
 		</div>		
 	</div>
 
-	<div class="common_table_panel">
+	<div class="section_table_panel">
 		<table class="common_list">
 			<tbody>
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getUsername }}</td>
+					<td class="right" style="width: 30%;"><span class="table_label">{{ 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left" style="width: 70%;"><span class="table_data">{{ user.getUsername }}</span></td>
 				</tr>
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getRegisteredDate|date("d/m/Y - H:i:s") }}</td>
-				</tr>
-
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getLastLogin|date("d/m/Y - H:i:s") }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getRegisteredDate|date("d/m/Y - H:i:s") }}</span></td>
 				</tr>
 
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getProfile.getLocation }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getLastLogin|date("d/m/Y - H:i:s") }}</span></td>
+				</tr>
+
+				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+					<td class="right"><span class="table_label">{{ 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getProfile.getLocation }}</span></td>
 				</tr>
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget"><a href="{{ user.getProfile.getWebsite }}" target="_blank">{{ user.getProfile.getWebsite }}</a></td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data"><a href="{{ user.getProfile.getWebsite }}" target="_blank">{{ user.getProfile.getWebsite }}</a></span></td>
 				</tr>
 
 
 				{% if user.getProfile.getAimIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getProfile.getAim }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getProfile.getAim }}</span></td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getMsnIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getProfile.getMsn }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getProfile.getMsn }}</span></td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getIcqIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getProfile.getIcq }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getProfile.getIcq }}</span></td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getYahooIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_label">{{ 'profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') }}</td>
-					<td class="form_widget">{{ user.getProfile.getYahoo }}</td>
+					<td class="right"><span class="table_label">{{ 'profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
+					<td class="left"><span class="table_data">{{ user.getProfile.getYahoo }}</span></td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getBio or user.getProfile.getSignature %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="form_tool_strip" colspan="2">
-						<div class="text_bubble">
-							<div class="text_bubble_header">
-							</div>
-						{% if user.getProfile.getBio %}
-							<div class="text_bubble_body">
-							{{ user.getProfile.getBio }}
-							</div>
-						{% endif %}
+					<td class="left" colspan="2">
+						<div class="round_box" style="margin-left: 20px !important;">
+							<span class="common_body">
+								{% if user.getProfile.getBio %}
+									{{ user.getProfile.getBio }}<br>
+								{% endif %}
 
-						{% if user.getProfile.getSignature %}
-							<div class="text_bubble_footer">
-							{{ user.getProfile.getSignature }}
-							</div>
-						{% endif %}
+								{% if user.getProfile.getSignature %}
+									<hr>{{ user.getProfile.getSignature }}
+								{% endif %}
+							</span>
 						</div>
 					</td>
 				</tr>

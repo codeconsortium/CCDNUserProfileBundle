@@ -6,9 +6,9 @@ sidebar.link.profile.edit: Edit Profile
 crumbs.profile: "%user_name% Profile"
 crumbs.profile.edit: Edit Profile
                   
-title.profile: 'Profile: %user_name%'
-title.profile.edit: "Profile: Edit %user_name%'s Profile"
-title.account: 'Account: %user_name%'
+title.profile: 'Profile: %user_name%.'
+title.profile.edit: "Profile: Edit %user_name%'s Profile."
+title.account: 'Account: %user_name%.'
 
 link.profile.edit: Edit
 link.user.message: 'Send Message'
