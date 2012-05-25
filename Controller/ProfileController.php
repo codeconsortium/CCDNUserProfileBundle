@@ -63,7 +63,7 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
 			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('cc_members_index', array()), "users")
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user");
@@ -117,7 +117,7 @@ class ProfileController extends ContainerAware
             return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
         }
 		
-		$crumb_trail = $this->container->get('ccdn_component_crumb_trail.crumb_trail')
+		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
 			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('cc_members_index', array()), "users")
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user")
