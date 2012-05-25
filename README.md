@@ -40,7 +40,7 @@ ProfileBundle Provides the following features:
 	3. Yahoo.
 	4. ICQ.
 
-Before installation of this bundle, you can download the [Sandbox](https://github.com/codeconsortium/CCDNForumSandBox) for testing/development and feature review, or alternatively see the product in use at [CodeConsortium](http://www.codeconsortium.com).
+Before installation of this bundle, you can download the [Sandbox](https://github.com/codeconsortium/CCDNSandBox) for testing/development and feature review, or alternatively see the product in use at [CodeConsortium](http://www.codeconsortium.com).
 
 ## Documentation.
 
