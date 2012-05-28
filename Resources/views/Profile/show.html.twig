@@ -29,23 +29,26 @@
 
 {% block body %}
 
-{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-
 {% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_square">
+<div class="section_wrap_top">
+	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+</div>
+<div class="section_wrap_bottom">
 	<div class="section_header">
 		<h2>{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</h2>
 	</div>
-	
+</div>
+
+<div class="section_wrap_standalone">
 	<div class="section_tool_strip">
-		<a class="button_link" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+		<a class="button_red" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% if app.user.getId == user.getId %}
-		<a class="button_link" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
+		<a class="button_red" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% endif %}
 
 		{% if is_granted('ROLE_ADMIN') %}
-		<a class="button_link" href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
+		<a class="button_red" href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% endif %}
 	</div>
 
@@ -162,6 +165,8 @@
 	</div>
 </div>
 
-{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+<div class="section_wrap_standalone">
+	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
+</div>
 
 {% endblock body %}
