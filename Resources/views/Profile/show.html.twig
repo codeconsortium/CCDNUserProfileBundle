@@ -44,7 +44,7 @@
 		{% endif %}
 	</div>
 
-	<div class="section_panel bg_item_light">
+	<div class="section_panel" style="padding: 10px;">
 		<div class="row">
 			<div style="width: auto;" class="column v_align_top h_align_left">
 				{% if user.getProfile.getAvatarIsRemote %}
@@ -64,19 +64,6 @@
 				{% endif %}
 			</div>
 
-			<div style="width: auto;" class="column v_align_top h_align_left">
-				<div class="row h_align_centre">
-					<a href="{{ path(app.request.attributes.get('_route')) }}">{{ user.getUsername }}</a>
-				</div>
-				<div class="row h_align_centre">
-					<img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon" 
-					><img class="icon16" width="16" height="16" src="{{ asset('bundles/ccdncomponentcommon/images/icons/Black/16x16/16x16_star.png') }}" alt="icon">
-				</div>
-				{#<div class="row h_align_centre">{{ 'post.user.post_count' | trans({'%post_count%': '50'}, 'CCDNForumForumBundle') }}</div>#}
-			</div>
 		</div>		
 	</div>
 
