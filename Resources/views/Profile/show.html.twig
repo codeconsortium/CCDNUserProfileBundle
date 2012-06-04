@@ -3,6 +3,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{ asset('bundles/ccdncomponentcrumbtrail/css/crumbs.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('bundles/ccdncomponentbbcode/css/bbcode.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}{% endblock %}
@@ -125,14 +126,14 @@
 				{% if user.getProfile.getBio or user.getProfile.getSignature %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
 					<td class="left" colspan="2">
-						<div class="round_box" style="margin-left: 20px !important;">
+						<div class="round_box">
 							<span class="common_body">
 								{% if user.getProfile.getBio %}
-									{{ user.getProfile.getBio }}<br>
+									{{ BBCode(user.getProfile.getBio | raw) | raw }}<br>
 								{% endif %}
 
 								{% if user.getProfile.getSignature %}
-									<hr>{{ user.getProfile.getSignature }}
+									<hr>{{ BBCode(user.getProfile.getSignature | raw) | raw }}
 								{% endif %}
 							</span>
 						</div>
