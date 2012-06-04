@@ -64,14 +64,12 @@ class ProfileController extends ContainerAware
         }
 
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('cc_members_index', array()), "users")
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user");
 				
-        return $this->container->get('templating')->
-			renderResponse('CCDNUserProfileBundle:Profile:show.html.twig', array(
-				'user' => $user,
-				'crumbs' => $crumb_trail,
+        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:show.html.' . $this->getEngine(), array(
+			'user' => $user,
+			'crumbs' => $crumb_trail,
         ));
     }
 
@@ -118,19 +116,15 @@ class ProfileController extends ContainerAware
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
-			->add($this->container->get('translator')->trans('crumbs.dashboard', array(), 'CCDNForumForumBundle'), $this->container->get('router')->generate('cc_dashboard_index'), "sitemap")
 			->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('cc_members_index', array()), "users")
 			->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => $user->getUsername()), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())), "user")
 			->add($this->container->get('translator')->trans('crumbs.profile.edit', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('cc_profile_edit', array('user_id' => $user->getId())), "edit");
 				
-        return $this->container->get('templating')->renderResponse(
-            'CCDNUserProfileBundle:Profile:edit.html.twig',
-            array(
-				'form' => $formHandler->getForm()->createView(),
-				'theme' => $this->container->getParameter('fos_user.template.theme'),
-				'user' => $user,
-				'crumbs' => $crumb_trail,
-			));
+        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit.html.' . $this->getEngine(), array(
+			'form' => $formHandler->getForm()->createView(),
+			'user' => $user,
+			'crumbs' => $crumb_trail,
+		));
     }
 	
 	
@@ -142,6 +136,18 @@ class ProfileController extends ContainerAware
 	protected function setFlash($action, $value)
     {
         $this->container->get('session')->setFlash($action, $value);
+    }
+
+			
+	
+	/**
+	 *
+	 * @access protected
+	 * @return string
+	 */
+	protected function getEngine()
+    {
+        return $this->container->getParameter('ccdn_user_profile.template.engine');
     }
 
 }

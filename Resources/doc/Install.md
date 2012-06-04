@@ -95,11 +95,6 @@ ccdn_user_profile:
         profile_route: cc_profile_show_by_id 
     template:
         engine: twig
-        theme: CCDNUserProfileBundle:Form:fields.html.twig
-    profile:
-        layout_templates:
-            edit: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            show: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
 
 ```   
 
@@ -141,4 +136,5 @@ Installation should now be complete!
 
 If you need further help/support, have suggestions or want to contribute please join the community at [Code Consortium](http://www.codeconsortium.com)
 
-[Return back to the docs index](http://github.com/codeconsortium/CCDNUserProfileBundle/blob/master/Resources/doc/index.md).
+- [Return back to the docs index](index.md).
+- [Configuration Reference](configuration_reference.md).

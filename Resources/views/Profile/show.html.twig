@@ -1,4 +1,4 @@
-{% extends param('ccdn_user_profile.profile.layout_templates.show') %}
+{% extends param('ccdn_user_profile.profile.show.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -34,7 +34,7 @@
 
 <div class="section_wrap_standalone">
 	<div class="section_tool_strip">
-		<a class="button_red" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+		<a class="button_blue" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% if app.user.getId == user.getId %}
 		<a class="button_red" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
 		{% endif %}
@@ -89,12 +89,12 @@
 				</tr>
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
 					<td class="right"><span class="table_label">{{ 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getRegisteredDate|date("d/m/Y - H:i:s") }}</span></td>
+					<td class="left"><span class="table_timestamp">{{ user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.last_login_datetime_format')) }}</span></td>
 				</tr>
 
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
 					<td class="right"><span class="table_label">{{ 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getLastLogin|date("d/m/Y - H:i:s") }}</span></td>
+					<td class="left"><span class="table_timestamp">{{ user.getLastLogin |date(param('ccdn_user_profile.profile.show.member_since_datetime_format')) }}</span></td>
 				</tr>
 
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">

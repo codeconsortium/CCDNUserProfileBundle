@@ -44,7 +44,6 @@ class CCDNUserProfileExtension extends Extension
 
 		$container->setParameter('ccdn_user_profile.user.profile_route', $config['user']['profile_route']);
 		$container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
-		$container->setParameter('ccdn_user_profile.template.theme', $config['template']['theme']);
 		
 		$this->getProfileSection($container, $config);
     }
@@ -58,8 +57,13 @@ class CCDNUserProfileExtension extends Extension
 	 */
 	private function getProfileSection($container, $config)
 	{
-		$container->setParameter('ccdn_user_profile.profile.layout_templates.edit', $config['profile']['layout_templates']['edit']);
-		$container->setParameter('ccdn_user_profile.profile.layout_templates.show', $config['profile']['layout_templates']['show']);
+		$container->setParameter('ccdn_user_profile.profile.edit.layout_template', $config['profile']['edit']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.form_theme', $config['profile']['edit']['form_theme']);
+		
+		$container->setParameter('ccdn_user_profile.profile.show.layout_template', $config['profile']['show']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.show.member_since_datetime_format', $config['profile']['show']['member_since_datetime_format']);
+		$container->setParameter('ccdn_user_profile.profile.show.last_login_datetime_format', $config['profile']['show']['last_login_datetime_format']);
+		
 	}
 	
 	
