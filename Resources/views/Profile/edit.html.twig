@@ -15,132 +15,135 @@
 {% block sidebar %}
 	{{ parent() }}
 	
-	<div class="sidebar">
-		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.tools' | trans({}, 'CCDNUserProfileBundle') }}</span></div>
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_user_account_show') }}">{{ 'sidebar.link.account.view' | trans({}, 'CCDNUserProfileBundle') }}</a></div>
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_profile_show') }}">{{ 'sidebar.link.profile.view' | trans({}, 'CCDNUserProfileBundle') }}</a></div>
-		{% endif %}
-	</div>
+	{% include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' %}
+	
 {% endblock %}
 
 {% block body %}
 
-{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_top">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
-<div class="section_wrap_bottom">
-	<div class="section_header">
-		<h2>{{ 'title.profile.edit' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</h2>
-	</div>
-</div>
 
-<div class="section_wrap_standalone">	
-	<div class="section_table_panel">
+	<h2>{{ user.getUsername |capitalize }}</h2>
+
+	<br>
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="{{ path('cc_profile_show') }}"><i class="icon-user"></i>&nbsp;{{ 'link.account.overview' | trans({}, 'CCDNUserUserBundle') }}</a></li>
+	</ul>
+	
+	<div class="well">
 		{% form_theme form param('ccdn_user_profile.profile.edit.form_theme') %}
-		<form action="{{ path('cc_profile_edit') }}" {{ form_enctype(form) }} method="POST">
-			{{ form_row(form._token) }}
-			<table class="common_list">
-				<tbody>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label"><label class="widget_label">{{ 'form.label.profile.edit.username' |trans({}, 'CCDNUserProfileBundle') }}</label></td>
-						<td class="form_widget">{{ user.getUsername }}</td>
-					</tr>	
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.location, null, { 'label': 'form.label.profile.edit.location' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.location) }}
-							{{ form_widget(form.location) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.website, null, { 'label': 'form.label.profile.edit.website' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.website) }}
-							{{ form_widget(form.website) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.aim, null, { 'label': 'form.label.profile.edit.aim' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.aim_is_public) }}
-							{{ form_widget(form.aim_is_public) }}{{ form_label(form.aim_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.aim_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
-							<br>
-							{{ form_errors(form.aim) }}
-							{{ form_widget(form.aim) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.msn, null, { 'label': 'form.label.profile.edit.msn' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.msn_is_public) }}
-							{{ form_widget(form.msn_is_public) }}{{ form_label(form.msn_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.msn_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
-							<br>
-							{{ form_errors(form.msn) }}
-							{{ form_widget(form.msn) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.icq, null, { 'label': 'form.label.profile.edit.icq' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.icq_is_public) }}
-							{{ form_widget(form.icq_is_public) }}{{ form_label(form.icq_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.icq_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
-							<br>
-							{{ form_errors(form.icq) }}
-							{{ form_widget(form.icq) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.yahoo, null, { 'label': 'form.label.profile.edit.yahoo'|trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.yahoo_is_public) }}
-							{{ form_widget(form.yahoo_is_public) }}{{ form_label(form.yahoo_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.yahoo_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
-							<br>
-							{{ form_errors(form.yahoo) }}
-							{{ form_widget(form.yahoo) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.bio, null, { 'label': 'form.label.profile.edit.bio' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.bio) }}
-							{{ form_widget(form.bio) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.avatar, null, { 'label': 'form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.avatar_is_remote) }}
-							{{ form_widget(form.avatar_is_remote) }}
-							{{ form_label(form.avatar_is_remote, null, { 'attr': { 'class': 'checkbox_', 'label': 'form.label.profile.edit.avatar_is_remote' |trans({}, 'CCDNUserProfileBundle') }}) }}
-							<br>
-							{{ form_errors(form.avatar) }}
-							{{ form_widget(form.avatar) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_label">{{ form_label(form.signature, null, { 'label': 'form.label.profile.edit.signature' |trans({}, 'CCDNUserProfileBundle') }) }}</td>
-						<td class="form_widget">
-							{{ form_errors(form.signature) }}
-							{{ form_widget(form.signature) }}
-						</td>
-					</tr>
-					<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-						<td class="form_tool_strip" colspan="2">
-							<input type="submit" class="button_blue" value="{{ 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') }}">
-					    </td>
-					</tr>
-				</tbody>
-			</table>
-
+		
+		<form action="{{ path('cc_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+			<fieldset>
+				
+				<div class="control-group"><div class="controls row-fluid">{{ form_row(form._token) }}</div></div>
+				
+				<div class="control-group">
+					<label class="control-label" for="username">{{ 'form.label.profile.edit.username' |trans({}, 'CCDNUserProfileBundle') }}</label>
+					<div class="controls row-fluid">
+						<input type="text" class="input-xlarge span8 disabled" id="username" value="{{ user.getUsername }}" disabled>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.location, null, { 'label': 'form.label.profile.edit.location' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.location) }}
+						{{ form_widget(form.location) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.website, null, { 'label': 'form.label.profile.edit.website' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.website) }}
+						{{ form_widget(form.website) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.aim, null, { 'label': 'form.label.profile.edit.aim' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.aim_is_public) }}
+						{{ form_widget(form.aim_is_public) }}{{ form_label(form.aim_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.aim_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
+						<br>
+						{{ form_errors(form.aim) }}
+						{{ form_widget(form.aim) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.msn, null, { 'label': 'form.label.profile.edit.msn' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.msn_is_public) }}
+						{{ form_widget(form.msn_is_public) }}{{ form_label(form.msn_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.msn_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
+						<br>
+						{{ form_errors(form.msn) }}
+						{{ form_widget(form.msn) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.icq, null, { 'label': 'form.label.profile.edit.icq' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.icq_is_public) }}
+						{{ form_widget(form.icq_is_public) }}{{ form_label(form.icq_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.icq_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
+						<br>
+						{{ form_errors(form.icq) }}
+						{{ form_widget(form.icq) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.yahoo, null, { 'label': 'form.label.profile.edit.yahoo'|trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.yahoo_is_public) }}
+						{{ form_widget(form.yahoo_is_public) }}{{ form_label(form.yahoo_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'form.label.profile.edit.yahoo_is_public' |trans({}, 'CCDNUserProfileBundle') } }) }}
+						<br>
+						{{ form_errors(form.yahoo) }}
+						{{ form_widget(form.yahoo) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.bio, null, { 'label': 'form.label.profile.edit.bio' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.bio) }}
+						{{ form_widget(form.bio) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.avatar, null, { 'label': 'form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.avatar_is_remote) }}
+						{{ form_widget(form.avatar_is_remote) }}
+						{{ form_label(form.avatar_is_remote, null, { 'attr': { 'class': 'checkbox_', 'label': 'form.label.profile.edit.avatar_is_remote' |trans({}, 'CCDNUserProfileBundle') }}) }}
+						<br>
+						{{ form_errors(form.avatar) }}
+						{{ form_widget(form.avatar) }}
+					</div>
+				</div>
+				
+				<div class="control-group">
+					{{ form_label(form.signature, null, { 'label': 'form.label.profile.edit.signature' |trans({}, 'CCDNUserProfileBundle') }) }}
+					<div class="controls row-fluid">
+						{{ form_errors(form.signature) }}
+						{{ form_widget(form.signature) }}
+					</div>
+				</div>
+				
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="{{ 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') }}">
+				</div>
+				
+			</fieldset>
 		</form>
 	</div>
-</div>
 
-<div class="section_wrap_standalone">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
 {% endblock body %}

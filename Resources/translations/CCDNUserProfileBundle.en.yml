@@ -1,6 +1,6 @@
 sidebar.header.tools: Tools
-sidebar.link.account.view: View Account
-sidebar.link.profile.view: View Profile
+sidebar.link.account.view: Account
+sidebar.link.profile.view: Profile
 sidebar.link.profile.edit: Edit Profile
 
 crumbs.profile: "%user_name% Profile"
@@ -10,6 +10,7 @@ title.profile: 'Profile: %user_name%.'
 title.profile.edit: "Profile: Edit %user_name%'s Profile."
 title.account: 'Account: %user_name%.'
 
+link.profile.overview: Overview
 link.profile.edit: Edit
 link.user.message: 'Send Message'
 link.user.administrate: 'Administrate User'

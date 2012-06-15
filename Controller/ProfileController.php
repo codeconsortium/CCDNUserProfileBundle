@@ -46,13 +46,21 @@ class ProfileController extends ContainerAware
 	 */
     public function showAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true')
 		{
-			throw new AccessDeniedException('You do not have access to this section.');
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new AccessDeniedException('You do not have access to this section.');
+			}
 		}
 		
 		if ( ! $user_id || $user_id == 0)
 		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
 			$user = $this->container->get('security.context')->getToken()->getUser();
 		} else {
 			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
@@ -60,7 +68,7 @@ class ProfileController extends ContainerAware
 
 		if ( ! is_object($user) || ! ($user instanceof UserInterface))
 		{
-            throw new AccessDeniedException('You do not have access to this section.');
+            throw new NotFoundHttpException('User not found!');
         }
 
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')

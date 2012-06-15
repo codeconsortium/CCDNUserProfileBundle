@@ -6,153 +6,137 @@
 	<link href="{{ asset('bundles/ccdncomponentbbcode/css/bbcode.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}{% endblock %}
+{% block title %}{{ 'title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle') }}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
 	
-	<div class="sidebar">
-		<div class="sidebar_header"><span class="sidebar_header">{{ 'sidebar.header.tools'|trans({}, 'CCDNUserProfileBundle') }}</span></div>
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_user_account_show') }}">{{ 'sidebar.link.account.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
-		<div class="sidebar_panel"><a class="sidebar" href="{{ path('cc_profile_show') }}">{{ 'sidebar.link.profile.view'|trans({}, 'CCDNUserProfileBundle') }}</a></div>
-		{% endif %}
-	</div>
+	{% include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' %}
+	
 {% endblock %}
 
 {% block body %}
 
-{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
+	{% include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' %}
 
-<div class="section_wrap_top">
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
-<div class="section_wrap_bottom">
-	<div class="section_header">
-		<h2>{{ 'title.profile' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') }}</h2>
-	</div>
-</div>
 
-<div class="section_wrap_standalone">
-	<div class="section_tool_strip">
+	<h2>{{ user.getUsername |capitalize }}</h2>
+
+	<br>
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="{{ path('cc_profile_show') }}"><i class="icon-user"></i>&nbsp;{{ 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') }}</a></li>
+	</ul>
+	
+	<div class="btn-toolbar pull-right">
 		{% if is_granted('ROLE_USER') %}
 			{% if app.user.getId != user.getId %}
-			<a class="button_blue" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
+			<a class="btn btn-primary" href="{{ path('cc_message_message_compose_to', {'user_id': user.getId }) }}">{{ 'link.user.message' | trans({}, 'CCDNUserProfileBundle') }}</a>
 			
 				{% if is_granted('ROLE_ADMIN') %}
-				<a class="button_red" href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
+				<a class="btn btn-primary" href="{{ path('cc_admin_user_show', {'user_id': user.getId }) }}">{{ 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') }}</a>
 				{% endif %}			
 			{% endif %}
 			
 			{% if app.user.getId == user.getId %}
-			<a class="button_red" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
+			<a class="btn btn-primary" href="{{ path('cc_profile_edit') }}">{{ 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') }}</a>
 			{% endif %}
 			
 		{% endif %}		
 	</div>
 
-	<div class="section_panel" style="padding: 10px;">
-		<div class="row">
-			<div style="width: auto;" class="column v_align_top h_align_left">
-				{% if user.getProfile.getAvatarIsRemote %}
-					{% if user.getProfile.getAvatar %}
-						<img class="avatar" width="100" height="100" src="{{ user.getProfile.getAvatar }}" alt="avatar">
-					{% else %}
-						<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
-					{% endif %}
-				{% else %}
-					{% if user.getProfile.getAvatar %}
-						{# later on this will reference the avatarBundle asset and append the avatar onto the end #}
-						{# e.g: {{ asset('bundles/ccdnuseravatar/images/avatars/') }}{{ post.getCreatedBy.getProfile.getAvatar }} #}
-						<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
-					{% else %}
-						<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
-					{% endif %}
-				{% endif %}
-			</div>
-
-		</div>		
+	<div style="width: auto; margin-bottom:10px;">
+		{% if user.getProfile.getAvatarIsRemote %}
+			{% if user.getProfile.getAvatar %}
+				<img class="avatar" width="100" height="100" src="{{ user.getProfile.getAvatar }}" alt="avatar">
+			{% else %}
+				<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
+			{% endif %}
+		{% else %}
+			{% if user.getProfile.getAvatar %}
+				{# later on this will reference the avatarBundle asset and append the avatar onto the end #}
+				{# e.g: {{ asset('bundles/ccdnuseravatar/images/avatars/') }}{{ post.getCreatedBy.getProfile.getAvatar }} #}
+				<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
+			{% else %}
+				<img class="avatar" width="100" height="100" src="{{ asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') }}" alt="avatar">
+			{% endif %}
+		{% endif %}
 	</div>
+	
+	<br>
+	
+	<table class="table table-striped table-bordered">
+		<tbody>
+			<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+				<td class="right" style="width: 30%;">{{ 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') }}</td>
+				<td class="left" style="width: 70%;">{{ user.getUsername |title }}</td>
+			</tr>
+			<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+				<td class="right">{{ 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') }}</td>
+				<td class="left">{{ user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.last_login_datetime_format')) }}</td>
+			</tr>
 
-	<div class="section_table_panel">
-		<table class="common_list">
-			<tbody>
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right" style="width: 30%;"><span class="table_label">{{ 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left" style="width: 70%;"><span class="table_data">{{ user.getUsername }}</span></td>
-				</tr>
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_timestamp">{{ user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.last_login_datetime_format')) }}</span></td>
-				</tr>
+			<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+				<td class="right">{{ 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') }}</td>
+				<td class="left">{{ user.getLastLogin |date(param('ccdn_user_profile.profile.show.member_since_datetime_format')) }}</td>
+			</tr>
 
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_timestamp">{{ user.getLastLogin |date(param('ccdn_user_profile.profile.show.member_since_datetime_format')) }}</span></td>
-				</tr>
+			<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+				<td class="right">{{ 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') }}</td>
+				<td class="left">{{ user.getProfile.getLocation }}</td>
+			</tr>
+			<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
+				<td class="right">{{ 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') }}</td>
+				<td class="left"><a href="{{ user.getProfile.getWebsite }}" target="_blank">{{ user.getProfile.getWebsite }}</a></td>
+			</tr>
 
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getProfile.getLocation }}</span></td>
-				</tr>
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data"><a href="{{ user.getProfile.getWebsite }}" target="_blank">{{ user.getProfile.getWebsite }}</a></span></td>
-				</tr>
-
-
+			{% if is_granted('ROLE_USER') %}
 				{% if user.getProfile.getAimIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getProfile.getAim }}</span></td>
+					<td class="right">{{ 'profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') }}</td>
+					<td class="left">{{ user.getProfile.getAim }}</td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getMsnIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getProfile.getMsn }}</span></td>
+					<td class="right">{{ 'profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') }}</td>
+					<td class="left">{{ user.getProfile.getMsn }}</td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getIcqIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getProfile.getIcq }}</span></td>
+					<td class="right">{{ 'profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') }}</td>
+					<td class="left">{{ user.getProfile.getIcq }}</td>
 				</tr>
 				{% endif %}
 
 				{% if user.getProfile.getYahooIsPublic %}
 				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="right"><span class="table_label">{{ 'profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') }}</span></td>
-					<td class="left"><span class="table_data">{{ user.getProfile.getYahoo }}</span></td>
+					<td class="right">{{ 'profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') }}</td>
+					<td class="left">{{ user.getProfile.getYahoo }}</td>
 				</tr>
 				{% endif %}
-
-				{% if user.getProfile.getBio or user.getProfile.getSignature %}
-				<tr class="{{ cycler(['row_odd', 'row_even'], 'cycle') }}">
-					<td class="left" colspan="2">
-						<div class="round_box">
-							<span class="common_body">
-								{% if user.getProfile.getBio %}
-									{{ BBCode(user.getProfile.getBio | raw) | raw }}<br>
-								{% endif %}
-
-								{% if user.getProfile.getSignature %}
-									<hr>{{ BBCode(user.getProfile.getSignature | raw) | raw }}
-								{% endif %}
-							</span>
-						</div>
-					</td>
-				</tr>
+			{% endif %}
+		</tbody>
+	</table>
+	
+	{% if user.getProfile.getBio or user.getProfile.getSignature %}
+		<div class="well">
+			<span class="common_body">
+				{% if user.getProfile.getBio %}
+					{{ BBCode(user.getProfile.getBio | raw) | raw }}<br>
 				{% endif %}
-			</tbody>
-		</table>
-	</div>
-</div>
 
-<div class="section_wrap_standalone">
+				{% if user.getProfile.getSignature %}
+					<hr>{{ BBCode(user.getProfile.getSignature | raw) | raw }}
+				{% endif %}
+			</span>
+		</div>
+	{% endif %}
+
 	{% include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } %}
-</div>
 
 {% endblock body %}

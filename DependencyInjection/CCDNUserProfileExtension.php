@@ -46,6 +46,7 @@ class CCDNUserProfileExtension extends Extension
 		$container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
 		
 		$this->getProfileSection($container, $config);
+		$this->getSidebarSection($container, $config);
     }
 	
 	
@@ -63,8 +64,22 @@ class CCDNUserProfileExtension extends Extension
 		$container->setParameter('ccdn_user_profile.profile.show.layout_template', $config['profile']['show']['layout_template']);
 		$container->setParameter('ccdn_user_profile.profile.show.member_since_datetime_format', $config['profile']['show']['member_since_datetime_format']);
 		$container->setParameter('ccdn_user_profile.profile.show.last_login_datetime_format', $config['profile']['show']['last_login_datetime_format']);
+		$container->setParameter('ccdn_user_profile.profile.show.requires_login', $config['profile']['show']['requires_login']);
 		
 	}
 	
+	
+	
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */
+	private function getSidebarSection($container, $config)
+	{
+		$container->setParameter('ccdn_user_profile.sidebar.members_route', $config['sidebar']['members_route']);
+		$container->setParameter('ccdn_user_profile.sidebar.account_route', $config['sidebar']['account_route']);
+		
+	}
 	
 }

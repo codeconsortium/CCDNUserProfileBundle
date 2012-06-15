@@ -53,6 +53,7 @@ class Configuration implements ConfigurationInterface
 			->end();
 		
 		$this->addProfileSection($rootNode);
+		$this->addSidebarSection($rootNode);
 		
         return $treeBuilder;
     }
@@ -86,13 +87,34 @@ class Configuration implements ConfigurationInterface
 								->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_left.html.twig')->end()
 								->scalarNode('member_since_datetime_format')->defaultValue('d-m-Y - H:i')->end()
 								->scalarNode('last_login_datetime_format')->defaultValue('d-m-Y - H:i')->end()
+								->scalarNode('requires_login')->defaultValue('true')->end()
 							->end()
 						->end()
 					->end()
 				->end()
 			->end();
 	}
-
 	
+	
+	
+	/**
+	 *
+	 * @access private
+	 * @param ArrayNodeDefinition $node
+	 */
+	private function addSidebarSection(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+				->arrayNode('sidebar')
+					->addDefaultsIfNotSet()
+					->canBeUnset()
+					->children()
+						->scalarNode('members_route')->defaultValue('cc_members_index')->end()
+						->scalarNode('account_route')->defaultValue('cc_user_account_show')->end()
+					->end()
+				->end()
+			->end();
+	}
 	
 }
