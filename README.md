@@ -43,6 +43,7 @@ ProfileBundle Provides the following features:
 	2. AIM.
 	3. Yahoo.
 	4. ICQ.
+8. Utilises Twitter-Bootstrap interface by default.
 
 Before installation of this bundle, you can download the [Sandbox](https://github.com/codeconsortium/CCDNSandBox) for testing/development and feature review, or alternatively see the product in use at [CodeConsortium](http://www.codeconsortium.com).
 
