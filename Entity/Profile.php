@@ -31,13 +31,14 @@ class Profile
 
 	/**
 	 * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
+	 * @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", onDelete="SET NULL")
 	 */
 	protected $user;
 	
 	/**
-	 * @ORM\Column(type="boolean", nullable=true)
+	 * @ORM\Column(type="boolean", name="avatar_is_remote", nullable=true)
 	 */
-	protected $avatar_is_remote = false;
+	protected $avatarIsRemote = false;
 	
 	/**
 	 * @ORM\Column(type="string", nullable=true)
@@ -50,9 +51,9 @@ class Profile
 	protected $aim;
 	
 	/**
-	 * @ORM\Column(type="boolean", nullable=true)
+	 * @ORM\Column(type="boolean", name="aim_is_public", nullable=true)
 	 */
-	protected $aim_is_public = false;
+	protected $aimIsPublic = false;
 	
 	/**
 	 * @ORM\Column(type="string", nullable=true)
@@ -60,9 +61,9 @@ class Profile
 	protected $msn;
 	
 	/**
-	 * @ORM\Column(type="boolean", nullable=true)
+	 * @ORM\Column(type="boolean", name="msn_is_public", nullable=true)
 	 */
-	protected $msn_is_public = false;
+	protected $msnIsPublic = false;
 	
 	/**
 	 * @ORM\Column(type="string", nullable=true)
@@ -70,9 +71,9 @@ class Profile
 	protected $icq;
 	
 	/**
-	 * @ORM\Column(type="boolean", nullable=true)
+	 * @ORM\Column(type="boolean", name="icq_is_public", nullable=true)
 	 */
-	protected $icq_is_public = false;
+	protected $icqIsPublic = false;
 	
 	/**
 	 * @ORM\Column(type="string", nullable=true)
@@ -80,9 +81,9 @@ class Profile
 	protected $yahoo;
 	
 	/**
-	 * @ORM\Column(type="boolean", nullable=true)
+	 * @ORM\Column(type="boolean", name="yahoo_is_public", nullable=true)
 	 */
-	protected $yahoo_is_public = false;
+	protected $yahooIsPublic = false;
 
 	/**
 	 * @ORM\Column(type="string", nullable=true)
@@ -116,24 +117,26 @@ class Profile
         return $this->id;
     }
 
+
+
     /**
-     * Set avatar_is_remote
+     * Set avatarIsRemote
      *
      * @param boolean $avatarIsRemote
      */
     public function setAvatarIsRemote($avatarIsRemote)
     {
-        $this->avatar_is_remote = $avatarIsRemote;
+        $this->avatarIsRemote = $avatarIsRemote;
     }
 
     /**
-     * Get avatar_is_remote
+     * Get avatarIsRemote
      *
      * @return boolean 
      */
     public function getAvatarIsRemote()
     {
-        return $this->avatar_is_remote;
+        return $this->avatarIsRemote;
     }
 
     /**
@@ -177,23 +180,23 @@ class Profile
     }
 
     /**
-     * Set aim_is_public
+     * Set aimIsPublic
      *
      * @param boolean $aimIsPublic
      */
     public function setAimIsPublic($aimIsPublic)
     {
-        $this->aim_is_public = $aimIsPublic;
+        $this->aimIsPublic = $aimIsPublic;
     }
 
     /**
-     * Get aim_is_public
+     * Get aimIsPublic
      *
      * @return boolean 
      */
     public function getAimIsPublic()
     {
-        return $this->aim_is_public;
+        return $this->aimIsPublic;
     }
 
     /**
@@ -217,23 +220,23 @@ class Profile
     }
 
     /**
-     * Set msn_is_public
+     * Set msnIsPublic
      *
      * @param boolean $msnIsPublic
      */
     public function setMsnIsPublic($msnIsPublic)
     {
-        $this->msn_is_public = $msnIsPublic;
+        $this->msnIsPublic = $msnIsPublic;
     }
 
     /**
-     * Get msn_is_public
+     * Get msnIsPublic
      *
      * @return boolean 
      */
     public function getMsnIsPublic()
     {
-        return $this->msn_is_public;
+        return $this->msnIsPublic;
     }
 
     /**
@@ -257,23 +260,23 @@ class Profile
     }
 
     /**
-     * Set icq_is_public
+     * Set icqIsPublic
      *
      * @param boolean $icqIsPublic
      */
     public function setIcqIsPublic($icqIsPublic)
     {
-        $this->icq_is_public = $icqIsPublic;
+        $this->icqIsPublic = $icqIsPublic;
     }
 
     /**
-     * Get icq_is_public
+     * Get icqIsPublic
      *
      * @return boolean 
      */
     public function getIcqIsPublic()
     {
-        return $this->icq_is_public;
+        return $this->icqIsPublic;
     }
 
     /**
@@ -297,23 +300,23 @@ class Profile
     }
 
     /**
-     * Set yahoo_is_public
+     * Set yahooIsPublic
      *
      * @param boolean $yahooIsPublic
      */
     public function setYahooIsPublic($yahooIsPublic)
     {
-        $this->yahoo_is_public = $yahooIsPublic;
+        $this->yahooIsPublic = $yahooIsPublic;
     }
 
     /**
-     * Get yahoo_is_public
+     * Get yahooIsPublic
      *
      * @return boolean 
      */
     public function getYahooIsPublic()
     {
-        return $this->yahoo_is_public;
+        return $this->yahooIsPublic;
     }
 
     /**
@@ -333,13 +336,6 @@ class Profile
      */
     public function getWebsite()
     {
-		if (!empty($this->website))
-		{
-			if (substr($this->website, 0, 7) != 'http://')
-			{
-				$this->website = 'http://' . $this->website;
-			}
-		}
         return $this->website;
     }
 
@@ -384,26 +380,6 @@ class Profile
     }
 
     /**
-     * Set user
-     *
-     * @param CCDNUser\UserBundle\Entity\User $user
-     */
-    public function setUser(\CCDNUser\UserBundle\Entity\User $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return CCDNUser\UserBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
      * Set signature
      *
      * @param string $signature
@@ -421,5 +397,25 @@ class Profile
     public function getSignature()
     {
         return $this->signature;
+    }
+
+    /**
+     * Set user
+     *
+     * @param CCDNUser\UserBundle\Entity\User $user
+     */
+    public function setUser(\CCDNUser\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return CCDNUser\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
