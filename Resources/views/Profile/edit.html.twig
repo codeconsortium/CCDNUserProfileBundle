@@ -113,6 +113,7 @@
 				{{- form_label(form.bio, null, { 'label': 'form.label.profile.edit.bio' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.bio) -}}
+					{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
 					{{- form_widget(form.bio) -}}
 				</div>
 			</div>
@@ -133,6 +134,7 @@
 				{{- form_label(form.signature, null, { 'label': 'form.label.profile.edit.signature' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.signature) -}}
+					{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
 					{{- form_widget(form.signature) -}}
 				</div>
 			</div>
