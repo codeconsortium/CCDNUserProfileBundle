@@ -45,9 +45,22 @@ class CCDNUserProfileExtension extends Extension
 		$container->setParameter('ccdn_user_profile.user.profile_route', $config['user']['profile_route']);
 		$container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
 		
+		$this->getSEOSection($container, $config);
 		$this->getProfileSection($container, $config);
 		$this->getSidebarSection($container, $config);
     }
+	
+	
+	
+	/**
+	 *
+	 * @access protected
+	 * @param $container, $config
+	 */
+	protected function getSEOSection($container, $config)
+	{
+	    $container->setParameter('ccdn_user_profile.seo.title_length', $config['seo']['title_length']);
+	}
 	
 	
 	

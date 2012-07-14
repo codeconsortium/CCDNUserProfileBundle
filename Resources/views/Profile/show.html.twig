@@ -5,7 +5,7 @@
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- 'title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}

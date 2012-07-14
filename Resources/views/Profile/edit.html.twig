@@ -9,7 +9,7 @@
 	<script src="{{- asset('bundles/ccdnuserprofile/js/jquery.profile.js') -}}" type="text/javascript"></script>
 {% endblock %}
 
-{% block title %}{{- 'title.profile.edit' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle') -}}{% endblock %}
+{% block title %}{{- truncDot('title.profile.edit' | trans({ '%user_name%': user.getUsername }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
