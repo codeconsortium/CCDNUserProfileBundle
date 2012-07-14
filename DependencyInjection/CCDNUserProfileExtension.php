@@ -34,6 +34,16 @@ class CCDNUserProfileExtension extends Extension
     /**
      * {@inheritDoc}
      */
+	public function getAlias()
+	{
+		return 'ccdn_user_profile';
+	}
+	
+	
+	
+    /**
+     * {@inheritDoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
