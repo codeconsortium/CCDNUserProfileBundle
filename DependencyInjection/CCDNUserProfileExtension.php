@@ -102,6 +102,10 @@ class CCDNUserProfileExtension extends Extension
 	{
 		$container->setParameter('ccdn_user_profile.sidebar.members_route', $config['sidebar']['members_route']);
 		$container->setParameter('ccdn_user_profile.sidebar.account_route', $config['sidebar']['account_route']);
+		$container->setParameter('ccdn_user_profile.sidebar.registration_route', $config['sidebar']['registration_route']);
+		$container->setParameter('ccdn_user_profile.sidebar.login_route', $config['sidebar']['login_route']);
+		$container->setParameter('ccdn_user_profile.sidebar.logout_route', $config['sidebar']['logout_route']);
+		$container->setParameter('ccdn_user_profile.sidebar.reset_route', $config['sidebar']['reset_route']);	
 		
 	}
 	

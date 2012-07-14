@@ -2,6 +2,9 @@ sidebar.header.tools: Tools
 sidebar.link.account.view: Account
 sidebar.link.profile.view: Profile
 sidebar.link.profile.edit: Edit Profile
+sidebar.link.login: 'Login'
+sidebar.link.register: 'Register'
+sidebar.link.reset: 'Forgot Password'
 
 crumbs.profile: "%user_name% Profile"
 crumbs.profile.edit: Edit Profile
