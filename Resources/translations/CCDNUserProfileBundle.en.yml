@@ -27,6 +27,7 @@ profile.table.body.yahoo: 'Yahoo:'
 profile.table.body.member_since: 'Member Since:'
 profile.table.body.last_logged_in: 'Last Login:'
 
+form.field.required: 'This field is required'
 form.label.profile.edit.username: 'Username: '
 form.label.profile.edit.location: 'Location: '
 form.label.profile.edit.website: 'Website: '
