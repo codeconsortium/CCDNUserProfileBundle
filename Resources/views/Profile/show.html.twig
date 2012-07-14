@@ -27,7 +27,7 @@
 	<br>
 	
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="{{- path('cc_profile_show') -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+		<li class="active"><a href="{{- path('cc_profile_show_by_id', {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
 	</ul>
 	
 	<div class="btn-toolbar pull-right">
