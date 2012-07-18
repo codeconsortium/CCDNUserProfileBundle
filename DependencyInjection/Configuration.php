@@ -54,6 +54,8 @@ class Configuration implements ConfigurationInterface
 		
 		$this->addSEOSection($rootNode);
 		$this->addProfileSection($rootNode);
+		$this->addItemBioSection($rootNode);
+		$this->addItemSignatureSection($rootNode);		
 		$this->addSidebarSection($rootNode);
 		
         return $treeBuilder;
@@ -100,6 +102,7 @@ class Configuration implements ConfigurationInterface
 							->children()
 								->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
 								->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+								->scalarNode('enable_bb_editor')->defaultValue(true)->end()
 							->end()
 						->end()
 						->arrayNode('show')
@@ -108,13 +111,57 @@ class Configuration implements ConfigurationInterface
 								->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
 								->scalarNode('member_since_datetime_format')->defaultValue('d-m-Y - H:i')->end()
 								->scalarNode('last_login_datetime_format')->defaultValue('d-m-Y - H:i')->end()
-								->scalarNode('requires_login')->defaultValue('true')->end()
+								->scalarNode('requires_login')->defaultValue(true)->end()
+								->scalarNode('enable_bb_parser')->defaultValue(true)->end()
 							->end()
 						->end()
 					->end()
 				->end()
 			->end();
 	}
+	
+	
+
+	/**
+	 *
+	 * @access private
+	 * @param ArrayNodeDefinition $node
+	 */
+	private function addItemBioSection(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+				->arrayNode('item_bio')
+					->addDefaultsIfNotSet()
+					->canBeUnset()
+					->children()
+						->scalarNode('enable_bb_parser')->defaultValue(true)->end()
+					->end()
+				->end()
+			->end();
+	
+	}
+	
+	
+
+	/**
+	 *
+	 * @access private
+	 * @param ArrayNodeDefinition $node
+	 */
+	private function addItemSignatureSection(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+				->arrayNode('item_signature')
+					->addDefaultsIfNotSet()
+					->canBeUnset()
+					->children()
+						->scalarNode('enable_bb_parser')->defaultValue(true)->end()
+					->end()
+				->end()
+			->end();
+	}	
 	
 	
 	

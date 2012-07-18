@@ -57,6 +57,8 @@ class CCDNUserProfileExtension extends Extension
 		
 		$this->getSEOSection($container, $config);
 		$this->getProfileSection($container, $config);
+		$this->getItemBioSection($container, $config);
+		$this->getItemSignatureSection($container, $config);
 		$this->getSidebarSection($container, $config);
     }
 	
@@ -83,12 +85,37 @@ class CCDNUserProfileExtension extends Extension
 	{
 		$container->setParameter('ccdn_user_profile.profile.edit.layout_template', $config['profile']['edit']['layout_template']);
 		$container->setParameter('ccdn_user_profile.profile.edit.form_theme', $config['profile']['edit']['form_theme']);
+		$container->setParameter('ccdn_user_profile.profile.edit.enable_bb_editor', $config['profile']['edit']['enable_bb_editor']);
 		
 		$container->setParameter('ccdn_user_profile.profile.show.layout_template', $config['profile']['show']['layout_template']);
 		$container->setParameter('ccdn_user_profile.profile.show.member_since_datetime_format', $config['profile']['show']['member_since_datetime_format']);
 		$container->setParameter('ccdn_user_profile.profile.show.last_login_datetime_format', $config['profile']['show']['last_login_datetime_format']);
 		$container->setParameter('ccdn_user_profile.profile.show.requires_login', $config['profile']['show']['requires_login']);
 		
+	}
+	
+	
+	
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */
+	private function getItemBioSection($container, $config)
+	{
+		$container->setParameter('ccdn_user_profile.item_bio.enable_bb_parser', $config['item_bio']['enable_bb_parser']);
+	}
+	
+	
+	
+	/**
+	 *
+	 * @access private
+	 * @param $container, $config
+	 */
+	private function getItemSignatureSection($container, $config)
+	{
+		$container->setParameter('ccdn_user_profile.item_signature.enable_bb_parser', $config['item_signature']['enable_bb_parser']);
 	}
 	
 	
