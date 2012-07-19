@@ -1,0 +1,25 @@
+{%- spaceless -%}
+
+	{%- if user -%}
+		{%- if user.getProfile -%}
+			{%- if user.getProfile.getAvatarIsRemote -%}
+				{%- if user.getProfile.getAvatar -%}
+					<img class="avatar" width="100" height="100" src="{{- user.getProfile.getAvatar -}}" alt="avatar">
+				{%- else -%}
+					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+				{%- endif -%}
+			{%- else -%}
+				{%- if user.getProfile.getAvatar -%}
+					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+				{%- else -%}
+					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+				{%- endif -%}
+			{%- endif -%}
+		{%- else -%}
+			<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+		{%- endif -%}
+	{%- else -%}
+		<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+	{%- endif -%}
+
+{%- endspaceless -%}

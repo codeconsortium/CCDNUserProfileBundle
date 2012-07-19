@@ -1,21 +1,26 @@
 {%- spaceless -%}
-<h2 style="display:inline-block;">{{- user.getUsername |capitalize -}}</h2>
+	<h2 style="display:inline-block;"><a href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- user.getUsername |capitalize -}}</a></h2>
 
-<div class="btn-toolbar pull-right">
-	{%- if is_granted('ROLE_USER') -%}
-		{%- if app.user.getId != user.getId -%}
-		<a class="btn" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
+	<div class="btn-toolbar pull-right">
+		{%- if is_granted('ROLE_USER') -%}
+			{%- if app.user.getId != user.getId -%}
+			<a class="btn" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
 		
-			{%- if is_granted('ROLE_ADMIN') -%}
-			<a class="btn btn-primary" href="{{- path('cc_admin_user_show', {'user_id': user.getId }) -}}">{{- 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
+				{%- if is_granted('ROLE_ADMIN') -%}
+				<a class="btn btn-primary" href="{{- path('cc_admin_user_show', {'user_id': user.getId }) -}}">{{- 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
+				{%- endif -%}
 			{%- endif -%}
-		{%- endif -%}
 		
-		{#{%- if app.user.getId == user.getId -%}
-		<a class="btn btn-primary" href="{{- path('cc_profile_edit') -}}">{{- 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') -}}</a>
-		{%- endif -%}#}
+		{%- endif -%}		
+	</div>
+
+	<hr>
+
+	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+		<a class="btn pull-right" href="{{- path('cc_profile_edit_avatar', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+	{%- endif -%}
 		
-	{%- endif -%}		
-</div>
-<br>
+	{%- include 'CCDNUserProfileBundle:Avatar:item_avatar.html.twig' -%}
+	
+	<br>
 {%- endspaceless -%}

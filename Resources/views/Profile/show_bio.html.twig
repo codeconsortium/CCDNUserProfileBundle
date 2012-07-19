@@ -28,7 +28,7 @@
 
 	<h3 style="display:inline-block;">{{- 'profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+		<a class="btn pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
 	{%- endif -%}
 	
 	{%- if user.getProfile.getBio -%}
@@ -52,7 +52,7 @@
 	<hr>
 	<h3 style="display:inline-block;">{{- 'profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+		<a class="btn pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
 	{%- endif -%}
 	
 	{%- if user.getProfile.getSignature -%}
