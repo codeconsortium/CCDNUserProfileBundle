@@ -30,6 +30,9 @@
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 	
+	<h3 style="display:inline-block;">{{- 'profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<br>
+		
 	{%- form_theme form param('ccdn_user_profile.profile.edit.contact.form_theme') -%}
 	<form action="{{- path('cc_profile_edit_contact') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
