@@ -192,7 +192,7 @@ class ProfileController extends ContainerAware
         if ($process) {
 			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())));
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
@@ -271,7 +271,7 @@ class ProfileController extends ContainerAware
         if ($process) {
 			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())));
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
@@ -350,7 +350,7 @@ class ProfileController extends ContainerAware
         if ($process) {
 			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_by_id', array('user_id' => $user->getId())));
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
@@ -429,7 +429,7 @@ class ProfileController extends ContainerAware
         if ($process) {
 			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_bio_by_id', array('user_id' => $user->getId())));
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
@@ -508,7 +508,7 @@ class ProfileController extends ContainerAware
         if ($process) {
 			$this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('cc_profile_show_bio_by_id', array('user_id' => $user->getId())));
         }
 		
 		$crumb_trail = $this->container->get('ccdn_component_crumb.trail')
