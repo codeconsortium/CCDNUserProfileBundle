@@ -64,7 +64,8 @@
 		<h5>{{- 'profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 		</div>
 	{%- endif -%}
-		
+	<br>
+	
 	<hr>
 	<h3 style="display:inline-block;">{{- 'profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
@@ -86,7 +87,8 @@
 		<h5>{{- 'profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 		</div>
 	{%- endif -%}
-
+	<br>
+	
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}

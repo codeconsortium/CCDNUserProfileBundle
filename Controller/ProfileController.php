@@ -140,23 +140,46 @@ class ProfileController extends ContainerAware
 	 */
     public function editPersonalAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		//
+		// Do we have an ID, and are we logged in?
+		//
+		if ( ! $user_id || $user_id == 0)
+		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
+			$user = $this->container->get('security.context')->getToken()->getUser();
+		} else {
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
+		}
+
+		//
+		// Have we retrieved a valid user object?
+		//
+		if ( ! is_object($user) || ! ($user instanceof UserInterface))
+		{
+            throw new NotFoundHttpException('User not found!');
+        }
+		
+		//
+		// Does the requested $user match our session user id? Or, are we an admin?
+		//
+		if ($user->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
+		&& ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
-			
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        
-		if ( ! is_object($user) || ! $user instanceof UserInterface)
-		{
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
 
+		//
 		// get the user associated profile
+		//
 		$profile = $user->getProfile();
 
-		// if the profile has no id then it
-		// does not exist, so create one.
+		//
+		// if the profile has no id then it does not exist, so create one.
+		//
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
@@ -196,23 +219,46 @@ class ProfileController extends ContainerAware
 	 */
     public function editContactAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		//
+		// Do we have an ID, and are we logged in?
+		//
+		if ( ! $user_id || $user_id == 0)
+		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
+			$user = $this->container->get('security.context')->getToken()->getUser();
+		} else {
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
+		}
+
+		//
+		// Have we retrieved a valid user object?
+		//
+		if ( ! is_object($user) || ! ($user instanceof UserInterface))
+		{
+            throw new NotFoundHttpException('User not found!');
+        }
+		
+		//
+		// Does the requested $user match our session user id? Or, are we an admin?
+		//
+		if ($user->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
+		&& ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
-			
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        
-		if ( ! is_object($user) || ! $user instanceof UserInterface)
-		{
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
 
+		//
 		// get the user associated profile
+		//
 		$profile = $user->getProfile();
 
-		// if the profile has no id then it
-		// does not exist, so create one.
+		//
+		// if the profile has no id then it does not exist, so create one.
+		//
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
@@ -252,23 +298,46 @@ class ProfileController extends ContainerAware
 	 */
     public function editAvatarAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		//
+		// Do we have an ID, and are we logged in?
+		//
+		if ( ! $user_id || $user_id == 0)
+		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
+			$user = $this->container->get('security.context')->getToken()->getUser();
+		} else {
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
+		}
+
+		//
+		// Have we retrieved a valid user object?
+		//
+		if ( ! is_object($user) || ! ($user instanceof UserInterface))
+		{
+            throw new NotFoundHttpException('User not found!');
+        }
+		
+		//
+		// Does the requested $user match our session user id? Or, are we an admin?
+		//
+		if ($user->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
+		&& ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
-			
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        
-		if ( ! is_object($user) || ! $user instanceof UserInterface)
-		{
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
 
+		//
 		// get the user associated profile
+		//
 		$profile = $user->getProfile();
 
-		// if the profile has no id then it
-		// does not exist, so create one.
+		//
+		// if the profile has no id then it does not exist, so create one.
+		//
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
@@ -308,23 +377,46 @@ class ProfileController extends ContainerAware
 	 */
     public function editBioAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		//
+		// Do we have an ID, and are we logged in?
+		//
+		if ( ! $user_id || $user_id == 0)
+		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
+			$user = $this->container->get('security.context')->getToken()->getUser();
+		} else {
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
+		}
+
+		//
+		// Have we retrieved a valid user object?
+		//
+		if ( ! is_object($user) || ! ($user instanceof UserInterface))
+		{
+            throw new NotFoundHttpException('User not found!');
+        }
+		
+		//
+		// Does the requested $user match our session user id? Or, are we an admin?
+		//
+		if ($user->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
+		&& ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
-			
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        
-		if ( ! is_object($user) || ! $user instanceof UserInterface)
-		{
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
 
+		//
 		// get the user associated profile
+		//
 		$profile = $user->getProfile();
 
-		// if the profile has no id then it
-		// does not exist, so create one.
+		//
+		// if the profile has no id then it does not exist, so create one.
+		//
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
@@ -364,23 +456,46 @@ class ProfileController extends ContainerAware
 	 */
     public function editSignatureAction($user_id)
     {
-		if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+		//
+		// Do we have an ID, and are we logged in?
+		//
+		if ( ! $user_id || $user_id == 0)
+		{
+			if ( ! $this->container->get('security.context')->isGranted('ROLE_USER'))
+			{
+				throw new NotFoundHttpException('User not found!');
+			}
+			
+			$user = $this->container->get('security.context')->getToken()->getUser();
+		} else {
+			$user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);			
+		}
+
+		//
+		// Have we retrieved a valid user object?
+		//
+		if ( ! is_object($user) || ! ($user instanceof UserInterface))
+		{
+            throw new NotFoundHttpException('User not found!');
+        }
+		
+		//
+		// Does the requested $user match our session user id? Or, are we an admin?
+		//
+		if ($user->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
+		&& ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			throw new AccessDeniedException('You do not have access to this section.');
 		}
-			
-		$user = $this->container->get('security.context')->getToken()->getUser();
-        
-		if ( ! is_object($user) || ! $user instanceof UserInterface)
-		{
-            throw new AccessDeniedException('You do not have access to this section.');
-        }
 
+		//
 		// get the user associated profile
+		//
 		$profile = $user->getProfile();
 
-		// if the profile has no id then it
-		// does not exist, so create one.
+		//
+		// if the profile has no id then it does not exist, so create one.
+		//
 		if ( ! $profile->getId())
 		{
 			$this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
