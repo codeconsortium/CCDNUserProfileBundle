@@ -42,14 +42,22 @@
 				{%- if user.getRegisteredDate is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 					<td class="right">{{- 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-					<td class="left">{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.overview.last_login_datetime_format')) -}}</td>
+					<td class="left">
+						<abbr class="timestamper" title="{{- user.getRegisteredDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+							{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.overview.last_login_datetime_format')) -}}
+						</abbr>
+					</td>
 				</tr>
 				{%- endif -%}
 
 				{%- if user.getLastLogin is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 					<td class="right">{{- 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-					<td class="left">{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.overview.member_since_datetime_format')) -}}</td>
+					<td class="left">
+						<abbr class="timestamper" title="{{- user.getLastLogin |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+							{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.overview.member_since_datetime_format')) -}}
+						</abbr>
+					</td>
 				</tr>
 				{%- endif -%}
 			
