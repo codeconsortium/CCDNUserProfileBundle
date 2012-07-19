@@ -28,12 +28,11 @@
 
 	<h3 style="display:inline-block;">{{- 'profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-		<a class="btn pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+		<a class="btn pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 	{%- endif -%}
 	
-	{%- if user.getProfile.getBio -%}
-	
-		<div style="padding:15px;">
+	<div style="padding:15px;">
+		{%- if user.getProfile.getBio -%}
 			<span class="common_body">
 				{%- if param('ccdn_user_profile.item_bio.enable_bb_parser') -%}
 					{{- BBCode(user.getProfile.getBio | raw) | raw -}}
@@ -41,22 +40,22 @@
 					{{- user.getProfile.getBio -}}
 				{%- endif -%}<br>
 			</span>
-		</div>
-	{%- else -%}
-		<div class="center">
-		<h5>{{- 'profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
-		</div>
-	{%- endif -%}
+		{%- else -%}
+			<div class="center">
+				<h5>{{- 'profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+			</div>
+		{%- endif -%}
+	</div>
 	<br>
 	
 	<hr>
 	<h3 style="display:inline-block;">{{- 'profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-		<a class="btn pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+		<a class="btn pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 	{%- endif -%}
-	
-	{%- if user.getProfile.getSignature -%}
-		<div style="padding:15px;">
+
+	<div style="padding:15px;">
+		{%- if user.getProfile.getSignature -%}
 			<span class="common_body">
 				{%- if param('ccdn_user_profile.item_signature.enable_bb_parser') -%}
 					{{- BBCode(user.getProfile.getSignature | raw) | raw -}}
@@ -64,12 +63,12 @@
 					{{- user.getProfile.getSignature -}}
 				{%- endif -%}<br>
 			</span>
-		</div>
-	{%- else -%}
-		<div class="center">
-		<h5>{{- 'profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
-		</div>
-	{%- endif -%}
+		{%- else -%}
+			<div class="center">
+				<h5>{{- 'profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+			</div>
+		{%- endif -%}
+	</div>
 	<br>
 	
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
