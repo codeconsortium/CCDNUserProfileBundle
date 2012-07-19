@@ -1,4 +1,4 @@
-{% extends param('ccdn_user_profile.profile.show.layout_template') %}
+{% extends param('ccdn_user_profile.profile.show.overview.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -24,13 +24,9 @@
 
 	<h2>{{- user.getUsername |capitalize -}}</h2>
 
-	<br>
+	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 	
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="{{- path('cc_profile_show_by_id', {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
-	</ul>
-	
-	<div class="btn-toolbar pull-right">
+{#	<div class="btn-toolbar pull-right">
 		{%- if is_granted('ROLE_USER') -%}
 			{%- if app.user.getId != user.getId -%}
 			<a class="btn btn-primary" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>
@@ -45,8 +41,10 @@
 			{%- endif -%}
 			
 		{%- endif -%}		
-	</div>
+	</div>#}
 
+	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_avatar', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
 	<div style="width: auto; margin-bottom:10px;">
 		{%- if user.getProfile.getAvatarIsRemote -%}
 			{%- if user.getProfile.getAvatar -%}
@@ -63,11 +61,14 @@
 				<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 			{%- endif -%}
 		{%- endif -%}
+		
 	</div>
 	
-	<br>
+	<hr>
 	
-	<table class="table table-striped table-bordered">
+	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_personal', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
+	<table class="table">
 		<tbody>
 			<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 				<td class="right" style="width: 30%;">{{- 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') -}}</td>
@@ -75,12 +76,12 @@
 			</tr>
 			<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 				<td class="right">{{- 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-				<td class="left">{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.last_login_datetime_format')) -}}</td>
+				<td class="left">{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.overview.last_login_datetime_format')) -}}</td>
 			</tr>
 
 			<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 				<td class="right">{{- 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-				<td class="left">{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.member_since_datetime_format')) -}}</td>
+				<td class="left">{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.overview.member_since_datetime_format')) -}}</td>
 			</tr>
 
 			<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
@@ -91,7 +92,15 @@
 				<td class="right">{{- 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 				<td class="left"><a href="{{- user.getProfile.getWebsite -}}" target="_blank">{{- user.getProfile.getWebsite -}}</a></td>
 			</tr>
-
+		</tbody>
+	</table>
+	
+	<hr>
+	
+	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_contact', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
+	<table class="table">
+		<tbody>
 			{%- if is_granted('ROLE_USER') -%}
 				{%- if user.getProfile.getAimIsPublic -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
@@ -123,20 +132,6 @@
 			{%- endif -%}
 		</tbody>
 	</table>
-	
-	{%- if user.getProfile.getBio or user.getProfile.getSignature -%}
-		<div class="well">
-			<span class="common_body">
-				{%- if user.getProfile.getBio -%}
-					{{- BBCode(user.getProfile.getBio | raw) | raw -}}<br>
-				{%- endif -%}
-
-				{%- if user.getProfile.getSignature -%}
-					<hr>{{- BBCode(user.getProfile.getSignature | raw) | raw -}}
-				{%- endif -%}
-			</span>
-		</div>
-	{%- endif -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 

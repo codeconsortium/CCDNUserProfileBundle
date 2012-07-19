@@ -1,0 +1,80 @@
+{% extends param('ccdn_user_profile.profile.show.bio.layout_template') %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}{{- truncDot('title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
+
+{% block sidebar %}
+	{{ parent() }}
+	
+	{%- include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' -%}
+	
+{% endblock %}
+
+{% block body %}
+
+	{%- spaceless -%}
+	
+	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
+
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	<h2>{{- user.getUsername |capitalize -}}</h2>
+
+	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
+	
+{#	<div class="btn-toolbar pull-right">
+		{%- if is_granted('ROLE_USER') -%}
+			{%- if app.user.getId != user.getId -%}
+			<a class="btn btn-primary" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>
+			
+				{%- if is_granted('ROLE_ADMIN') -%}
+				<a class="btn btn-primary" href="{{- path('cc_admin_user_show', {'user_id': user.getId }) -}}">{{- 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') -}}</a>
+				{%- endif -%}
+			{%- endif -%}
+			
+			{%- if app.user.getId == user.getId -%}
+			<a class="btn btn-primary" href="{{- path('cc_profile_edit') -}}">{{- 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') -}}</a>
+			{%- endif -%}
+			
+		{%- endif -%}		
+	</div>#}
+
+	{%- if user.getProfile.getBio -%}
+		<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
+		<div style="padding:15px;">
+			<span class="common_body">
+				{%- if param('ccdn_user_profile.item_bio.enable_bb_parser') -%}
+					{{- BBCode(user.getProfile.getBio | raw) | raw -}}
+				{%- else -%}
+					{{- user.getProfile.getBio -}}
+				{%- endif -%}<br>
+			</span>
+		</div>
+	{%- endif -%}
+		
+	<hr>
+	
+	{%- if user.getProfile.getSignature -%}
+		<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
+		<div style="padding:15px;">
+			<span class="common_body">
+				{%- if param('ccdn_user_profile.item_signature.enable_bb_parser') -%}
+					{{- BBCode(user.getProfile.getSignature | raw) | raw -}}
+				{%- else -%}
+					{{- user.getProfile.getSignature -}}
+				{%- endif -%}<br>
+			</span>
+		</div>
+	{%- endif -%}
+
+	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
+
+	{%- endspaceless -%}
+	
+{% endblock body %}

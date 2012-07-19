@@ -1,4 +1,4 @@
-{% extends param('ccdn_user_profile.profile.edit.layout_template') %}
+{% extends param('ccdn_user_profile.profile.edit.contact.layout_template') %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -28,42 +28,15 @@
 
 	<h2>{{- user.getUsername |capitalize -}}</h2>
 
-	<br>
+	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 	
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="{{- path('cc_profile_show') -}}"><i class="icon-user"></i>&nbsp;{{- 'link.account.overview' | trans({}, 'CCDNUserUserBundle') -}}</a></li>
-	</ul>
-	
-	{%- form_theme form param('ccdn_user_profile.profile.edit.form_theme') -%}
-	<form action="{{- path('cc_profile_edit') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+	{%- form_theme form param('ccdn_user_profile.profile.edit.contact.form_theme') -%}
+	<form action="{{- path('cc_profile_edit_contact') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
 		
 			{{- form_errors(form) -}}
 		
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-		
-			<div class="control-group">
-				<label class="control-label" for="username">{{- 'form.label.profile.edit.username' |trans({}, 'CCDNUserProfileBundle') -}}</label>
-				<div class="controls row-fluid">
-					<input type="text" class="input-xlarge span8 disabled" id="username" value="{{- user.getUsername -}}" disabled>
-				</div>
-			</div>
-		
-			<div class="control-group{{- (form.location.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.location, null, { 'label': 'form.label.profile.edit.location' |trans({}, 'CCDNUserProfileBundle') }) -}}
-				<div class="controls row-fluid">
-					{{- form_errors(form.location) -}}
-					{{- form_widget(form.location) -}}
-				</div>
-			</div>
-		
-			<div class="control-group{{- (form.website.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.website, null, { 'label': 'form.label.profile.edit.website' |trans({}, 'CCDNUserProfileBundle') }) -}}
-				<div class="controls row-fluid">
-					{{- form_errors(form.website) -}}
-					{{- form_widget(form.website) -}}
-				</div>
-			</div>
 		
 			<div class="control-group{{- (form.aim.vars.errors|length > 0) ? ' error': '' -}}{{- (form.aim_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.aim, null, { 'label': 'form.label.profile.edit.aim' |trans({}, 'CCDNUserProfileBundle') }) -}}
@@ -109,42 +82,9 @@
 				</div>
 			</div>
 		
-			<div class="control-group{{- (form.bio.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.bio, null, { 'label': 'form.label.profile.edit.bio' |trans({}, 'CCDNUserProfileBundle') }) -}}
-				<div class="controls row-fluid">
-					{{- form_errors(form.bio) -}}
-					{%- if param('ccdn_user_profile.profile.edit.enable_bb_editor') -%}
-						{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
-					{%- endif -%}
-					{{- form_widget(form.bio) -}}
-				</div>
-			</div>
-		
-			<div class="control-group{{- (form.avatar.vars.errors|length > 0) ? ' error': '' -}}{{- (form.avatar_is_remote.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.avatar, null, { 'label': 'form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) -}}
-				<div class="controls row-fluid">
-					{{- form_errors(form.avatar_is_remote) -}}
-					{{- form_widget(form.avatar_is_remote) -}}
-					{{- form_label(form.avatar_is_remote, null, { 'attr': { 'class': 'checkbox_', 'label': 'form.label.profile.edit.avatar_is_remote' |trans({}, 'CCDNUserProfileBundle') }}) -}}
-					<br>
-					{{- form_errors(form.avatar) -}}
-					{{- form_widget(form.avatar) -}}
-				</div>
-			</div>
-		
-			<div class="control-group{{- (form.signature.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.signature, null, { 'label': 'form.label.profile.edit.signature' |trans({}, 'CCDNUserProfileBundle') }) -}}
-				<div class="controls row-fluid">
-					{{- form_errors(form.signature) -}}
- 					{%- if param('ccdn_user_profile.profile.edit.enable_bb_editor') -%}
-						{%- form_theme form 'CCDNComponentBBCodeBundle:Form:fields.html.twig' -%}
-					{%- endif -%}
-					{{- form_widget(form.signature) -}}
-				</div>
-			</div>
-		
 			<div class="form-actions">
-				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">
+				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
+				<a class="btn" href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 			</div>
 		
 		</fieldset>

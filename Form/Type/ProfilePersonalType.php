@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormBuilder;
  * @author Reece Fowell <reece@codeconsortium.com> 
  * @version 1.0
  */
-class ProfileType extends AbstractType
+class ProfilePersonalType extends AbstractType
 {
 	
 	
@@ -33,20 +33,8 @@ class ProfileType extends AbstractType
 	public function buildForm(FormBuilder $builder, array $options)
 	{
 		$builder
-			->add('avatar_is_remote', 'checkbox')
-			->add('avatar')
-			->add('aim')
-			->add('aim_is_public', 'checkbox')
-			->add('msn')
-			->add('msn_is_public', 'checkbox')
-			->add('icq')
-			->add('icq_is_public', 'checkbox')
-			->add('yahoo')
-			->add('yahoo_is_public', 'checkbox')
 			->add('website')
-			->add('bio')
-			->add('location')
-			->add('signature');
+			->add('location');
 	}
 	
 
@@ -76,7 +64,7 @@ class ProfileType extends AbstractType
 	 */
 	public function getName()
 	{
-		return 'Profile';
+		return 'ProfilePersonal';
 	}
 	
 }

@@ -7,13 +7,19 @@ sidebar.link.register: 'Register'
 sidebar.link.reset: 'Forgot Password'
 
 crumbs.profile: "%user_name% Profile"
-crumbs.profile.edit: Edit Profile
+crumbs.profile.edit.personal: Edit Profile Personal Details
+crumbs.profile.edit.contact: Edit Profile Contact Details
+crumbs.profile.edit.avatar: Edit Profile Avatar
+crumbs.profile.edit.bio: Edit Profile Bio
+crumbs.profile.edit.signature: Edit Profile Signature
+
                   
 title.profile: 'Profile: %user_name%.'
 title.profile.edit: "Profile: Edit %user_name%'s Profile."
 title.account: 'Account: %user_name%.'
 
 link.profile.overview: Overview
+link.profile.bio: Bio
 link.profile.edit: Edit
 link.user.message: 'Send Message'
 link.user.administrate: 'Administrate User'
@@ -47,3 +53,4 @@ form.label.profile.edit.avatar: 'Avatar: '
 form.label.profile.edit.avatar_is_remote: 'This avatar is remote? '
 form.label.profile.edit.signature: 'Signature: '
 form.button.profile.edit.update: Update
+form.button.cancel: Cancel

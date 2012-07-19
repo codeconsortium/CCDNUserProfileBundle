@@ -1,0 +1,20 @@
+{%- spaceless -%}
+	{%- set route = app.request.attributes.get('_route') -%}
+
+	<br>
+
+	<ul class="nav nav-tabs">	
+	{%- if route == 'cc_profile_show' or route == 'cc_profile_show_by_id' or route == 'cc_profile_edit_personal' or route == 'cc_profile_edit_contact' or route == 'cc_profile_edit_avatar' -%}
+		<li class="active"><a href="{{- path(route, {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+	{%- else -%}
+		<li><a href="{{- path('cc_profile_show_by_id', {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+	{%- endif -%}
+	
+	{%- if route == 'cc_profile_show_bio_by_id' or route == 'cc_profile_edit_bio' or route == 'cc_profile_edit_signature' -%}
+		<li class="active"><a href="{{- path(route, {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.bio' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+	{%- else -%}
+		<li><a href="{{- path('cc_profile_show_bio_by_id', {'user_id': user.id}) -}}"><i class="icon-user"></i>&nbsp;{{- 'link.profile.bio' | trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+	{%- endif -%}
+	</ul>
+	
+{%- endspaceless -%}

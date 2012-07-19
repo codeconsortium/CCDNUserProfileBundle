@@ -83,14 +83,30 @@ class CCDNUserProfileExtension extends Extension
 	 */
 	private function getProfileSection($container, $config)
 	{
-		$container->setParameter('ccdn_user_profile.profile.edit.layout_template', $config['profile']['edit']['layout_template']);
-		$container->setParameter('ccdn_user_profile.profile.edit.form_theme', $config['profile']['edit']['form_theme']);
-		$container->setParameter('ccdn_user_profile.profile.edit.enable_bb_editor', $config['profile']['edit']['enable_bb_editor']);
+		$container->setParameter('ccdn_user_profile.profile.edit.personal.layout_template', $config['profile']['edit']['personal']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.personal.form_theme', $config['profile']['edit']['personal']['form_theme']);
 		
-		$container->setParameter('ccdn_user_profile.profile.show.layout_template', $config['profile']['show']['layout_template']);
-		$container->setParameter('ccdn_user_profile.profile.show.member_since_datetime_format', $config['profile']['show']['member_since_datetime_format']);
-		$container->setParameter('ccdn_user_profile.profile.show.last_login_datetime_format', $config['profile']['show']['last_login_datetime_format']);
+		$container->setParameter('ccdn_user_profile.profile.edit.contact.layout_template', $config['profile']['edit']['contact']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.contact.form_theme', $config['profile']['edit']['contact']['form_theme']);
+		
+		$container->setParameter('ccdn_user_profile.profile.edit.avatar.layout_template', $config['profile']['edit']['avatar']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.avatar.form_theme', $config['profile']['edit']['avatar']['form_theme']);
+		
+		$container->setParameter('ccdn_user_profile.profile.edit.bio.layout_template', $config['profile']['edit']['bio']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.bio.form_theme', $config['profile']['edit']['bio']['form_theme']);
+		$container->setParameter('ccdn_user_profile.profile.edit.bio.enable_bb_editor', $config['profile']['edit']['bio']['enable_bb_editor']);
+		
+		$container->setParameter('ccdn_user_profile.profile.edit.signature.layout_template', $config['profile']['edit']['signature']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.edit.signature.form_theme', $config['profile']['edit']['signature']['form_theme']);
+		$container->setParameter('ccdn_user_profile.profile.edit.signature.enable_bb_editor', $config['profile']['edit']['signature']['enable_bb_editor']);
+		
 		$container->setParameter('ccdn_user_profile.profile.show.requires_login', $config['profile']['show']['requires_login']);
+			
+		$container->setParameter('ccdn_user_profile.profile.show.overview.layout_template', $config['profile']['show']['overview']['layout_template']);
+		$container->setParameter('ccdn_user_profile.profile.show.overview.member_since_datetime_format', $config['profile']['show']['overview']['member_since_datetime_format']);
+		$container->setParameter('ccdn_user_profile.profile.show.overview.last_login_datetime_format', $config['profile']['show']['overview']['last_login_datetime_format']);
+
+		$container->setParameter('ccdn_user_profile.profile.show.bio.layout_template', $config['profile']['show']['bio']['layout_template']);
 		
 	}
 	
