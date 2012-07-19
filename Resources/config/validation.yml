@@ -31,7 +31,7 @@ CCDNUser\ProfileBundle\Entity\Profile:
         
         bio:
             - Type: { type: string, groups: [bio] }
-            - MaxLength: { limit: 1000, groups: [bio] }
+            - MaxLength: { limit: 2000, groups: [bio] }
             
         signature:
             - Type: { type: string, groups: [signature] }
