@@ -26,7 +26,7 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- user.getUsername |capitalize -}}</h2>
+	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 	

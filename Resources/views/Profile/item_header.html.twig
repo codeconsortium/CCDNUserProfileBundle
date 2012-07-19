@@ -1,0 +1,21 @@
+{%- spaceless -%}
+<h2 style="display:inline-block;">{{- user.getUsername |capitalize -}}</h2>
+
+<div class="btn-toolbar pull-right">
+	{%- if is_granted('ROLE_USER') -%}
+		{%- if app.user.getId != user.getId -%}
+		<a class="btn" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
+		
+			{%- if is_granted('ROLE_ADMIN') -%}
+			<a class="btn btn-primary" href="{{- path('cc_admin_user_show', {'user_id': user.getId }) -}}">{{- 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') -}}</a>&nbsp;
+			{%- endif -%}
+		{%- endif -%}
+		
+		{#{%- if app.user.getId == user.getId -%}
+		<a class="btn btn-primary" href="{{- path('cc_profile_edit') -}}">{{- 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') -}}</a>
+		{%- endif -%}#}
+		
+	{%- endif -%}		
+</div>
+<br>
+{%- endspaceless -%}

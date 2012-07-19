@@ -22,26 +22,9 @@
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
-	<h2>{{- user.getUsername |capitalize -}}</h2>
+	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
-	
-{#	<div class="btn-toolbar pull-right">
-		{%- if is_granted('ROLE_USER') -%}
-			{%- if app.user.getId != user.getId -%}
-			<a class="btn btn-primary" href="{{- path('cc_message_message_compose_to', {'user_id': user.getId }) -}}">{{- 'link.user.message' | trans({}, 'CCDNUserProfileBundle') -}}</a>
-			
-				{%- if is_granted('ROLE_ADMIN') -%}
-				<a class="btn btn-primary" href="{{- path('cc_admin_user_show', {'user_id': user.getId }) -}}">{{- 'link.user.administrate'|trans({}, 'CCDNUserProfileBundle') -}}</a>
-				{%- endif -%}
-			{%- endif -%}
-			
-			{%- if app.user.getId == user.getId -%}
-			<a class="btn btn-primary" href="{{- path('cc_profile_edit') -}}">{{- 'link.profile.edit'|trans({}, 'CCDNUserProfileBundle') -}}</a>
-			{%- endif -%}
-			
-		{%- endif -%}		
-	</div>#}
 
 	<h3 style="display:inline-block;">{{- 'profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
