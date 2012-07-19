@@ -43,8 +43,10 @@
 		{%- endif -%}		
 	</div>#}
 
+	<h3 style="display:inline-block;">{{- 'profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
+	
 	{%- if user.getProfile.getBio -%}
-		<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_bio', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
 	
 		<div style="padding:15px;">
 			<span class="common_body">
@@ -55,13 +57,17 @@
 				{%- endif -%}<br>
 			</span>
 		</div>
+	{%- else -%}
+		<div class="center">
+		<h5>{{- 'profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+		</div>
 	{%- endif -%}
 		
 	<hr>
+	<h3 style="display:inline-block;">{{- 'profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
 	
 	{%- if user.getProfile.getSignature -%}
-		<a class="btn btn-primary pull-right" href="{{- path('cc_profile_edit_signature', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br><br>
-	
 		<div style="padding:15px;">
 			<span class="common_body">
 				{%- if param('ccdn_user_profile.item_signature.enable_bb_parser') -%}
@@ -70,6 +76,10 @@
 					{{- user.getProfile.getSignature -}}
 				{%- endif -%}<br>
 			</span>
+		</div>
+	{%- else -%}
+		<div class="center">
+		<h5>{{- 'profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 		</div>
 	{%- endif -%}
 

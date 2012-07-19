@@ -47,11 +47,12 @@ class ProfileBioType extends AbstractType
 	public function getDefaultOptions(array $options)
 	{
 		return array(
-			'data_class' => 'CCDNUser\ProfileBundle\Entity\Profile',
-			'csrf_protection' => true,
-            'csrf_field_name' => '_token',
+			'data_class' 			=> 'CCDNUser\ProfileBundle\Entity\Profile',
+			'csrf_protection' 		=> true,
+            'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
-            'intention'       => 'profile_item',
+            'intention'       		=> 'profile_item',
+			'validation_groups'		=> 'bio',
 		);
 	}
 

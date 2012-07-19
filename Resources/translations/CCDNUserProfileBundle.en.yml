@@ -18,6 +18,14 @@ title.profile: 'Profile: %user_name%.'
 title.profile.edit: "Profile: Edit %user_name%'s Profile."
 title.account: 'Account: %user_name%.'
 
+profile.show.overview.personal: 'Info'
+profile.show.overview.contact: 'Contact'
+profile.show.overview.contact.none: 'This user has not added or shared any other contact details.'
+profile.show.bio: 'Biography'
+profile.show.signature: 'Signature'
+profile.show.bio.none: 'This user has not yet added a biography.'
+profile.show.signature.none: 'This user has not yet added a signature.'
+
 link.profile.overview: Overview
 link.profile.bio: Bio
 link.profile.edit: Edit
