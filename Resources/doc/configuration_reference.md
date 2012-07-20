@@ -12,18 +12,47 @@ ccdn_user_profile:
         profile_route: cc_profile_show_by_id 
     template:
         engine: twig
+	seo:
+		title_length: 67
     profile:
-#        edit:
-#            layout_template: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-#            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+        edit:
+			personal:
+	            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+			contact:
+				layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+   			avatar:
+	            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+			bio:
+				layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+				enable_bb_editor: true
+   			signature:
+				layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            form_theme: CCDNUserProfileBundle:Form:fields.html.twig
+				enable_bb_editor: true
         show:
-            layout_template: CCDNComponentCommonBundle:Layout:layout_body_left.html.twig
-            member_since_datetime_format: "d-m-Y - H:i"
-            last_login_datetime_format: "d-m-Y - H:i"
-            requires_login: false
+        	requires_login: true
+			overview:
+	            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig
+	            member_since_datetime_format: "d-m-Y - H:i"
+	            last_login_datetime_format: "d-m-Y - H:i"
+			bio:
+	            layout_template: CCDNComponentCommonBundle:Layout:layout_body_right.html.twig			
+		item_bio:
+			enable_bb_parser: true
+		item_signature:
+			enable_bb_parser: true
     sidebar:
         members_route: cc_members_index
         account_route: cc_user_account_show
+        profile_route: cc_profile_show
+		registration_route: fos_user_registration_register
+		login_route: fos_user_security_login
+		logout_route: fos_user_security_logout
+		reset_route: fos_user_resetting_request
 
 ```
 
