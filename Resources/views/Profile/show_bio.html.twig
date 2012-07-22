@@ -34,11 +34,8 @@
 	<div style="padding:15px;">
 		{%- if user.getProfile.getBio -%}
 			<span class="common_body">
-				{%- if param('ccdn_user_profile.item_bio.enable_bb_parser') -%}
-					{{- BBCode(user.getProfile.getBio | raw) | raw -}}
-				{%- else -%}
-					{{- user.getProfile.getBio -}}
-				{%- endif -%}<br>
+				{{- BBCode(user.getProfile.getBio | raw, param('ccdn_user_profile.item_bio.enable_bb_parser')) | raw -}}
+				<br>
 			</span>
 		{%- else -%}
 			<div class="center">
@@ -57,11 +54,8 @@
 	<div style="padding:15px;">
 		{%- if user.getProfile.getSignature -%}
 			<span class="common_body">
-				{%- if param('ccdn_user_profile.item_signature.enable_bb_parser') -%}
-					{{- BBCode(user.getProfile.getSignature | raw) | raw -}}
-				{%- else -%}
-					{{- user.getProfile.getSignature -}}
-				{%- endif -%}<br>
+				{{- BBCode(user.getProfile.getSignature | raw, param('ccdn_user_profile.item_signature.enable_bb_parser')) | raw -}}
+				<br>
 			</span>
 		{%- else -%}
 			<div class="center">
