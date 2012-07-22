@@ -16,10 +16,12 @@
 
 	<hr>
 
-	{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-		<a class="btn pull-right" href="{{- path('cc_profile_edit_avatar', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+	{%- if is_granted('ROLE_USER') -%}
+		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+			<a class="btn pull-right" href="{{- path('cc_profile_edit_avatar', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+		{%- endif -%}
 	{%- endif -%}
-		
+	
 	{%- include 'CCDNUserProfileBundle:Avatar:item_avatar.html.twig' -%}
 	
 	<br>
