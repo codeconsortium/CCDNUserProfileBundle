@@ -13,7 +13,7 @@ crumbs.profile.edit.avatar: Edit Profile Avatar
 crumbs.profile.edit.bio: Edit Profile Bio
 crumbs.profile.edit.signature: Edit Profile Signature
 
-                  
+
 title.profile: 'Profile: %user_name%.'
 title.profile.edit: "Profile: Edit %user_name%'s Profile."
 title.account: 'Account: %user_name%.'
@@ -33,7 +33,7 @@ link.user.message: 'Send Message'
 link.user.administrate: 'Administrate User'
 
 flash.profile.edit.success: 'Profile updated successfully.'
-    
+
 profile.table.body.username: 'Username:'
 profile.table.body.location: 'Location:'
 profile.table.body.website: 'Website:'

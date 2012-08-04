@@ -13,15 +13,15 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' -%}
-	
+
 {% endblock %}
 
 {% block body %}
 
 	{%- spaceless -%}
-	
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
@@ -29,15 +29,15 @@
 	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
-	
+
 	{%- form_theme form param('ccdn_user_profile.profile.edit.avatar.form_theme') -%}
 	<form action="{{- path('cc_profile_edit_avatar') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
-		
+
 			{{- form_errors(form) -}}
-		
+
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-		
+
 			<div class="control-group{{- (form.avatar.vars.errors|length > 0) ? ' error': '' -}}{{- (form.avatar_is_remote.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.avatar, null, { 'label': 'form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -49,17 +49,17 @@
 					{{- form_widget(form.avatar) -}}
 				</div>
 			</div>
-		
+
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
 				<a class="btn" href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 			</div>
-		
+
 		</fieldset>
 	</form>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
-	
+
 {% endblock body %}

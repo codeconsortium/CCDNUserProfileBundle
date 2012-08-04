@@ -13,15 +13,15 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' -%}
-	
+
 {% endblock %}
 
 {% block body %}
 
 	{%- spaceless -%}
-	
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
@@ -29,18 +29,18 @@
 	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
-	
+
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	<br>
-	
+
 	{%- form_theme form param('ccdn_user_profile.profile.edit.personal.form_theme') -%}
 	<form action="{{- path('cc_profile_edit_personal') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
-		
+
 			{{- form_errors(form) -}}
-		
+
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-		
+
 			<div class="control-group{{- (form.location.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.location, null, { 'label': 'form.label.profile.edit.location' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -48,7 +48,7 @@
 					{{- form_widget(form.location) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.website.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.website, null, { 'label': 'form.label.profile.edit.website' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -56,17 +56,17 @@
 					{{- form_widget(form.website) -}}
 				</div>
 			</div>
-			
+
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
 				<a class="btn" href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 			</div>
-		
+
 		</fieldset>
 	</form>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
-	
+
 {% endblock body %}

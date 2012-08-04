@@ -3,8 +3,8 @@
 /*
  * This file is part of the CCDN ProfileBundle
  *
- * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/> 
- * 
+ * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
+ *
  * Available on github <http://www.github.com/codeconsortium/>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -29,95 +29,91 @@ class Profile
      */
     protected $id;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
-	 * @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", onDelete="SET NULL")
-	 */
-	protected $user;
-	
-	/**
-	 * @ORM\Column(type="boolean", name="avatar_is_remote", nullable=true)
-	 */
-	protected $avatarIsRemote = false;
-	
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $avatar;
+    /**
+     * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $user;
 
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $aim;
-	
-	/**
-	 * @ORM\Column(type="boolean", name="aim_is_public", nullable=true)
-	 */
-	protected $aimIsPublic = false;
-	
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $msn;
-	
-	/**
-	 * @ORM\Column(type="boolean", name="msn_is_public", nullable=true)
-	 */
-	protected $msnIsPublic = false;
-	
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $icq;
-	
-	/**
-	 * @ORM\Column(type="boolean", name="icq_is_public", nullable=true)
-	 */
-	protected $icqIsPublic = false;
-	
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $yahoo;
-	
-	/**
-	 * @ORM\Column(type="boolean", name="yahoo_is_public", nullable=true)
-	 */
-	protected $yahooIsPublic = false;
+    /**
+     * @ORM\Column(type="boolean", name="avatar_is_remote", nullable=true)
+     */
+    protected $avatarIsRemote = false;
 
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $website;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $avatar;
 
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $location;
-	
-	/**
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $aim;
+
+    /**
+     * @ORM\Column(type="boolean", name="aim_is_public", nullable=true)
+     */
+    protected $aimIsPublic = false;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $msn;
+
+    /**
+     * @ORM\Column(type="boolean", name="msn_is_public", nullable=true)
+     */
+    protected $msnIsPublic = false;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $icq;
+
+    /**
+     * @ORM\Column(type="boolean", name="icq_is_public", nullable=true)
+     */
+    protected $icqIsPublic = false;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $yahoo;
+
+    /**
+     * @ORM\Column(type="boolean", name="yahoo_is_public", nullable=true)
+     */
+    protected $yahooIsPublic = false;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $website;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $location;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
-	 */
-	protected $bio;
+     */
+    protected $bio;
 
-	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 */	
-	protected $signature;
- 
-
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $signature;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
-
 
     /**
      * Set avatarIsRemote
@@ -132,7 +128,7 @@ class Profile
     /**
      * Get avatarIsRemote
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAvatarIsRemote()
     {
@@ -152,7 +148,7 @@ class Profile
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
@@ -172,7 +168,7 @@ class Profile
     /**
      * Get aim
      *
-     * @return string 
+     * @return string
      */
     public function getAim()
     {
@@ -192,7 +188,7 @@ class Profile
     /**
      * Get aimIsPublic
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAimIsPublic()
     {
@@ -212,7 +208,7 @@ class Profile
     /**
      * Get msn
      *
-     * @return string 
+     * @return string
      */
     public function getMsn()
     {
@@ -232,7 +228,7 @@ class Profile
     /**
      * Get msnIsPublic
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getMsnIsPublic()
     {
@@ -252,7 +248,7 @@ class Profile
     /**
      * Get icq
      *
-     * @return string 
+     * @return string
      */
     public function getIcq()
     {
@@ -272,7 +268,7 @@ class Profile
     /**
      * Get icqIsPublic
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIcqIsPublic()
     {
@@ -292,7 +288,7 @@ class Profile
     /**
      * Get yahoo
      *
-     * @return string 
+     * @return string
      */
     public function getYahoo()
     {
@@ -312,7 +308,7 @@ class Profile
     /**
      * Get yahooIsPublic
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getYahooIsPublic()
     {
@@ -332,7 +328,7 @@ class Profile
     /**
      * Get website
      *
-     * @return string 
+     * @return string
      */
     public function getWebsite()
     {
@@ -352,7 +348,7 @@ class Profile
     /**
      * Get location
      *
-     * @return string 
+     * @return string
      */
     public function getLocation()
     {
@@ -372,7 +368,7 @@ class Profile
     /**
      * Get bio
      *
-     * @return text 
+     * @return text
      */
     public function getBio()
     {
@@ -392,7 +388,7 @@ class Profile
     /**
      * Get signature
      *
-     * @return string 
+     * @return string
      */
     public function getSignature()
     {
@@ -412,7 +408,7 @@ class Profile
     /**
      * Get user
      *
-     * @return CCDNUser\UserBundle\Entity\User 
+     * @return CCDNUser\UserBundle\Entity\User
      */
     public function getUser()
     {

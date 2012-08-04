@@ -13,15 +13,15 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' -%}
-	
+
 {% endblock %}
 
 {% block body %}
 
 	{%- spaceless -%}
-	
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
@@ -29,18 +29,18 @@
 	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
-	
+
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	<br>
-		
+
 	{%- form_theme form param('ccdn_user_profile.profile.edit.contact.form_theme') -%}
 	<form action="{{- path('cc_profile_edit_contact') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
-		
+
 			{{- form_errors(form) -}}
-		
+
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
-		
+
 			<div class="control-group{{- (form.aim.vars.errors|length > 0) ? ' error': '' -}}{{- (form.aim_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.aim, null, { 'label': 'form.label.profile.edit.aim' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -51,7 +51,7 @@
 					{{- form_widget(form.aim) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.msn.vars.errors|length > 0) ? ' error': '' -}}{{- (form.msn_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.msn, null, { 'label': 'form.label.profile.edit.msn' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -62,7 +62,7 @@
 					{{- form_widget(form.msn) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.icq.vars.errors|length > 0) ? ' error': '' -}}{{- (form.icq_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.icq, null, { 'label': 'form.label.profile.edit.icq' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -73,7 +73,7 @@
 					{{- form_widget(form.icq) -}}
 				</div>
 			</div>
-		
+
 			<div class="control-group{{- (form.yahoo.vars.errors|length > 0) ? ' error': '' -}}{{- (form.yahoo_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.yahoo, null, { 'label': 'form.label.profile.edit.yahoo'|trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
@@ -84,17 +84,17 @@
 					{{- form_widget(form.yahoo) -}}
 				</div>
 			</div>
-		
+
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
 				<a class="btn" href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 			</div>
-		
+
 		</fieldset>
 	</form>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
-	
+
 {% endblock body %}

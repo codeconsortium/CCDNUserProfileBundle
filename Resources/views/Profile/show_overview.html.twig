@@ -9,30 +9,30 @@
 
 {% block sidebar %}
 	{{ parent() }}
-	
+
 	{%- include 'CCDNUserProfileBundle:Sidebar:sidebar.html.twig' -%}
-	
+
 {% endblock %}
 
 {% block body %}
 
 	{%- spaceless -%}
-	
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_header.html.twig' -%}
-	
+
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
-	
+
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
 			<a class="btn pull-right" href="{{- path('cc_profile_edit_personal', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
-	
+
 	<div style="padding:15px;">
 		<table class="table table-striped">
 			<tbody>
@@ -40,7 +40,7 @@
 					<td class="right" style="width: 30%;">{{- 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left" style="width: 70%;">{{- user.getUsername |title -}}</td>
 				</tr>
-			
+
 				{%- if user.getRegisteredDate is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 					<td class="right">{{- 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
@@ -62,14 +62,14 @@
 					</td>
 				</tr>
 				{%- endif -%}
-			
+
 				{%- if user.getProfile.getLocation is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 					<td class="right">{{- 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">{{- user.getProfile.getLocation -}}</td>
 				</tr>
 				{%- endif -%}
-			
+
 				{%- if user.getProfile.getWebsite is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
 					<td class="right">{{- 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') -}}</td>
@@ -80,7 +80,7 @@
 		</table>
 	</div>
 	<br>
-	
+
 	<hr>
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
@@ -88,13 +88,13 @@
 			<a class="btn pull-right" href="{{- path('cc_profile_edit_contact', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
-	
+
 	<div style="padding:15px;">
 		{%- if user.getProfile.getAimIsPublic is not null and user.getProfile.getAim is not null
 			or user.getProfile.getMsnIsPublic is not null and user.getProfile.getMsn is not null
 			or user.getProfile.getIcqIsPublic is not null and user.getProfile.getIcq is not null
 			or user.getProfile.getYahooIsPublic is not null and user.getProfile.getYahoo is not null -%}
-	
+
 		<table class="table table-striped">
 			<tbody>
 				{%- if is_granted('ROLE_USER') -%}
@@ -135,9 +135,9 @@
 		{%- endif -%}
 	</div>
 	<br>
-	
+
 	{%- include 'CCDNComponentCrumbTrailBundle:Trail:trail.html.twig' with {'crumbs': crumbs } -%}
 
 	{%- endspaceless -%}
-	
+
 {% endblock body %}
