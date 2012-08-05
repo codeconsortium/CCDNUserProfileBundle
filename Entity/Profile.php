@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the CCDN ProfileBundle
+ * This file is part of the CCDNUser ProfileBundle
  *
  * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
  *
@@ -22,6 +22,7 @@ use CCDNUser\UserBundle\Entity\User;
  */
 class Profile
 {
+	
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the CCDN ProfileBundle
+ * This file is part of the CCDNUser ProfileBundle
  *
  * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
  *
@@ -15,8 +15,8 @@ namespace CCDNUser\ProfileBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use FOS\UserBundle\Model\UserInterface;
 
