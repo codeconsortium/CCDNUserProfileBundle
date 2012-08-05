@@ -165,7 +165,7 @@ class ProfileController extends ContainerAware
         // if the profile has no id then it does not exist, so create one.
         //
         if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
+            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.personal.form.handler');
@@ -238,7 +238,7 @@ class ProfileController extends ContainerAware
         // if the profile has no id then it does not exist, so create one.
         //
         if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
+            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.contact.form.handler');
@@ -311,7 +311,7 @@ class ProfileController extends ContainerAware
         // if the profile has no id then it does not exist, so create one.
         //
         if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
+            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.avatar.form.handler');
@@ -384,7 +384,7 @@ class ProfileController extends ContainerAware
         // if the profile has no id then it does not exist, so create one.
         //
         if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
+            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.bio.form.handler');
@@ -457,7 +457,7 @@ class ProfileController extends ContainerAware
         // if the profile has no id then it does not exist, so create one.
         //
         if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flushNow();
+            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.signature.form.handler');

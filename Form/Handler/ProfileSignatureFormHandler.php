@@ -18,10 +18,7 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use CCDNComponent\CommonBundle\Manager\ManagerInterface;
-
-//use CCDNUser\ProfileBundle\EntityManager\ProfileManager;
-//use CCDNUser\ProfileBundle\Form\Type\ProfileType;
+use CCDNUser\ProfileBundle\Manager\ManagerInterface;
 
 /**
  *
@@ -143,7 +140,7 @@ class ProfileSignatureFormHandler
      */
     protected function onSuccess($entity)
     {
-        $this->manager->update($entity)->flushNow();
+        $this->manager->update($entity)->flush();
     }
 
 }

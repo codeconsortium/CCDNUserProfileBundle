@@ -36,7 +36,7 @@ services:
     #
     ccdn_user_profile.profile.manager:
         class:  %ccdn_user_profile.profile.manager.class%
-        arguments:  [@doctrine, @service_container]
+        arguments:  [@doctrine]
 
     #
     # Profile Forms.
