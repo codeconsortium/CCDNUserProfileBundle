@@ -34,7 +34,7 @@
 	<br>
 
 	{%- form_theme form param('ccdn_user_profile.profile.edit.contact.form_theme') -%}
-	<form action="{{- path('cc_profile_edit_contact') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+	<form action="{{- path('ccdn_user_profile_edit_contact') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
 
 			{{- form_errors(form) -}}
@@ -87,7 +87,7 @@
 
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
-				<a class="btn" href="{{- path('cc_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+				<a class="btn" href="{{- path('ccdn_user_profile_show_by_id', {'user_id':user.id}) -}}">{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 			</div>
 
 		</fieldset>

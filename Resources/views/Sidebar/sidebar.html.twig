@@ -8,7 +8,7 @@
 	{%- if is_granted("ROLE_USER") -%}
 
 		<li><a href="{{- path(param('ccdn_user_profile.sidebar.account_route')) -}}"><i class="icon-cog"></i>&nbsp;{{- 'sidebar.link.account.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
-		<li class="active"><a href="{{- path('cc_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+		<li class="active"><a href="{{- path('ccdn_user_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
 
 	{%- else -%}
 
