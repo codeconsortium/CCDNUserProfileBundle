@@ -29,7 +29,7 @@
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_personal', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_personal', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 
@@ -85,7 +85,7 @@
 	<h3 style="display:inline-block;">{{- 'profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_contact', {'user_id':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_contact', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 

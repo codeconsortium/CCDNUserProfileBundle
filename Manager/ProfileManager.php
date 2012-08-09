@@ -13,8 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Manager;
 
-use CCDNUser\SecurityBundle\Manager\ManagerInterface;
-use CCDNUser\SecurityBundle\Manager\BaseManager;
+use CCDNUser\ProfileBundle\Manager\ManagerInterface;
+use CCDNUser\ProfileBundle\Manager\BaseManager;
 
 /**
  *

@@ -21,11 +21,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
 
 /**
- * Deals with routes:
- * /user/my/profile
- * /user/{}/profile
- * /user/my/profile/edit
- * /user/{}/profile/edit
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
@@ -34,16 +29,13 @@ class ProfileController extends ContainerAware
 {
 
     /**
-     * /profile/my/profile
-     * /user/{user_id}/profile
      * Show a specific user by ID
-      *
      *
      * @access public
-     * @param  int                             $user_id
-     * @return RedirectResponse|RenderResponse
+     * @param  Int $userId
+     * @return RenderResponse
      */
-    public function showOverviewAction($user_id)
+    public function showOverviewAction($userId)
     {
         if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
@@ -51,41 +43,38 @@ class ProfileController extends ContainerAware
             }
         }
 
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         if ( ! is_object($user) || ! ($user instanceof UserInterface)) {
             throw new NotFoundHttpException('User not found!');
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:show_overview.html.' . $this->getEngine(), array(
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/my/profile
-     * /user/{user_id}/profile
      * Show a specific user by ID
-      *
      *
      * @access public
-     * @param  int                             $user_id
-     * @return RedirectResponse|RenderResponse
+     * @param  Int $userId
+     * @return RenderResponse
      */
-    public function showBioAction($user_id)
+    public function showBioAction($userId)
     {
         if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
@@ -93,51 +82,49 @@ class ProfileController extends ContainerAware
             }
         }
 
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         if ( ! is_object($user) || ! ($user instanceof UserInterface)) {
             throw new NotFoundHttpException('User not found!');
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:show_bio.html.' . $this->getEngine(), array(
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/edit
-     *
      *
      * @access public
-     * @param  int                             $user_id
+     * @param  Int $userId
      * @return RedirectResponse|RenderResponse
      */
-    public function editPersonalAction($user_id)
+    public function editPersonalAction($userId)
     {
         //
         // Do we have an ID, and are we logged in?
         //
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -175,42 +162,40 @@ class ProfileController extends ContainerAware
         if ($process) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user")
-            ->add($this->container->get('translator')->trans('crumbs.profile.edit.personal', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_personal', array('user_id' => $user->getId())), "edit");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user")
+            ->add($this->container->get('translator')->trans('crumbs.profile.edit.personal', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_personal', array('userId' => $user->getId())), "edit");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_personal.html.' . $this->getEngine(), array(
             'form' => $formHandler->getForm()->createView(),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/edit
-     *
      *
      * @access public
-     * @param  int                             $user_id
+     * @param  Int $userId
      * @return RedirectResponse|RenderResponse
      */
-    public function editContactAction($user_id)
+    public function editContactAction($userId)
     {
         //
         // Do we have an ID, and are we logged in?
         //
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -248,42 +233,40 @@ class ProfileController extends ContainerAware
         if ($process) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user")
-            ->add($this->container->get('translator')->trans('crumbs.profile.edit.contact', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_contact', array('user_id' => $user->getId())), "edit");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user")
+            ->add($this->container->get('translator')->trans('crumbs.profile.edit.contact', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_contact', array('userId' => $user->getId())), "edit");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_contact.html.' . $this->getEngine(), array(
             'form' => $formHandler->getForm()->createView(),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/edit
-     *
      *
      * @access public
-     * @param  int                             $user_id
+     * @param  Int $userId
      * @return RedirectResponse|RenderResponse
      */
-    public function editAvatarAction($user_id)
+    public function editAvatarAction($userId)
     {
         //
         // Do we have an ID, and are we logged in?
         //
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -321,42 +304,40 @@ class ProfileController extends ContainerAware
         if ($process) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user")
-            ->add($this->container->get('translator')->trans('crumbs.profile.edit.avatar', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_avatar', array('user_id' => $user->getId())), "edit");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user")
+            ->add($this->container->get('translator')->trans('crumbs.profile.edit.avatar', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_avatar', array('userId' => $user->getId())), "edit");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_avatar.html.' . $this->getEngine(), array(
             'form' => $formHandler->getForm()->createView(),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/edit
-     *
      *
      * @access public
-     * @param  int                             $user_id
+     * @param  Int $userId
      * @return RedirectResponse|RenderResponse
      */
-    public function editBioAction($user_id)
+    public function editBioAction($userId)
     {
         //
         // Do we have an ID, and are we logged in?
         //
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -394,42 +375,40 @@ class ProfileController extends ContainerAware
         if ($process) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user")
-            ->add($this->container->get('translator')->trans('crumbs.profile.edit.bio', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_bio', array('user_id' => $user->getId())), "edit");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user")
+            ->add($this->container->get('translator')->trans('crumbs.profile.edit.bio', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_bio', array('userId' => $user->getId())), "edit");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_bio.html.' . $this->getEngine(), array(
             'form' => $formHandler->getForm()->createView(),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
-     * /profile/edit
-     *
      *
      * @access public
-     * @param  int                             $user_id
+     * @param  Int $userId
      * @return RedirectResponse|RenderResponse
      */
-    public function editSignatureAction($user_id)
+    public function editSignatureAction($userId)
     {
         //
         // Do we have an ID, and are we logged in?
         //
-        if (! $user_id || $user_id == 0) {
+        if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
                 throw new NotFoundHttpException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($user_id);
+            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -467,24 +446,25 @@ class ProfileController extends ContainerAware
         if ($process) {
             $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('user_id' => $user->getId())));
+            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         }
 
-        $crumb_trail = $this->container->get('ccdn_component_crumb.trail')
+        $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('user_id' => $user->getId())), "user")
-            ->add($this->container->get('translator')->trans('crumbs.profile.edit.signature', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_signature', array('user_id' => $user->getId())), "edit");
+            ->add($this->container->get('translator')->trans('crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user")
+            ->add($this->container->get('translator')->trans('crumbs.profile.edit.signature', array(), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_edit_signature', array('userId' => $user->getId())), "edit");
 
         return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_signature.html.' . $this->getEngine(), array(
             'form' => $formHandler->getForm()->createView(),
             'user' => $user,
-            'crumbs' => $crumb_trail,
+            'crumbs' => $crumbs,
         ));
     }
 
     /**
      *
      * @access protected
+	 * @param $string Action, $string Value
      * @return string
      */
     protected function setFlash($action, $value)
@@ -495,7 +475,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access protected
-     * @return string
+     * @return String
      */
     protected function getEngine()
     {

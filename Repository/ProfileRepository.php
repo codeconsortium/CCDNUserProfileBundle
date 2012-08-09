@@ -28,16 +28,16 @@ class ProfileRepository extends EntityRepository
     /**
      *
      * @access public
-     * @param int $user_id
+     * @param Int $userId
      */
-    public function findOneByIdJoinedToUser($user_id)
+    public function findOneByIdJoinedToUser($userId)
     {
         $query = $this->getEntityManager()
             ->createQuery('
                 SELECT u, p	FROM CCDNUserUserBundle:User u
                 LEFT JOIN u.profile p
                 WHERE u.id = :id')
-            ->setParameter('id', $user_id);
+            ->setParameter('id', $userId);
 
         try {
             return $query->getSingleResult();
