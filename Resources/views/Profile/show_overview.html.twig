@@ -5,7 +5,7 @@
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -26,10 +26,10 @@
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 
-	<h3 style="display:inline-block;">{{- 'profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<h3 style="display:inline-block;">{{- 'ccdn_user_profile.profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_personal', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_personal', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 
@@ -37,13 +37,13 @@
 		<table class="table table-striped">
 			<tbody>
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-					<td class="right" style="width: 30%;">{{- 'profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+					<td class="right" style="width: 30%;">{{- 'ccdn_user_profile.profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left" style="width: 70%;">{{- user.getUsername |title -}}</td>
 				</tr>
 
 				{%- if user.getRegisteredDate is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-					<td class="right">{{- 'profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+					<td class="right">{{- 'ccdn_user_profile.profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">
 						<abbr class="timestamper" title="{{- user.getRegisteredDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
 							{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.overview.last_login_datetime_format')) -}}
@@ -54,7 +54,7 @@
 
 				{%- if user.getLastLogin is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-					<td class="right">{{- 'profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+					<td class="right">{{- 'ccdn_user_profile.profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">
 						<abbr class="timestamper" title="{{- user.getLastLogin |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
 							{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.overview.member_since_datetime_format')) -}}
@@ -65,14 +65,14 @@
 
 				{%- if user.getProfile.getLocation is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-					<td class="right">{{- 'profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+					<td class="right">{{- 'ccdn_user_profile.profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">{{- user.getProfile.getLocation -}}</td>
 				</tr>
 				{%- endif -%}
 
 				{%- if user.getProfile.getWebsite is not null -%}
 				<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-					<td class="right">{{- 'profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+					<td class="right">{{- 'ccdn_user_profile.profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left"><a href="{{- user.getProfile.getWebsite -}}" target="_blank">{{- user.getProfile.getWebsite -}}</a></td>
 				</tr>
 				{%- endif -%}
@@ -82,10 +82,10 @@
 	<br>
 
 	<hr>
-	<h3 style="display:inline-block;">{{- 'profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<h3 style="display:inline-block;">{{- 'ccdn_user_profile.profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_contact', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_contact', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 
@@ -100,28 +100,28 @@
 				{%- if is_granted('ROLE_USER') -%}
 					{%- if user.getProfile.getAimIsPublic is not null and user.getProfile.getAim is not null -%}
 					<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-						<td class="right">{{- 'profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+						<td class="right">{{- 'ccdn_user_profile.profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 						<td class="left">{{- user.getProfile.getAim -}}</td>
 					</tr>
 					{%- endif -%}
 
 					{%- if user.getProfile.getMsnIsPublic is not null and user.getProfile.getMsn is not null -%}
 					<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-						<td class="right">{{- 'profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+						<td class="right">{{- 'ccdn_user_profile.profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 						<td class="left">{{- user.getProfile.getMsn -}}</td>
 					</tr>
 					{%- endif -%}
 
 					{%- if user.getProfile.getIcqIsPublic is not null and user.getProfile.getIcq is not null -%}
 					<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-						<td class="right">{{- 'profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+						<td class="right">{{- 'ccdn_user_profile.profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 						<td class="left">{{- user.getProfile.getIcq -}}</td>
 					</tr>
 					{%- endif -%}
 
 					{%- if user.getProfile.getYahooIsPublic is not null and user.getProfile.getYahoo is not null -%}
 					<tr class="{{- cycler(['row_odd', 'row_even'], 'cycle') -}}">
-						<td class="right">{{- 'profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+						<td class="right">{{- 'ccdn_user_profile.profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 						<td class="left">{{- user.getProfile.getYahoo -}}</td>
 					</tr>
 					{%- endif -%}
@@ -130,7 +130,7 @@
 		</table>
 		{%- else -%}
 			<div class="center">
-				<h5>{{- 'profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+				<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 			</div>
 		{%- endif -%}
 	</div>

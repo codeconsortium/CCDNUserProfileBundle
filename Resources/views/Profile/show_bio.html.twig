@@ -5,7 +5,7 @@
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('title.profile' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -26,10 +26,10 @@
 
 	{%- include 'CCDNUserProfileBundle:Profile:item_tabs.html.twig' -%}
 
-	<h3 style="display:inline-block;">{{- 'profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<h3 style="display:inline-block;">{{- 'ccdn_user_profile.profile.show.overview.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_bio', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_bio', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 
@@ -41,17 +41,17 @@
 			</span>
 		{%- else -%}
 			<div class="center">
-				<h5>{{- 'profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+				<h5>{{- 'ccdn_user_profile.profile.show.overview.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 			</div>
 		{%- endif -%}
 	</div>
 	<br>
 
 	<hr>
-	<h3 style="display:inline-block;">{{- 'profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+	<h3 style="display:inline-block;">{{- 'ccdn_user_profile.profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 	{%- if is_granted('ROLE_USER') -%}
 		{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_signature', {'userId':user.id}) -}}">{{- 'link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
+			<a class="btn pull-right" href="{{- path('ccdn_user_profile_edit_signature', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a><br>
 		{%- endif -%}
 	{%- endif -%}
 
@@ -63,7 +63,7 @@
 			</span>
 		{%- else -%}
 			<div class="center">
-				<h5>{{- 'profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+				<h5>{{- 'ccdn_user_profile.profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 			</div>
 		{%- endif -%}
 	</div>

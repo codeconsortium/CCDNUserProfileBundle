@@ -1,25 +1,29 @@
 {%- spaceless -%}
 
+	{%- set scale_x = (scale_x is defined) ? scale_x : 100 -%}
+	{%- set scale_y = (scale_y is defined) ? scale_y : 100 -%}
+	
+	
 	{%- if user -%}
 		{%- if user.getProfile -%}
 			{%- if user.getProfile.getAvatarIsRemote -%}
 				{%- if user.getProfile.getAvatar -%}
-					<img class="avatar" width="100" height="100" src="{{- user.getProfile.getAvatar -}}" alt="avatar">
+					<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- user.getProfile.getAvatar -}}" alt="avatar">
 				{%- else -%}
-					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+					<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 				{%- endif -%}
 			{%- else -%}
 				{%- if user.getProfile.getAvatar -%}
-					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+					<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 				{%- else -%}
-					<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+					<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 				{%- endif -%}
 			{%- endif -%}
 		{%- else -%}
-			<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+			<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 		{%- endif -%}
 	{%- else -%}
-		<img class="avatar" width="100" height="100" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
+		<img class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -}}" alt="avatar">
 	{%- endif -%}
 
 {%- endspaceless -%}
