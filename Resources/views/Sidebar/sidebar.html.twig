@@ -6,10 +6,16 @@
 	<li class="divider"></li>
 
 	{%- if is_granted("ROLE_USER") -%}
-
-		<li><a href="{{- path(param('ccdn_user_profile.sidebar.account_route')) -}}"><i class="icon-cog"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.account.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
-		<li class="active"><a href="{{- path('ccdn_user_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
-
+		
+		{%- if app.user.id == user.id -%}
+			<li><a href="{{- path(param('ccdn_user_profile.sidebar.account_route')) -}}"><i class="icon-cog"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.account.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+			<li class="active"><a href="{{- path('ccdn_user_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
+		{%- else -%}
+			{%- if user is defined -%}
+				<li class="active"><a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view_named' |trans({'%username%': user.getUsername}, 'CCDNUserProfileBundle') -}}</a></li>
+			{%- endif -%}
+		{%- endif -%}
+		
 	{%- else -%}
 
 		<li><a rel="nofollow" href="{{- path(param('ccdn_user_profile.sidebar.login_route')) -}}"><i class="icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.login' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
