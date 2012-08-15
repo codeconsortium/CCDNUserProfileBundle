@@ -49,7 +49,8 @@ class ProfileController extends ContainerAware
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
-        } else {
+        } else {	
+
             $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
         }
 

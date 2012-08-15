@@ -34,7 +34,7 @@
 	<br>
 
 	{%- form_theme form param('ccdn_user_profile.profile.edit.signature.form_theme') -%}
-	<form action="{{- path('ccdn_user_profile_edit_signature') -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+	<form action="{{- path('ccdn_user_profile_edit_signature', {'userId':user.id}) -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
 		<fieldset>
 
 			{{- form_errors(form) -}}
