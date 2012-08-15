@@ -40,6 +40,7 @@ ccdn_user_profile.link.profile.overview: 'Overview'
 ccdn_user_profile.link.profile.bio: 'Bio'
 ccdn_user_profile.link.profile.edit: 'Edit'
 ccdn_user_profile.link.user.administrate: 'Administrate User'
+ccdn_user_profile.link.user.message: 'Send Private Message'
 
 #
 # Forms.
