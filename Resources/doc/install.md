@@ -1,4 +1,4 @@
-Installing CCDNUser ProfileBundle 1.0
+Installing CCDNUser ProfileBundle 1.2
 =====================================
 
 ## Dependencies:
@@ -7,11 +7,11 @@ Installing CCDNUser ProfileBundle 1.0
 2. [EWZTimeBundle](http://github.com/excelwebzone/EWZRecaptchaBundle).
 3. [PagerFanta](https://github.com/whiteoctober/Pagerfanta).
 4. [PagerFantaBundle](http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
-5. [CCDNComponent CommonBundle](https://github.com/codeconsortium/CommonBundle).
-6. [CCDNComponent BBCodeBundle](https://github.com/codeconsortium/BBCodeBundle).
-7. [CCDNComponent CrumbTrailBundle](https://github.com/codeconsortium/CrumbTrailBundle).
-8. [CCDNComponent DashboardBundle](https://github.com/codeconsortium/DashboardBundle).
-9. [CCDNUser UserBundle](http://github.com/codeconsortium/CCDNUserUserBundle).
+5. [CCDNComponent CommonBundle](https://github.com/codeconsortium/CommonBundle/tree/v1.2).
+6. [CCDNComponent BBCodeBundle](https://github.com/codeconsortium/BBCodeBundle/tree/v1.2).
+7. [CCDNComponent CrumbTrailBundle](https://github.com/codeconsortium/CrumbTrailBundle/tree/v1.2).
+8. [CCDNComponent DashboardBundle](https://github.com/codeconsortium/DashboardBundle/tree/v1.2).
+9. [CCDNUser UserBundle](http://github.com/codeconsortium/CCDNUserUserBundle/tree/v1.2).
 
 ## Installation:
 
@@ -35,6 +35,7 @@ Append the following to end of your deps file (found in the root of your Symfony
 [CCDNUser]
 	git=http://github.com/codeconsortium/CCDNUserProfileBundle.git
 	target=/bundles/CCDNUser/ProfileBundle
+    version=v1.2
 ```
 
 ### Step 2: Register bundles with autoload.php.
