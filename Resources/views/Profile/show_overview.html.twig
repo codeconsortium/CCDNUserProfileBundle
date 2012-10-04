@@ -129,9 +129,21 @@
 			</tbody>
 		</table>
 		{%- else -%}
-			<div class="center">
-				<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
-			</div>
+			{%- if is_granted('ROLE_USER') -%}
+				{%- if user.id == app.user.id -%}
+					<div class="alert alert-warning">
+						<p>{{- 'ccdn_user_profile.profile.show.overview.contact.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}</p>
+					</div>
+				{%- else -%}
+					<div class="center">
+						<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+					</div>
+				{%- endif -%}
+			{%- else -%}
+				<div class="center">
+					<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+				</div>
+			{%- endif -%}
 		{%- endif -%}
 	</div>
 	<br>
