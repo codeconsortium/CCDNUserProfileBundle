@@ -31,7 +31,7 @@ class Profile
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $user;
