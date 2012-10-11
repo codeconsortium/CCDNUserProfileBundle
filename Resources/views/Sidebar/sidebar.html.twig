@@ -12,7 +12,7 @@
 			<li class="active"><a href="{{- path('ccdn_user_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}</a></li>
 		{%- else -%}
 			{%- if user is defined -%}
-				<li class="active"><a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view_named' |trans({'%username%': user.getUsername}, 'CCDNUserProfileBundle') -}}</a></li>
+				<li class="active"><a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}"><i class="icon-white icon-user"></i>&nbsp;{{- 'ccdn_user_profile.sidebar.link.profile.view_named' |trans({'%user_name%': user.getUsername}, 'CCDNUserProfileBundle') -}}</a></li>
 			{%- endif -%}
 		{%- endif -%}
 		
