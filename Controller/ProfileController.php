@@ -58,6 +58,8 @@ class ProfileController extends ContainerAware
             throw new NotFoundHttpException('User not found!');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
             ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user");
@@ -97,6 +99,8 @@ class ProfileController extends ContainerAware
             throw new NotFoundHttpException('User not found!');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
             ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => ucfirst($user->getUsername())), 'CCDNUserProfileBundle'), $this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('userId' => $user->getId())), "user");
@@ -144,17 +148,12 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
-
-        //
-        // if the profile has no id then it does not exist, so create one.
-        //
-        if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
-        }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.personal.form.handler');
 
@@ -215,17 +214,12 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
-
-        //
-        // if the profile has no id then it does not exist, so create one.
-        //
-        if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
-        }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.contact.form.handler');
 
@@ -286,17 +280,12 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
-
-        //
-        // if the profile has no id then it does not exist, so create one.
-        //
-        if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
-        }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.avatar.form.handler');
 
@@ -357,17 +346,12 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
-
-        //
-        // if the profile has no id then it does not exist, so create one.
-        //
-        if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
-        }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.bio.form.handler');
 
@@ -428,17 +412,12 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
+		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
-
-        //
-        // if the profile has no id then it does not exist, so create one.
-        //
-        if ( ! $profile->getId()) {
-            $this->container->get('ccdn_user_profile.profile.manager')->insert($profile)->flush();
-        }
 
         $formHandler = $this->container->get('ccdn_user_profile.profile.signature.form.handler');
 

@@ -26,7 +26,7 @@ interface ManagerInterface
 	 * @access public
 	 * @param $doctrine
 	 */
-    public function __construct($doctrine);
+    public function __construct($doctrine, $repository);
 
 	/**
 	 *

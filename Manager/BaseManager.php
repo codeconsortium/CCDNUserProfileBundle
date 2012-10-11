@@ -35,14 +35,22 @@ class BaseManager
 
 	/**
 	 *
+	 * @access protected
+	 */
+    protected $repository;
+	
+	/**
+	 *
 	 * @access public
 	 * @param $doctrine
 	 */
-    public function __construct($doctrine)
+    public function __construct($doctrine, $repository)
     {
         $this->doctrine = $doctrine;
 
         $this->em = $doctrine->getEntityManager();
+
+		$this->repository = $repository;
     }
 
 	/**

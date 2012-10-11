@@ -16,6 +16,8 @@ namespace CCDNUser\ProfileBundle\Manager;
 use CCDNUser\ProfileBundle\Manager\ManagerInterface;
 use CCDNUser\ProfileBundle\Manager\BaseManager;
 
+use CCDNUser\ProfileBundle\Entity\Profile;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
@@ -50,4 +52,49 @@ class ProfileManager extends BaseManager implements ManagerInterface
 
         return $this;
     }
+
+	/**
+	 *
+	 * @access public
+	 * @param $user
+	 * @return $this
+	 */
+	public function checkHasProfile($user)
+	{
+		
+		// Fix User not having Profile.
+        if ( ! $user->getProfile()->getId()) {
+        	
+			// Check if a profile already exists that matches the user on
+			// its foreign key before making a new one, if so relink it.
+			$profile = $this->repository->findOneByUser($user->getId());
+
+			if (! is_object($profile) || ! ($profile instanceof Profile)) {
+				$profile = new Profile();
+								
+    			$this->insert($profile)->flush();
+
+				$this->refresh($profile);
+			}
+
+			// Inform the user of there new profile.
+			$user->setProfile($profile);
+				
+			$this->persist($user)->flush();
+			
+			// Refresh the user.
+			$this->refresh($user);
+		}
+		
+		// Fix Profile not linking back to User.
+		if ( ! $user->getProfile()->getUser()) {
+			
+			$profile = $user->getProfile();
+			
+			$profile->setUser($user);
+			
+			$this->update($profile)->flush();
+        }
+	}
+	
 }
