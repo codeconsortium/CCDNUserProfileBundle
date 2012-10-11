@@ -1,0 +1,19 @@
+{%- spaceless -%}
+
+	{%- if user.isLocked() -%}
+		<span class="label label-important">{{- 'ccdn_forum_forum.member_role.banned' |trans({}, 'CCDNForumForumBundle') -}}</span>
+	{%- else -%}
+		{%- if hasRole(user, 'ROLE_USER') -%}
+			{%- if hasRole(user, 'ROLE_MODERATOR') -%}
+				{%- if hasRole(user, 'ROLE_ADMIN') -%}
+					<span class="label label-success">{{- 'ccdn_forum_forum.member_role.administrator' |trans({}, 'CCDNForumForumBundle') -}}</span>
+				{%- else -%}
+					<span class="label label-info">{{- 'ccdn_forum_forum.member_role.moderator' |trans({}, 'CCDNForumForumBundle') -}}</span>
+				{%- endif -%}
+			{%- else -%}
+				<span class="label label-inverse">{{- 'ccdn_forum_forum.member_role.member' |trans({}, 'CCDNForumForumBundle') -}}</span>
+			{%- endif -%}
+		{%- endif -%}
+	{%- endif -%}
+
+{%- endspaceless -%}
