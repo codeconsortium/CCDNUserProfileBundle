@@ -24,6 +24,7 @@
 		{%- set avatar = asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -%}
 	{%- endif -%}
 
-	<img style="{{- rounded -}}{{- border -}}{{- padding -}}" class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- avatar -}}" alt="avatar">
+	<img style="{{- rounded -}}{{- border -}}{{- padding -}}" class="avatar" width="{{- scale_x -}}" height="{{- scale_y -}}" src="{{- avatar -}}" alt="avatar">
+	{#<div style="-webkit-transform: rotate(-45deg);background-color:#a090ff;position:relative;top:-{{- scale_y -}}px;right:{{- scale_x / 2 -}}px">Admin</div>#}
 	
 {%- endspaceless -%}
