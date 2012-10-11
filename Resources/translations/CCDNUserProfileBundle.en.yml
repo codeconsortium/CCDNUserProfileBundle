@@ -90,3 +90,7 @@ ccdn_user_profile.profile.show.bio.none.owner: 'You have not yet added a biograp
 ccdn_user_profile.profile.show.signature: 'Signature'
 ccdn_user_profile.profile.show.signature.none: 'This user has not yet added a signature.'
 ccdn_user_profile.profile.show.signature.none.owner: 'You have not yet added a signature. Click edit to add one.'
+ccdn_user_profile.member_role.administrator: 'Administrator'
+ccdn_user_profile.member_role.moderator: 'Moderator'
+ccdn_user_profile.member_role.member: 'Member'
+ccdn_user_profile.member_role.banned: 'Banned'
