@@ -2,9 +2,9 @@
 
 	{%- set scale_x = (scale_x is defined) ? scale_x : 100 -%}
 	{%- set scale_y = (scale_y is defined) ? scale_y : 100 -%}
-	{%- set rounded = (rounded is defined) ? rounded : 0 -%}
-	{%- set border = 'border:' ~ ((border is defined) ? border : 0) ~ 'px solid #ddd;' -%}
-	{%- set padding = 'padding:' ~ ((padding is defined) ? padding : 0) ~ 'px;' -%}
+	{%- set rounded = (rounded is defined) ? 'border-radius:' ~ rounded ~ 'px;' : '' -%}
+	{%- set border =  (border is defined) ? 'border:' ~ border ~ 'px solid #ddd;': '' -%}
+	{%- set padding = (padding is defined) ? 'padding:' ~ padding ~ 'px;': '' -%}
 	
 	{%- if user -%}
 		{%- if user.getProfile -%}
@@ -24,6 +24,6 @@
 		{%- set avatar = asset('bundles/ccdncomponentcommon/images/profile/anonymous_avatar.gif') -%}
 	{%- endif -%}
 
-	<img style="border-radius:{{- (rounded) ? rounded : 0 -}}px;{{- border -}}{{- padding -}}" class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- avatar -}}" alt="avatar">
+	<img style="{{- rounded -}}{{- border -}}{{- padding -}}" class="avatar" width="{{ scale_x }}" height="{{ scale_y }}" src="{{- avatar -}}" alt="avatar">
 	
 {%- endspaceless -%}
