@@ -16,17 +16,19 @@ CCDNUser\ProfileBundle\Entity\Profile:
         msn:
             - Type: { type: string, groups: [contact] }
             - MaxLength: { limit: 255, groups: [contact] }
+            - Email: { groups: [contact] }
         msnIsPublic:
-            - Type: { type: bool, groups: [contact] }
-        yahoo:
-            - Type: { type: string, groups: [contact] }
-            - MaxLength: { limit: 255, groups: [contact] }
-        yahooIsPublic:
             - Type: { type: bool, groups: [contact] }
         icq:
             - Type: { type: string, groups: [contact] }
             - MaxLength: { limit: 255, groups: [contact] }
         icqIsPublic:
+            - Type: { type: bool, groups: [contact] }
+        yahoo:
+            - Type: { type: string, groups: [contact] }
+            - MaxLength: { limit: 255, groups: [contact] }
+            - Email: { groups: [contact] }
+        yahooIsPublic:
             - Type: { type: bool, groups: [contact] }
 
         bio:
