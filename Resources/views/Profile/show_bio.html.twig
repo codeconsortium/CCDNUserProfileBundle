@@ -43,7 +43,7 @@
 			{%- if is_granted('ROLE_USER') -%}
 				{%- if user.id == app.user.id -%}
 					<div class="alert alert-warning">
-						<p>{{- 'ccdn_user_profile.profile.show.bio.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}</p>
+						{{- 'ccdn_user_profile.profile.show.bio.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
 					</div>
 				{%- else -%}
 					<div class="center">
@@ -77,7 +77,7 @@
 			{%- if is_granted('ROLE_USER') -%}
 				{%- if user.id == app.user.id -%}
 					<div class="alert alert-warning">
-						<p>{{- 'ccdn_user_profile.profile.show.signature.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}</p>
+						{{- 'ccdn_user_profile.profile.show.signature.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
 					</div>
 				{%- else -%}
 					<div class="center">

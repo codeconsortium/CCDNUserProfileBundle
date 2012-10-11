@@ -132,7 +132,7 @@
 			{%- if is_granted('ROLE_USER') -%}
 				{%- if user.id == app.user.id -%}
 					<div class="alert alert-warning">
-						<p>{{- 'ccdn_user_profile.profile.show.overview.contact.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}</p>
+						{{- 'ccdn_user_profile.profile.show.overview.contact.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
 					</div>
 				{%- else -%}
 					<div class="center">
