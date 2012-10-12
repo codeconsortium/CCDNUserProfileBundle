@@ -125,7 +125,7 @@ class ProfileSignatureFormHandler
     public function getForm()
     {
         if (!$this->form) {
-            $profileType = $this->container->get('ccdn_user_profile.profile.signature.form.type');
+            $profileType = $this->container->get('ccdn_user_profile.form.type.profile_signature');
             $this->form = $this->factory->create($profileType, $this->options['profile']);
         }
 

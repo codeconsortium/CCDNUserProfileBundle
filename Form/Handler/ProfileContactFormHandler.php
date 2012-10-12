@@ -125,7 +125,7 @@ class ProfileContactFormHandler
     public function getForm()
     {
         if (!$this->form) {
-            $profileType = $this->container->get('ccdn_user_profile.profile.contact.form.type');
+            $profileType = $this->container->get('ccdn_user_profile.form.type.profile_contact');
             $this->form = $this->factory->create($profileType, $this->options['profile']);
         }
 

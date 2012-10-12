@@ -51,14 +51,14 @@ class ProfileController extends ContainerAware
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {	
 
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         if ( ! is_object($user) || ! ($user instanceof UserInterface)) {
             throw new NotFoundHttpException('User not found!');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
@@ -92,14 +92,14 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         if ( ! is_object($user) || ! ($user instanceof UserInterface)) {
             throw new NotFoundHttpException('User not found!');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 		
         $crumbs = $this->container->get('ccdn_component_crumb.trail')
             ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'), $this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
@@ -129,7 +129,7 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -148,14 +148,14 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 		
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
 
-        $formHandler = $this->container->get('ccdn_user_profile.profile.personal.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_personal');
 
         $process = $formHandler->process($profile);
 
@@ -195,7 +195,7 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -214,14 +214,14 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
 
-        $formHandler = $this->container->get('ccdn_user_profile.profile.contact.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_contact');
 
         $process = $formHandler->process($profile);
 
@@ -261,7 +261,7 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -280,14 +280,14 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
 
-        $formHandler = $this->container->get('ccdn_user_profile.profile.avatar.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_avatar');
 
         $process = $formHandler->process($profile);
 
@@ -327,7 +327,7 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -346,14 +346,14 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
 
-        $formHandler = $this->container->get('ccdn_user_profile.profile.bio.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_bio');
 
         $process = $formHandler->process($profile);
 
@@ -393,7 +393,7 @@ class ProfileController extends ContainerAware
 
             $user = $this->container->get('security.context')->getToken()->getUser();
         } else {
-            $user = $this->container->get('ccdn_user_profile.profile.repository')->findOneByIdJoinedToUser($userId);
+            $user = $this->container->get('ccdn_user_profile.repository.profile')->findOneByIdJoinedToUser($userId);
         }
 
         //
@@ -412,14 +412,14 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('You do not have access to this section.');
         }
 
-		$this->container->get('ccdn_user_profile.profile.manager')->checkHasProfile($user);
+		$this->container->get('ccdn_user_profile.manager.profile')->checkHasProfile($user);
 
         //
         // get the user associated profile
         //
         $profile = $user->getProfile();
 
-        $formHandler = $this->container->get('ccdn_user_profile.profile.signature.form.handler');
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_signature');
 
         $process = $formHandler->process($profile);
 

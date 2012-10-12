@@ -125,7 +125,7 @@ class ProfileBioFormHandler
     public function getForm()
     {
         if (!$this->form) {
-            $profileType = $this->container->get('ccdn_user_profile.profile.bio.form.type');
+            $profileType = $this->container->get('ccdn_user_profile.form.type.profile_bio');
             $this->form = $this->factory->create($profileType, $this->options['profile']);
         }
 
