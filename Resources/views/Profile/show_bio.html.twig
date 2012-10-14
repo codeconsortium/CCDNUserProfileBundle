@@ -1,11 +1,11 @@
-{% extends param('ccdn_user_profile.profile.show.bio.layout_template') %}
+{% extends ccdn_user_profile.profile.show.bio.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -36,7 +36,7 @@
 	<div style="padding:15px;">
 		{%- if user.getProfile.getBio -%}
 			<span class="common_body">
-				{{- BBCode(user.getProfile.getBio | raw, param('ccdn_user_profile.item_bio.enable_bb_parser')) | raw -}}
+				{{- BBCode(user.getProfile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
 				<br>
 			</span>
 		{%- else -%}	
@@ -70,7 +70,7 @@
 	<div style="padding:15px;">
 		{%- if user.getProfile.getSignature -%}
 			<span class="common_body">
-				{{- BBCode(user.getProfile.getSignature | raw, param('ccdn_user_profile.item_signature.enable_bb_parser')) | raw -}}
+				{{- BBCode(user.getProfile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
 				<br>
 			</span>
 		{%- else -%}

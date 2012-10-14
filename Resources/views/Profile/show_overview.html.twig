@@ -1,11 +1,11 @@
-{% extends param('ccdn_user_profile.profile.show.overview.layout_template') %}
+{% extends ccdn_user_profile.profile.show.overview.layout_template %}
 
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{- asset('bundles/ccdncomponentbbcode/css/bbcode.css') -}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), param('ccdn_user_profile.seo.title_length')) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 {% block sidebar %}
 	{{ parent() }}
@@ -46,7 +46,7 @@
 					<td class="right">{{- 'ccdn_user_profile.profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">
 						<abbr class="timestamper" title="{{- user.getRegisteredDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
-							{{- user.getRegisteredDate |date(param('ccdn_user_profile.profile.show.overview.last_login_datetime_format')) -}}
+							{{- user.getRegisteredDate |date(ccdn_user_profile.profile.show.overview.last_login_datetime_format) -}}
 						</abbr>
 					</td>
 				</tr>
@@ -57,7 +57,7 @@
 					<td class="right">{{- 'ccdn_user_profile.profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 					<td class="left">
 						<abbr class="timestamper" title="{{- user.getLastLogin |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
-							{{- user.getLastLogin |date(param('ccdn_user_profile.profile.show.overview.member_since_datetime_format')) -}}
+							{{- user.getLastLogin |date(ccdn_user_profile.profile.show.overview.member_since_datetime_format) -}}
 						</abbr>
 					</td>
 				</tr>
