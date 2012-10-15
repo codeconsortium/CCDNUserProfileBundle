@@ -32,7 +32,7 @@ class ProfileController extends ContainerAware
      * Show a specific user by ID
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RenderResponse
      */
     public function showOverviewAction($userId)
@@ -74,7 +74,7 @@ class ProfileController extends ContainerAware
      * Show a specific user by ID
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RenderResponse
      */
     public function showBioAction($userId)
@@ -114,7 +114,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RedirectResponse|RenderResponse
      */
     public function editPersonalAction($userId)
@@ -180,7 +180,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RedirectResponse|RenderResponse
      */
     public function editContactAction($userId)
@@ -246,7 +246,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RedirectResponse|RenderResponse
      */
     public function editAvatarAction($userId)
@@ -312,7 +312,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RedirectResponse|RenderResponse
      */
     public function editBioAction($userId)
@@ -378,7 +378,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access public
-     * @param  Int $userId
+     * @param int $userId
      * @return RedirectResponse|RenderResponse
      */
     public function editSignatureAction($userId)
@@ -444,7 +444,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access protected
-	 * @param $string Action, $string Value
+	 * @param string $action, string $value
      * @return string
      */
     protected function setFlash($action, $value)
@@ -455,7 +455,7 @@ class ProfileController extends ContainerAware
     /**
      *
      * @access protected
-     * @return String
+     * @return string
      */
     protected function getEngine()
     {

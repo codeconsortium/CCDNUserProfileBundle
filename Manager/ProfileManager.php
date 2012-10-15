@@ -30,7 +30,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
      *
      * @access public
      * @param $profile
-     * @return $this
+     * @return self
      */
     public function update($profile)
     {
@@ -44,7 +44,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
      *
      * @access public
      * @param $profile
-     * @return $this
+     * @return self
      */
     public function insert($profile)
     {
@@ -57,7 +57,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
 	 *
 	 * @access public
 	 * @param $user
-	 * @return $this
+	 * @return self
 	 */
 	public function checkHasProfile($user)
 	{

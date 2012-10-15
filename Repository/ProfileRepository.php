@@ -28,7 +28,7 @@ class ProfileRepository extends EntityRepository
     /**
      *
      * @access public
-     * @param Int $userId
+     * @param int $userId
      */
     public function findOneByIdJoinedToUser($userId)
     {

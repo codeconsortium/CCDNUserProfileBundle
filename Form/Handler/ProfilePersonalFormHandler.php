@@ -82,10 +82,10 @@ class ProfilePersonalFormHandler
     /**
      *
      * @access public
-     * @param Array() $options
-     * @return $this
+     * @param array $options
+     * @return self
      */
-    public function setOptions(array $options = null )
+    public function setOptions(array $options = null)
     {
         $this->options = $options;
 
@@ -120,7 +120,7 @@ class ProfilePersonalFormHandler
     /**
      *
      * @access public
-     * @return Form
+     * @return Form $form
      */
     public function getForm()
     {

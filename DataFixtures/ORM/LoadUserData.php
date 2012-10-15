@@ -27,6 +27,11 @@ use CCDNUser\ProfileBundle\Entity\Profile;
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
 
+	/**
+	 *
+	 * @access public
+	 * @param ObjectManager $manager
+	 */
     public function load(ObjectManager $manager)
     {
 		$profileAdmin = new Profile();
@@ -45,9 +50,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 		
 		$manager->persist($profileAdmin, $profileTest);
 		$manager->flush();
-		
     }
 
+	/**
+	 *
+	 * @access public
+	 * @return int
+	 */
 	public function getOrder()
 	{
 		return 2;
