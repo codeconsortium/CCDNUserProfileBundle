@@ -28,8 +28,8 @@ CCDNUser\ProfileBundle\Entity\Profile:
             - Type: { type: string, groups: [contact] }
             - MaxLength: { limit: 255, groups: [contact] }
             - Email: { groups: [contact] }
-        yahooIsPublic:
-            - Type: { type: bool, groups: [contact] }
+#        yahooIsPublic:
+#            - Type: { type: bool, groups: [contact] }
 
         bio:
             - Type: { type: string, groups: [bio] }

@@ -33,13 +33,13 @@ class ProfileContactType extends AbstractType
     {
         $builder
             ->add('aim')
-            ->add('aim_is_public', 'checkbox')
+            ->add('aim_is_public', 'checkbox', array('required' => false))
             ->add('msn')
-            ->add('msn_is_public', 'checkbox')
+            ->add('msn_is_public', 'checkbox', array('required' => false))
             ->add('icq')
-            ->add('icq_is_public', 'checkbox')
+            ->add('icq_is_public', 'checkbox', array('required' => false))
             ->add('yahoo')
-            ->add('yahoo_is_public', 'checkbox');
+            ->add('yahoo_is_public', 'checkbox', array('required' => false));
     }
 
     /**

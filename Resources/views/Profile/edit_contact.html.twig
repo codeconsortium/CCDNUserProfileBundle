@@ -41,49 +41,79 @@
 
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
 
-			<div class="control-group{{- (form.aim.vars.errors|length > 0) ? ' error': '' -}}{{- (form.aim_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+			<div class="control-group{{- (form.aim.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.aim, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.aim' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
-					{{- form_errors(form.aim_is_public) -}}
-					{{- form_widget(form.aim_is_public) -}}{{- form_label(form.aim_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'ccdn_user_profile.form.label.profile.edit.aim_is_public' |trans({}, 'CCDNUserProfileBundle') } }) -}}
-					<br>
 					{{- form_errors(form.aim) -}}
 					{{- form_widget(form.aim) -}}
 				</div>
 			</div>
 
+			<div class="control-group{{- (form.aim_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+				{{- form_label(form.aim_is_public, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.aim_is_public' |trans({}, 'CCDNUserProfileBundle') }) -}}
+				<div class="controls row-fluid">
+					{{- form_errors(form.aim_is_public) -}}
+					{{- form_widget(form.aim_is_public) -}}					
+				</div>
+			</div>
+
+
+
 			<div class="control-group{{- (form.msn.vars.errors|length > 0) ? ' error': '' -}}{{- (form.msn_is_public.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.msn, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.msn' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
-					{{- form_errors(form.msn_is_public) -}}
-					{{- form_widget(form.msn_is_public) -}}{{- form_label(form.msn_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'ccdn_user_profile.form.label.profile.edit.msn_is_public' |trans({}, 'CCDNUserProfileBundle') } }) -}}
-					<br>
 					{{- form_errors(form.msn) -}}
 					{{- form_widget(form.msn) -}}
 				</div>
 			</div>
 
-			<div class="control-group{{- (form.icq.vars.errors|length > 0) ? ' error': '' -}}{{- (form.icq_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+			<div class="control-group{{- (form.msn_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+				{{- form_label(form.msn_is_public, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.msn_is_public' |trans({}, 'CCDNUserProfileBundle') }) -}}
+				<div class="controls row-fluid">
+					{{- form_errors(form.msn_is_public) -}}
+					{{- form_widget(form.msn_is_public) -}}
+				</div>
+			</div>
+
+
+
+
+			<div class="control-group{{- (form.icq.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.icq, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.icq' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
-					{{- form_errors(form.icq_is_public) -}}
-					{{- form_widget(form.icq_is_public) -}}{{- form_label(form.icq_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'ccdn_user_profile.form.label.profile.edit.icq_is_public' |trans({}, 'CCDNUserProfileBundle') } }) -}}
-					<br>
 					{{- form_errors(form.icq) -}}
 					{{- form_widget(form.icq) -}}
 				</div>
 			</div>
 
-			<div class="control-group{{- (form.yahoo.vars.errors|length > 0) ? ' error': '' -}}{{- (form.yahoo_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+			<div class="control-group{{- (form.icq_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+				{{- form_label(form.icq_is_public, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.icq_is_public' |trans({}, 'CCDNUserProfileBundle') }) -}}
+				<div class="controls row-fluid">
+					{{- form_errors(form.icq_is_public) -}}
+					{{- form_widget(form.icq_is_public) -}}
+				</div>
+			</div>
+
+
+
+
+			<div class="control-group{{- (form.yahoo.vars.errors|length > 0) ? ' error': '' -}}">
 				{{- form_label(form.yahoo, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.yahoo'|trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
-					{{- form_errors(form.yahoo_is_public) -}}
-					{{- form_widget(form.yahoo_is_public) -}}{{- form_label(form.yahoo_is_public, null, { 'attr': {'class': 'checkbox_', 'label': 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public' |trans({}, 'CCDNUserProfileBundle') } }) -}}
-					<br>
 					{{- form_errors(form.yahoo) -}}
 					{{- form_widget(form.yahoo) -}}
 				</div>
 			</div>
+
+			<div class="control-group{{- (form.yahoo_is_public.vars.errors|length > 0) ? ' error': '' -}}">
+				{{- form_label(form.yahoo_is_public, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public' |trans({}, 'CCDNUserProfileBundle') }) -}}
+				<div class="controls row-fluid">			
+					{{- form_errors(form.yahoo_is_public) -}}
+					{{- form_widget(form.yahoo_is_public) -}}
+				</div>
+			</div>
+
+
 
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
