@@ -32,7 +32,7 @@ class ProfileAvatarType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('avatar_is_remote', 'checkbox')
+            ->add('avatar_is_remote', 'checkbox', array('required' => false))
             ->add('avatar');
     }
 

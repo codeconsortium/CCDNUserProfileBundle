@@ -38,17 +38,22 @@
 
 			<div class="control-group"><div class="controls row-fluid">{{- form_row(form._token) -}}</div></div>
 
-			<div class="control-group{{- (form.avatar.vars.errors|length > 0) ? ' error': '' -}}{{- (form.avatar_is_remote.vars.errors|length > 0) ? ' error': '' -}}">
-				{{- form_label(form.avatar, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) -}}
+			<div class="control-group{{- (form.avatar_is_remote.vars.errors|length > 0) ? ' error': '' -}}">
+					{{- form_label(form.avatar_is_remote, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote' |trans({}, 'CCDNUserProfileBundle') }) -}}
 				<div class="controls row-fluid">
 					{{- form_errors(form.avatar_is_remote) -}}
 					{{- form_widget(form.avatar_is_remote) -}}
-					{{- form_label(form.avatar_is_remote, null, { 'attr': { 'class': 'checkbox_', 'label': 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote' |trans({}, 'CCDNUserProfileBundle') }}) -}}
-					<br>
+				</div>
+			</div>
+
+			<div class="control-group{{- (form.avatar.vars.errors|length > 0) ? ' error': '' -}}">
+				{{- form_label(form.avatar, null, { 'label': 'ccdn_user_profile.form.label.profile.edit.avatar' |trans({}, 'CCDNUserProfileBundle') }) -}}
+				<div class="controls row-fluid">
 					{{- form_errors(form.avatar) -}}
 					{{- form_widget(form.avatar) -}}
 				</div>
 			</div>
+
 
 			<div class="form-actions">
 				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">&nbsp;
