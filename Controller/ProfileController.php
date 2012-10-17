@@ -45,7 +45,7 @@ class ProfileController extends ContainerAware
 
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -87,7 +87,7 @@ class ProfileController extends ContainerAware
 
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -124,7 +124,7 @@ class ProfileController extends ContainerAware
         //
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -190,7 +190,7 @@ class ProfileController extends ContainerAware
         //
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -256,7 +256,7 @@ class ProfileController extends ContainerAware
         //
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -322,7 +322,7 @@ class ProfileController extends ContainerAware
         //
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -388,7 +388,7 @@ class ProfileController extends ContainerAware
         //
         if (! $userId || $userId == 0) {
             if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new NotFoundHttpException('User not found!');
+                throw new AccessDeniedException('User not found!');
             }
 
             $user = $this->container->get('security.context')->getToken()->getUser();
