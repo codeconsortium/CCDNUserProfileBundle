@@ -1,0 +1,46 @@
+CCDNUser\ProfileBundle\Entity\Profile:
+    properties:
+        location:
+            - Type: { type: string, groups: [personal] }
+            - MaxLength: { limit: 255, groups: [personal] }
+        website:
+            - Type: { type: string, groups: [personal] }
+            - MaxLength: { limit: 255, groups: [personal] }
+#            - Url: { protocols: {'http', 'https'}, groups: [personal] }
+
+        aim:
+            - Type: { type: string, groups: [contact] }
+            - MaxLength: { limit: 255, groups: [contact] }
+        aimIsPublic:
+            - Type: { type: bool, groups: [contact] }
+        msn:
+            - Type: { type: string, groups: [contact] }
+            - MaxLength: { limit: 255, groups: [contact] }
+            - Email: { groups: [contact] }
+        msnIsPublic:
+            - Type: { type: bool, groups: [contact] }
+        icq:
+            - Type: { type: string, groups: [contact] }
+            - MaxLength: { limit: 255, groups: [contact] }
+        icqIsPublic:
+            - Type: { type: bool, groups: [contact] }
+        yahoo:
+            - Type: { type: string, groups: [contact] }
+            - MaxLength: { limit: 255, groups: [contact] }
+            - Email: { groups: [contact] }
+#        yahooIsPublic:
+#            - Type: { type: bool, groups: [contact] }
+
+        bio:
+            - Type: { type: string, groups: [bio] }
+            - MaxLength: { limit: 2000, groups: [bio] }
+
+        signature:
+            - Type: { type: string, groups: [signature] }
+            - MaxLength: { limit: 255, groups: [signature] }
+
+        avatar:
+            - Type: { type: string, groups: [avatar] }
+            - MaxLength: { limit: 255, groups: [avatar] }
+        avatarIsRemote:
+            - Type: { type: bool, groups: [avatar] }
