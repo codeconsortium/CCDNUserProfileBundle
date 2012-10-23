@@ -14,7 +14,7 @@
 namespace CCDNUser\ProfileBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * 
@@ -30,7 +30,7 @@ class ProfileType extends AbstractType
 	 * @access public
 	 * @param FormBuilder $builder, Array() $options
 	 */
-	public function buildForm(FormBuilder $builder, array $options)
+	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
 			->add('avatar_is_remote', 'checkbox')
