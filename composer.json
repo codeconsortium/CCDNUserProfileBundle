@@ -2,7 +2,7 @@
     "name": "codeconsortium/ccdn-user-profile-bundle",
     "type": "symfony-bundle",
     "description": "CCDN User Profile Bundle",
-    "keywords": ["ccdn", "user", "profile"],
+    "keywords": ["ccdn", "codeconsortium", "user", "profile"],
     "homepage": "http://github.com/codeconsortium/CCDNUserProfileBundle",
     "license": "MIT",
     "authors": [
