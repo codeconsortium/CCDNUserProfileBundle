@@ -11,7 +11,7 @@ Installing CCDNUser ProfileBundle 1.x
 
 ## Installation:
 
-Installation takes only 2 steps:
+Installation takes only 4 steps:
 
 1. Download and install dependencies via Composer.
 2. Register bundles with AppKernel.php.
@@ -64,7 +64,7 @@ public function registerBundles()
 In your app/config/routing.yml add:
 
 ``` yml
-CCDNForumForumBundle:
+CCDNUserProfileBundle:
     resource: "@CCDNUserProfileBundle/Resources/config/routing.yml"
     prefix: /
 ```
