@@ -77,11 +77,7 @@ class CCDNUserProfileBundle extends Bundle
 				),
 			),
 			'sidebar' => array(
-				'members_route' => $this->container->getParameter('ccdn_user_profile.sidebar.members_route'),
-				'account_route' => $this->container->getParameter('ccdn_user_profile.sidebar.account_route'),
-				'login_route' => $this->container->getParameter('ccdn_user_profile.sidebar.login_route'),
-				'reset_route' => $this->container->getParameter('ccdn_user_profile.sidebar.reset_route'),
-				'registration_route' => $this->container->getParameter('ccdn_user_profile.sidebar.registration_route'),				
+				'links' => $this->container->getParameter('ccdn_user_profile.sidebar.links'),
 			),
 		));
 	}

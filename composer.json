@@ -11,13 +11,13 @@
             "email": "reece@codeconsortium.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
         "symfony/symfony": "2.1.*",
         "doctrine/doctrine-bundle": "*",
         "excelwebzone/recaptcha-bundle": "dev-master"
     },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-0": { "CCDNUser\\ProfileBundle": "" }
     },

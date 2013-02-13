@@ -226,20 +226,25 @@ class Configuration implements ConfigurationInterface
     private function addSidebarSection(ArrayNodeDefinition $node)
     {
         $node
+            ->addDefaultsIfNotSet()
+            ->canBeUnset()
             ->children()
                 ->arrayNode('sidebar')
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
-                        ->scalarNode('members_route')->defaultValue('ccdn_user_member_index')->end()
-                        ->scalarNode('account_route')->defaultValue('ccdn_user_user_account_show')->end()
-                        ->scalarNode('registration_route')->defaultValue('fos_user_registration_register')->end()
-                        ->scalarNode('login_route')->defaultValue('fos_user_security_login')->end()
-                        ->scalarNode('logout_route')->defaultValue('fos_user_security_logout')->end()
-                        ->scalarNode('reset_route')->defaultValue('fos_user_resetting_request')->end()
+                        ->arrayNode('links')
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('bundle')->end()
+                                    ->scalarNode('label')->end()
+                                    ->scalarNode('route')->defaultNull()->end()
+                                    ->scalarNode('path')->defaultNull()->end()
+                                ->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();
     }
-
 }
