@@ -32,8 +32,14 @@ class ProfilePersonalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('website')
-            ->add('location');
+            ->add('website', null, array(
+            	'label' => 'ccdn_user_profile.form.label.profile.edit.website',
+				'translation_domain' => 'CCDNUserProfileBundle',
+            ))
+            ->add('location', null, array(
+            	'label' => 'ccdn_user_profile.form.label.profile.edit.location',
+				'translation_domain' => 'CCDNUserProfileBundle',
+            ));
     }
 
     /**

@@ -85,6 +85,17 @@ Take the SQL that is output and update your database manually.
 
 > Please take care when updating your database, check the output SQL before applying it.
 
+### Translations
+
+If you wish to use default texts provided in this bundle, you have to make sure you have translator enabled in your config.
+
+``` yaml
+# app/config/config.yml
+
+framework:
+    translator: ~
+```
+
 ## Next Steps.
 
 Installation should now be complete!

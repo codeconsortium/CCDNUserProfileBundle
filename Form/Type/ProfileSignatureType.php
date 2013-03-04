@@ -32,7 +32,10 @@ class ProfileSignatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('signature');
+            ->add('signature', 'bb_editor', array(
+            	'label' => 'ccdn_user_profile.form.label.profile.edit.signature',
+				'translation_domain' => 'CCDNUserProfileBundle',
+            ));
     }
 
     /**

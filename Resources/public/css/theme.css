@@ -1,0 +1,27 @@
+article.forum-post-item > header > div.forum-post-item-avatar {
+	float:left;
+	margin-right:-100px;
+	padding: 5px;
+	
+	/*border:1px solid red;*/
+}
+
+article.forum-post-item > header > div:nth-child(2) {
+	display:inline-block;
+	/*border:2px solid blue;*/
+}
+
+article.forum-post-item > header > div:nth-child(2) > div {
+	clear:both;
+	width:auto;
+
+	max-height:34px;
+	height: 34px;
+	line-height:34px;
+
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:80px;
+	
+	/*border:1px solid red;*/
+}

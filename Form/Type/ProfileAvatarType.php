@@ -32,8 +32,15 @@ class ProfileAvatarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar_is_remote', 'checkbox', array('required' => false))
-            ->add('avatar');
+            ->add('avatar_is_remote', 'checkbox', array(
+				'required' => false,
+				'label' => 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote',
+				'translation_domain' => 'CCDNUserProfileBundle',
+			))
+            ->add('avatar', null, array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.avatar',
+            	'translation_domain' => 'CCDNUserProfileBundle',
+            ));
     }
 
     /**

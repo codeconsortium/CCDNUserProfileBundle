@@ -2,23 +2,43 @@
 	{%- set route = app.request.attributes.get('_route') -%}
 
 	<li class="nav-header">{{- 'ccdn_user_profile.sidebar.header.navigation' | trans({}, 'CCDNUserProfileBundle') -}}</li>
-
+	
+	<li>
+		<a href="{{- path('ccdn_user_member_index') -}}">
+			<i class="icon-th-list"></i>
+			{{- 'ccdn_user_member.sidebar.link.members' |trans({}, 'CCDNUserMemberBundle') -}}
+		</a>
+	</li>
+	
 	{%- if is_granted("ROLE_USER") -%}	
-		{%- if user is defined -%}
-			{%- if user.id == app.user.id -%}
+		{%- if user is not defined -%}
+		
+		{%- else -%}
+			{%- if app.user.id == user.id -%}
 				<li class="active">
-					<a href="{{- path('ccdn_user_profile_show') -}}"><i class="icon-white icon-user"></i>&nbsp;
+					<a href="{{- path('ccdn_user_profile_show') -}}">
+						<i class="icon-white icon-user"></i>
 						{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}
 					</a>
 				</li>
 			{%- else -%}
+				<li>
+					<a href="{{- path('ccdn_user_profile_show') -}}">
+						<i class="icon-user"></i>
+						{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}
+					</a>
+				</li>
+			
+				<li class="divider"></li>
+				
 				<li class="active">
 					<a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}">
-						<i class="icon-white icon-user"></i>&nbsp;
-						{{- 'ccdn_user_profile.sidebar.link.profile.view_named' |trans({'%user_name%': user.getUsername}, 'CCDNUserProfileBundle') -}}
+						<i class="icon-white icon-user"></i>
+						{{- 'ccdn_user_profile.sidebar.link.profile.view_named' |trans({'%user_name%': user.getUsername |title}, 'CCDNUserProfileBundle') -}}
 					</a>
 				</li>
 			{%- endif -%}
 		{%- endif -%}
 	{%- endif -%}
+	
 {%- endspaceless -%}

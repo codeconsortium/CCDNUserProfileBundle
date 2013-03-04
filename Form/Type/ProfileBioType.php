@@ -32,7 +32,10 @@ class ProfileBioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bio');
+            ->add('bio', 'bb_editor', array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.bio',
+            	'translation_domain' => 'CCDNUserProfileBundle',
+            ));
     }
 
     /**

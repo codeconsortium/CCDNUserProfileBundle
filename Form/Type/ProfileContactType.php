@@ -32,14 +32,42 @@ class ProfileContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('aim')
-            ->add('aim_is_public', 'checkbox', array('required' => false))
-            ->add('msn')
-            ->add('msn_is_public', 'checkbox', array('required' => false))
-            ->add('icq')
-            ->add('icq_is_public', 'checkbox', array('required' => false))
-            ->add('yahoo')
-            ->add('yahoo_is_public', 'checkbox', array('required' => false));
+	        ->add('msn', null, array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.msn',
+	        	'translation_domain' => 'CCDNUserProfileBundle',
+	        ))
+	        ->add('msn_is_public', 'checkbox', array(
+				'required' => false,
+				'label' => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
+				'translation_domain' => 'CCDNUserProfileBundle',
+			))
+	        ->add('yahoo', null, array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.yahoo',
+	        	'translation_domain' => 'CCDNUserProfileBundle',
+	        ))
+	        ->add('yahoo_is_public', 'checkbox', array(
+				'required' => false,
+				'label' => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
+				'translation_domain' => 'CCDNUserProfileBundle',
+			))
+            ->add('aim', null, array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.aim',
+            	'translation_domain' => 'CCDNUserProfileBundle',
+            ))
+            ->add('aim_is_public', 'checkbox', array(
+				'required' => false,
+				'label' => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
+				'translation_domain' => 'CCDNUserProfileBundle',
+			))
+            ->add('icq', null, array(
+				'label' => 'ccdn_user_profile.form.label.profile.edit.icq',
+            	'translation_domain' => 'CCDNUserProfileBundle',
+            ))
+            ->add('icq_is_public', 'checkbox', array(
+				'required' => false,
+				'label' => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
+				'translation_domain' => 'CCDNUserProfileBundle',
+			));
     }
 
     /**
