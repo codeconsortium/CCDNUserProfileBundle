@@ -3,13 +3,6 @@
 
 	<li class="nav-header">{{- 'ccdn_user_profile.sidebar.header.navigation' | trans({}, 'CCDNUserProfileBundle') -}}</li>
 	
-	<li>
-		<a href="{{- path('ccdn_user_member_index') -}}">
-			<i class="icon-th-list"></i>
-			{{- 'ccdn_user_member.sidebar.link.members' |trans({}, 'CCDNUserMemberBundle') -}}
-		</a>
-	</li>
-	
 	{%- if is_granted("ROLE_USER") -%}	
 		{%- if user is not defined -%}
 		
