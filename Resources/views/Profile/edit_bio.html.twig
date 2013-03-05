@@ -18,33 +18,33 @@
 
 	{%- spaceless -%}
 
-	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
-
-	{%- form_theme form ccdn_user_profile.profile.edit.bio.form_theme -%}
-	<form action="{{- path('ccdn_user_profile_edit_bio', {'userId':user.id}) -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
-		<fieldset>
+	<section>
+		{%- form_theme form ccdn_user_profile.profile.edit.bio.form_theme -%}
+		<form action="{{- path('ccdn_user_profile_edit_bio', {'userId':user.id}) -}}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+			<fieldset>
 			
-			<div class="control-group form-title">
-				<div class="controls">
-					<h3>{{- 'heading.edit.biography' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+				<div class="control-group form-title">
+					<div class="controls">
+						<h3>{{- 'heading.edit.biography' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+					</div>
 				</div>
-			</div>
 			
-			{{- form_errors(form) -}}
+				{{- form_errors(form) -}}
 
-			{{- form_widget(form) -}}
+				{{- form_widget(form) -}}
 
-			<div class="form-actions">
-				<input type="submit" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">
 				
-				<a class="btn" href="{{- path('ccdn_user_profile_show_bio_by_id', {'userId':user.id}) -}}">
-					{{- 'ccdn_user_profile.form.button.profile.edit.cancel' |trans({}, 'CCDNUserProfileBundle') -}}
-				</a>
-			</div>
+					<a class="btn" href="{{- path('ccdn_user_profile_show_bio_by_id', {'userId':user.id}) -}}">
+						{{- 'ccdn_user_profile.form.button.profile.edit.cancel' |trans({}, 'CCDNUserProfileBundle') -}}
+					</a>
+				</div>
 
-		</fieldset>
-	</form>
-
+			</fieldset>
+		</form>
+	</section>
+	
 	{%- endspaceless -%}
 
 {% endblock body_content %}

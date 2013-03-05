@@ -5,7 +5,12 @@
 	
 	{%- if is_granted("ROLE_USER") -%}	
 		{%- if user is not defined -%}
-		
+			<li class="active">
+				<a href="{{- path('ccdn_user_profile_show') -}}">
+					<i class="icon-white icon-user"></i>
+					{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}
+				</a>
+			</li>		
 		{%- else -%}
 			{%- if app.user.id == user.id -%}
 				<li class="active">
