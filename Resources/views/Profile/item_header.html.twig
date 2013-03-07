@@ -1,8 +1,10 @@
 {%- spaceless -%}
 	
 	<div class="row-fluid">
-		{%- include 'CCDNUserProfileBundle:Avatar:item_avatar.html.twig' with {'user': user, 'scale_x': 150, 'scale_y': 150, 'border': 1, 'padding': 4, } -%}
-	
+		<div class="span10">
+			{{- user.getProfile().renderAvatar(150, 150, 'img-polaroid') -}}
+		</div>
+		
 		{%- if is_granted('ROLE_USER') -%}
 			{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
 				<div class="span2 pull-right btn-right">

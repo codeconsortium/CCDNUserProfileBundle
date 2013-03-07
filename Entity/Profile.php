@@ -14,7 +14,7 @@
 namespace CCDNUser\ProfileBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-use CCDNUser\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="CCDNUser\ProfileBundle\Repository\ProfileRepository")
@@ -156,6 +156,21 @@ class Profile
         return $this->avatar;
     }
 
+    /**
+     * @param int $scaleX
+     * @param int $scaleY
+     * @param string $class
+     * @return string
+     */
+    public function renderAvatar($scaleX = 100, $scaleY = 100, $class = null)
+    {
+        $scaleX     = ($scaleX) ? $scaleX : 100;
+        $scaleY     = ($scaleY) ? $scaleY : 100;
+		$class 		= 'class="avatar' . (($class) ? (' ' . $class): '') . '"';
+
+        return '<img ' . $class . ' width="' . $scaleX . '" height="' . $scaleY . '" src="' . $this->avatar . '" alt="avatar" />';
+    }
+	
     /**
      * Set aim
      *
@@ -399,9 +414,9 @@ class Profile
     /**
      * Set user
      *
-     * @param CCDNUser\UserBundle\Entity\User $user
+     * @param UserInterface $user
      */
-    public function setUser(\CCDNUser\UserBundle\Entity\User $user = null)
+    public function setUser(UserInterface $user = null)
     {
         $this->user = $user;
     }
@@ -409,7 +424,7 @@ class Profile
     /**
      * Get user
      *
-     * @return CCDNUser\UserBundle\Entity\User
+     * @return UserInterface
      */
     public function getUser()
     {
