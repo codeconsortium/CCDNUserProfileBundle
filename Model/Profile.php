@@ -33,16 +33,6 @@ abstract class Profile
     }
 
     /**
-     * Set user
-     *
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user = null)
-    {
-        $this->user = $user;
-    }
-
-    /**
      * Get user
      *
      * @return UserInterface
@@ -50,5 +40,18 @@ abstract class Profile
     public function getUser()
     {
         return $this->user;
+    }
+	
+    /**
+     * Set user
+     *
+     * @param UserInterface $user
+	 * @return Profile
+     */
+    public function setUser(UserInterface $user = null)
+    {
+        $this->user = $user;
+		
+		return $this;
     }
 }
