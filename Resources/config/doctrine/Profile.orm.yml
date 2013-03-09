@@ -1,0 +1,65 @@
+CCDNUser\ProfileBundle\Entity\Profile:
+    type: entity
+    table: CC_User_Profile
+    repositoryClass: CCDNUser\ProfileBundle\Repository\ProfileRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        avatarIsRemote:
+            type: boolean
+            column: avatar_is_remote
+            nullable: false
+        avatar:
+            type: string
+            nullable: true
+        aimIsPublic:
+            type: boolean
+            column: aim_is_public
+            nullable: false
+        aim:
+            type: string
+            nullable: true
+        msnIsPublic:
+            type: boolean
+            column: msn_is_public
+            nullable: false
+        msn:
+            type: string
+            nullable: true
+        icqIsPublic:
+            type: boolean
+            column: icq_is_public
+            nullable: false
+        icq:
+            type: string
+            nullable: true
+        yahooIsPublic:
+            type: boolean
+            column: yahoo_is_public
+            nullable: false
+        yahoo:
+            type: string
+            nullable: true
+        website:
+            type: string
+            nullable: true
+        location:
+            type: string
+            nullable: true
+        bio:
+            type: text
+            nullable: true
+        signature:
+            type: text
+            nullable: true
+    oneToOne:
+        user:
+            targetEntity: Symfony\Component\Security\Core\User\UserInterface
+            cascade: ["persist"]
+            nullable: true
+            joinColumn:
+                name: fk_user_id
+                referencedColumnName: id
+                onDelete: SET NULL

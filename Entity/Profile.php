@@ -14,98 +14,65 @@
 namespace CCDNUser\ProfileBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Model\Profile as AbstractProfile;
 
-/**
- * @ORM\Entity(repositoryClass="CCDNUser\ProfileBundle\Repository\ProfileRepository")
- * @ORM\Table(name="CC_User_Profile")
- */
-class Profile
+class Profile extends AbstractProfile
 {
-	
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\generatedValue(strategy="AUTO")
-     */
+	/** @var integer $id */
     protected $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity="CCDNUser\UserBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    protected $user;
-
-    /**
-     * @ORM\Column(type="boolean", name="avatar_is_remote", nullable=true)
-     */
+    /** @var Boolean $avatarIsRemote*/
     protected $avatarIsRemote = false;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $avatar */
     protected $avatar;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $aim */
     protected $aim;
 
-    /**
-     * @ORM\Column(type="boolean", name="aim_is_public", nullable=true)
-     */
+    /** @var Boolean $aimIsPublic */
     protected $aimIsPublic = false;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $msn */
     protected $msn;
 
-    /**
-     * @ORM\Column(type="boolean", name="msn_is_public", nullable=true)
-     */
+    /** @var Boolean $msnIsPublic */
     protected $msnIsPublic = false;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $icq */
     protected $icq;
 
-    /**
-     * @ORM\Column(type="boolean", name="icq_is_public", nullable=true)
-     */
+    /** @var Boolean $icqIsPublic */
     protected $icqIsPublic = false;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $yahoo */
     protected $yahoo;
 
-    /**
-     * @ORM\Column(type="boolean", name="yahoo_is_public", nullable=true)
-     */
+    /** @var Boolean $yahooIsPublic */
     protected $yahooIsPublic = false;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $website */
     protected $website;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $location */
     protected $location;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    /** @var string $bio */
     protected $bio;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    /** @var string $signature */
     protected $signature;
 
+	/**
+	 *
+	 * @access public
+	 */
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+	
     /**
      * Get id
      *
@@ -115,7 +82,7 @@ class Profile
     {
         return $this->id;
     }
-
+	
     /**
      * Set avatarIsRemote
      *
@@ -409,25 +376,5 @@ class Profile
     public function getSignature()
     {
         return $this->signature;
-    }
-
-    /**
-     * Set user
-     *
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user = null)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return UserInterface
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

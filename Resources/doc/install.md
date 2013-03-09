@@ -73,6 +73,30 @@ You can change the route of the standalone route to any route you like, it is in
 
 ### Step 4: Update your database schema.
 
+Make sure to add the ProfileBundle to doctrines mapping configuration:
+
+```
+# app/config/config.yml
+# Doctrine Configuration
+doctrine:
+    orm:
+        default_entity_manager: default
+        auto_generate_proxy_classes: "%kernel.debug%"
+        resolve_target_entities:
+            Symfony\Component\Security\Core\User\UserInterface: FOS\UserBundle\Entity\User
+        entity_managers:
+            default:
+                mappings:
+                    FOSUserBundle: ~
+                    CCDNUserProfileBundle:
+                        mapping:              true
+                        type:                 yml
+                        dir:                  "Resources/config/doctrine"
+                        alias:                ~
+                        prefix:               CCDNUser\ProfileBundle\Entity
+                        is_bundle:            true
+```
+
 From your projects root Symfony directory on the command line run:
 
 ``` bash
