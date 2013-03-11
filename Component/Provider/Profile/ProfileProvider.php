@@ -15,6 +15,7 @@ namespace CCDNUser\ProfileBundle\Component\Provider\Profile;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use CCDNComponent\CommonBundle\Component\Provider\Profile\ProfileProviderInterface;
+use CCDNComponent\CommonBundle\Component\Provider\Profile\ProfileInterface;
 
 class ProfileProvider implements ProfileProviderInterface
 {
@@ -70,7 +71,7 @@ class ProfileProvider implements ProfileProviderInterface
 	 * @param UserInterface $user
 	 * @return Profile $profile
 	 */
-    public function setup(Profile $profile = null)
+    public function setup(ProfileInterface $profile = null)
     {	
         if (null == $profile) {
 			throw new \Exception('You must provide a Profile to transform.');

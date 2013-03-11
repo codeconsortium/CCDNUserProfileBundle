@@ -63,6 +63,25 @@ class Profile extends AbstractProfile
     /** @var string $signature */
     protected $signature;
 
+	protected $contactPoints = array(
+			'msn' => array(
+				'contact' => 'getMsn',
+				'is_public' => 'getMsnIsPublic',
+			),
+			'aim' => array(
+				'contact' => 'getAim',
+				'is_public' => 'getAimIsPublic',				
+			),
+			'icq' => array(
+				'contact' => 'getIcq',
+				'is_public' => 'getIcqIsPublic',
+			),
+			'yahoo' => array(
+				'contact' => 'getYahoo',
+				'is_public' => 'getYahooIsPublic',
+			),
+		);
+		
 	/**
 	 *
 	 * @access public
