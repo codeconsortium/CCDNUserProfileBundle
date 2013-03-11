@@ -95,10 +95,10 @@
 	</header>
 
 	<section>
-		{%- if profile.getAimIsPublic is not null and profile.getAim is not null
-			or profile.getMsnIsPublic is not null and profile.getMsn is not null
-			or profile.getIcqIsPublic is not null and profile.getIcq is not null
-			or profile.getYahooIsPublic is not null and profile.getYahoo is not null -%}
+		{%- if (profile.getAimIsPublic is not null and profile.getAim is not null) or (profile.getAim is not null and is_granted('ROLE_ADMIN'))
+			or (profile.getMsnIsPublic is not null and profile.getMsn is not null) or (profile.getMsn is not null and is_granted('ROLE_ADMIN'))
+			or (profile.getIcqIsPublic is not null and profile.getIcq is not null) or (profile.getIcq is not null and is_granted('ROLE_ADMIN'))
+			or (profile.getYahooIsPublic is not null and profile.getYahoo is not null) or (profile.getYahoo is not null and is_granted('ROLE_ADMIN')) -%}
 
 			<table class="table table-striped table-bordered table-vertical-labels">
 				<tbody>
