@@ -37,9 +37,11 @@
 
 		<section>
 			{%- if profile.getBio -%}
-				<blockquote>
-					{{- BBCode(profile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
-				</blockqoute>
+				<div class="light-box">
+					<blockquote>
+						{{- BBCode(profile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
+					</blockqoute>
+				</div>
 				<br>
 			{%- else -%}	
 				{%- if is_granted('ROLE_USER') -%}
@@ -85,9 +87,11 @@
 
 		<section>
 			{%- if profile.getSignature -%}
-				<blockquote>
-					{{- BBCode(profile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
-				</blockquote>
+				<div class="light-box">
+					<blockquote>
+						{{- BBCode(profile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
+					</blockquote>
+				</div>
 				<br>
 			{%- else -%}
 				{%- if is_granted('ROLE_USER') -%}
