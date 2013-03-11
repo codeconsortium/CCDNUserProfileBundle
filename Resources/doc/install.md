@@ -130,6 +130,19 @@ It is also recommended in order for the bundle to function correctly that you ad
 
 ``` php
 /**
+ * Setup Profile before being persisted.
+ *
+ */
+public function prePersistAddProfile()
+{
+	if (null == $this->profile) {
+		$this->profile = new Profile();
+		
+		$this->profile->setUser($this);			
+	}
+}
+
+/**
  * Get profile
  *
  * @return CCDNUser\ProfileBundle\Entity\Profile
@@ -164,6 +177,8 @@ public function setProfile(Profile $profile = null)
 ```
 
 This will ensure that when a profile does not exist, one can be lazily created, and the manager will persist this later on if it does not have a valid id.
+
+You should add the prePersistAddProfile to your User entities lifecycle callbacks.
 
 #### Copy over the contents of ProfileBundle/Resources/config/doctrine/Profile.orm.yml to your child bundle and change the user entity you wish profile bundle to relate to.
 

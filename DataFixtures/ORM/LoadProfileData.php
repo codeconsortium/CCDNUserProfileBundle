@@ -24,7 +24,7 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
+class LoadProfileData extends AbstractFixture implements OrderedFixtureInterface
 {
 
 	/**
@@ -34,16 +34,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 	 */
     public function load(ObjectManager $manager)
     {
-		$profileAdmin = new Profile();
-		
-		$profileAdmin->setUser($manager->merge($this->getReference('user-admin')));
+		$profileAdmin = $manager->merge($this->getReference('user-admin'))->getProfile();		
 		$profileAdmin->setLocation('London, United Kingdom');
 		$profileAdmin->setBio('');
 		$profileAdmin->setSignature('');
 		
-		$profileTest = new Profile();
-		
-		$profileTest->setUser($manager->merge($this->getReference('user-test')));
+		$profileTest = $manager->merge($this->getReference('user-test'))->getProfile();
 		$profileTest->setLocation('London, United Kingdom');
 		$profileTest->setBio('');
 		$profileTest->setSignature('');
