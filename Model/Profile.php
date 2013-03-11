@@ -13,12 +13,10 @@
 
 namespace CCDNUser\ProfileBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Component\Provider\Profile\Profile as BaseProfile;
 
-
-abstract class Profile
+abstract class Profile extends BaseProfile
 {
     /** @var Symfony\Component\Security\Core\User\UserInterface $user */
     protected $user;
@@ -38,7 +36,7 @@ abstract class Profile
      * @return UserInterface
      */
     public function getUser()
-    {
+    {	
         return $this->user;
     }
 	
@@ -52,6 +50,10 @@ abstract class Profile
     {
         $this->user = $user;
 		
+		if (null !== $this->user) {
+			$this->user->setProfile($this);			
+		}
+
 		return $this;
     }
 }

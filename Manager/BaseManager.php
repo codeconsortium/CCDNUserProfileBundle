@@ -37,22 +37,50 @@ class BaseManager
 	 *
 	 * @access protected
 	 */
-    protected $repository;
+    protected $profileRepository;
+
+	/**
+	 *
+	 * @access protected
+	 */	
+	protected $profileProvider;
 	
 	/**
 	 *
 	 * @access public
 	 * @param $doctrine, $repository
 	 */
-    public function __construct($doctrine, $repository)
+    public function __construct($doctrine, $repository, $profileProvider)
     {
         $this->doctrine = $doctrine;
 
         $this->em = $doctrine->getEntityManager();
 
-		$this->repository = $repository;
+		$this->profileRepository = $repository;
+		
+		$this->profileProvider = $profileProvider;
     }
 
+	/**
+	 *
+	 * @access public
+	 * @return ProfileRepository
+	 */
+	public function getProfileRepository()
+	{
+		return $this->profileRepository;
+	}
+	
+	/**
+	 *
+	 * @access public
+	 * @return ProfileProvider
+	 */
+	public function getProfileProvider()
+	{
+		return $this->profileProvider;
+	}
+	
 	/**
 	 *
 	 * @access public

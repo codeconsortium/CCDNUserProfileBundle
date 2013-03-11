@@ -49,6 +49,12 @@
 {% block body %}
 	{%- spaceless -%}
 
+	<style type="text/css">
+		header {
+			border:none !important;
+		}
+	</style>
+
 	{%- include 'CCDNComponentCommonBundle:Flashes:flashes.html.twig' -%}
 
 	{% block body_content %}

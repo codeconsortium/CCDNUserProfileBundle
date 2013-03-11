@@ -2,10 +2,10 @@
 
 {% set LayoutTemplate = ccdn_user_profile.profile.show.bio.layout_template %}
 
-{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': profile.getUsername}, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 {% block sub_title %}
-	<a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}"><bdi>{{- user.getUsername |capitalize -}}</bdi></a>
+	{{- profile.getProfilePath() |raw -}}
 {% endblock %}
 
 
@@ -23,20 +23,24 @@
 				<h3>{{- 'ccdn_user_profile.profile.show.bio' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 			</div>
 			{%- if is_granted('ROLE_USER') -%}
-				{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-					<div class="span3 btn-right">
-						<a class="btn" href="{{- path('ccdn_user_profile_edit_bio', {'userId':user.id}) -}}">
-							{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}
-						</a>
-					</div>
+				{%- if profile.getUser is not null -%}
+					{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+						<div class="span3 btn-right">
+							<a class="btn" href="{{- path('ccdn_user_profile_edit_bio', {'profileId':profile.id}) -}}">
+								{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}
+							</a>
+						</div>
+					{%- endif -%}
 				{%- endif -%}
 			{%- endif -%}
 		</header>
 
 		<section>
-			{%- if user.getProfile.getBio -%}
-					{{- BBCode(user.getProfile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
-					<br>
+			{%- if profile.getBio -%}
+				<blockquote>
+					{{- BBCode(profile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
+				</blockqoute>
+				<br>
 			{%- else -%}	
 				{%- if is_granted('ROLE_USER') -%}
 					{%- if user.id == app.user.id -%}
@@ -44,12 +48,14 @@
 							{{- 'ccdn_user_profile.profile.show.bio.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
 						</div>
 					{%- else -%}
-						<div class="well center">
+						<div class="lead center">
+							<br>
 							<h5>{{- 'ccdn_user_profile.profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 						</div>
 					{%- endif -%}
 				{%- else -%}
-					<div class="well center">
+					<div class="lead center">
+						<br>
 						<h5>{{- 'ccdn_user_profile.profile.show.bio.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 					</div>
 				{%- endif -%}
@@ -65,33 +71,41 @@
 				<h3>{{- 'ccdn_user_profile.profile.show.signature' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 			</div>
 			{%- if is_granted('ROLE_USER') -%}
-				{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-					<div class="span3 btn-right">
-						<a class="btn" href="{{- path('ccdn_user_profile_edit_signature', {'userId':user.id}) -}}">
-							{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}
-						</a>
-					</div>
+				{%- if profile.getUser is not null -%}
+					{%- if profile.getUser.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+						<div class="span3 btn-right">
+							<a class="btn" href="{{- path('ccdn_user_profile_edit_signature', {'profileId':profile.id}) -}}">
+								{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}
+							</a>
+						</div>
+					{%- endif -%}
 				{%- endif -%}
 			{%- endif -%}
 		</header>
 
 		<section>
-			{%- if user.getProfile.getSignature -%}
-					{{- BBCode(user.getProfile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
-					<br>
+			{%- if profile.getSignature -%}
+				<blockquote>
+					{{- BBCode(profile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
+				</blockquote>
+				<br>
 			{%- else -%}
 				{%- if is_granted('ROLE_USER') -%}
-					{%- if user.id == app.user.id -%}
-						<div class="alert alert-warning">
-							{{- 'ccdn_user_profile.profile.show.signature.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
-						</div>
-					{%- else -%}
-						<div class="well center">
-							<h5>{{- 'ccdn_user_profile.profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
-						</div>
+					{%- if profile.getUser is not null -%}
+						{%- if profile.getUser.id == app.user.id -%}
+							<div class="alert alert-warning">
+								{{- 'ccdn_user_profile.profile.show.signature.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
+							</div>
+						{%- else -%}
+							<div class="lead center">
+								<br>
+								<h5>{{- 'ccdn_user_profile.profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+							</div>
+						{%- endif -%}
 					{%- endif -%}
 				{%- else -%}
-					<div class="well center">
+					<div class="lead center">
+						<br>
 						<h5>{{- 'ccdn_user_profile.profile.show.signature.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 					</div>
 				{%- endif -%}

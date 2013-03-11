@@ -75,7 +75,7 @@ You can change the route of the standalone route to any route you like, it is in
 
 Make sure to add the ProfileBundle to doctrines mapping configuration:
 
-```
+``` yml
 # app/config/config.yml
 # Doctrine Configuration
 doctrine:
@@ -96,6 +96,77 @@ doctrine:
                         prefix:               CCDNUser\ProfileBundle\Entity
                         is_bundle:            true
 ```
+
+ProfileBundle uses the ProfileProvider of the CommonBundle and overrides it, allowing all references of a username via the method profilePath() to point to a users profile.
+
+You will need to add this to your app/config/ccdn/component-common.yml file in order for this to work. This step is also required for ProfileBundle to work.
+
+``` yml
+ccdn_component_common:
+    service:
+        provider:
+            profile_provider:
+                class: CCDNUser\ProfileBundle\Component\Provider\Profile\ProfileProvider
+```
+
+If you are not using CCDNUserUserBundle, you will need to create a child bundle in order to override the default one-to-one relation of profile to user entity
+ (which by default profile bundles maps to CCDNUserUserBundle).
+
+To create a child bundle, add this to your bundles main file (i.e; AcmeProfileBundle.php)
+
+``` php
+class AcmeProfileBundle extends Bundle
+{
+
+    public function getParent()
+    {
+		// This lets Symfony know AcmeProfileBundle inherits everything from CCDNUserProfileBundle.
+        return 'CCDNUserProfileBundle';
+    }
+}
+```
+
+It is also recommended in order for the bundle to function correctly that you add the following to your user entity:
+
+``` php
+/**
+ * Get profile
+ *
+ * @return CCDNUser\ProfileBundle\Entity\Profile
+ */
+public function getProfile()
+{
+    if (null == $this->profile) {
+        $this->profile = new Profile();
+        $this->profile->setUser($this);
+    }
+		
+    return $this->profile;
+}
+	
+/**
+ * Set profile
+ *
+ * @param CCDNUser\ProfileBundle\Entity\Profile $profile
+ * @return User
+ */
+public function setProfile(Profile $profile = null)
+{
+    $this->profile = $profile;
+
+    if (null == $this->profile) {
+        $this->profile = new Profile();
+        $this->profile->setUser($this);
+    }
+				
+	return $this;
+}
+```
+
+This will ensure that when a profile does not exist, one can be lazily created, and the manager will persist this later on if it does not have a valid id.
+
+#### Copy over the contents of ProfileBundle/Resources/config/doctrine/Profile.orm.yml to your child bundle and change the user entity you wish profile bundle to relate to.
+
 
 From your projects root Symfony directory on the command line run:
 

@@ -2,10 +2,10 @@
 
 {% set LayoutTemplate = ccdn_user_profile.profile.show.overview.layout_template %}
 
-{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': user.getUsername |title }, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
+{% block title %}{{- truncDot('ccdn_user_profile.title.profile.show' | trans({ '%user_name%': profile.getUsername}, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 {% block sub_title %}
-	<a href="{{- path('ccdn_user_profile_show_by_id', {'userId':user.id}) -}}"><bdi>{{- user.getUsername |capitalize -}}</bdi></a>
+	{{- profile.getProfilePath() |raw -}}
 {% endblock %}
 
 
@@ -22,10 +22,12 @@
 			<h3>{{- 'ccdn_user_profile.profile.show.overview.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 		</div>
 		{%- if is_granted('ROLE_USER') -%}
-			{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
-				<div class="span3 btn-right">
-					<a class="btn" href="{{- path('ccdn_user_profile_edit_personal', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
-				</div>
+			{%- if profile.getUser is not null -%}
+				{%- if profile.getUser.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+					<div class="span3 btn-right">
+						<a class="btn" href="{{- path('ccdn_user_profile_edit_personal', {'profileId':profile.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+					</div>
+				{%- endif -%}
 			{%- endif -%}
 		{%- endif -%}
 	</header>
@@ -35,42 +37,44 @@
 			<tbody>
 				<tr>
 					<td class="right">{{- 'ccdn_user_profile.profile.table.body.username'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-					<td class="left"><bdi>{{- user.getUsername |title -}}</bdi></td>
+					<td class="left">{{- profile.getUsernameBDI |raw -}}</td>
 				</tr>
 
-				{%- if user.getRegisteredDate is not null -%}
-					<tr>
-						<td class="right">{{- 'ccdn_user_profile.profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-						<td class="left">
-							<abbr class="timestamper" title="{{- user.getRegisteredDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
-								{{- user.getRegisteredDate |date(ccdn_user_profile.profile.show.overview.last_login_datetime_format) -}}
-							</abbr>
-						</td>
-					</tr>
-				{%- endif -%}
+				{%- if profile.getUser is not null -%}
+					{%- if profile.getUser.getRegisteredDate is not null -%}
+						<tr>
+							<td class="right">{{- 'ccdn_user_profile.profile.table.body.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+							<td class="left">
+								<abbr class="timestamper" title="{{- profile.getUser.getRegisteredDate |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+									{{- profile.getUser.getRegisteredDate |date(ccdn_user_profile.profile.show.overview.last_login_datetime_format) -}}
+								</abbr>
+							</td>
+						</tr>
+					{%- endif -%}
 
-				{%- if user.getLastLogin is not null -%}
-					<tr>
-						<td class="right">{{- 'ccdn_user_profile.profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-						<td class="left">
-							<abbr class="timestamper" title="{{- user.getLastLogin |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
-								{{- user.getLastLogin |date(ccdn_user_profile.profile.show.overview.member_since_datetime_format) -}}
-							</abbr>
-						</td>
-					</tr>
+					{%- if profile.getUser.getLastLogin is not null -%}
+						<tr>
+							<td class="right">{{- 'ccdn_user_profile.profile.table.body.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+							<td class="left">
+								<abbr class="timestamper" title="{{- profile.getUser.getLastLogin |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+									{{- profile.getUser.getLastLogin |date(ccdn_user_profile.profile.show.overview.member_since_datetime_format) -}}
+								</abbr>
+							</td>
+						</tr>
+					{%- endif -%}
 				{%- endif -%}
-
-				{%- if user.getProfile.getLocation is not null -%}
+				
+				{%- if profile.getLocation is not null -%}
 					<tr>
 						<td class="right">{{- 'ccdn_user_profile.profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-						<td class="left"><bdi>{{- user.getProfile.getLocation -}}</bdi></td>
+						<td class="left"><bdi>{{- profile.getLocation -}}</bdi></td>
 					</tr>
 				{%- endif -%}
 
-				{%- if user.getProfile.getWebsite is not null -%}
+				{%- if profile.getWebsite is not null -%}
 					<tr>
 						<td class="right">{{- 'ccdn_user_profile.profile.table.body.website'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-						<td class="left"><a href="{{- user.getProfile.getWebsite -}}" target="_blank">{{- user.getProfile.getWebsite -}}</a></td>
+						<td class="left"><a href="{{- profile.getWebsite -}}" target="_blank">{{- profile.getWebsite -}}</a></td>
 					</tr>
 				{%- endif -%}
 			</tbody>
@@ -84,46 +88,46 @@
 		{%- if is_granted('ROLE_USER') -%}
 			{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
 				<div class="span3 btn-right">
-					<a class="btn" href="{{- path('ccdn_user_profile_edit_contact', {'userId':user.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>						
+					<a class="btn" href="{{- path('ccdn_user_profile_edit_contact', {'profileId':profile.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>						
 				</div>
 			{%- endif -%}
 		{%- endif -%}
 	</header>
 
 	<section>
-		{%- if user.getProfile.getAimIsPublic is not null and user.getProfile.getAim is not null
-			or user.getProfile.getMsnIsPublic is not null and user.getProfile.getMsn is not null
-			or user.getProfile.getIcqIsPublic is not null and user.getProfile.getIcq is not null
-			or user.getProfile.getYahooIsPublic is not null and user.getProfile.getYahoo is not null -%}
+		{%- if profile.getAimIsPublic is not null and profile.getAim is not null
+			or profile.getMsnIsPublic is not null and profile.getMsn is not null
+			or profile.getIcqIsPublic is not null and profile.getIcq is not null
+			or profile.getYahooIsPublic is not null and profile.getYahoo is not null -%}
 
 			<table class="table table-striped table-bordered table-vertical-labels">
 				<tbody>
 					{%- if is_granted('ROLE_USER') -%}
-						{%- if user.getProfile.getAimIsPublic is not null and user.getProfile.getAim is not null -%}
+						{%- if profile.getAimIsPublic is not null and profile.getAim is not null -%}
 							<tr>
 								<td class="right">{{- 'ccdn_user_profile.profile.table.body.aim'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-								<td class="left">{{- user.getProfile.getAim -}}</td>
+								<td class="left">{{- profile.getAim -}}</td>
 							</tr>
 						{%- endif -%}
 
-						{%- if user.getProfile.getMsnIsPublic is not null and user.getProfile.getMsn is not null -%}
+						{%- if profile.getMsnIsPublic is not null and profile.getMsn is not null -%}
 							<tr>
 								<td class="right">{{- 'ccdn_user_profile.profile.table.body.msn'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-								<td class="left">{{- user.getProfile.getMsn -}}</td>
+								<td class="left">{{- profile.getMsn -}}</td>
 							</tr>
 						{%- endif -%}
 
-						{%- if user.getProfile.getIcqIsPublic is not null and user.getProfile.getIcq is not null -%}
+						{%- if profile.getIcqIsPublic is not null and profile.getIcq is not null -%}
 							<tr>
 								<td class="right">{{- 'ccdn_user_profile.profile.table.body.icq'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-								<td class="left">{{- user.getProfile.getIcq -}}</td>
+								<td class="left">{{- profile.getIcq -}}</td>
 							</tr>
 						{%- endif -%}
 
-						{%- if user.getProfile.getYahooIsPublic is not null and user.getProfile.getYahoo is not null -%}
+						{%- if profile.getYahooIsPublic is not null and profile.getYahoo is not null -%}
 							<tr>
 								<td class="right">{{- 'ccdn_user_profile.profile.table.body.yahoo'|trans({}, 'CCDNUserProfileBundle') -}}</td>
-								<td class="left">{{- user.getProfile.getYahoo -}}</td>
+								<td class="left">{{- profile.getYahoo -}}</td>
 							</tr>
 						{%- endif -%}
 					{%- endif -%}
@@ -131,17 +135,26 @@
 			</table>
 		{%- else -%}
 			{%- if is_granted('ROLE_USER') -%}
-				{%- if user.id == app.user.id -%}
-					<div class="alert alert-warning">
-						{{- 'ccdn_user_profile.profile.show.overview.contact.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
-					</div>
+				{%- if profile.getUser is not null -%}
+					{%- if profile.getUser.id == app.user.id -%}
+						<div class="alert alert-warning">
+							{{- 'ccdn_user_profile.profile.show.overview.contact.none.owner' | trans({}, 'CCDNUserProfileBundle') -}}
+						</div>
+					{%- else -%}
+						<div class="lead center">
+							<br>
+							<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
+						</div>
+					{%- endif -%}
 				{%- else -%}
-					<div class="well center">
+					<div class="lead center">
+						<br>
 						<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 					</div>
 				{%- endif -%}
 			{%- else -%}
-				<div class="well center">
+				<div class="lead center">
+					<br>
 					<h5>{{- 'ccdn_user_profile.profile.show.overview.contact.none' | trans({}, 'CCDNUserProfileBundle') -}}</h5>
 				</div>
 			{%- endif -%}

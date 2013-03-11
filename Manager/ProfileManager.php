@@ -13,9 +13,11 @@
 
 namespace CCDNUser\ProfileBundle\Manager;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use CCDNUser\ProfileBundle\Manager\ManagerInterface;
 use CCDNUser\ProfileBundle\Manager\BaseManager;
-
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -25,7 +27,6 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  */
 class ProfileManager extends BaseManager implements ManagerInterface
 {
-
     /**
      *
      * @access public
@@ -52,49 +53,82 @@ class ProfileManager extends BaseManager implements ManagerInterface
 
         return $this;
     }
+	
+	public function connectProfileWithUser($user)
+	{
+		$profile = $user->getProfile();
+		
+		$profile->setUser($user);
+		$user->setProfile($profile);		
+					
+		$this->persist($user, $profile);
+		$this->flush();
+		
+		$this->refresh($user, $profile);
+		
+		return $profile;
+	}
 
+	
+	/**
+	 *
+	 * @access protected
+	 * @param $profileId
+	 * @return Profile
+	 */
+	protected function getProfileById($profileId)
+	{
+		$profile = $this->em->createQueryBuilder()
+			->select('p')
+			->from('CCDNUserProfileBundle:Profile', 'p')
+			->where('p.id = :id')
+			->setParameters(
+				array(
+					':id' => $profileId,
+				)
+			)
+			->getQuery()
+			->getSingleResult();
+				
+		return $profile;
+	}
+	
 	/**
 	 *
 	 * @access public
-	 * @param $user
-	 * @return self
+	 * @param $profileId
+	 * @param $securityContext
+	 * @return Profile
 	 */
-	public function checkHasProfile($user)
+	public function getProfile($profileId, $securityContext)
 	{
-		
-		// Fix User not having Profile.
-        if ( ! $user->getProfile()->getId()) {
-        	
-			// Check if a profile already exists that matches the user on
-			// its foreign key before making a new one, if so relink it.
-			$profile = $this->repository->findOneByUser($user->getId());
-
-			if (! is_object($profile) || ! ($profile instanceof Profile)) {
-				$profile = new Profile();
-								
-    			$this->insert($profile)->flush();
-
-				$this->refresh($profile);
-			}
-
-			// Inform the user of there new profile.
-			$user->setProfile($profile);
-				
-			$this->persist($user)->flush();
+		if ($profileId == null || $profileId == 0 || ! is_numeric($profileId)) {
+            if ( ! $securityContext->isGranted('ROLE_USER')) {
+                throw new NotFoundHttpException('User not found!');
+            }
 			
-			// Refresh the user.
-			$this->refresh($user);
+			$user = $securityContext->getToken()->getUser();
+			$profile = $this->connectProfileWithUser($user);
+			
+			//$profile = $user->getProfile();
+			//
+			//if (null == $profile->getId()) {			
+			//	$profile->setUser($user);
+			//	$user->setProfile($profile);
+			//		
+			//	$this->persist($user, $profile);
+			//	$this->flush();
+			//}
+		} else {
+			$profile = $this->getProfileById($profileId);			
 		}
 		
-		// Fix Profile not linking back to User.
-		if ( ! $user->getProfile()->getUser()) {
-			
-			$profile = $user->getProfile();
-			
-			$profile->setUser($user);
-			
-			$this->update($profile)->flush();
+        if (! $profile) {
+            throw new NotFoundHttpException('User not found!');
         }
+
+		$profile = $this->getProfileProvider()->setup($profile);
+		
+		return $profile;
 	}
-	
 }
