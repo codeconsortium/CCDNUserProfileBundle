@@ -1,6 +1,6 @@
 CCDNUser\ProfileBundle\Entity\Profile:
     type: entity
-    table: CC_User_Profile
+    table: cc_user_profile
     repositoryClass: CCDNUser\ProfileBundle\Repository\ProfileRepository
     id:
         id:
