@@ -2,6 +2,7 @@ parameters:
 
     ccdn_user_profile.repository.profile.class:             CCDNUser\ProfileBundle\Repository\ProfileRepository
 
+    ccdn_user_profile.gateway.profile.class:                CCDNUser\ProfileBundle\Gateway\ProfileGateway
     ccdn_user_profile.manager.profile.class:                CCDNUser\ProfileBundle\Manager\ProfileManager
 
     ccdn_user_profile.form.type.profile_avatar.class:       CCDNUser\ProfileBundle\Form\Type\ProfileAvatarType
@@ -18,8 +19,6 @@ parameters:
 
     ccdn_user_profile.component.dashboard.integrator.class: CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
 
-    ccdn_user_profile.component.menu_builder.menu.class:    CCDNUser\ProfileBundle\Component\MenuBuilder\Menu
-    
 services:
 
     #
@@ -33,11 +32,23 @@ services:
             - 'CCDNUser\ProfileBundle\Entity\Profile'
 
     #
+    # Gateways.
+    #
+    ccdn_user_profile.gateway.profile:
+        class: %ccdn_user_profile.gateway.profile.class%
+        arguments:
+            - @doctrine
+
+    #
     # Managers.
     #
     ccdn_user_profile.manager.profile:
         class:  %ccdn_user_profile.manager.profile.class%
-        arguments:  [@doctrine, @ccdn_user_profile.repository.profile, @ccdn_component_common.component.provider.profile]
+        arguments: 
+            - @doctrine
+            - @security.context
+            - @ccdn_user_profile.gateway.profile
+            - @ccdn_component_common.component.provider.profile
 
     #
     # Profile Forms.
@@ -85,12 +96,4 @@ services:
         arguments: [@service_container]
         tags:
             - { name: ccdn_component_dashboard.integrator }
-    
-    #
-    # Menu Builder.
-    #
-    ccdn_user_profile.component.menu_builder.menu:
-        class: %ccdn_user_profile.component.menu_builder.menu.class%
-        tags:
-            - { name: ccdn_component_menu.menu_builder }
     

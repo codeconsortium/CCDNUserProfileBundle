@@ -13,19 +13,17 @@
 
 namespace CCDNUser\ProfileBundle\Manager;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-use CCDNUser\ProfileBundle\Manager\ManagerInterface;
+use CCDNUser\ProfileBundle\Manager\BaseManagerInterface;
 use CCDNUser\ProfileBundle\Manager\BaseManager;
-use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class ProfileManager extends BaseManager implements ManagerInterface
+class ProfileManager extends BaseManager implements BaseManagerInterface
 {
     /**
      *
@@ -54,7 +52,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
         return $this;
     }
 	
-	public function connectProfileWithUser($user)
+	public function connectProfileWithUser(UserInterface $user)
 	{
 		$profile = $user->getProfile();
 		
@@ -74,7 +72,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
 	 *
 	 * @access protected
 	 * @param $profileId
-	 * @return Profile
+	 * @return \CCDNUser\ProfileBundle\Entity\Profile
 	 */
 	protected function getProfileById($profileId)
 	{
@@ -98,7 +96,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
 	 * @access public
 	 * @param $profileId
 	 * @param $securityContext
-	 * @return Profile
+	 * @return \CCDNUser\ProfileBundle\Entity\Profile
 	 */
 	public function getProfile($profileId, $securityContext)
 	{
@@ -109,16 +107,6 @@ class ProfileManager extends BaseManager implements ManagerInterface
 			
 			$user = $securityContext->getToken()->getUser();
 			$profile = $this->connectProfileWithUser($user);
-			
-			//$profile = $user->getProfile();
-			//
-			//if (null == $profile->getId()) {			
-			//	$profile->setUser($user);
-			//	$user->setProfile($profile);
-			//		
-			//	$this->persist($user, $profile);
-			//	$this->flush();
-			//}
 		} else {
 			$profile = $this->getProfileById($profileId);			
 		}

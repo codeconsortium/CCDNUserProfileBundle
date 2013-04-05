@@ -14,8 +14,11 @@
 namespace CCDNUser\ProfileBundle\Component\Provider\Profile;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+
 use CCDNComponent\CommonBundle\Component\Provider\Profile\ProfileProviderInterface;
 use CCDNComponent\CommonBundle\Component\Provider\Profile\ProfileInterface;
+
+use CCDNUser\ProfileBundle\Entity\Profile as FakeProfile;
 
 class ProfileProvider implements ProfileProviderInterface
 {
@@ -35,14 +38,18 @@ class ProfileProvider implements ProfileProviderInterface
 	 */
     public function transform(UserInterface $user = null)
     {
-		$profile = $user->getProfile();
-		
-		if (null == $profile->getId()) {
-			$manager = $this->container->get('ccdn_user_profile.manager.profile');
+		if (null != $user) {
+			$profile = $user->getProfile();			
 
-			$profile = $manager->connectProfileWithUser($user);
+			if (null == $profile->getId()) {
+				$manager = $this->container->get('ccdn_user_profile.manager.profile');
+
+				$profile = $manager->connectProfileWithUser($user);
+			}
+		} else {
+			$profile = new FakeProfile();
 		}
-		
+				
 		// Choose username, wether canonical or email or some other field.
         if (null !== $user) {
             $profile->setUsername($user->getUsername());

@@ -13,12 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
-use FOS\UserBundle\Model\UserInterface;
+use CCDNUser\ProfileBundle\Controller\BaseController;
 
 /**
  *
@@ -37,20 +32,15 @@ class ProfileController extends BaseController
     public function showOverviewAction($profileId)
     {
         if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
-            if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new AccessDeniedException('You do not have access to this section.');
-            }
+            $this->isAuthorised('ROLE_USER');
         }
 
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'), 
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:show_overview.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:show_overview.html.', array(
             'profile' => $profile,
 			'user' => $profile->getUser(),
             'crumbs' => $crumbs,
@@ -65,22 +55,17 @@ class ProfileController extends BaseController
      * @return RenderResponse
      */
     public function showBioAction($profileId)
-    {		
+    {
         if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
-            if ( ! $this->container->get('security.context')->isGranted('ROLE_USER')) {
-                throw new AccessDeniedException('You do not have access to this section.');
-            }
+            $this->isAuthorised('ROLE_USER');
         }
 
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 		
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:show_bio.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:show_bio.html.', array(
             'profile' => $profile,
 			'user' => $profile->getUser(),
             'crumbs' => $crumbs,
@@ -95,17 +80,13 @@ class ProfileController extends BaseController
      */
     public function editPersonalAction($profileId)
     {	
-		$this->checkIsAuthorised('ROLE_USER');
+		$this->isAuthorised('ROLE_USER');
 		
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        //
         // Does the requested $user match our session user id? Or, are we an admin?
-        //
-        if ($profile->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
-        && ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('You do not have access to this section.');
+        if ($profile->getUser()->getId() != $this->getUser()->getId()) {
+	        $this->isAuthorised('ROLE_ADMIN');
         }
 		
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_personal');
@@ -113,20 +94,16 @@ class ProfileController extends BaseController
         $process = $formHandler->process($profile);
 
         if ($process) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_user_profile.flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
+            return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
         }
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile.edit.personal', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_edit_personal', array('profileId' => $profile->getId())), "edit");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.personal'), $this->path('ccdn_user_profile_edit_personal', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_personal.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_personal.html.', array(
             'form' => $formHandler->getForm()->createView(),
             'profile' => $profile,
 			'user' => $profile->getUser(),
@@ -142,17 +119,13 @@ class ProfileController extends BaseController
      */
     public function editContactAction($profileId)
     {
-		$this->checkIsAuthorised('ROLE_USER');
+		$this->isAuthorised('ROLE_USER');
 		
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        //
         // Does the requested $user match our session user id? Or, are we an admin?
-        //
-        if ($profile->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
-        && ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('You do not have access to this section.');
+        if ($profile->getUser()->getId() != $this->getUser()->getId()) {
+            $this->isAuthorised('ROLE_ADMIN');
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_contact');
@@ -160,20 +133,16 @@ class ProfileController extends BaseController
         $process = $formHandler->process($profile);
 
         if ($process) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_user_profile.flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
+            return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
         }
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile.edit.contact', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_edit_contact', array('profileId' => $profile->getId())), "edit");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.contact'), $this->path('ccdn_user_profile_edit_contact', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_contact.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_contact.html.', array(
             'form' => $formHandler->getForm()->createView(),
             'profile' => $profile,
 			'user' => $profile->getUser(),
@@ -189,17 +158,13 @@ class ProfileController extends BaseController
      */
     public function editAvatarAction($profileId)
     {
-		$this->checkIsAuthorised('ROLE_USER');
+		$this->isAuthorised('ROLE_USER');
 		
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        //
         // Does the requested $user match our session user id? Or, are we an admin?
-        //
-        if ($profile->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
-        && ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('You do not have access to this section.');
+        if ($profile->getUser()->getId() != $this->getUser()->getId()) {
+            $this->isAuthorised('ROLE_ADMIN');
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_avatar');
@@ -207,20 +172,16 @@ class ProfileController extends BaseController
         $process = $formHandler->process($profile);
 
         if ($process) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_user_profile.flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
+            return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
         }
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile.edit.avatar', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_edit_avatar', array('profileId' => $profile->getId())), "edit");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.avatar'), $this->path('ccdn_user_profile_edit_avatar', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_avatar.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_avatar.html.', array(
             'form' => $formHandler->getForm()->createView(),
             'profile' => $profile,
 			'user' => $profile->getUser(),
@@ -236,17 +197,13 @@ class ProfileController extends BaseController
      */
     public function editBioAction($profileId)
     {
-		$this->checkIsAuthorised('ROLE_USER');
+		$this->isAuthorised('ROLE_USER');
 		
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        //
         // Does the requested $user match our session user id? Or, are we an admin?
-        //
-        if ($profile->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
-        && ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('You do not have access to this section.');
+        if ($profile->getUser()->getId() != $this->getUser()->getId()) {
+            $this->isAuthorised('ROLE_ADMIN');
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_bio');
@@ -254,20 +211,16 @@ class ProfileController extends BaseController
         $process = $formHandler->process($profile);
 
         if ($process) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_user_profile.flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('profileId' => $profile->getId())));
+            return $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('profileId' => $profile->getId())));
         }
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile.edit.bio', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_edit_bio', array('profileId' => $profile->getId())), "edit");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.bio'), $this->path('ccdn_user_profile_edit_bio', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_bio.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_bio.html.', array(
             'form' => $formHandler->getForm()->createView(),
             'profile' => $profile,
 			'user' => $profile->getUser(),
@@ -283,17 +236,13 @@ class ProfileController extends BaseController
      */
     public function editSignatureAction($profileId)
     {
-		$this->checkIsAuthorised('ROLE_USER');
+		$this->isAuthorised('ROLE_USER');
 		
 		$profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
-        //
         // Does the requested $user match our session user id? Or, are we an admin?
-        //
-        if ($profile->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()
-        && ! $this->container->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            throw new AccessDeniedException('You do not have access to this section.');
+        if ($profile->getUser()->getId() != $this->getUser()->getId()) {
+			$this->isAuthorised('ROLE_ADMIN');
         }
 
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.profile_signature');
@@ -301,20 +250,16 @@ class ProfileController extends BaseController
         $process = $formHandler->process($profile);
 
         if ($process) {
-            $this->container->get('session')->setFlash('notice', $this->container->get('translator')->trans('ccdn_user_profile.flash.profile.edit.success', array(), 'CCDNUserProfileBundle'));
+            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
 
-            return new RedirectResponse($this->container->get('router')->generate('ccdn_user_profile_show_bio_by_id', array('profileId' => $profile->getId())));
+            return $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('profileId' => $profile->getId())));
         }
 
-        $crumbs = $this->container->get('ccdn_component_crumb.trail')
-            ->add($this->container->get('translator')->trans('ccdn_user_member.crumbs.members', array(), 'CCDNUserMemberBundle'),
-				$this->container->get('router')->generate('ccdn_user_member_index', array()), "users")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI()), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())), "user")
-            ->add($this->container->get('translator')->trans('ccdn_user_profile.crumbs.profile.edit.signature', array(), 'CCDNUserProfileBundle'),
-				$this->container->get('router')->generate('ccdn_user_profile_edit_signature', array('profileId' => $profile->getId())), "edit");
+        $crumbs = $this->getCrumbs()
+            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.signature'), $this->path('ccdn_user_profile_edit_signature', array('profileId' => $profile->getId())));
 
-        return $this->container->get('templating')->renderResponse('CCDNUserProfileBundle:Profile:edit_signature.html.' . $this->getEngine(), array(
+        return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_signature.html.', array(
             'form' => $formHandler->getForm()->createView(),
             'profile' => $profile,
 			'user' => $profile->getUser(),

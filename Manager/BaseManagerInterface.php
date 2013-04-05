@@ -28,42 +28,8 @@ use CCDNUser\ProfileBundle\Gateway\BaseGatewayInterface;
  * @version 1.0
  * @abstract
  */
-abstract class BaseManager implements BaseManagerInterface
+interface BaseManagerInterface
 {
-	/**
-	 *
-	 * @access protected
-	 * @var \Doctrine\Bundle\DoctrineBundle\Registry $doctrine
-	 */
-    protected $doctrine;
-
-	/**
-	 *
-	 * @access protected
-	 * @var \Doctrine\ORM\EntityManager $em
-	 */
-    protected $em;
-
-	/**
-	 *
-	 * @access protected
-	 * @var \Symfony\Component\Security\Core\SecurityContext $securityContext
-	 */
-    protected $securityContext;
-
-	/**
-	 *
-	 * @access protected
-	 * @var \CCDNUser\ProfileBundle\Manager\BaseManagerInterface $gateway
-	 */
-    protected $gateway;
-	
-	/**
-	 *
-	 * @access protected
-	 */	
-	protected $profileProvider;
-	
 	/**
 	 *
 	 * @access public
@@ -71,69 +37,36 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param \Symfony\Component\Security\Core\SecurityContext $securityContext
 	 * @param \CCDNUser\ProfileBundle\Gateway\BaseGatewayInterface $gateway
 	 */
-    public function __construct(Registry $doctrine, SecurityContext $securityContext, BaseGatewayInterface $gateway, $profileProvider)
-    {
-        $this->doctrine = $doctrine;
+    public function __construct(Registry $doctrine, SecurityContext $securityContext, BaseGatewayInterface $gateway, $profileProvider);
 
-        $this->em = $doctrine->getEntityManager();
-		
-		$this->securityContext = $securityContext;
-		
-		$this->gateway = $gateway;
-		
-		$this->profileProvider = $profileProvider;
-    }
-
-	/**
-	 *
-	 * @access public
-	 * @return ProfileProvider
-	 */
-	public function getProfileProvider()
-	{
-		return $this->profileProvider;
-	}
-	
 	/**
 	 *
 	 * @access public
 	 * @param string $role
 	 * @return bool
 	 */
-	public function isGranted($role)
-	{
-		return $this->securityContext->isGranted($role);
-	}
+	public function isGranted($role);
 
 	/**
 	 *
 	 * @access public
 	 * @return \Symfony\Component\Security\Core\User\UserInterface
 	 */	
-	public function getUser()
-	{
-		return $this->securityContext->getToken()->getUser();
-	}
+	public function getUser();
 
 	/**
 	 *
 	 * @access public
 	 * @return \CCDNUser\ProfileBundle\Gateway\BaseGatewayInterface
 	 */
-	public function getGateway()
-	{
-		return $this->gateway;
-	}
+	public function getGateway();
 
 	/**
 	 *
 	 * @access public
 	 * @return \Doctrine\ORM\QueryBuilder
 	 */	
-	public function getQueryBuilder()
-	{
-		return $this->gateway->getQueryBuilder();
-	}
+	public function getQueryBuilder();
 	
 	/**
 	 *
@@ -142,10 +75,7 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param Array $aliases = null
 	 * @return \Doctrine\Common\Collections\ArrayCollection
 	 */	
-	public function createCountQuery($column = null, Array $aliases = null)
-	{
-		return $this->gateway->createCountQuery($column, $aliases);
-	}
+	public function createCountQuery($column = null, Array $aliases = null);
 		
 	/**
 	 *
@@ -153,10 +83,7 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param Array $aliases = null
 	 * @return \Doctrine\Common\Collections\ArrayCollection
 	 */	
-	public function createSelectQuery(Array $aliases = null)
-	{
-		return $this->gateway->createSelectQuery($aliases);
-	}
+	public function createSelectQuery(Array $aliases = null);
 	
 	/**
 	 *
@@ -164,10 +91,7 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param \Doctrine\ORM\QueryBuilder $qb
 	 * @return \Doctrine\Common\Collections\ArrayCollection
 	 */	
-	public function one(QueryBuilder $qb)
-	{
-		return $this->gateway->one($qb);
-	}
+	public function one(QueryBuilder $qb);
 	
 	/**
 	 *
@@ -175,10 +99,7 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param \Doctrine\ORM\QueryBuilder $qb
 	 * @return \Doctrine\ORM\QueryBuilder
 	 */	
-	public function all(QueryBuilder $qb)
-	{
-		return $this->gateway->all($qb);
-	}
+	public function all(QueryBuilder $qb);
 	
 	/**
 	 *
@@ -186,12 +107,7 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param $entity
 	 * @return \CCDNUser\ProfileBundle\Manager\BaseManagerInterface
 	 */
-    public function persist($entity)
-    {
-        $this->em->persist($entity);
-
-        return $this;
-    }
+    public function persist($entity);
 
 	/**
 	 *
@@ -199,24 +115,14 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param $entity
 	 * @return \CCDNUser\ProfileBundle\Manager\BaseManagerInterface
 	 */
-    public function remove($entity)
-    {
-        $this->em->remove($entity);
-
-        return $this;
-    }
+    public function remove($entity);
 
 	/**
 	 *
 	 * @access public
 	 * @return \CCDNUser\ProfileBundle\Manager\BaseManagerInterface
 	 */
-    public function flush()
-    {
-        $this->em->flush();
-
-        return $this;
-    }
+    public function flush();
 
 	/**
 	 *
@@ -224,10 +130,5 @@ abstract class BaseManager implements BaseManagerInterface
 	 * @param $entity
 	 * @return \CCDNUser\ProfileBundle\Manager\BaseManagerInterface
 	 */
-    public function refresh($entity)
-    {
-        $this->em->refresh($entity);
-
-        return $this;
-    }	
+    public function refresh($entity);
 }
