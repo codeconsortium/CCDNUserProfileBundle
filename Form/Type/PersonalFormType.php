@@ -21,9 +21,8 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class ProfileBioType extends AbstractType
+class PersonalFormType extends AbstractType
 {
-
     /**
      *
      * @access public
@@ -32,10 +31,19 @@ class ProfileBioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bio', 'bb_editor', array(
-				'label' => 'ccdn_user_profile.form.label.profile.edit.bio',
-            	'translation_domain' => 'CCDNUserProfileBundle',
-            ));
+            ->add('website', null,
+				array(
+	            	'label' => 'ccdn_user_profile.form.label.profile.edit.website',
+					'translation_domain' => 'CCDNUserProfileBundle',
+	            )
+			)
+            ->add('location', null,
+				array(
+	            	'label' => 'ccdn_user_profile.form.label.profile.edit.location',
+					'translation_domain' => 'CCDNUserProfileBundle',
+	            )
+			)
+		;
     }
 
     /**
@@ -51,7 +59,7 @@ class ProfileBioType extends AbstractType
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
             'intention'       		=> 'profile_item',
-            'validation_groups'		=> 'bio',
+            'validation_groups'		=> 'personal',
         );
     }
 
@@ -62,7 +70,6 @@ class ProfileBioType extends AbstractType
      */
     public function getName()
     {
-        return 'ProfileBio';
+        return 'ProfilePersonal';
     }
-
 }

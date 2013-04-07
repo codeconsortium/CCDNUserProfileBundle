@@ -21,9 +21,8 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class ProfileAvatarType extends AbstractType
+class BioFormType extends AbstractType
 {
-
     /**
      *
      * @access public
@@ -32,15 +31,13 @@ class ProfileAvatarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar_is_remote', 'checkbox', array(
-				'required' => false,
-				'label' => 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote',
-				'translation_domain' => 'CCDNUserProfileBundle',
-			))
-            ->add('avatar', null, array(
-				'label' => 'ccdn_user_profile.form.label.profile.edit.avatar',
-            	'translation_domain' => 'CCDNUserProfileBundle',
-            ));
+            ->add('bio', 'bb_editor',
+				array(
+					'label' => 'ccdn_user_profile.form.label.profile.edit.bio',
+	            	'translation_domain' => 'CCDNUserProfileBundle',
+	            )
+			)
+		;
     }
 
     /**
@@ -56,7 +53,7 @@ class ProfileAvatarType extends AbstractType
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
             'intention'       		=> 'profile_item',
-            'validation_groups' 	=> 'avatar',
+            'validation_groups'		=> 'bio',
         );
     }
 
@@ -67,7 +64,6 @@ class ProfileAvatarType extends AbstractType
      */
     public function getName()
     {
-        return 'ProfileAvatar';
+        return 'ProfileBio';
     }
-
 }

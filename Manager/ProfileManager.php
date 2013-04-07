@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use CCDNUser\ProfileBundle\Manager\BaseManagerInterface;
 use CCDNUser\ProfileBundle\Manager\BaseManager;
 
+use CCDNUser\ProfileBundle\Entity\Profile;
+
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
@@ -28,13 +30,16 @@ class ProfileManager extends BaseManager implements BaseManagerInterface
     /**
      *
      * @access public
-     * @param $profile
+     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
      * @return self
      */
-    public function update($profile)
+    public function updateProfile(Profile $profile)
     {
         // update the profile record
-        $this->persist($profile);
+        $this
+			->persist($profile)
+			->flush()
+		;
 
         return $this;
     }

@@ -21,9 +21,8 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @author Reece Fowell <reece@codeconsortium.com>
  * @version 1.0
  */
-class ProfileSignatureType extends AbstractType
+class SignatureFormType extends AbstractType
 {
-
     /**
      *
      * @access public
@@ -32,10 +31,13 @@ class ProfileSignatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('signature', 'bb_editor', array(
-            	'label' => 'ccdn_user_profile.form.label.profile.edit.signature',
-				'translation_domain' => 'CCDNUserProfileBundle',
-            ));
+            ->add('signature', 'bb_editor',
+				array(
+	            	'label' => 'ccdn_user_profile.form.label.profile.edit.signature',
+					'translation_domain' => 'CCDNUserProfileBundle',
+	            )
+			)
+		;
     }
 
     /**
@@ -64,5 +66,4 @@ class ProfileSignatureType extends AbstractType
     {
         return 'ProfileSignature';
     }
-
 }

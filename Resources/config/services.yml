@@ -5,17 +5,17 @@ parameters:
     ccdn_user_profile.gateway.profile.class:                CCDNUser\ProfileBundle\Gateway\ProfileGateway
     ccdn_user_profile.manager.profile.class:                CCDNUser\ProfileBundle\Manager\ProfileManager
 
-    ccdn_user_profile.form.type.profile_avatar.class:       CCDNUser\ProfileBundle\Form\Type\ProfileAvatarType
-    ccdn_user_profile.form.type.profile_bio.class:          CCDNUser\ProfileBundle\Form\Type\ProfileBioType
-    ccdn_user_profile.form.type.profile_contact.class:      CCDNUser\ProfileBundle\Form\Type\ProfileContactType
-    ccdn_user_profile.form.type.profile_personal.class:     CCDNUser\ProfileBundle\Form\Type\ProfilePersonalType
-    ccdn_user_profile.form.type.profile_signature.class:    CCDNUser\ProfileBundle\Form\Type\ProfileSignatureType
-
-    ccdn_user_profile.form.handler.profile_avatar.class:    CCDNUser\ProfileBundle\Form\Handler\ProfileAvatarFormHandler
-    ccdn_user_profile.form.handler.profile_bio.class:       CCDNUser\ProfileBundle\Form\Handler\ProfileBioFormHandler
-    ccdn_user_profile.form.handler.profile_contact.class:   CCDNUser\ProfileBundle\Form\Handler\ProfileContactFormHandler
-    ccdn_user_profile.form.handler.profile_personal.class:  CCDNUser\ProfileBundle\Form\Handler\ProfilePersonalFormHandler
-    ccdn_user_profile.form.handler.profile_signature.class: CCDNUser\ProfileBundle\Form\Handler\ProfileSignatureFormHandler
+    ccdn_user_profile.form.type.avatar.class:               CCDNUser\ProfileBundle\Form\Type\AvatarFormType
+    ccdn_user_profile.form.type.bio.class:                  CCDNUser\ProfileBundle\Form\Type\BioFormType
+    ccdn_user_profile.form.type.contact.class:              CCDNUser\ProfileBundle\Form\Type\ContactFormType
+    ccdn_user_profile.form.type.personal.class:             CCDNUser\ProfileBundle\Form\Type\PersonalFormType
+    ccdn_user_profile.form.type.signature.class:            CCDNUser\ProfileBundle\Form\Type\SignatureFormType
+                                                            
+    ccdn_user_profile.form.handler.avatar.class:            CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler
+    ccdn_user_profile.form.handler.bio.class:               CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler
+    ccdn_user_profile.form.handler.contact.class:           CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler
+    ccdn_user_profile.form.handler.personal.class:          CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler
+    ccdn_user_profile.form.handler.signature.class:         CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
 
     ccdn_user_profile.component.dashboard.integrator.class: CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
 
@@ -53,40 +53,60 @@ services:
     #
     # Profile Forms.
     #
-    ccdn_user_profile.form.type.profile_avatar:
-        class:  %ccdn_user_profile.form.type.profile_avatar.class%
-        arguments:  [@doctrine]
-    ccdn_user_profile.form.handler.profile_avatar:
-        class:  %ccdn_user_profile.form.handler.profile_avatar.class%
-        arguments:  [@form.factory, @service_container, @ccdn_user_profile.manager.profile]
+    ccdn_user_profile.form.type.avatar:
+        class:  %ccdn_user_profile.form.type.avatar.class%
+        arguments:
+            - @doctrine
+    ccdn_user_profile.form.handler.avatar:
+        class:  %ccdn_user_profile.form.handler.avatar.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.avatar
+            - @ccdn_user_profile.manager.profile
 
-    ccdn_user_profile.form.type.profile_bio:
-        class:  %ccdn_user_profile.form.type.profile_bio.class%
-        arguments:  [@doctrine]
-    ccdn_user_profile.form.handler.profile_bio:
-        class:  %ccdn_user_profile.form.handler.profile_bio.class%
-        arguments:  [@form.factory, @service_container, @ccdn_user_profile.manager.profile]
+    ccdn_user_profile.form.type.bio:
+        class:  %ccdn_user_profile.form.type.bio.class%
+        arguments:
+            - @doctrine
+    ccdn_user_profile.form.handler.bio:
+        class:  %ccdn_user_profile.form.handler.bio.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.bio
+            - @ccdn_user_profile.manager.profile
 
-    ccdn_user_profile.form.type.profile_contact:
-        class:  %ccdn_user_profile.form.type.profile_contact.class%
-        arguments:  [@doctrine]
-    ccdn_user_profile.form.handler.profile_contact:
-        class:  %ccdn_user_profile.form.handler.profile_contact.class%
-        arguments:  [@form.factory, @service_container, @ccdn_user_profile.manager.profile]
+    ccdn_user_profile.form.type.contact:
+        class:  %ccdn_user_profile.form.type.contact.class%
+        arguments:
+            - @doctrine
+    ccdn_user_profile.form.handler.contact:
+        class:  %ccdn_user_profile.form.handler.contact.class%
+        arguments: 
+            - @form.factory
+            - @ccdn_user_profile.form.type.contact
+            - @ccdn_user_profile.manager.profile
 
-    ccdn_user_profile.form.type.profile_personal:
-        class:  %ccdn_user_profile.form.type.profile_personal.class%
-        arguments:  [@doctrine]
-    ccdn_user_profile.form.handler.profile_personal:
-        class:  %ccdn_user_profile.form.handler.profile_personal.class%
-        arguments:  [@form.factory, @service_container, @ccdn_user_profile.manager.profile]
+    ccdn_user_profile.form.type.personal:
+        class:  %ccdn_user_profile.form.type.personal.class%
+        arguments: 
+            - @doctrine
+    ccdn_user_profile.form.handler.personal:
+        class:  %ccdn_user_profile.form.handler.personal.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.personal
+            - @ccdn_user_profile.manager.profile
 
-    ccdn_user_profile.form.type.profile_signature:
-        class:  %ccdn_user_profile.form.type.profile_signature.class%
-        arguments:  [@doctrine]
-    ccdn_user_profile.form.handler.profile_signature:
-        class:  %ccdn_user_profile.form.handler.profile_signature.class%
-        arguments:  [@form.factory, @service_container, @ccdn_user_profile.manager.profile]
+    ccdn_user_profile.form.type.signature:
+        class:  %ccdn_user_profile.form.type.signature.class%
+        arguments:
+            - @doctrine
+    ccdn_user_profile.form.handler.signature:
+        class:  %ccdn_user_profile.form.handler.signature.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.signature
+            - @ccdn_user_profile.manager.profile
 
     #
     # Dashboard Integrator.
