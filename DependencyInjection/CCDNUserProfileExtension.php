@@ -28,7 +28,6 @@ use Symfony\Component\Config\FileLocator;
  */
 class CCDNUserProfileExtension extends Extension
 {
-
     /**
      * {@inheritDoc}
      */
@@ -45,18 +44,54 @@ class CCDNUserProfileExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
-
+		// Class file namespaces.
+        $this->getEntitySection($container, $config);
+        $this->getGatewaySection($container, $config);
+        $this->getManagerSection($container, $config);
+		
+		// Configuration stuff.
         $container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
-
         $this->getSEOSection($container, $config);
         $this->getProfileSection($container, $config);
         $this->getItemBioSection($container, $config);
         $this->getItemSignatureSection($container, $config);
         $this->getSidebarSection($container, $config);
+		
+		// Load Service definitions.
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 
+    /**
+     *
+     * @access private
+     * @param $container, $config
+     */
+    private function getEntitySection($container, $config)
+    {
+        $container->setParameter('ccdn_user_profile.entity.profile.class', $config['entity']['profile']['class']);				
+	}
+	
+    /**
+     *
+     * @access private
+     * @param $container, $config
+     */
+    private function getGatewaySection($container, $config)
+    {
+        $container->setParameter('ccdn_user_profile.gateway.profile.class', $config['gateway']['profile']['class']);
+	}
+	
+    /**
+     *
+     * @access private
+     * @param $container, $config
+     */
+    private function getManagerSection($container, $config)
+    {
+        $container->setParameter('ccdn_user_profile.manager.profile.class', $config['manager']['profile']['class']);		
+	}
+	
     /**
      *
      * @access protected

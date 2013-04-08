@@ -2,8 +2,8 @@ parameters:
 
     ccdn_user_profile.repository.profile.class:             CCDNUser\ProfileBundle\Repository\ProfileRepository
 
-    ccdn_user_profile.gateway.profile.class:                CCDNUser\ProfileBundle\Gateway\ProfileGateway
-    ccdn_user_profile.manager.profile.class:                CCDNUser\ProfileBundle\Manager\ProfileManager
+#    ccdn_user_profile.gateway.profile.class:                CCDNUser\ProfileBundle\Gateway\ProfileGateway
+#    ccdn_user_profile.manager.profile.class:                CCDNUser\ProfileBundle\Manager\ProfileManager
 
     ccdn_user_profile.form.type.avatar.class:               CCDNUser\ProfileBundle\Form\Type\AvatarFormType
     ccdn_user_profile.form.type.bio.class:                  CCDNUser\ProfileBundle\Form\Type\BioFormType
@@ -29,7 +29,7 @@ services:
         factory_service: doctrine.orm.default_entity_manager
         factory_method: getRepository
         arguments:
-            - 'CCDNUser\ProfileBundle\Entity\Profile'
+            - %ccdn_user_profile.entity.profile.class%
 
     #
     # Gateways.
@@ -38,12 +38,13 @@ services:
         class: %ccdn_user_profile.gateway.profile.class%
         arguments:
             - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     #
     # Managers.
     #
     ccdn_user_profile.manager.profile:
-        class:  %ccdn_user_profile.manager.profile.class%
+        class: %ccdn_user_profile.manager.profile.class%
         arguments: 
             - @doctrine
             - @security.context
@@ -54,53 +55,58 @@ services:
     # Profile Forms.
     #
     ccdn_user_profile.form.type.avatar:
-        class:  %ccdn_user_profile.form.type.avatar.class%
+        class: %ccdn_user_profile.form.type.avatar.class%
         arguments:
             - @doctrine
+
     ccdn_user_profile.form.handler.avatar:
-        class:  %ccdn_user_profile.form.handler.avatar.class%
+        class: %ccdn_user_profile.form.handler.avatar.class%
         arguments:
             - @form.factory
             - @ccdn_user_profile.form.type.avatar
             - @ccdn_user_profile.manager.profile
 
     ccdn_user_profile.form.type.bio:
-        class:  %ccdn_user_profile.form.type.bio.class%
+        class: %ccdn_user_profile.form.type.bio.class%
         arguments:
             - @doctrine
+
     ccdn_user_profile.form.handler.bio:
-        class:  %ccdn_user_profile.form.handler.bio.class%
+        class: %ccdn_user_profile.form.handler.bio.class%
         arguments:
             - @form.factory
             - @ccdn_user_profile.form.type.bio
             - @ccdn_user_profile.manager.profile
 
     ccdn_user_profile.form.type.contact:
-        class:  %ccdn_user_profile.form.type.contact.class%
+        class: %ccdn_user_profile.form.type.contact.class%
         arguments:
             - @doctrine
+
     ccdn_user_profile.form.handler.contact:
-        class:  %ccdn_user_profile.form.handler.contact.class%
+        class: %ccdn_user_profile.form.handler.contact.class%
         arguments: 
             - @form.factory
             - @ccdn_user_profile.form.type.contact
             - @ccdn_user_profile.manager.profile
 
     ccdn_user_profile.form.type.personal:
-        class:  %ccdn_user_profile.form.type.personal.class%
+        class: %ccdn_user_profile.form.type.personal.class%
         arguments: 
             - @doctrine
+
     ccdn_user_profile.form.handler.personal:
-        class:  %ccdn_user_profile.form.handler.personal.class%
+        class: %ccdn_user_profile.form.handler.personal.class%
         arguments:
             - @form.factory
             - @ccdn_user_profile.form.type.personal
             - @ccdn_user_profile.manager.profile
 
     ccdn_user_profile.form.type.signature:
-        class:  %ccdn_user_profile.form.type.signature.class%
+        class: %ccdn_user_profile.form.type.signature.class%
         arguments:
             - @doctrine
+
     ccdn_user_profile.form.handler.signature:
         class:  %ccdn_user_profile.form.handler.signature.class%
         arguments:
