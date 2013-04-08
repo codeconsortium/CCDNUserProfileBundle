@@ -1,23 +1,6 @@
 parameters:
 
-    ccdn_user_profile.repository.profile.class:             CCDNUser\ProfileBundle\Repository\ProfileRepository
-
-#    ccdn_user_profile.gateway.profile.class:                CCDNUser\ProfileBundle\Gateway\ProfileGateway
-#    ccdn_user_profile.manager.profile.class:                CCDNUser\ProfileBundle\Manager\ProfileManager
-
-    ccdn_user_profile.form.type.avatar.class:               CCDNUser\ProfileBundle\Form\Type\AvatarFormType
-    ccdn_user_profile.form.type.bio.class:                  CCDNUser\ProfileBundle\Form\Type\BioFormType
-    ccdn_user_profile.form.type.contact.class:              CCDNUser\ProfileBundle\Form\Type\ContactFormType
-    ccdn_user_profile.form.type.personal.class:             CCDNUser\ProfileBundle\Form\Type\PersonalFormType
-    ccdn_user_profile.form.type.signature.class:            CCDNUser\ProfileBundle\Form\Type\SignatureFormType
-                                                            
-    ccdn_user_profile.form.handler.avatar.class:            CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler
-    ccdn_user_profile.form.handler.bio.class:               CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler
-    ccdn_user_profile.form.handler.contact.class:           CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler
-    ccdn_user_profile.form.handler.personal.class:          CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler
-    ccdn_user_profile.form.handler.signature.class:         CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
-
-    ccdn_user_profile.component.dashboard.integrator.class: CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
+#    ccdn_user_profile.component.dashboard.integrator.class: CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator
 
 services:
 

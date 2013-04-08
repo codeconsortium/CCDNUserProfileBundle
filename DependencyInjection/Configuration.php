@@ -50,8 +50,11 @@ class Configuration implements ConfigurationInterface
 
 		// Class file namespaces.
 		$this->addEntitySection($rootNode);
+		$this->addRepositorySection($rootNode);
 		$this->addGatewaySection($rootNode);
 		$this->addManagerSection($rootNode);
+		$this->addFormSection($rootNode);
+		$this->addComponentSection($rootNode);
 		
 		// Configuration stuff.
         $this->addSEOSection($rootNode);
@@ -66,7 +69,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addEntitySection(ArrayNodeDefinition $node)
 	{
@@ -92,7 +95,33 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     */
+    private function addRepositorySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('repository')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('profile')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+								->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Repository\ProfileRepository')->end()							
+							->end()
+						->end()
+					->end()
+				->end()
+			->end();
+	}
+	
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addGatewaySection(ArrayNodeDefinition $node)
     {
@@ -118,7 +147,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addManagerSection(ArrayNodeDefinition $node)
     {
@@ -143,8 +172,141 @@ class Configuration implements ConfigurationInterface
 	
     /**
      *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     */
+    private function addFormSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('form')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('type')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+		                        ->arrayNode('avatar')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\AvatarFormType')->end()							
+									->end()
+								->end()
+								->arrayNode('bio')
+								    ->addDefaultsIfNotSet()
+								    ->canBeUnset()
+								    ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\BioFormType')->end()							
+									->end()
+								->end()
+								->arrayNode('contact')
+								    ->addDefaultsIfNotSet()
+								    ->canBeUnset()
+								    ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\ContactFormType')->end()							
+									->end()
+								->end()
+								->arrayNode('personal')
+								    ->addDefaultsIfNotSet()
+								    ->canBeUnset()
+								    ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\PersonalFormType')->end()							
+									->end()
+								->end()
+								->arrayNode('signature')
+								    ->addDefaultsIfNotSet()
+								    ->canBeUnset()
+								    ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\SignatureFormType')->end()							
+									->end()
+								->end()
+							->end()
+						->end()
+                        ->arrayNode('handler')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+                            ->children()
+		                        ->arrayNode('avatar')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('bio')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('contact')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('personal')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler')->end()							
+									->end()
+								->end()
+		                        ->arrayNode('signature')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+		                            ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler')->end()							
+									->end()
+								->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end();
+	}
+
+    /**
+     *
+     * @access private
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     */
+    private function addComponentSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('component')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+		                ->arrayNode('dashboard')
+		                    ->addDefaultsIfNotSet()
+		                    ->canBeUnset()
+		                    ->children()
+				                ->arrayNode('integrator')
+				                    ->addDefaultsIfNotSet()
+				                    ->canBeUnset()
+				                    ->children()
+										->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Component\Dashboard\DashboardIntegrator')->end()							
+									->end()		
+								->end()
+							->end()
+						->end()
+					->end()
+				->end()
+			->end();
+	}
+	
+    /**
+     *
      * @access protected
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     protected function addSEOSection(ArrayNodeDefinition $node)
     {
@@ -165,7 +327,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addProfileSection(ArrayNodeDefinition $node)
     {
@@ -256,7 +418,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addItemBioSection(ArrayNodeDefinition $node)
     {
@@ -276,7 +438,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addItemSignatureSection(ArrayNodeDefinition $node)
     {
@@ -295,7 +457,7 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access private
-     * @param ArrayNodeDefinition $node
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      */
     private function addSidebarSection(ArrayNodeDefinition $node)
     {
