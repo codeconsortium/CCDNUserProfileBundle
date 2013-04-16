@@ -29,7 +29,9 @@ use Symfony\Component\Config\FileLocator;
 class CCDNUserProfileExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+	 *
+     * @access public
+	 * @return string
      */
     public function getAlias()
     {
@@ -38,7 +40,7 @@ class CCDNUserProfileExtension extends Extension
 
     /**
      *
-     * @access private
+     * @access public
 	 * @param array $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
@@ -48,20 +50,25 @@ class CCDNUserProfileExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
 		// Class file namespaces.
-        $this->getEntitySection($config, $container);
-        $this->getRepositorySection($config, $container);
-        $this->getGatewaySection($config, $container);
-        $this->getManagerSection($config, $container);
-		$this->getFormSection($config, $container);
-		$this->getComponentSection($config, $container);
+        $this
+			->getEntitySection($config, $container)
+	        ->getRepositorySection($config, $container)
+	        ->getGatewaySection($config, $container)
+	        ->getManagerSection($config, $container)
+			->getFormSection($config, $container)
+			->getComponentSection($config, $container)
+		;
 		
 		// Configuration stuff.
         $container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
-        $this->getSEOSection($config, $container);
-        $this->getProfileSection($config, $container);
-        $this->getItemBioSection($config, $container);
-        $this->getItemSignatureSection($config, $container);
-        $this->getSidebarSection($config, $container);
+		
+        $this
+			->getSEOSection($config, $container)
+	        ->getProfileSection($config, $container)
+	        ->getItemBioSection($config, $container)
+	        ->getItemSignatureSection($config, $container)
+	        ->getSidebarSection($config, $container)
+		;
 		
 		// Load Service definitions.
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -71,52 +78,65 @@ class CCDNUserProfileExtension extends Extension
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getEntitySection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.entity.profile.class', $config['entity']['profile']['class']);				
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getRepositorySection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.repository.profile.class', $config['repository']['profile']['class']);
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getGatewaySection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.gateway.profile.class', $config['gateway']['profile']['class']);
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getManagerSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.manager.profile.class', $config['manager']['profile']['class']);		
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getFormSection(array $config, ContainerBuilder $container)
     {
@@ -131,35 +151,44 @@ class CCDNUserProfileExtension extends Extension
         $container->setParameter('ccdn_user_profile.form.handler.contact.class', $config['form']['handler']['contact']['class']);
         $container->setParameter('ccdn_user_profile.form.handler.personal.class', $config['form']['handler']['personal']['class']);
         $container->setParameter('ccdn_user_profile.form.handler.signature.class', $config['form']['handler']['signature']['class']);
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getComponentSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.component.dashboard.integrator.class', $config['component']['dashboard']['integrator']['class']);		
+		
+		return $this;
 	}
 	
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
-    protected function getSEOSection(array $config, ContainerBuilder $container)
+    private function getSEOSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.seo.title_length', $config['seo']['title_length']);
+		
+		return $this;
     }
 
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getProfileSection(array $config, ContainerBuilder $container)
     {
@@ -187,38 +216,49 @@ class CCDNUserProfileExtension extends Extension
         $container->setParameter('ccdn_user_profile.profile.show.overview.last_login_datetime_format', $config['profile']['show']['overview']['last_login_datetime_format']);
 
         $container->setParameter('ccdn_user_profile.profile.show.bio.layout_template', $config['profile']['show']['bio']['layout_template']);
+		
+		return $this;
     }
 
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getItemBioSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.item_bio.enable_bb_parser', $config['item_bio']['enable_bb_parser']);
+		
+		return $this;
     }
 
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getItemSignatureSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.item_signature.enable_bb_parser', $config['item_signature']['enable_bb_parser']);
+		
+		return $this;
     }
 
     /**
      *
      * @access private
-     * @param array $config
-	 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @param array $config
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+	 * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getSidebarSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.sidebar.links', $config['sidebar']['links']);
+		
+		return $this;
     }
 }
