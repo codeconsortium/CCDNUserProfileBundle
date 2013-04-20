@@ -40,27 +40,27 @@ services:
     ccdn_user_profile.form.type.avatar:
         class: %ccdn_user_profile.form.type.avatar.class%
         arguments:
-            - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     ccdn_user_profile.form.type.personal:
         class: %ccdn_user_profile.form.type.personal.class%
         arguments: 
-            - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     ccdn_user_profile.form.type.contact:
         class: %ccdn_user_profile.form.type.contact.class%
         arguments:
-            - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     ccdn_user_profile.form.type.bio:
         class: %ccdn_user_profile.form.type.bio.class%
         arguments:
-            - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     ccdn_user_profile.form.type.signature:
         class: %ccdn_user_profile.form.type.signature.class%
         arguments:
-            - @doctrine
+            - %ccdn_user_profile.entity.profile.class%
 
     #
     # Profile Form Handlers.

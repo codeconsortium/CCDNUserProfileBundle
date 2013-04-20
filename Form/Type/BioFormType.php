@@ -23,6 +23,23 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class BioFormType extends AbstractType
 {
+	/**
+	 *
+	 * @access protected
+	 * @var string $profileClass
+	 */
+	protected $profileClass;
+	
+	/**
+	 *
+	 * @access public
+	 * @param string $profileClass
+	 */
+	public function __construct($profileClass)
+	{
+		$this->profileClass = $profileClass;
+	}
+	
     /**
      *
      * @access public
@@ -33,7 +50,7 @@ class BioFormType extends AbstractType
         $builder
             ->add('bio', 'bb_editor',
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.bio',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.bio',
 	            	'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
@@ -48,12 +65,12 @@ class BioFormType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' 			=> 'CCDNUser\ProfileBundle\Entity\Profile',
+            'data_class' 			=> $this->profileClass,
             'csrf_protection' 		=> true,
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
-            'intention'       		=> 'profile_item',
-            'validation_groups'		=> 'bio',
+            'intention'       		=> 'profile_item_bio',
+            'validation_groups'		=> array('update_bio'),
         );
     }
 

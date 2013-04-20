@@ -23,6 +23,23 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class ContactFormType extends AbstractType
 {
+	/**
+	 *
+	 * @access protected
+	 * @var string $profileClass
+	 */
+	protected $profileClass;
+	
+	/**
+	 *
+	 * @access public
+	 * @param string $profileClass
+	 */
+	public function __construct($profileClass)
+	{
+		$this->profileClass = $profileClass;
+	}
+	
     /**
      *
      * @access public
@@ -33,53 +50,53 @@ class ContactFormType extends AbstractType
         $builder
 	        ->add('msn', null,
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.msn',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.msn',
 		        	'translation_domain' => 'CCDNUserProfileBundle',
 		        )
 			)
 	        ->add('msn_is_public', 'checkbox',
 				array(
-					'required' => false,
-					'label' => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
+					'required'           => false,
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
 					'translation_domain' => 'CCDNUserProfileBundle',
 				)
 			)
 	        ->add('yahoo', null,
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.yahoo',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo',
 		        	'translation_domain' => 'CCDNUserProfileBundle',
 		        )
 			)
 	        ->add('yahoo_is_public', 'checkbox',
 				array(
-					'required' => false,
-					'label' => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
+					'required'           => false,
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
 					'translation_domain' => 'CCDNUserProfileBundle',
 				)
 			)
             ->add('aim', null,
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.aim',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.aim',
 	            	'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
             ->add('aim_is_public', 'checkbox',
 				array(
-					'required' => false,
-					'label' => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
+					'required'           => false,
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
 					'translation_domain' => 'CCDNUserProfileBundle',
 				)
 			)
             ->add('icq', null,
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.icq',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.icq',
 	            	'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
             ->add('icq_is_public', 'checkbox',
 				array(
-					'required' => false,
-					'label' => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
+					'required'           => false,
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
 					'translation_domain' => 'CCDNUserProfileBundle',
 				)
 			)
@@ -94,12 +111,12 @@ class ContactFormType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' 			=> 'CCDNUser\ProfileBundle\Entity\Profile',
+            'data_class' 			=> $this->profileClass,
             'csrf_protection' 		=> true,
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
-            'intention'       		=> 'profile_item',
-            'validation_groups' 	=> 'contact',
+            'intention'       		=> 'profile_item_contact',
+            'validation_groups' 	=> array('update_contact'),
         );
     }
 

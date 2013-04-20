@@ -1,46 +1,46 @@
-CCDNUser\ProfileBundle\Entity\Profile:
+%ccdn_user_profile.entity.profile.class%:
     properties:
         location:
-            - Type: { type: string, groups: [personal] }
-            - MaxLength: { limit: 255, groups: [personal] }
+            - Type: { type: string, groups: [update_personal] }
+            - MaxLength: { limit: 255, groups: [update_personal] }
         website:
-            - Type: { type: string, groups: [personal] }
-            - MaxLength: { limit: 255, groups: [personal] }
+            - Type: { type: string, groups: [update_personal] }
+            - MaxLength: { limit: 255, groups: [update_personal] }
 #            - Url: { protocols: {'http', 'https'}, groups: [personal] }
 
         aim:
-            - Type: { type: string, groups: [contact] }
-            - MaxLength: { limit: 255, groups: [contact] }
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
         aimIsPublic:
-            - Type: { type: bool, groups: [contact] }
+            - Type: { type: bool, groups: [update_contact] }
         msn:
-            - Type: { type: string, groups: [contact] }
-            - MaxLength: { limit: 255, groups: [contact] }
-            - Email: { groups: [contact] }
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Email: { groups: [update_contact] }
         msnIsPublic:
-            - Type: { type: bool, groups: [contact] }
+            - Type: { type: bool, groups: [update_contact] }
         icq:
-            - Type: { type: string, groups: [contact] }
-            - MaxLength: { limit: 255, groups: [contact] }
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
         icqIsPublic:
-            - Type: { type: bool, groups: [contact] }
+            - Type: { type: bool, groups: [update_contact] }
         yahoo:
-            - Type: { type: string, groups: [contact] }
-            - MaxLength: { limit: 255, groups: [contact] }
-            - Email: { groups: [contact] }
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Email: { groups: [update_contact] }
 #        yahooIsPublic:
 #            - Type: { type: bool, groups: [contact] }
 
         bio:
-            - Type: { type: string, groups: [bio] }
-            - MaxLength: { limit: 2000, groups: [bio] }
+            - Type: { type: string, groups: [update_bio] }
+            - MaxLength: { limit: 2000, groups: [update_bio] }
 
         signature:
-            - Type: { type: string, groups: [signature] }
-            - MaxLength: { limit: 255, groups: [signature] }
+            - Type: { type: string, groups: [update_signature] }
+            - MaxLength: { limit: 255, groups: [update_signature] }
 
         avatar:
-            - Type: { type: string, groups: [avatar] }
-            - MaxLength: { limit: 255, groups: [avatar] }
+            - Type: { type: string, groups: [update_avatar] }
+            - MaxLength: { limit: 255, groups: [update_avatar] }
         avatarIsRemote:
-            - Type: { type: bool, groups: [avatar] }
+            - Type: { type: bool, groups: [update_avatar] }

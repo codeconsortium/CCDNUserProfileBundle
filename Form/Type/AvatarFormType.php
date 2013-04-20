@@ -23,6 +23,23 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class AvatarFormType extends AbstractType
 {
+	/**
+	 *
+	 * @access protected
+	 * @var string $profileClass
+	 */
+	protected $profileClass;
+	
+	/**
+	 *
+	 * @access public
+	 * @param string $profileClass
+	 */
+	public function __construct($profileClass)
+	{
+		$this->profileClass = $profileClass;
+	}
+	
     /**
      *
      * @access public
@@ -33,14 +50,14 @@ class AvatarFormType extends AbstractType
         $builder
             ->add('avatar_is_remote', 'checkbox',
 				array(
-					'required' => false,
-					'label' => 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote',
+					'required'           => false,
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote',
 					'translation_domain' => 'CCDNUserProfileBundle',
 				)
 			)
             ->add('avatar', null,
 				array(
-					'label' => 'ccdn_user_profile.form.label.profile.edit.avatar',
+					'label'              => 'ccdn_user_profile.form.label.profile.edit.avatar',
 	            	'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
@@ -55,12 +72,12 @@ class AvatarFormType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' 			=> 'CCDNUser\ProfileBundle\Entity\Profile',
+            'data_class' 			=> $this->profileClass,
             'csrf_protection' 		=> true,
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
-            'intention'       		=> 'profile_item',
-            'validation_groups' 	=> 'avatar',
+            'intention'       		=> 'profile_item_avatar',
+            'validation_groups' 	=> array('update_avatar'),
         );
     }
 

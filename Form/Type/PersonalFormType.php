@@ -23,6 +23,23 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class PersonalFormType extends AbstractType
 {
+	/**
+	 *
+	 * @access protected
+	 * @var string $profileClass
+	 */
+	protected $profileClass;
+	
+	/**
+	 *
+	 * @access public
+	 * @param string $profileClass
+	 */
+	public function __construct($profileClass)
+	{
+		$this->profileClass = $profileClass;
+	}
+	
     /**
      *
      * @access public
@@ -33,13 +50,13 @@ class PersonalFormType extends AbstractType
         $builder
             ->add('website', null,
 				array(
-	            	'label' => 'ccdn_user_profile.form.label.profile.edit.website',
+	            	'label'              => 'ccdn_user_profile.form.label.profile.edit.website',
 					'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
             ->add('location', null,
 				array(
-	            	'label' => 'ccdn_user_profile.form.label.profile.edit.location',
+	            	'label'              => 'ccdn_user_profile.form.label.profile.edit.location',
 					'translation_domain' => 'CCDNUserProfileBundle',
 	            )
 			)
@@ -54,12 +71,12 @@ class PersonalFormType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' 			=> 'CCDNUser\ProfileBundle\Entity\Profile',
+            'data_class' 			=> $this->profileClass,
             'csrf_protection' 		=> true,
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
-            'intention'       		=> 'profile_item',
-            'validation_groups'		=> 'personal',
+            'intention'       		=> 'profile_item_personal',
+            'validation_groups'		=> array('update_personal'),
         );
     }
 
