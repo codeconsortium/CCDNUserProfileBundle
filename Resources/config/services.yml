@@ -105,7 +105,6 @@ services:
     #
     ccdn_user_profile.component.dashboard.integrator:
         class: %ccdn_user_profile.component.dashboard.integrator.class%
-        arguments: [@service_container]
         tags:
             - { name: ccdn_component_dashboard.integrator }
     

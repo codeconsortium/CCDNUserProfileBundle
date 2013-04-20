@@ -13,43 +13,72 @@
 
 namespace CCDNUser\ProfileBundle\Component\Dashboard;
 
-use CCDNComponent\DashboardBundle\Component\Integrator\BaseIntegrator;
-use CCDNComponent\DashboardBundle\Component\Integrator\IntegratorInterface;
+use CCDNComponent\DashboardBundle\Component\Integrator\Model\BuilderInterface;
 
 /**
  *
  * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @version 2.0
  */
-class DashboardIntegrator extends BaseIntegrator implements IntegratorInterface
+class DashboardIntegrator
 {
-
     /**
-     *
-     * Structure of $resources
-     * 	[DASHBOARD_PAGE <string>]
-     * 		[CATEGORY_NAME <string>]
-     *			[ROUTE_FOR_LINK <string>]
-     *				[AUTH <string>] (optional)
-     *				[URL_LINK <string>]
-     *				[URL_NAME <string>]
 	 * 
 	 * @access public
-	 * @return array $resources
+     * @param CCDNComponent\DashboardBundle\Component\Integrator\Model\BuilderInterface $builder
      */
-    public function getResources()
-    {
-        $resources = array(
-            'user' => array(
-                'Account' => array(
-                    'ccdn_user_profile_show' => array('auth' => 'ROLE_USER', 'name' => 'My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
-                //	'ccdn_user_profile_edit' => array('auth' => 'ROLE_USER', 'name' => 'Edit My Profile', 'icon' => $this->basePath . '/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png'),
-                ),
-            ),
-
-        );
-
-        return $resources;
+    public function build(BuilderInterface $builder)
+    {	
+		$builder
+			->addCategory('profile')
+				->setLabel('ccdn_user_profile.dashboard.categories.profile', array(), 'CCDNUserProfileBundle')
+				->addPages()
+					->addPage('profile')
+						->setLabel('ccdn_user_profile.dashboard.pages.profile', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addPage('account')
+						->setLabel('ccdn_user_profile.dashboard.pages.account', array(), 'CCDNUserProfileBundle')
+					->end()
+				->end()
+				->addLinks()				
+					->addLink('show_profile')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_show')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.dashboard.links.show_profile', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addLink('ccdn_user_profile_edit_personal')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_edit_personal')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.title.profile.edit_personal', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addLink('ccdn_user_profile_contact')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_edit_contact')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.title.profile.edit_contact', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addLink('ccdn_user_profile_edit_avatar')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_edit_avatar')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.title.profile.change_avatar', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addLink('ccdn_user_profile_edit_bio')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_edit_bio')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.title.profile.edit_bio', array(), 'CCDNUserProfileBundle')
+					->end()
+					->addLink('ccdn_user_profile_edit_signature')
+						->setAuthRole('ROLE_USER')
+						->setRoute('ccdn_user_profile_edit_signature')
+						->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
+						->setLabel('ccdn_user_profile.title.profile.edit_signature', array(), 'CCDNUserProfileBundle')
+					->end()
+				->end()
+			->end()
+		;
     }
-
 }

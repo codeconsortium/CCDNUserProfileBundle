@@ -1,3 +1,13 @@
+ccdn_user_profile:
+    dashboard:
+        pages:
+            account: Account
+            profile: Profile
+        categories:
+            profile: Profile
+        links:
+            show_profile: Show Profile
+
 ccdn_user_profile.layout.header.profile: 'Profile'
 
 #
@@ -5,7 +15,11 @@ ccdn_user_profile.layout.header.profile: 'Profile'
 #
 ccdn_user_profile.title.profile.show: 'Profile: %user_name%.'
 ccdn_user_profile.title.profile.edit: "Profile: Edit %user_name%'s Profile."
-
+ccdn_user_profile.title.profile.edit_personal: 'Edit Contact'
+ccdn_user_profile.title.profile.edit_contact: 'Edit Contact'
+ccdn_user_profile.title.profile.change_avatar: 'Change Avatar'
+ccdn_user_profile.title.profile.edit_bio: 'Edit Bio'
+ccdn_user_profile.title.profile.edit_signature: 'Edit Signature'
 #
 # Crumbs.
 #
