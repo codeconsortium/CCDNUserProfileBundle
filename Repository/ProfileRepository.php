@@ -24,44 +24,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProfileRepository extends EntityRepository
 {
-    /**
-     *
-     * @access public
-     * @param int $userId
-     */
-    public function findOneByIdJoinedToUser($userId)
-    {
-        $query = $this->getEntityManager()
-            ->createQuery('
-                SELECT u, p	FROM CCDNUserUserBundle:User u
-                LEFT JOIN u.profile p
-                WHERE u.id = :id')
-            ->setParameter('id', $userId);
 
-        try {
-            return $query->getSingleResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            return null;
-        }
-    }
-	
-    /**
-     *
-     * @access public
-     * @param int $userId
-     */
-    public function findOneUserById($userId)
-    {
-        $query = $this->getEntityManager()
-            ->createQuery('
-                SELECT u FROM CCDNUserUserBundle:User u
-                WHERE u.id = :id')
-            ->setParameter('id', $userId);
-
-        try {
-            return $query->getSingleResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            return null;
-        }
-    }
 }
