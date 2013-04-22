@@ -23,9 +23,11 @@ use Doctrine\ORM\EntityRepository;
  *
  * @author   Reece Fowell <reece@codeconsortium.com>
  * @license  http://opensource.org/licenses/MIT MIT
- * @version  Release: 1.0
+ * @version  Release: 2.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
+ *
+ * @deprecated (use managers instead)
  */
 class ProfileRepository extends EntityRepository
 {
