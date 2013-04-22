@@ -18,11 +18,15 @@ use Doctrine\ORM\EntityRepository;
 /**
  * ProfileRepository
  *
+ * @category CCDNUser
+ * @package  ProfileBundle
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class ProfileRepository extends EntityRepository
 {
-
 }

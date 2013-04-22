@@ -18,28 +18,34 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class PersonalFormType extends AbstractType
 {
-	/**
-	 *
-	 * @access protected
-	 * @var string $profileClass
-	 */
-	protected $profileClass;
-	
-	/**
-	 *
-	 * @access public
-	 * @param string $profileClass
-	 */
-	public function __construct($profileClass)
-	{
-		$this->profileClass = $profileClass;
-	}
-	
+    /**
+     *
+     * @access protected
+     * @var string $profileClass
+     */
+    protected $profileClass;
+
+    /**
+     *
+     * @access public
+     * @param string $profileClass
+     */
+    public function __construct($profileClass)
+    {
+        $this->profileClass = $profileClass;
+    }
+
     /**
      *
      * @access public
@@ -49,18 +55,18 @@ class PersonalFormType extends AbstractType
     {
         $builder
             ->add('website', null,
-				array(
-	            	'label'              => 'ccdn_user_profile.form.label.profile.edit.website',
-					'translation_domain' => 'CCDNUserProfileBundle',
-	            )
-			)
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.website',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('location', null,
-				array(
-	            	'label'              => 'ccdn_user_profile.form.label.profile.edit.location',
-					'translation_domain' => 'CCDNUserProfileBundle',
-	            )
-			)
-		;
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.location',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
+        ;
     }
 
     /**

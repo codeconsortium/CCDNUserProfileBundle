@@ -12,86 +12,161 @@
  */
 
 namespace CCDNUser\ProfileBundle\Entity;
-use Doctrine\ORM\Mapping as ORM;
 
 use CCDNUser\ProfileBundle\Model\Profile as AbstractProfile;
 
+/**
+ *
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
+ */
 class Profile extends AbstractProfile
 {
-	/** @var integer $id */
+    /**
+     *
+     * @access protected
+     * @var integer $id
+     */
     protected $id;
 
-    /** @var Boolean $avatarIsRemote*/
+    /**
+     *
+     * @access protected
+     * @var Boolean $avatarIsRemote
+     */
     protected $avatarIsRemote = false;
 
-    /** @var string $avatar */
+    /**
+     *
+     * @access protected
+     * @var string $avatar
+     */
     protected $avatar;
 
-    /** @var string $aim */
+    /**
+     *
+     * @access protected
+     * @var string $aim
+     */
     protected $aim;
 
-    /** @var Boolean $aimIsPublic */
+    /**
+     *
+     * @access protected
+     * @var Boolean $aimIsPublic
+     */
     protected $aimIsPublic = false;
 
-    /** @var string $msn */
+    /**
+     *
+     * @access protected
+     * @var string $msn
+     */
     protected $msn;
 
-    /** @var Boolean $msnIsPublic */
+    /**
+     *
+     * @access protected
+     * @var Boolean $msnIsPublic
+     */
     protected $msnIsPublic = false;
 
-    /** @var string $icq */
+    /**
+     *
+     * @access protected
+     * @var string $icq
+     */
     protected $icq;
 
-    /** @var Boolean $icqIsPublic */
+    /**
+     *
+     * @access protected
+     * @var Boolean $icqIsPublic
+     */
     protected $icqIsPublic = false;
 
-    /** @var string $yahoo */
+    /**
+     *
+     * @access protected
+     * @var string $yahoo
+     */
     protected $yahoo;
 
-    /** @var Boolean $yahooIsPublic */
+    /**
+     *
+     * @access protected
+     * @var Boolean $yahooIsPublic
+     */
     protected $yahooIsPublic = false;
 
-    /** @var string $website */
+    /**
+     *
+     * @access protected
+     * @var string $website
+     */
     protected $website;
 
-    /** @var string $location */
+    /**
+     *
+     * @access protected
+     * @var string $location
+     */
     protected $location;
 
-    /** @var string $bio */
+    /**
+     *
+     * @access protected
+     * @var string $bio
+     */
     protected $bio;
 
-    /** @var string $signature */
+    /**
+     *
+     * @access protected
+     * @var string $signature
+     */
     protected $signature;
 
-	protected $contactPoints = array(
-			'msn' => array(
-				'contact' => 'getMsn',
-				'is_public' => 'getMsnIsPublic',
-			),
-			'aim' => array(
-				'contact' => 'getAim',
-				'is_public' => 'getAimIsPublic',				
-			),
-			'icq' => array(
-				'contact' => 'getIcq',
-				'is_public' => 'getIcqIsPublic',
-			),
-			'yahoo' => array(
-				'contact' => 'getYahoo',
-				'is_public' => 'getYahooIsPublic',
-			),
-		);
-		
-	/**
-	 *
-	 * @access public
-	 */
+    /**
+     *
+     * @access protected
+     * @var array $contactPoints
+     */
+    protected $contactPoints = array(
+            'msn' => array(
+                'contact' => 'getMsn',
+                'is_public' => 'getMsnIsPublic',
+            ),
+            'aim' => array(
+                'contact' => 'getAim',
+                'is_public' => 'getAimIsPublic',
+            ),
+            'icq' => array(
+                'contact' => 'getIcq',
+                'is_public' => 'getIcqIsPublic',
+            ),
+            'yahoo' => array(
+                'contact' => 'getYahoo',
+                'is_public' => 'getYahooIsPublic',
+            ),
+        );
+
+    /**
+     *
+     * @access public
+     */
     public function __construct()
     {
         parent::__construct();
         // your own logic
     }
-	
+
     /**
      * Get id
      *
@@ -111,18 +186,18 @@ class Profile extends AbstractProfile
     {
         return $this->avatarIsRemote;
     }
-	
+
     /**
      * Set avatarIsRemote
      *
-     * @param boolean $avatarIsRemote
-	 * @return Profile
+     * @param  boolean $avatarIsRemote
+     * @return Profile
      */
     public function setAvatarIsRemote($avatarIsRemote)
     {
         $this->avatarIsRemote = $avatarIsRemote;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -134,18 +209,18 @@ class Profile extends AbstractProfile
     {
         return $this->avatar;
     }
-	
+
     /**
      * Set avatar
      *
-     * @param string $avatar
-	 * @return Profile
+     * @param  string  $avatar
+     * @return Profile
      */
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -157,18 +232,18 @@ class Profile extends AbstractProfile
     {
         return $this->aim;
     }
-	
+
     /**
      * Set aim
      *
-     * @param string $aim
-	 * @return Profile
+     * @param  string  $aim
+     * @return Profile
      */
     public function setAim($aim)
     {
         $this->aim = $aim;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -184,14 +259,14 @@ class Profile extends AbstractProfile
     /**
      * Set aimIsPublic
      *
-     * @param boolean $aimIsPublic
-	 * @return Profile
+     * @param  boolean $aimIsPublic
+     * @return Profile
      */
     public function setAimIsPublic($aimIsPublic)
     {
         $this->aimIsPublic = $aimIsPublic;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -207,14 +282,14 @@ class Profile extends AbstractProfile
     /**
      * Set msn
      *
-     * @param string $msn
-	 * @return Profile
+     * @param  string  $msn
+     * @return Profile
      */
     public function setMsn($msn)
     {
         $this->msn = $msn;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -230,14 +305,14 @@ class Profile extends AbstractProfile
     /**
      * Set msnIsPublic
      *
-     * @param boolean $msnIsPublic
-	 * @return Profile
+     * @param  boolean $msnIsPublic
+     * @return Profile
      */
     public function setMsnIsPublic($msnIsPublic)
     {
         $this->msnIsPublic = $msnIsPublic;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -253,14 +328,14 @@ class Profile extends AbstractProfile
     /**
      * Set icq
      *
-     * @param string $icq
-	 * @return Profile
+     * @param  string  $icq
+     * @return Profile
      */
     public function setIcq($icq)
     {
         $this->icq = $icq;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -272,18 +347,18 @@ class Profile extends AbstractProfile
     {
         return $this->icqIsPublic;
     }
-	
+
     /**
      * Set icqIsPublic
      *
-     * @param boolean $icqIsPublic
-	 * @return Profile
+     * @param  boolean $icqIsPublic
+     * @return Profile
      */
     public function setIcqIsPublic($icqIsPublic)
     {
         $this->icqIsPublic = $icqIsPublic;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -295,18 +370,18 @@ class Profile extends AbstractProfile
     {
         return $this->yahoo;
     }
-	
+
     /**
      * Set yahoo
      *
-     * @param string $yahoo
-	 * @return Profile
+     * @param  string  $yahoo
+     * @return Profile
      */
     public function setYahoo($yahoo)
     {
         $this->yahoo = $yahoo;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -322,14 +397,14 @@ class Profile extends AbstractProfile
     /**
      * Set yahooIsPublic
      *
-     * @param boolean $yahooIsPublic
-	 * @return Profile
+     * @param  boolean $yahooIsPublic
+     * @return Profile
      */
     public function setYahooIsPublic($yahooIsPublic)
     {
         $this->yahooIsPublic = $yahooIsPublic;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -341,18 +416,18 @@ class Profile extends AbstractProfile
     {
         return $this->website;
     }
-	
+
     /**
      * Set website
      *
-     * @param string $website
-	 * @return Profile
+     * @param  string  $website
+     * @return Profile
      */
     public function setWebsite($website)
     {
         $this->website = $website;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -364,18 +439,18 @@ class Profile extends AbstractProfile
     {
         return $this->location;
     }
-	
+
     /**
      * Set location
      *
-     * @param string $location
-	 * @return Profile
+     * @param  string  $location
+     * @return Profile
      */
     public function setLocation($location)
     {
         $this->location = $location;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -387,18 +462,18 @@ class Profile extends AbstractProfile
     {
         return $this->bio;
     }
-	
+
     /**
      * Set bio
      *
-     * @param text $bio
-	 * @return Profile
+     * @param  text    $bio
+     * @return Profile
      */
     public function setBio($bio)
     {
         $this->bio = $bio;
-		
-		return $this;
+
+        return $this;
     }
 
     /**
@@ -414,13 +489,13 @@ class Profile extends AbstractProfile
     /**
      * Set signature
      *
-     * @param string $signature
-	 * @return Profile
+     * @param  string  $signature
+     * @return Profile
      */
     public function setSignature($signature)
     {
         $this->signature = $signature;
-		
-		return $this;
+
+        return $this;
     }
 }

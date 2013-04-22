@@ -17,45 +17,47 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-use CCDNUser\ProfileBundle\Entity\Profile;
-
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class LoadProfileData extends AbstractFixture implements OrderedFixtureInterface
 {
-
-	/**
-	 *
-	 * @access public
-	 * @param ObjectManager $manager
-	 */
+    /**
+     *
+     * @access public
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-		$profileAdmin = $manager->merge($this->getReference('user-admin'))->getProfile();		
-		$profileAdmin->setLocation('London, United Kingdom');
-		$profileAdmin->setBio('');
-		$profileAdmin->setSignature('');
-		
-		$profileTest = $manager->merge($this->getReference('user-test'))->getProfile();
-		$profileTest->setLocation('London, United Kingdom');
-		$profileTest->setBio('');
-		$profileTest->setSignature('');
-		
-		$manager->persist($profileAdmin, $profileTest);
-		$manager->flush();
+        $profileAdmin = $manager->merge($this->getReference('user-admin'))->getProfile();
+        $profileAdmin->setLocation('London, United Kingdom');
+        $profileAdmin->setBio('');
+        $profileAdmin->setSignature('');
+
+        $profileTest = $manager->merge($this->getReference('user-test'))->getProfile();
+        $profileTest->setLocation('London, United Kingdom');
+        $profileTest->setBio('');
+        $profileTest->setSignature('');
+
+        $manager->persist($profileAdmin, $profileTest);
+        $manager->flush();
     }
 
-	/**
-	 *
-	 * @access public
-	 * @return int
-	 */
-	public function getOrder()
-	{
-		return 2;
-	}
-	
+    /**
+     *
+     * @access public
+     * @return int
+     */
+    public function getOrder()
+    {
+        return 2;
+    }
 }

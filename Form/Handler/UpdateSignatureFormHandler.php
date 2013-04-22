@@ -16,102 +16,107 @@ namespace CCDNUser\ProfileBundle\Form\Handler;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use CCDNUser\ProfileBundle\Manager\BaseManagerInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class UpdateSignatureFormHandler
 {
     /**
-	 *
-	 * @access protected
-	 * @var \Symfony\Component\Form\FormFactory $factory
-	 */
+     *
+     * @access protected
+     * @var \Symfony\Component\Form\FormFactory $factory
+     */
     protected $factory;
-	
-	/**
-	 *
-	 * @access protected
-	 * @var \CCDNUser\ProfileBundle\Form\Type\SignatureFormType $signatureFormType
-	 */
-	protected $signatureFormType;
-	
+
     /**
-	 * 
-	 * @access protected
-	 * @var \CCDNUser\ProfileBundle\Form\Type\SignatureFornType $form 
-	 */
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Form\Type\SignatureFormType $signatureFormType
+     */
+    protected $signatureFormType;
+
+    /**
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Form\Type\SignatureFornType $form
+     */
     protected $form;
-	
+
     /**
-	 *
-	 * @access protected
-	 * @var \CCDNUser\ProfileBundle\Manager\BaseManagerInterface $manager
-	 */
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Manager\BaseManagerInterface $manager
+     */
     protected $manager;
 
     /**
-	 * 
-	 * @access protected
-	 * @var \CCDNUser\ProfileBundle\Entity\Profile $profile 
-	 */
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Entity\Profile $profile
+     */
     protected $profile;
-	
+
     /**
      *
      * @access public
-     * @param \Symfony\Component\Form\FormFactory $factory
-	 * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType $signatureFormType
-	 * @param \CCDNUser\ProfileBundle\Manager\BaseManagerInterface $manager
+     * @param \Symfony\Component\Form\FormFactory                  $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType  $signatureFormType
+     * @param \CCDNUser\ProfileBundle\Manager\BaseManagerInterface $manager
      */
     public function __construct(FormFactory $factory, $signatureFormType, BaseManagerInterface $manager)
     {
         $this->factory = $factory;
-		$this->signatureFormType = $signatureFormType;
-		
+        $this->signatureFormType = $signatureFormType;
+
         $this->manager = $manager;
     }
 
-	/**
-	 *
-	 * @access public
-	 * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
-	 * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
-	 */
-	public function setProfile(Profile $profile)
-	{
-		$this->profile = $profile;
-		
-		return $this;
-	}
-	
-	/**
-	 *
-	 * @access public
-	 * @param \Symfony\Component\HttpFoundation\Request $request
-	 * @return string
-	 */
-	public function getSubmitAction(Request $request)
-	{
-		if ($request->request->has('submit')) {
-			$action = key($request->request->get('submit'));
-		} else {
-			$action = 'post';
-		}
-		
-		return $action;
-	}
-	
     /**
      *
      * @access public
-	 * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                          $profile
+     * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
+     */
+    public function setProfile(Profile $profile)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @return string
+     */
+    public function getSubmitAction(Request $request)
+    {
+        if ($request->request->has('submit')) {
+            $action = key($request->request->get('submit'));
+        } else {
+            $action = 'post';
+        }
+
+        return $action;
+    }
+
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\HttpFoundation\Request $request
      * @return bool
      */
     public function process(Request $request)
@@ -119,16 +124,16 @@ class UpdateSignatureFormHandler
         $this->getForm();
 
         if ($request->getMethod() == 'POST') {
-			$this->form->bindRequest($request);
+            $this->form->bindRequest($request);
 
             if ($this->form->isValid()) {
-	            $user = $this->form->getData();
+                $user = $this->form->getData();
 
-				if ($this->getSubmitAction($request) == 'save') {
-	                $this->onSuccess($user);
+                if ($this->getSubmitAction($request) == 'save') {
+                    $this->onSuccess($user);
 
-	                return true;					
-				}
+                    return true;
+                }
             }
         }
 
@@ -143,7 +148,7 @@ class UpdateSignatureFormHandler
     public function getForm()
     {
         if (null == $this->form) {
-			$this->form = $this->factory->create($this->signatureFormType, $this->profile);
+            $this->form = $this->factory->create($this->signatureFormType, $this->profile);
         }
 
         return $this->form;
@@ -152,7 +157,7 @@ class UpdateSignatureFormHandler
     /**
      *
      * @access protected
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile         $profile
      * @return \CCDNUser\ProfileBundle\Manager\ProfileManager
      */
     protected function onSuccess(Profile $profile)

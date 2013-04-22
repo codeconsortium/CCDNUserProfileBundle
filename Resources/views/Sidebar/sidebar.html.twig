@@ -2,15 +2,15 @@
 	{%- set route = app.request.attributes.get('_route') -%}
 
 	<li class="nav-header">{{- 'ccdn_user_profile.sidebar.header.navigation' | trans({}, 'CCDNUserProfileBundle') -}}</li>
-	
-	{%- if is_granted("ROLE_USER") -%}	
+
+	{%- if is_granted("ROLE_USER") -%}
 		{%- if user is not defined -%}
 			<li class="active">
 				<a href="{{- path('ccdn_user_profile_show') -}}">
 					<i class="icon-white icon-user"></i>
 					{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
-			</li>		
+			</li>
 		{%- else -%}
 			{%- if app.user.id == user.id -%}
 				<li class="active">
@@ -26,9 +26,9 @@
 						{{- 'ccdn_user_profile.sidebar.link.profile.view' |trans({}, 'CCDNUserProfileBundle') -}}
 					</a>
 				</li>
-			
+
 				<li class="divider"></li>
-				
+
 				<li class="active">
 					<a href="{{- path('ccdn_user_profile_show_by_id', {'profileId':profile.id}) -}}">
 						<i class="icon-white icon-user"></i>
@@ -38,5 +38,5 @@
 			{%- endif -%}
 		{%- endif -%}
 	{%- endif -%}
-	
+
 {%- endspaceless -%}

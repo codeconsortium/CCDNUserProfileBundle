@@ -28,7 +28,7 @@ services:
     #
     ccdn_user_profile.manager.profile:
         class: %ccdn_user_profile.manager.profile.class%
-        arguments: 
+        arguments:
             - @doctrine
             - @security.context
             - @ccdn_user_profile.gateway.profile
@@ -44,7 +44,7 @@ services:
 
     ccdn_user_profile.form.type.personal:
         class: %ccdn_user_profile.form.type.personal.class%
-        arguments: 
+        arguments:
             - %ccdn_user_profile.entity.profile.class%
 
     ccdn_user_profile.form.type.contact:
@@ -81,7 +81,7 @@ services:
 
     ccdn_user_profile.form.handler.contact:
         class: %ccdn_user_profile.form.handler.contact.class%
-        arguments: 
+        arguments:
             - @form.factory
             - @ccdn_user_profile.form.type.contact
             - @ccdn_user_profile.manager.profile
@@ -107,4 +107,3 @@ services:
         class: %ccdn_user_profile.component.dashboard.integrator.class%
         tags:
             - { name: ccdn_component_dashboard.integrator }
-    

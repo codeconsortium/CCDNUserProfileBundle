@@ -1,4 +1,16 @@
 <?php
+
+/*
+ * This file is part of the CCDNUser ProfileBundle
+ *
+ * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
+ *
+ * Available on github <http://www.github.com/codeconsortium/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace CCDNUser\ProfileBundle\Tests\Repository;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -6,18 +18,24 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use CCDNUser\UserBundle\Entity\User;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
+/**
+ *
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
+ */
 class ProfileRepositoryFunctionalTest extends WebTestCase
 {
-	
-	
-	
     /**
 	 *
      * @var \Doctrine\ORM\EntityManager
      */
     private $em;
-
-
 
 	/**
 	 *
@@ -27,10 +45,9 @@ class ProfileRepositoryFunctionalTest extends WebTestCase
     {
         $kernel = static::createKernel();
         $kernel->boot();
+		
         $this->em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
-
-
 
 	/**
 	 *
@@ -51,8 +68,6 @@ class ProfileRepositoryFunctionalTest extends WebTestCase
 		
 		return $user;
 	}
-	
-
 
 	/**
 	 *
@@ -71,8 +86,6 @@ class ProfileRepositoryFunctionalTest extends WebTestCase
 		
 		return $profile;
 	}
-	
-
 
 	/**
 	 *
@@ -101,5 +114,4 @@ class ProfileRepositoryFunctionalTest extends WebTestCase
 		
         $this->assertTrue(((is_object($result) && ($result instanceof User)) ? true : false));
     }
-
 }

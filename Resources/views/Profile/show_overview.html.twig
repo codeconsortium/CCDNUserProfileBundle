@@ -63,7 +63,7 @@
 						</tr>
 					{%- endif -%}
 				{%- endif -%}
-				
+
 				{%- if profile.getLocation is not null -%}
 					<tr>
 						<td class="right">{{- 'ccdn_user_profile.profile.table.body.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
@@ -80,7 +80,7 @@
 			</tbody>
 		</table>
 	</section>
-	
+
 	<header class="row-fluid">
 		<div class="span9">
 			<h3>{{- 'ccdn_user_profile.profile.show.overview.contact' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
@@ -88,7 +88,7 @@
 		{%- if is_granted('ROLE_USER') -%}
 			{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
 				<div class="span3 btn-right">
-					<a class="btn" href="{{- path('ccdn_user_profile_edit_contact', {'profileId':profile.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>						
+					<a class="btn" href="{{- path('ccdn_user_profile_edit_contact', {'profileId':profile.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 				</div>
 			{%- endif -%}
 		{%- endif -%}
@@ -160,9 +160,9 @@
 			{%- endif -%}
 		{%- endif -%}
 	</section>
-	
+
 	<br>
-	
+
 	{%- endspaceless -%}
 
 {% endblock body_content %}

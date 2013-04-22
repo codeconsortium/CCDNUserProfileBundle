@@ -28,14 +28,14 @@
 						<h3>{{- 'heading.edit.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 					</div>
 				</div>
-			
+
 				{{- form_errors(form) -}}
-			
+
 				{{- form_widget(form) -}}
-			
+
 				<div class="form-actions">
 					<input type="submit" name="submit[save]" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">
-				
+
 					<a class="btn" href="{{- path('ccdn_user_profile_show_by_id', {'profileId':profile.id}) -}}">
 						{{- 'ccdn_user_profile.form.button.profile.edit.cancel' |trans({}, 'CCDNUserProfileBundle') -}}
 					</a>
@@ -44,7 +44,7 @@
 			</fieldset>
 		</form>
 	</section>
-	
+
 	{%- endspaceless -%}
 
 {% endblock body_content %}

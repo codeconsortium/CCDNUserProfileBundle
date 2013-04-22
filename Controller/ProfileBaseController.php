@@ -18,30 +18,36 @@ use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class ProfileBaseController extends BaseController
 {
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
-	 * @return \CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                         $profile
+     * @return \CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler
      */
     public function getFormHandlerToEditPersonal(Profile $profile)
-    {		
+    {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.personal');
 
         $formHandler->setProfile($profile);
-		
-		return $formHandler;
+
+        return $formHandler;
     }
 
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                        $profile
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler
      */
     public function getFormHandlerToEditContact(Profile $profile)
@@ -49,14 +55,14 @@ class ProfileBaseController extends BaseController
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.contact');
 
         $formHandler->setProfile($profile);
-		
-		return $formHandler;
+
+        return $formHandler;
     }
 
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                       $profile
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler
      */
     public function getFormHandlerToEditAvatar(Profile $profile)
@@ -64,14 +70,14 @@ class ProfileBaseController extends BaseController
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.avatar');
 
         $formHandler->setProfile($profile);
-		
-		return $formHandler;
+
+        return $formHandler;
     }
 
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                    $profile
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler
      */
     public function getFormHandlerToEditBio(Profile $profile)
@@ -79,14 +85,14 @@ class ProfileBaseController extends BaseController
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.bio');
 
         $formHandler->setProfile($profile);
-		
-		return $formHandler;
+
+        return $formHandler;
     }
 
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                          $profile
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
      */
     public function getFormHandlerToEditSignature(Profile $profile)
@@ -94,7 +100,7 @@ class ProfileBaseController extends BaseController
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.signature');
 
         $formHandler->setProfile($profile);
-		
-		return $formHandler;
+
+        return $formHandler;
     }
 }

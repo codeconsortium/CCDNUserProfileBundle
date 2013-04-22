@@ -18,28 +18,34 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  *
- * @author Reece Fowell <reece@codeconsortium.com>
- * @version 1.0
+ * @category CCDNUser
+ * @package  ProfileBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 1.0
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
+ *
  */
 class ContactFormType extends AbstractType
 {
-	/**
-	 *
-	 * @access protected
-	 * @var string $profileClass
-	 */
-	protected $profileClass;
-	
-	/**
-	 *
-	 * @access public
-	 * @param string $profileClass
-	 */
-	public function __construct($profileClass)
-	{
-		$this->profileClass = $profileClass;
-	}
-	
+    /**
+     *
+     * @access protected
+     * @var string $profileClass
+     */
+    protected $profileClass;
+
+    /**
+     *
+     * @access public
+     * @param string $profileClass
+     */
+    public function __construct($profileClass)
+    {
+        $this->profileClass = $profileClass;
+    }
+
     /**
      *
      * @access public
@@ -48,59 +54,59 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	        ->add('msn', null,
-				array(
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.msn',
-		        	'translation_domain' => 'CCDNUserProfileBundle',
-		        )
-			)
-	        ->add('msn_is_public', 'checkbox',
-				array(
-					'required'           => false,
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
-					'translation_domain' => 'CCDNUserProfileBundle',
-				)
-			)
-	        ->add('yahoo', null,
-				array(
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo',
-		        	'translation_domain' => 'CCDNUserProfileBundle',
-		        )
-			)
-	        ->add('yahoo_is_public', 'checkbox',
-				array(
-					'required'           => false,
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
-					'translation_domain' => 'CCDNUserProfileBundle',
-				)
-			)
+            ->add('msn', null,
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.msn',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
+            ->add('msn_is_public', 'checkbox',
+                array(
+                    'required'           => false,
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
+            ->add('yahoo', null,
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
+            ->add('yahoo_is_public', 'checkbox',
+                array(
+                    'required'           => false,
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('aim', null,
-				array(
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.aim',
-	            	'translation_domain' => 'CCDNUserProfileBundle',
-	            )
-			)
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.aim',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('aim_is_public', 'checkbox',
-				array(
-					'required'           => false,
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
-					'translation_domain' => 'CCDNUserProfileBundle',
-				)
-			)
+                array(
+                    'required'           => false,
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('icq', null,
-				array(
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.icq',
-	            	'translation_domain' => 'CCDNUserProfileBundle',
-	            )
-			)
+                array(
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.icq',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('icq_is_public', 'checkbox',
-				array(
-					'required'           => false,
-					'label'              => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
-					'translation_domain' => 'CCDNUserProfileBundle',
-				)
-			)
-		;
+                array(
+                    'required'           => false,
+                    'label'              => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
+        ;
     }
 
     /**
