@@ -44,7 +44,7 @@ class ProfileController extends ProfileBaseController
         $profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:show_overview.html.',
             array(
@@ -71,7 +71,7 @@ class ProfileController extends ProfileBaseController
         $profile = $this->getProfileManager()->getProfile($profileId, $this->getSecurityContext());
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:show_bio.html.',
             array(
@@ -102,14 +102,14 @@ class ProfileController extends ProfileBaseController
         $formHandler = $this->getFormHandlerToEditPersonal($profile);
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
+            $this->setFlash('notice', $this->trans('flash.success.profile.edit'));
 
             return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
         }
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
-            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.personal'), $this->path('ccdn_user_profile_edit_personal', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('crumbs.profile.edit.personal'), $this->path('ccdn_user_profile_edit_personal', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_personal.html.',
             array(
@@ -147,8 +147,8 @@ class ProfileController extends ProfileBaseController
         }
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
-            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.contact'), $this->path('ccdn_user_profile_edit_contact', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('crumbs.profile.edit.contact'), $this->path('ccdn_user_profile_edit_contact', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_contact.html.',
             array(
@@ -186,8 +186,8 @@ class ProfileController extends ProfileBaseController
         }
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
-            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.avatar'), $this->path('ccdn_user_profile_edit_avatar', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('crumbs.profile.edit.avatar'), $this->path('ccdn_user_profile_edit_avatar', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_avatar.html.',
             array(
@@ -225,8 +225,8 @@ class ProfileController extends ProfileBaseController
         }
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
-            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.bio'), $this->path('ccdn_user_profile_edit_bio', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('crumbs.profile.edit.bio'), $this->path('ccdn_user_profile_edit_bio', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_bio.html.',
             array(
@@ -258,14 +258,14 @@ class ProfileController extends ProfileBaseController
         $formHandler = $this->getFormHandlerToEditSignature($profile);
 
         if ($formHandler->process($this->getRequest())) {
-            $this->setFlash('notice', $this->trans('ccdn_user_profile.flash.profile.edit.success'));
+            $this->setFlash('notice', $this->trans('flash.success.profile.edit'));
 
             return $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('profileId' => $profile->getId())));
         }
 
         $crumbs = $this->getCrumbs()
-            ->add($this->trans('ccdn_user_profile.crumbs.profile', array('%user_name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
-            ->add($this->trans('ccdn_user_profile.crumbs.profile.edit.signature'), $this->path('ccdn_user_profile_edit_signature', array('profileId' => $profile->getId())));
+            ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())))
+            ->add($this->trans('crumbs.profile.edit.signature'), $this->path('ccdn_user_profile_edit_signature', array('profileId' => $profile->getId())));
 
         return $this->renderResponse('CCDNUserProfileBundle:Profile:edit_signature.html.',
             array(

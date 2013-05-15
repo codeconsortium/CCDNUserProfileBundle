@@ -56,13 +56,13 @@ class PersonalFormType extends AbstractType
         $builder
             ->add('website', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.website',
+                    'label'              => 'form.label.website',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('location', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.location',
+                    'label'              => 'form.label.location',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )

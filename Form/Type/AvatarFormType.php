@@ -57,13 +57,13 @@ class AvatarFormType extends AbstractType
             ->add('avatar_is_remote', 'checkbox',
                 array(
                     'required'           => false,
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.avatar_is_remote',
+                    'label'              => 'form.label.avatar_is_remote',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('avatar', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.avatar',
+                    'label'              => 'form.label.avatar',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )

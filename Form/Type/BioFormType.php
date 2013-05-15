@@ -56,7 +56,7 @@ class BioFormType extends AbstractType
         $builder
             ->add('bio', 'bb_editor',
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.bio',
+                    'label'              => 'form.label.bio',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )

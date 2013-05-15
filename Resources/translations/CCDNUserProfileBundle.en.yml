@@ -1,112 +1,103 @@
-ccdn_user_profile:
-    dashboard:
-        pages:
-            account: Account
-            profile: Profile
-        categories:
-            profile: Profile
-        links:
-            show_profile: Show Profile
+dashboard:
+    pages:
+        account:             "Account"
+        profile:             "Profile"
+    categories:
+        profile:             "Profile"
+    links:
+        show_profile:        "Show Profile"
 
-ccdn_user_profile.layout.header.profile: 'Profile'
+layout:
+    header:
+        profile:             "Profile"
 
-#
-# Page Titles.
-#
-ccdn_user_profile.title.profile.show: 'Profile: %user_name%.'
-ccdn_user_profile.title.profile.edit: "Profile: Edit %user_name%'s Profile."
-ccdn_user_profile.title.profile.edit_personal: 'Edit Contact'
-ccdn_user_profile.title.profile.edit_contact: 'Edit Contact'
-ccdn_user_profile.title.profile.change_avatar: 'Change Avatar'
-ccdn_user_profile.title.profile.edit_bio: 'Edit Bio'
-ccdn_user_profile.title.profile.edit_signature: 'Edit Signature'
-#
-# Crumbs.
-#
-ccdn_user_profile.crumbs.profile: "%user_name% Profile"
-ccdn_user_profile.crumbs.profile.edit.personal: 'Edit Profile Personal Details'
-ccdn_user_profile.crumbs.profile.edit.contact: 'Edit Profile Contact Details'
-ccdn_user_profile.crumbs.profile.edit.avatar: 'Edit Profile Avatar'
-ccdn_user_profile.crumbs.profile.edit.bio: 'Edit Profile Bio'
-ccdn_user_profile.crumbs.profile.edit.signature: 'Edit Profile Signature'
+title:
+    profile:
+        show:                "%name%'s Profile"
+        edit_personal:       "Edit Info"
+        edit_contact:        "Edit Contact"
+        change_avatar:       "Change Avatar"
+        edit_bio:            "Edit Bio"
+        edit_signature:      "Edit Signature"
 
-#
-# Flash Messages.
-#
-ccdn_user_profile.flash.profile.edit.success: 'Profile updated successfully.'
+crumbs:
+    profile:
+        show:                "%name%'s Profile"
+        edit:
+            personal:        "Edit Profile Personal Details"
+            contact:         "Edit Profile Contact Details"
+            avatar:          "Edit Profile Avatar"
+            bio:             "Edit Profile Bio"
+            signature:       "Edit Profile Signature"
 
-#
-# Sidebar.
-#
-ccdn_user_profile.sidebar.header.navigation: 'Navigation'
-ccdn_user_profile.sidebar.link.members: 'Members'
-ccdn_user_profile.sidebar.header.tools: 'Tools'
-ccdn_user_profile.sidebar.link.account.view: 'Account'
-ccdn_user_profile.sidebar.link.profile.view: 'Profile'
-ccdn_user_profile.sidebar.link.profile.view_named: '%user_name%''s Profile'
-ccdn_user_profile.sidebar.link.profile.edit: 'Edit Profile'
-ccdn_user_profile.sidebar.link.login: 'Login'
-ccdn_user_profile.sidebar.link.register: 'Register'
-ccdn_user_profile.sidebar.link.reset: 'Forgot Password'
+sidebar:
+    header:
+        navigation:          "Navigation"
+        tools:               "Tools"
 
-#
-# Link Labels.
-#
-ccdn_user_profile.link.profile.overview: 'Overview'
-ccdn_user_profile.link.profile.bio: 'Bio'
-ccdn_user_profile.link.profile.edit: 'Edit'
-ccdn_user_profile.link.user.administrate: 'Administrate User'
-ccdn_user_profile.link.user.message: 'Send Private Message'
+link:
+    view:                    "Profile"
+    view_named:              "%name%'s Profile"
+    edit:                    "Edit Profile"
+    overview:                "Overview"
+    bio:                     "Bio"
+    edit:                    "Edit"
 
-#
-# Forms.
-#
-ccdn_user_profile.form.field.required: 'This field is required'
-ccdn_user_profile.form.label.profile.edit.username: 'Username: '
-ccdn_user_profile.form.label.profile.edit.location: 'Location: '
-ccdn_user_profile.form.label.profile.edit.website: 'Website: '
-ccdn_user_profile.form.label.profile.edit.aim: 'AIM: '
-ccdn_user_profile.form.label.profile.edit.aim_is_public: 'AIM is Public: '
-ccdn_user_profile.form.label.profile.edit.msn: 'MSN: '
-ccdn_user_profile.form.label.profile.edit.msn_is_public: 'MSN is Public: '
-ccdn_user_profile.form.label.profile.edit.icq: 'ICQ: '
-ccdn_user_profile.form.label.profile.edit.icq_is_public: 'ICQ is Public: '
-ccdn_user_profile.form.label.profile.edit.yahoo: 'Yahoo: '
-ccdn_user_profile.form.label.profile.edit.yahoo_is_public: 'Yahoo is Public: '
-ccdn_user_profile.form.label.profile.edit.bio: 'Bio: '
-ccdn_user_profile.form.label.profile.edit.avatar: 'Avatar: '
-ccdn_user_profile.form.label.profile.edit.avatar_is_remote: 'This avatar is remote? '
-ccdn_user_profile.form.label.profile.edit.signature: 'Signature: '
-ccdn_user_profile.form.button.profile.edit.update: 'Update'
-ccdn_user_profile.form.button.profile.edit.cancel: 'Cancel'
+form:
+    required:                "This field is required"
+    label:
+        username:            "Username"
+        location:            "Location"
+        website:             "Website"
+        aim:                 "AIM"
+        aim_is_public:       "AIM is Public"
+        msn:                 "MSN"
+        msn_is_public:       "MSN is Public"
+        icq:                 "ICQ"
+        icq_is_public:       "ICQ is Public"
+        yahoo:               "Yahoo"
+        yahoo_is_public:     "Yahoo is Public"
+        bio:                 "Bio"
+        avatar:              "Avatar"
+        avatar_is_remote:    "This avatar is remote?"
+        signature:           "Signature"
+    button:
+        update:              "Update"
+        save:                "Save Changes"
+        cancel:              "Cancel"
 
-#
-# Table Labels.
-#
-ccdn_user_profile.profile.table.body.username: 'Username:'
-ccdn_user_profile.profile.table.body.location: 'Location:'
-ccdn_user_profile.profile.table.body.website: 'Website:'
-ccdn_user_profile.profile.table.body.aim: 'AIM:'
-ccdn_user_profile.profile.table.body.msn: 'MSN:'
-ccdn_user_profile.profile.table.body.icq: 'ICQ:'
-ccdn_user_profile.profile.table.body.yahoo: 'Yahoo:'
-ccdn_user_profile.profile.table.body.member_since: 'Member Since:'
-ccdn_user_profile.profile.table.body.last_logged_in: 'Last Login:'
+generic:
+    thead:
+        username:            "Username"
+        location:            "Location"
+        website:             "Website"
+        aim:                 "AIM"
+        msn:                 "MSN"
+        icq:                 "ICQ"
+        yahoo:               "Yahoo"
+        member_since:        "Member Since"
+        last_logged_in:      "Last Login"
+    profile:
+        personal:            "Info"
+        contact:
+            heading:     "Contact"
+            none:        "This user has not added or shared any other contact details."
+            none_owner:  "You have not added or shared any other contact details. Click edit to add some more contact details."
+        bio:
+            heading:     "Biography"
+            none:        "This user has not yet added a biography."
+            none_owner:  "You have not yet added a biography. Click edit to add one and share some of your background with us."
+        signature:
+            heading:     "Signature"
+            none:        "This user has not yet added a signature."
+            none_owner:  "You have not yet added a signature. Click edit to add one."
+        member_role:
+            administrator:   "Administrator"
+            moderator:       "Moderator"
+            member:          "Member"
+            banned:          "Banned"
 
-#
-# Generic.
-#
-ccdn_user_profile.profile.show.overview.personal: 'Info'
-ccdn_user_profile.profile.show.overview.contact: 'Contact'
-ccdn_user_profile.profile.show.overview.contact.none: 'This user has not added or shared any other contact details.'
-ccdn_user_profile.profile.show.overview.contact.none.owner: 'You have not added or shared any other contact details. Click edit to add some more contact details.'
-ccdn_user_profile.profile.show.bio: 'Biography'
-ccdn_user_profile.profile.show.bio.none: 'This user has not yet added a biography.'
-ccdn_user_profile.profile.show.bio.none.owner: 'You have not yet added a biography. Click edit to add one and share some of your background with us.'
-ccdn_user_profile.profile.show.signature: 'Signature'
-ccdn_user_profile.profile.show.signature.none: 'This user has not yet added a signature.'
-ccdn_user_profile.profile.show.signature.none.owner: 'You have not yet added a signature. Click edit to add one.'
-ccdn_user_profile.member_role.administrator: 'Administrator'
-ccdn_user_profile.member_role.moderator: 'Moderator'
-ccdn_user_profile.member_role.member: 'Member'
-ccdn_user_profile.member_role.banned: 'Banned'
+flash:
+    success:
+        profile:
+            edit:            "Profile updated successfully."

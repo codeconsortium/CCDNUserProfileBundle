@@ -56,53 +56,53 @@ class ContactFormType extends AbstractType
         $builder
             ->add('msn', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.msn',
+                    'label'              => 'form.label.msn',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('msn_is_public', 'checkbox',
                 array(
                     'required'           => false,
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.msn_is_public',
+                    'label'              => 'form.label.msn_is_public',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('yahoo', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo',
+                    'label'              => 'form.label.yahoo',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('yahoo_is_public', 'checkbox',
                 array(
                     'required'           => false,
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.yahoo_is_public',
+                    'label'              => 'form.label.yahoo_is_public',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('aim', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.aim',
+                    'label'              => 'form.label.aim',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('aim_is_public', 'checkbox',
                 array(
                     'required'           => false,
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.aim_is_public',
+                    'label'              => 'form.label.aim_is_public',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('icq', null,
                 array(
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.icq',
+                    'label'              => 'form.label.icq',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('icq_is_public', 'checkbox',
                 array(
                     'required'           => false,
-                    'label'              => 'ccdn_user_profile.form.label.profile.edit.icq_is_public',
+                    'label'              => 'form.label.icq_is_public',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )

@@ -7,7 +7,7 @@
 	<script src="{{- asset('bundles/ccdnuserprofile/js/jquery.profile.js') -}}" type="text/javascript"></script>
 {% endblock javascripts_extra %}
 
-{% block title %}{{- truncDot('ccdn_user_profile.title.profile.edit' | trans({ '%user_name%': profile.getUsername }, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
+{% block title %}{{- truncDot('title.profile.edit_personal' |trans({}, 'CCDNUserProfileBundle'), ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 {% block sub_title %}
 	<a href="{{- path('ccdn_user_profile_show_by_id', {'profileId':profile.id}) -}}">{{- profile.getUsernameBDI |raw -}}</a>
@@ -25,7 +25,7 @@
 
 				<div class="control-group form-title">
 					<div class="controls">
-						<h3>{{- 'heading.edit.personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
+						<h3>{{- 'title.profile.edit_personal' |trans({}, 'CCDNUserProfileBundle') -}}</h3>
 					</div>
 				</div>
 
@@ -34,10 +34,10 @@
 				{{- form_widget(form) -}}
 
 				<div class="form-actions">
-					<input type="submit" name="submit[save]" class="btn btn-primary" value="{{- 'ccdn_user_profile.form.button.profile.edit.update' |trans({}, 'CCDNUserProfileBundle') -}}">
+					<input type="submit" name="submit[save]" class="btn btn-primary" value="{{- 'form.button.save' |trans({}, 'CCDNUserProfileBundle') -}}">
 
 					<a class="btn" href="{{- path('ccdn_user_profile_show_by_id', {'profileId':profile.id}) -}}">
-						{{- 'ccdn_user_profile.form.button.profile.edit.cancel' |trans({}, 'CCDNUserProfileBundle') -}}
+						{{- 'form.button.cancel' |trans({}, 'CCDNUserProfileBundle') -}}
 					</a>
 				</div>
 

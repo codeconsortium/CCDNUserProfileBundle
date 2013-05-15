@@ -9,14 +9,14 @@
 			<li class="active">
 				<a href="{{- path(route, {'userId': user.id}) -}}">
 					<i class="icon-user"></i>
-					{{- 'ccdn_user_profile.link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}
+					{{- 'link.overview' | trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
 			</li>
 		{%- else -%}
 			<li>
 				<a href="{{- path('ccdn_user_profile_show_by_id', {'profileId': profile.id}) -}}">
 					<i class="icon-user"></i>
-					{{- 'ccdn_user_profile.link.profile.overview' | trans({}, 'CCDNUserProfileBundle') -}}
+					{{- 'link.overview' | trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
 			</li>
 		{%- endif -%}
@@ -25,14 +25,14 @@
 			<li class="active">
 				<a href="{{- path(route, {'profileId': profile.id}) -}}">
 					<i class="icon-book"></i>
-					{{- 'ccdn_user_profile.link.profile.bio' | trans({}, 'CCDNUserProfileBundle') -}}
+					{{- 'link.bio' | trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
 			</li>
 		{%- else -%}
 			<li>
 				<a href="{{- path('ccdn_user_profile_show_bio_by_id', {'profileId': profile.id}) -}}">
 					<i class="icon-book"></i>
-					{{- 'ccdn_user_profile.link.profile.bio' | trans({}, 'CCDNUserProfileBundle') -}}
+					{{- 'link.bio' | trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
 			</li>
 		{%- endif -%}

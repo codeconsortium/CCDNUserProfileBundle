@@ -8,7 +8,7 @@
 		{%- if is_granted('ROLE_USER') -%}
 			{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
 				<div class="span2 pull-right btn-right">
-					<a class="btn" href="{{- path('ccdn_user_profile_edit_avatar', {'profileId':profile.id}) -}}">{{- 'ccdn_user_profile.link.profile.edit' |trans({}, 'CCDNUserProfileBundle') -}}</a>
+					<a class="btn" href="{{- path('ccdn_user_profile_edit_avatar', {'profileId':profile.id}) -}}">{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}</a>
 				</div>
 			{%- endif -%}
 		{%- endif -%}
