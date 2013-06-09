@@ -39,7 +39,7 @@
 			{%- if profile.getBio -%}
 				<div class="light-box">
 					<blockquote>
-						{{- BBCode(profile.getBio | raw, ccdn_user_profile.item_bio.enable_bb_parser) | raw -}}
+						{{- profile.getBio -}}
 					</blockqoute>
 				</div>
 				<br>
@@ -89,7 +89,7 @@
 			{%- if profile.getSignature -%}
 				<div class="light-box">
 					<blockquote>
-						{{- BBCode(profile.getSignature | raw, ccdn_user_profile.item_signature.enable_bb_parser) | raw -}}
+						{{- profile.getSignature -}}
 					</blockquote>
 				</div>
 				<br>

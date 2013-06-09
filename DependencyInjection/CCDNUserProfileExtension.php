@@ -71,8 +71,6 @@ class CCDNUserProfileExtension extends Extension
         $this
             ->getSEOSection($config, $container)
             ->getProfileSection($config, $container)
-            ->getItemBioSection($config, $container)
-            ->getItemSignatureSection($config, $container)
             ->getSidebarSection($config, $container)
         ;
 
@@ -209,11 +207,9 @@ class CCDNUserProfileExtension extends Extension
 
         $container->setParameter('ccdn_user_profile.profile.edit.bio.layout_template', $config['profile']['edit']['bio']['layout_template']);
         $container->setParameter('ccdn_user_profile.profile.edit.bio.form_theme', $config['profile']['edit']['bio']['form_theme']);
-        $container->setParameter('ccdn_user_profile.profile.edit.bio.enable_bb_editor', $config['profile']['edit']['bio']['enable_bb_editor']);
 
         $container->setParameter('ccdn_user_profile.profile.edit.signature.layout_template', $config['profile']['edit']['signature']['layout_template']);
         $container->setParameter('ccdn_user_profile.profile.edit.signature.form_theme', $config['profile']['edit']['signature']['form_theme']);
-        $container->setParameter('ccdn_user_profile.profile.edit.signature.enable_bb_editor', $config['profile']['edit']['signature']['enable_bb_editor']);
 
         $container->setParameter('ccdn_user_profile.profile.show.requires_login', $config['profile']['show']['requires_login']);
 
@@ -222,34 +218,6 @@ class CCDNUserProfileExtension extends Extension
         $container->setParameter('ccdn_user_profile.profile.show.overview.last_login_datetime_format', $config['profile']['show']['overview']['last_login_datetime_format']);
 
         $container->setParameter('ccdn_user_profile.profile.show.bio.layout_template', $config['profile']['show']['bio']['layout_template']);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access private
-     * @param  array                                                                $config
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder              $container
-     * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
-     */
-    private function getItemBioSection(array $config, ContainerBuilder $container)
-    {
-        $container->setParameter('ccdn_user_profile.item_bio.enable_bb_parser', $config['item_bio']['enable_bb_parser']);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access private
-     * @param  array                                                                $config
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder              $container
-     * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
-     */
-    private function getItemSignatureSection(array $config, ContainerBuilder $container)
-    {
-        $container->setParameter('ccdn_user_profile.item_signature.enable_bb_parser', $config['item_signature']['enable_bb_parser']);
 
         return $this;
     }

@@ -35,17 +35,12 @@ class CCDNUserProfileBundle extends Bundle
     public function boot()
     {
         $twig = $this->container->get('twig');
+		
         $twig->addGlobal(
             'ccdn_user_profile',
             array(
                 'seo' => array(
                     'title_length' => $this->container->getParameter('ccdn_user_profile.seo.title_length'),
-                ),
-                'item_bio' => array(
-                    'enable_bb_parser' => $this->container->getParameter('ccdn_user_profile.item_bio.enable_bb_parser'),
-                ),
-                'item_signature' => array(
-                    'enable_bb_parser' => $this->container->getParameter('ccdn_user_profile.item_signature.enable_bb_parser'),
                 ),
                 'profile' => array(
                     'show' => array(
@@ -66,7 +61,6 @@ class CCDNUserProfileBundle extends Bundle
                         'bio' => array(
                             'layout_template' => $this->container->getParameter('ccdn_user_profile.profile.edit.bio.layout_template'),
                             'form_theme' => $this->container->getParameter('ccdn_user_profile.profile.edit.bio.form_theme'),
-                            'enable_bb_editor' => $this->container->getParameter('ccdn_user_profile.profile.edit.bio.enable_bb_editor'),
                         ),
                         'contact' => array(
                             'layout_template' => $this->container->getParameter('ccdn_user_profile.profile.edit.contact.layout_template'),
@@ -79,7 +73,6 @@ class CCDNUserProfileBundle extends Bundle
                         'signature' => array(
                             'layout_template' => $this->container->getParameter('ccdn_user_profile.profile.edit.signature.layout_template'),
                             'form_theme' => $this->container->getParameter('ccdn_user_profile.profile.edit.signature.form_theme'),
-                            'enable_bb_editor' => $this->container->getParameter('ccdn_user_profile.profile.edit.signature.enable_bb_editor'),
                         ),
                     ),
                 ),
@@ -87,6 +80,6 @@ class CCDNUserProfileBundle extends Bundle
                     'links' => $this->container->getParameter('ccdn_user_profile.sidebar.links'),
                 ),
             )
-        );
+        ); // End Twig Globals.
     }
 }

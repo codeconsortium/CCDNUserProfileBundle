@@ -54,7 +54,7 @@ class BioFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bio', 'bb_editor',
+            ->add('bio', 'textarea',
                 array(
                     'label'              => 'form.label.bio',
                     'translation_domain' => 'CCDNUserProfileBundle',

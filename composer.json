@@ -19,6 +19,10 @@
         "doctrine/doctrine-bundle": "*",
         "excelwebzone/recaptcha-bundle": "dev-master"
     },
+	"suggest": {
+		"codeconsortium/ccdn-component-bb-code-bundle": "2.0.*@dev",
+		"reecefowell/jquery-timestamper": "dev-master"
+	},
     "autoload": {
         "psr-0": { "CCDNUser\\ProfileBundle": "" }
     },

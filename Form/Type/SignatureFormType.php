@@ -54,7 +54,7 @@ class SignatureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('signature', 'bb_editor',
+            ->add('signature', 'textarea',
                 array(
                     'label'              => 'form.label.signature',
                     'translation_domain' => 'CCDNUserProfileBundle',
