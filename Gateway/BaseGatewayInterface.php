@@ -58,6 +58,23 @@ interface BaseGatewayInterface
     /**
      *
      * @access public
+     * @param  Array                      $aliases = null
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function createSelectQuery(Array $aliases = null);
+	
+    /**
+     *
+     * @access public
+     * @param  string                     $column  = null
+     * @param  Array                      $aliases = null
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function createCountQuery($column = null, Array $aliases = null);
+	
+    /**
+     *
+     * @access public
      * @param  \Doctrine\ORM\QueryBuilder                   $qb
      * @param  Array                                        $parameters
      * @return \Doctrine\Common\Collections\ArrayCollection
