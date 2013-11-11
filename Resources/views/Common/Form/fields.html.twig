@@ -1,0 +1,338 @@
+{% block field_errors %}{# errors for next to each field #}
+	{%- spaceless -%}
+	    {%- if errors|length > 0 -%}
+			<div class="alert alert-error alert-block">
+			    <ul>
+			        {%- for error in errors -%}
+			            <li>
+	                        {{
+	                        error.messagePluralization is null
+	                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+	                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+	                        }}
+	                    </li>
+			        {%- endfor -%}
+			    </ul>
+			</div>
+	    {%- endif -%}
+	{%- endspaceless -%}
+{% endblock field_errors %}
+
+
+
+{% block form_errors %}{# for the overall form #}
+	{%- spaceless -%}
+	    {%- if errors|length > 0 -%}
+			<div class="alert alert-error alert-block">
+			    <ul>
+			        {%- for error in errors -%}
+			            <li>
+							{{
+	                        error.messagePluralization is null
+	                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+	                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+	                        }}
+	                    </li>
+			        {%- endfor -%}
+			    </ul>
+			</div>
+	    {%- endif -%}
+	{%- endspaceless -%}
+{% endblock form_errors %}
+
+
+
+{#
+{% block form_widget %}
+	{% spaceless %}
+	    {% if compound %}
+	        {{ block('form_widget_compound') }}
+	    {% else %}
+	        {{ block('form_widget_simple') }}
+	    {% endif %}
+	{% endspaceless %}
+{% endblock form_widget %}
+
+	{% block form_widget_simple %}
+		{% spaceless %}
+		    {% set type = type|default('text') %}
+		    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+		{% endspaceless %}
+	{% endblock form_widget_simple %}
+
+	{% block form_widget_compound %}
+		{% spaceless %}
+
+		{{ block('form_rows') }}
+		    <div {{ block('widget_container_attributes') }} class="FUCK">
+		        {% if form.parent is empty %}
+		            {{ form_errors(form) }}
+		        {% endif %}
+		        {{ block('form_rows') }}
+		        {{ form_rest(form) }}
+		    </div>
+		{% endspaceless %}
+	{% endblock form_widget_compound %}
+#}
+
+{% block form_row %}
+	{%- spaceless -%}
+		{%- if compound and not form.vars.block_prefixes[1] == 'field' -%}
+
+			{{- form_widget(form) -}}
+
+		{%- else -%}
+			<div class="form-group{{- (form.vars.errors|length > 0) ? ' error': '' -}}">
+				{% if 'repeated' in form.vars.block_prefixes %}
+					{% if form.vars.block_prefixes[1] == 'checkbox' %}
+						<div class="col-lg-offset-2 col-lg-10">
+							<div class="checkbox">
+								{{- form_errors(form) -}}
+								<label for="{{- id -}}" class="">
+									{{- form_widget(form) -}}
+									{{- label |trans({}, translation_domain) | raw -}}
+								</label>
+							</div>
+						</div>
+					{% else %}
+						{{- form_label(form) -}}
+						<div class="col-lg-10">
+							{{- form_errors(form) -}}
+							{{- form_widget(form) -}}
+						</div>
+					{% endif %}
+				{% else %}
+					{% if form.vars.block_prefixes[2] == 'checkbox' %}
+						<div class="col-lg-offset-2 col-lg-10">
+							<div class="checkbox">
+								{{- form_errors(form) -}}
+								<label for="{{- id -}}" class="">
+									{{- form_widget(form) -}}
+									{{- label |trans({}, translation_domain) | raw -}}
+								</label>
+							</div>
+						</div>
+					{% else %}
+						{{- form_label(form) -}}
+						<div class="col-lg-10">
+							{{- form_errors(form) -}}
+							{{- form_widget(form) -}}
+						</div>
+					{% endif %}
+				{% endif %}
+			</div>
+		{%- endif -%}
+	{%- endspaceless -%}
+{% endblock form_row %}
+
+
+
+{% block field_label %}
+	{%- spaceless -%}
+		{%- set attr = attr|merge({'id': 'label[' ~ id ~ ']', 'class': attr.class|default('') ~ ' col-lg-2 control-label' ~ (required ? ' control-label-required':'')}) -%}
+	    <label for="{{- id -}}" class="{{ attr['class'] -}}">
+			{%- if required -%}
+				<span title="{{- 'form.required' |trans({}, 'CCDNUserProfileBundle') -}}">*</span>
+			{%- endif -%}
+			{{- label |trans({}, translation_domain) | raw -}}
+		</label>
+	{%- endspaceless -%}
+{% endblock field_label %}
+
+
+
+{% block field_widget %}
+	{%- spaceless -%}
+	    {%- set type = type|default('text') -%}
+		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' form-control'}) -%}
+	    <input type="{{- type -}}" value="{{- value -}}" {{ block('widget_attributes') -}} />
+	{%- endspaceless -%}
+{% endblock field_widget %}
+
+
+
+{% block email_widget %}
+	{%- spaceless -%}
+	    {%- set type = type|default('text') -%}
+		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' form-control'}) -%}
+	    <input type="{{- type -}}" value="{{- value -}}" {{ block('widget_attributes') -}} />
+	{%- endspaceless -%}
+{% endblock email_widget %}
+
+
+
+{% block password_widget %}
+	{%- spaceless -%}
+	    {%- set type = type|default('password') -%}
+		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' form-control'}) -%}
+	    <input type="{{- type -}}" value="{{- value -}}" {{ block('widget_attributes') -}} />
+	{%- endspaceless -%}
+{% endblock password_widget %}
+
+
+
+{% block textarea_widget %}
+	{%- spaceless -%}
+		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' form-control', 'style': attr.style|default('') ~ 'height:250px;'}) -%}
+	    <textarea {{ block('widget_attributes') -}}>{{- value -}}</textarea>
+	{%- endspaceless -%}
+{% endblock textarea_widget %}
+
+
+{% block checkbox_widget %}
+	{%- spaceless -%}
+	    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{%- endspaceless -%}
+{% endblock checkbox_widget %}
+
+{#
+{% block choice_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            {%- set attr = attr|merge({'class': attr.class|default('') ~ ' col-md-12'}) -%}
+            <div {{ block('widget_container_attributes') }}>
+                <table class="table table-condensed">
+                    <tbody>
+	                    {% for child in form %}
+	                        <tr>
+	                            <td>{{ form_widget(child) }}</td>
+	                            <td>{{ form_label(child) }}</td>
+	                        </tr>
+	                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                {% if empty_value is not none %}
+                    <option value="">{{ empty_value|trans }}</option>
+                {% endif %}
+                {% if preferred_choices|length > 0 %}
+                    {% set options = preferred_choices %}
+                    {{ block('widget_choice_options') }}
+                    {% if choices|length > 0 %}
+                        <option disabled="disabled">{{ separator }}</option>
+                    {% endif %}
+                {% endif %}
+                {% set options = choices %}
+                {{ block('widget_choice_options') }}
+            </select>
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget %}
+#}
+
+
+{% block date_widget %}
+	{% spaceless %}
+		{{- form_errors(form) -}}
+	    <div {{ block('widget_container_attributes') -}}>
+	        <div class="col-md-4">
+		        {{- form_widget(form.year) |raw -}}
+			</div>
+	        <div class="col-md-4">
+		        {{- form_widget(form.month) |raw -}}
+			</div>
+	        <div class="col-md-4">
+				{{- form_widget(form.day) |raw -}}
+			</div>
+	    </div>
+	{% endspaceless %}
+{% endblock date_widget %}
+
+
+{% block choice_widget %}
+	{% spaceless %}
+	    {% if expanded %}
+	        {{ block('choice_widget_expanded') }}
+	    {% else %}
+	        {{ block('choice_widget_collapsed') }}
+	    {% endif %}
+	{% endspaceless %}
+{% endblock choice_widget %}
+
+{% block choice_widget_expanded %}
+	{% spaceless %}
+		{%- set attr = attr|merge({'class': attr.class|default('')}) -%}
+		<div {{ block('widget_container_attributes') }}>
+		    <table class="table table-condensed">
+		        <tbody>
+		            {% for child in form %}
+		                <tr>
+		                    <td>{{ form_widget(child) }}</td>
+		                    <td>{{ form_label(child) }}</td>
+		                </tr>
+		            {% endfor %}
+		        </tbody>
+		    </table>
+		</div>
+	{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block choice_widget_collapsed %}
+	{% spaceless %}
+	    <select {{ block('widget_attributes') }} {% if multiple %} multiple="multiple"{% endif %} class="form-control">
+	        {% if empty_value is not none %}
+	            <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% else %} value=""{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+	        {% endif %}
+
+	        {% if preferred_choices|length > 0 %}
+	            {% set options = preferred_choices %}
+	            {{ block('choice_widget_options') }}
+	            {% if choices|length > 0 and separator is not none %}
+	                <option disabled="disabled">{{- separator -}}</option>
+	            {% endif %}
+	        {% endif %}
+
+	        {% set options = choices %}
+	        {{ block('choice_widget_options') }}
+	    </select>
+	{% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
+{% block choice_widget_options %}
+	{% spaceless %}
+	    {% for group_label, choice in options %}
+	        {% if choice is iterable %}
+	            <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+	                {% set options = choice %}
+	                {{ block('choice_widget_options') }}
+	            </optgroup>
+	        {% else %}
+	            <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+	        {% endif %}
+	    {% endfor %}
+	{% endspaceless %}
+{% endblock choice_widget_options %}
+
+
+
+
+{% block ewz_recaptcha_widget %}
+	{% spaceless %}
+	    {% if form.vars.ewz_recaptcha_enabled %}
+			<div class="clearfix" style="display:block;clear:both;">
+				{% if attr.options is defined %}
+		            <script type="text/javascript">
+		                var RecaptchaOptions = {{ attr.options|json_encode|raw }}
+		            </script>
+		        {% endif %}
+		        <script src="{{ form.vars.url_challenge }}" type="text/javascript"></script>
+		        <noscript>
+		            <iframe src="{{ form.vars.url_noscript }}" height="300" width="500"></iframe><br/>
+		            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+		            <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+		        </noscript>
+			</div>
+	    {% endif %}
+	{% endspaceless %}
+{% endblock ewz_recaptcha_widget %}
+
+
+
+{% block widget_upload %}
+	{%- spaceless -%}
+		{%- set attr = attr|merge({ 'class': attr.class|default('') ~ ' input-file'}) -%}
+		<input type="{{- type -}}" {{ block('widget_attributes') -}} style="display:block;clear:both;height:100%;width:100%;visibility:visible;">
+	{%- endspaceless -%}
+{% endblock widget_upload %}

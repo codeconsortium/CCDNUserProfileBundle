@@ -1,0 +1,118 @@
+{% extends 'CCDNUserProfileBundle:Common:Layout/base.html.twig' %}
+
+{% set LayoutTemplate = ccdn_user_profile.member.list.layout_template %}
+
+{% block title %}{{- 'title.members' | trans({}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}{% endblock -%}
+
+
+{% block body_content %}
+
+	{%- spaceless -%}
+
+	<section>
+		
+		<nav class="btn-toolbar center-block text-center clearfix">
+			{%- set route = app.request.attributes.get('_route') -%}
+
+			<div class="btn-group center-block text-center">
+				<a class="btn btn-default btn-xs{{- alpha is empty ? ' active':'' -}}" href="{{- path('ccdn_user_profile_member_index') -}}">
+					{{- 'generic.thead.filter.all' |trans({}, 'CCDNUserMemberBundle') -}}
+				</a>
+
+				{%- for letter in "A".."Z" -%}
+					<a class="btn btn-default btn-xs{%- if alpha is defined -%}{{- (letter == alpha) ? ' active' : '' -}}{%- endif -%}"
+					 href="{{- path('ccdn_user_profile_member_index', {'alpha': letter}) -}}">
+						{{- letter -}}
+					</a>
+				{%- endfor -%}
+			</div>
+		</nav>
+
+		<div class="btn-toolbar clearfix">
+			<nav class="span12 btn-right paginate">
+				{{- knp_pagination_render(pager) -}}
+			</nav>
+		</div>
+		
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th class="left{%- if pager.isSorted('u.username') %} sorted{%- endif -%}">
+						{{- knp_pagination_sortable(pager, 'generic.thead.username' | trans({}, 'CCDNUserProfileBundle'), 'u.username') -}}
+					</th>
+					<th class="center">{{- 'generic.thead.website' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center">{{- 'generic.thead.aim' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center">{{- 'generic.thead.msn' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center">{{- 'generic.thead.icq' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center">{{- 'generic.thead.yahoo' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center {%- if pager.isSorted('u.registeredDate') %} sorted{%- endif -%}">
+						{{- knp_pagination_sortable(pager, 'generic.thead.member_since' | trans({}, 'CCDNUserProfileBundle'), 'u.registeredDate') -}}
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%- for row, user in pager.getItems() -%}
+					<tr>
+						<td class="left">
+							<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}">{{- user.getUsername() |raw -}}</a>
+						</td>
+						<td class="center">
+							{%- if user.profile.hasWebsite() -%}
+								<a href="{{- user.profile.getWebsite() -}}" target="_blank">
+									<i class="icon-globe"></i>
+								</a>
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{%- if user.profile.hasAim() and user.profile.isAimPublic() -%}
+								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getAim() : path(ccdn_user_profile.member.login_route) -}}">
+									<i class="icon-envelope"></i>
+								</a>
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{%- if user.profile.hasMsn() and user.profile.isMsnPublic() -%}
+								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getMsn() : path(ccdn_user_profile.member.login_route) -}}">
+									<i class="icon-envelope"></i>
+								</a>
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{%- if user.profile.hasIcq() and user.profile.isIcqPublic() -%}
+								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getIcq() : path(ccdn_user_profile.member.login_route) -}}">
+									<i class="icon-envelope"></i>
+								</a>
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{%- if user.profile.hasYahoo() and user.profile.isYahooPublic() -%}
+								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getYahoo() : path(ccdn_user_profile.member.login_route) -}}">
+									<i class="icon-envelope"></i>
+								</a>
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{{- user.getRegisteredDate |date(ccdn_user_profile.member.list.member_since_datetime_format) -}}
+						</td>
+					</tr>
+				{%- else -%}
+					<tr>
+						<td class="center" colspan="8">
+							{{- 'generic.thead.none' | trans({}, 'CCDNUserMemberBundle') -}}
+						</td>
+					</tr>
+				{%- endfor -%}
+			</tbody>
+		</table>
+
+		<div class="btn-toolbar">
+			<nav class="span12 btn-right paginate">
+				{{- knp_pagination_render(pager) -}}
+			</nav>
+		</div>
+
+	</section>
+
+	{%- endspaceless -%}
+
+{% endblock body_content %}

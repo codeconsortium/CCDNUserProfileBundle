@@ -35,6 +35,27 @@ class Configuration implements ConfigurationInterface
 {
     /**
      *
+     * @access protected
+     * @var string $defaultValueLayoutTemplate
+     */
+    protected $defaultValueLayoutTemplate = 'CCDNUserProfileBundle::base.html.twig';
+
+    /**
+     *
+     * @access protected
+     * @var string $defaultValueFormTheme
+     */
+    protected $defaultValueFormTheme = 'CCDNUserProfileBundle:Common:Form/fields.html.twig';
+
+    /**
+     *
+     * @access protected
+     * @var string $defaultValueAvatarUrl
+     */
+    protected $defaultValueAvatarUrl = '/bundles/ccdnuserprofile/img/avatar_anonymous.gif';
+
+    /**
+     *
      * @access public
      * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
      */
@@ -52,27 +73,26 @@ class Configuration implements ConfigurationInterface
                     ->canBeUnset()
                     ->children()
                         ->scalarNode('engine')->defaultValue('twig')->end()
+                        ->scalarNode('pager_theme')->defaultValue('CCDNUserProfileBundle:Common:Paginator/twitter_bootstrap.html.twig')->end()
                     ->end()
                 ->end()
             ->end()
         ;
 
         // Class file namespaces.
-        $this
-            ->addEntitySection($rootNode)
-            ->addRepositorySection($rootNode)
-            ->addGatewaySection($rootNode)
-            ->addManagerSection($rootNode)
-            ->addFormSection($rootNode)
-            ->addComponentSection($rootNode)
-        ;
+        $this->addEntitySection($rootNode);
+        $this->addGatewaySection($rootNode);
+        $this->addModelSection($rootNode);
+        $this->addRepositorySection($rootNode);
+        $this->addManagerSection($rootNode);
+        $this->addFormSection($rootNode);
+        $this->addComponentSection($rootNode);
 
         // Configuration stuff.
-        $this
-            ->addSEOSection($rootNode)
-            ->addProfileSection($rootNode)
-            ->addSidebarSection($rootNode)
-        ;
+        $this->addSEOSection($rootNode);
+        $this->addMemberSection($rootNode);
+        $this->addProfileSection($rootNode);
+        $this->addSidebarSection($rootNode);
 
         return $treeBuilder;
     }
@@ -89,9 +109,19 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('entity')
-                    ->addDefaultsIfNotSet()
-                    ->canBeUnset()
+                    ->isRequired()
+                    ->cannotBeEmpty()
                     ->children()
+                        ->arrayNode('user')
+		                    ->isRequired()
+		                    ->cannotBeEmpty()
+                            ->children()
+                                ->scalarNode('class')
+				                    ->isRequired()
+				                    ->cannotBeEmpty()
+								->end()
+                            ->end()
+                        ->end()
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
@@ -113,20 +143,27 @@ class Configuration implements ConfigurationInterface
      * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
      */
-    private function addRepositorySection(ArrayNodeDefinition $node)
+    private function addModelSection(ArrayNodeDefinition $node)
     {
         $node
             ->addDefaultsIfNotSet()
             ->children()
-                ->arrayNode('repository')
+                ->arrayNode('model')
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
+                        ->arrayNode('user')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Model\UserModel')->end()
+                            ->end()
+                        ->end()
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Repository\ProfileRepository')->end()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Model\ProfileModel')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -152,11 +189,18 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
+                        ->arrayNode('user')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Gateway\UserGateway')->end()
+                            ->end()
+                        ->end()
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Gateway\ProfileGateway')->end()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Gateway\ProfileGateway')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -173,6 +217,44 @@ class Configuration implements ConfigurationInterface
      * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
      */
+    private function addRepositorySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('repository')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('user')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Repository\UserRepository')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('profile')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Repository\ProfileRepository')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
+        return $this;
+    }
+
+
+    /**
+     *
+     * @access private
+     * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
+     */
     private function addManagerSection(ArrayNodeDefinition $node)
     {
         $node
@@ -182,11 +264,18 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
+                        ->arrayNode('user')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Manager\UserManager')->end()
+                            ->end()
+                        ->end()
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Manager\ProfileManager')->end()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Model\Manager\ProfileManager')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -220,35 +309,42 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\AvatarFormType')->end()
-                                    ->end()
-                                ->end()
-                                ->arrayNode('bio')
-                                    ->addDefaultsIfNotSet()
-                                    ->canBeUnset()
-                                    ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\BioFormType')->end()
-                                    ->end()
-                                ->end()
-                                ->arrayNode('contact')
-                                    ->addDefaultsIfNotSet()
-                                    ->canBeUnset()
-                                    ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\ContactFormType')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\AvatarFormType')->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('personal')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\PersonalFormType')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\PersonalFormType')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('info')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\InfoFormType')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('contact')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\ContactFormType')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('bio')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\BioFormType')->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('signature')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\SignatureFormType')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Type\User\Profile\SignatureFormType')->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -261,35 +357,42 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler')->end()
-                                    ->end()
-                                ->end()
-                                ->arrayNode('bio')
-                                    ->addDefaultsIfNotSet()
-                                    ->canBeUnset()
-                                    ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler')->end()
-                                    ->end()
-                                ->end()
-                                ->arrayNode('contact')
-                                    ->addDefaultsIfNotSet()
-                                    ->canBeUnset()
-                                    ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdateAvatarFormHandler')->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('personal')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdatePersonalFormHandler')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('info')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdateInfoFormHandler')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('contact')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdateContactFormHandler')->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('bio')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdateBioFormHandler')->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('signature')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler')->end()
+                                        ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Form\Handler\User\Profile\UpdateSignatureFormHandler')->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -369,6 +472,40 @@ class Configuration implements ConfigurationInterface
      * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
      * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
      */
+    private function addMemberSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->canBeUnset()
+            ->children()
+                ->arrayNode('member')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->arrayNode('list')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                ->scalarNode('members_per_page')->defaultValue(50)->end()
+                                ->scalarNode('member_since_datetime_format')->defaultValue('d-m-Y - H:i')->end()
+                                ->scalarNode('requires_login')->defaultValue(false)->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @access private
+     * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
+     */
     private function addProfileSection(ArrayNodeDefinition $node)
     {
         $node
@@ -379,7 +516,8 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
-                        ->arrayNode('edit')
+                        ->scalarNode('fallback_avatar')->defaultValue($this->defaultValueAvatarUrl)->end()
+						->arrayNode('edit')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
@@ -387,40 +525,48 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
-                                        ->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('info')
+                                    ->addDefaultsIfNotSet()
+                                    ->canBeUnset()
+                                    ->children()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('contact')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
-                                        ->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('avatar')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
-                                        ->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('bio')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
-                                        ->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('signature')
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
-                                        ->scalarNode('form_theme')->defaultValue('CCDNUserProfileBundle:Form:fields.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
+                                        ->scalarNode('form_theme')->defaultValue($this->defaultValueFormTheme )->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -434,7 +580,7 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
                                         ->scalarNode('member_since_datetime_format')->defaultValue('d-m-Y - H:i')->end()
                                         ->scalarNode('last_login_datetime_format')->defaultValue('d-m-Y - H:i')->end()
                                     ->end()
@@ -443,7 +589,7 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->canBeUnset()
                                     ->children()
-                                        ->scalarNode('layout_template')->defaultValue('CCDNComponentCommonBundle:Layout:layout_body_right.html.twig')->end()
+                                        ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
                                     ->end()
                                 ->end()
                             ->end()

@@ -1,0 +1,86 @@
+{%- spaceless -%}
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div style="width:160px; float:left;">
+				<img src="
+					{%- if user.getProfile().getAvatar() -%}
+						{{- user.getProfile().getAvatar() -}}
+					{%- else -%}
+						{{- ccdn_user_profile.profile.fallback_avatar -}}
+					{%- endif -%}
+				" width="140" height="140" alt="foo" class="img-thumbnail">
+				
+				{%- if is_granted('ROLE_USER') -%}
+					{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+						<div class="text-center" style="width: 140px;">
+							<br>
+							<a href="{{- path('ccdn_user_profile_avatar_edit', {'userId': user.id}) -}}" class="btn btn-default btn-block">
+								
+								Change Avatar
+								{#{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}#}
+								
+							</a>
+						</div>
+					{%- endif -%}
+				{%- endif -%}
+			</div>
+			<div style="margin-left: 160px;">
+				<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}" class="lead">
+					{{- user.getUsername() -}}
+				</a>
+				
+				{%- if is_granted('ROLE_USER') -%}
+					{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+						<div class="pull-right btn-right">
+							<a class="btn btn-default" href="{{- path('ccdn_user_profile_personal_edit', {'userId': user.id}) -}}">
+								{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
+							</a>
+						</div>
+					{%- endif -%}
+				{%- endif -%}
+			</div>
+		</div>
+	
+		<div class="panel-body">
+			<div style="margin-left: 160px;">
+				<table class="table">
+					<tbody>
+						{%- if user.getRegisteredDate() is not null -%}
+							<tr>
+								<td class="right">{{- 'generic.thead.member_since'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+								<td class="left">
+									<abbr class="timestamper" title="{{- user.getRegisteredDate() |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+										{{- user.getRegisteredDate() |date(ccdn_user_profile.profile.show.overview.last_login_datetime_format) -}}
+									</abbr>
+								</td>
+							</tr>
+						{%- endif -%}
+
+						{%- if user.getLastLogin() is not null -%}
+							<tr>
+								<td class="right">{{- 'generic.thead.last_logged_in'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+								<td class="left">
+									<abbr class="timestamper" title="{{- user.getLastLogin() |date('Y-m-d H:i:s T Z', 'Europe/London') -}}">
+										{{- user.getLastLogin() |date(ccdn_user_profile.profile.show.overview.member_since_datetime_format) -}}
+									</abbr>
+								</td>
+							</tr>
+						{%- endif -%}
+				
+						{%- if user.getProfile().getLocationCountry() is not null -%}
+							<tr>
+								<td class="right">{{- 'generic.thead.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
+								<td class="left">
+									<bdi>{{- user.getProfile().getLocationCity() -}}</bdi>,&nbsp;
+									<bdi>{{- user.getProfile().getLocationCountry() -}}</bdi>
+								</td>
+							</tr>
+						{%- endif -%}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+{%- endspaceless -%}

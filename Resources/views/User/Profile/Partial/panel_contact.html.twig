@@ -1,0 +1,108 @@
+{%- spaceless -%}
+
+	{%- if is_granted('ROLE_USER') -%}
+		{%- if (profile.getUser().getId() == app.user.id)
+			or is_granted('ROLE_ADMIN')
+			or (profile.hasAim and profile.isAimPublic)
+			or (profile.hasMsn and profile.isMsnPublic)
+			or (profile.hasYahoo and profile.isYahooPublic)
+			or (profile.hasIcq and profile.isIcqPublic)
+			or profile.getWebsite is not null 
+			or profile.getBlogUrl is not null 
+			or profile.getBlogFeedUrl is not null 
+		-%}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row clearfix">
+						<div class="col-md-7">
+							<h3 class="panel-title">
+								{{- 'generic.profile.contact.heading' |trans({}, 'CCDNUserProfileBundle') -}}
+							</h3>
+						</div>
+
+						<div class="col-md-5 text-right">
+							{%- if is_granted('ROLE_USER') -%}
+								{%- if profile.getUser().getId() == app.user.id or is_granted('ROLE_ADMIN') -%}
+									<div class="pull-right btn-right">
+										<a class="btn btn-default pull-right" href="{{- path('ccdn_user_profile_contact_edit', {'userId': user.id}) -}}">
+											{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
+										</a>
+									</div>
+								{%- endif -%}
+							{%- endif -%}
+						</div>
+					</div>
+				</div>
+				
+				<table class="table">
+					<tbody>
+						{%- if profile.isAimPublic is not null and profile.getAim is not null -%}
+							<tr>
+								<td>
+									<a href="mailto:{{- profile.getAim -}}">
+										{{- profile.getAim -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.isMsnPublic is not null and profile.getMsn is not null -%}
+							<tr>
+								<td>
+									<a href="mailto:{{- profile.getMsn -}}">
+										{{- profile.getMsn -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.isYahooPublic is not null and profile.getYahoo is not null -%}
+							<tr>
+								<td>
+									<a href="mailto: {{- profile.getYahoo -}}">
+										{{- profile.getYahoo -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.isIcqPublic is not null and profile.getIcq is not null -%}
+							<tr>
+								<td>
+									<a href="http://people.icq.com/{{- profile.getIcq -}}">
+										{{- profile.getIcq -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.getWebsite is not null -%}
+							<tr>
+								<td>
+									<a href="{{- profile.getWebsite -}}" target="_blank">
+										{{- 'generic.thead.website'|trans({}, 'CCDNUserProfileBundle') -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.getBlogUrl is not null -%}
+							<tr>
+								<td>
+									<a href="{{- profile.getBlogUrl -}}" target="_blank">
+										{{- 'generic.thead.blog_url'|trans({}, 'CCDNUserProfileBundle') -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+						{%- if profile.getBlogFeedUrl is not null -%}
+							<tr>
+								<td>
+									<a href="{{- profile.getBlogFeedUrl -}}" target="_blank">
+										{{- 'generic.thead.blog_feed_url'|trans({}, 'CCDNUserProfileBundle') -}}
+									</a>
+								</td>
+							</tr>
+						{%- endif -%}
+					</tbody>
+				</table>
+			</div>
+		{%- endif -%}
+	{%- endif -%}
+
+{%- endspaceless -%}

@@ -44,7 +44,7 @@ ccdn_user_profile:
     item_signature:
         enable_bb_parser:     true
     sidebar:
-        members_route:        ccdn_user_member_index
+        members_route:        ccdn_user_profile_member_index
         account_route:        ccdn_user_user_account_show
         registration_route:   fos_user_registration_register
         login_route:          fos_user_security_login

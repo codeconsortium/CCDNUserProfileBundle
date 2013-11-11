@@ -1,0 +1,21 @@
+parameters:
+
+    # Service Parameters defined in app/config
+
+services:
+
+
+    #
+    # Models.
+    #
+    ccdn_user_profile.model.user:
+        class: %ccdn_user_profile.model.user.class%
+        arguments:
+            - @ccdn_user_profile.repository.user
+            - @ccdn_user_profile.manager.user
+
+    ccdn_user_profile.model.profile:
+        class: %ccdn_user_profile.model.profile.class%
+        arguments:
+            - @ccdn_user_profile.repository.user
+            - @ccdn_user_profile.manager.user

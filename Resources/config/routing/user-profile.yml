@@ -1,0 +1,42 @@
+#
+# Profile.
+#
+ccdn_user_profile_show:
+    pattern:  /
+    defaults: { _controller: CCDNUserProfileBundle:Profile:showOverview, userId: 0, _locale: en }
+
+
+ccdn_user_profile_show_by_id:
+    pattern:  /{userId}
+    defaults: { _controller: CCDNUserProfileBundle:Profile:showOverview, userId: 0, _locale: en }
+
+ccdn_user_profile_show_bio_by_id:
+    pattern:  /{userId}/bio
+    defaults: { _controller: CCDNUserProfileBundle:Profile:showBio, userId: 0, _locale: en }
+
+#
+# Edit Profile
+#
+ccdn_user_profile_personal_edit:
+    pattern:  /{userId}/personal/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editPersonal, userId: 0, _locale: en }
+
+ccdn_user_profile_info_edit:
+    pattern:  /{userId}/info/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editInfo, userId: 0, _locale: en }
+
+ccdn_user_profile_contact_edit:
+    pattern:  /{userId}/contact/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editContact, userId: 0, _locale: en }
+
+ccdn_user_profile_avatar_edit:
+    pattern:  /{userId}/avatar/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editAvatar, userId: 0, _locale: en }
+
+ccdn_user_profile_bio_edit:
+    pattern:  /{userId}/bio/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editBio, userId: 0, _locale: en }
+
+ccdn_user_profile_signature_edit:
+    pattern:  /{userId}/signature/edit
+    defaults: { _controller: CCDNUserProfileBundle:Profile:editSignature, userId: 0, _locale: en }

@@ -1,0 +1,46 @@
+{%- spaceless -%}
+	{%- set route = app.request.attributes.get('_route') -%}
+
+	<ul class="nav nav-pills nav-stacked">
+
+		{%- if route == 'ccdn_user_profile_show'
+		 or route == 'ccdn_user_profile_show_by_id'
+		 or route == 'ccdn_user_profile_personal_edit'
+		 or route == 'ccdn_user_profile_contact_edit'
+		 or route == 'ccdn_user_profile_avatar_edit' -%}
+			<li class="active">
+				<a href="{{- path(route, {'userId': user.id}) -}}">
+					<i class="icon-user"></i>
+					{{- 'link.overview' | trans({}, 'CCDNUserProfileBundle') -}}
+				</a>
+			</li>
+		{%- else -%}
+			<li>
+				<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}">
+					<i class="icon-user"></i>
+					{{- 'link.overview' | trans({}, 'CCDNUserProfileBundle') -}}
+				</a>
+			</li>
+		{%- endif -%}
+
+		{%- if route == 'ccdn_user_profile_show_bio_by_id'
+		or route == 'ccdn_user_profile_bio_edit'
+		or route == 'ccdn_user_profile_signature_edit' -%}
+			<li class="active">
+				<a href="{{- path(route, {'userId': user.id}) -}}">
+					<i class="icon-book"></i>
+					{{- 'link.bio' | trans({}, 'CCDNUserProfileBundle') -}}
+				</a>
+			</li>
+		{%- else -%}
+			<li>
+				<a href="{{- path('ccdn_user_profile_show_bio_by_id', {'userId': user.id}) -}}">
+					<i class="icon-book"></i>
+					{{- 'link.bio' | trans({}, 'CCDNUserProfileBundle') -}}
+				</a>
+			</li>
+		{%- endif -%}
+
+	</ul>
+
+{%- endspaceless -%}

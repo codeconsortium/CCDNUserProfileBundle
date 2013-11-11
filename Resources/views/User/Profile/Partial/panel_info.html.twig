@@ -1,0 +1,59 @@
+{%- spaceless -%}
+
+	{%- if (profile.getUser().getId() == app.user.id)
+		or is_granted('ROLE_ADMIN')
+		or profile.getBirthDate()
+		or profile.getCompany()
+		or profile.getPosition()
+	-%}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row clearfix">
+					<div class="col-md-7">
+						<h3 class="panel-title">
+							{{- 'generic.profile.personal' |trans({}, 'CCDNUserProfileBundle') -}}
+						</h3>
+					</div>
+
+					<div class="col-md-5 text-right">
+						{%- if is_granted('ROLE_USER') -%}
+							{%- if profile.getUser().getId() == app.user.id or is_granted('ROLE_ADMIN') -%}
+								<div class="pull-right btn-right">
+									<a class="btn btn-default" href="{{- path('ccdn_user_profile_info_edit', {'userId': user.id}) -}}">
+										{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
+									</a>
+								</div>
+							{%- endif -%}
+						{%- endif -%}
+					</div>
+				</div>
+			</div>
+			<table class="table">
+				<tbody>
+					{%- if profile.getBirthDate() -%}
+						<tr>
+							<td>
+								Birthday: {{- profile.getBirthDate() |date('Y-M-D') -}}
+							</td>
+						</tr>
+					{%- endif -%}
+					{%- if profile.getCompany() -%}
+						<tr>
+							<td>
+								Company: {{- profile.getCompany() -}}
+							</td>
+						</tr>
+					{%- endif -%}
+					{%- if profile.getPosition() -%}
+						<tr>
+							<td>
+								Position: {{- profile.getPosition() -}}
+							</td>
+						</tr>
+					{%- endif -%}
+				</tbody>
+			</table>
+		</div>
+	{%- endif -%}
+
+{%- endspaceless -%}

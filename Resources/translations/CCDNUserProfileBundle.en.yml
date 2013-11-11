@@ -3,6 +3,7 @@ dashboard:
         account:             "Account"
         profile:             "Profile"
     categories:
+        user:                "User"
         profile:             "Profile"
     links:
         show_profile:        "Show Profile"
@@ -12,6 +13,7 @@ layout:
         profile:             "Profile"
 
 title:
+    members:                 "Members"
     profile:
         show:                "%name%'s Profile"
         edit_personal:       "Edit Info"
@@ -21,6 +23,7 @@ title:
         edit_signature:      "Edit Signature"
 
 crumbs:
+    members:                 "Members"
     profile:
         show:                "%name%'s Profile"
         edit:
@@ -36,6 +39,7 @@ sidebar:
         tools:               "Tools"
 
 link:
+    members:                 "Members"
     view:                    "Profile"
     view_named:              "%name%'s Profile"
     edit:                    "Edit Profile"
@@ -68,6 +72,7 @@ form:
 
 generic:
     thead:
+        filter.all:    "All"
         username:            "Username"
         location:            "Location"
         website:             "Website"
@@ -75,8 +80,10 @@ generic:
         msn:                 "MSN"
         icq:                 "ICQ"
         yahoo:               "Yahoo"
+        profile_since:       "profile Since"
         member_since:        "Member Since"
         last_logged_in:      "Last Login"
+        none:          "No members were found."
     profile:
         personal:            "Info"
         contact:
@@ -91,10 +98,10 @@ generic:
             heading:     "Signature"
             none:        "This user has not yet added a signature."
             none_owner:  "You have not yet added a signature. Click edit to add one."
-        member_role:
+        profile_role:
             administrator:   "Administrator"
             moderator:       "Moderator"
-            member:          "Member"
+            profile:          "profile"
             banned:          "Banned"
 
 flash:

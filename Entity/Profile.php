@@ -13,7 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Entity;
 
-use CCDNUser\ProfileBundle\Model\Profile as AbstractProfile;
+use CCDNUser\ProfileBundle\Entity\Model\ProfileModel as AbstractProfile;
 
 /**
  *
@@ -38,86 +38,44 @@ class Profile extends AbstractProfile
     /**
      *
      * @access protected
-     * @var Boolean $avatarIsRemote
+     * @var string $birthDate
      */
-    protected $avatarIsRemote = false;
+    protected $birthDate;
 
     /**
      *
      * @access protected
-     * @var string $avatar
+     * @var string $realName
      */
-    protected $avatar;
+    protected $realName;
 
     /**
      *
      * @access protected
-     * @var string $aim
+     * @var string $locationCount
      */
-    protected $aim;
+    protected $locationCountry;
 
     /**
      *
      * @access protected
-     * @var Boolean $aimIsPublic
+     * @var string $locationCity
      */
-    protected $aimIsPublic = false;
+    protected $locationCity;
 
     /**
      *
      * @access protected
-     * @var string $msn
+     * @var string $company
      */
-    protected $msn;
+    protected $company;
 
     /**
      *
      * @access protected
-     * @var Boolean $msnIsPublic
+     * @var string $position
      */
-    protected $msnIsPublic = false;
-
-    /**
-     *
-     * @access protected
-     * @var string $icq
-     */
-    protected $icq;
-
-    /**
-     *
-     * @access protected
-     * @var Boolean $icqIsPublic
-     */
-    protected $icqIsPublic = false;
-
-    /**
-     *
-     * @access protected
-     * @var string $yahoo
-     */
-    protected $yahoo;
-
-    /**
-     *
-     * @access protected
-     * @var Boolean $yahooIsPublic
-     */
-    protected $yahooIsPublic = false;
-
-    /**
-     *
-     * @access protected
-     * @var string $website
-     */
-    protected $website;
-
-    /**
-     *
-     * @access protected
-     * @var string $location
-     */
-    protected $location;
+    protected $position;
 
     /**
      *
@@ -136,26 +94,93 @@ class Profile extends AbstractProfile
     /**
      *
      * @access protected
-     * @var array $contactPoints
+     * @var Boolean $avatarRemote
      */
-    protected $contactPoints = array(
-            'msn' => array(
-                'contact' => 'getMsn',
-                'is_public' => 'getMsnIsPublic',
-            ),
-            'aim' => array(
-                'contact' => 'getAim',
-                'is_public' => 'getAimIsPublic',
-            ),
-            'icq' => array(
-                'contact' => 'getIcq',
-                'is_public' => 'getIcqIsPublic',
-            ),
-            'yahoo' => array(
-                'contact' => 'getYahoo',
-                'is_public' => 'getYahooIsPublic',
-            ),
-        );
+    protected $avatarRemote = false;
+
+    /**
+     *
+     * @access protected
+     * @var string $avatar
+     */
+    protected $avatar;
+
+    /**
+     *
+     * @access protected
+     * @var string $website
+     */
+    protected $website;
+
+    /**
+     *
+     * @access protected
+     * @var string $blogUrl
+     */
+    protected $blogUrl;
+
+    /**
+     *
+     * @access protected
+     * @var string $blogFeedUrl
+     */
+    protected $blogFeedUrl;
+
+    /**
+     *
+     * @access protected
+     * @var string $aim
+     */
+    protected $aim;
+
+    /**
+     *
+     * @access protected
+     * @var Boolean $aimPublic
+     */
+    protected $aimPublic = false;
+
+    /**
+     *
+     * @access protected
+     * @var string $msn
+     */
+    protected $msn;
+
+    /**
+     *
+     * @access protected
+     * @var Boolean $msnPublic
+     */
+    protected $msnPublic = false;
+
+    /**
+     *
+     * @access protected
+     * @var string $icq
+     */
+    protected $icq;
+
+    /**
+     *
+     * @access protected
+     * @var Boolean $icqPublic
+     */
+    protected $icqPublic = false;
+
+    /**
+     *
+     * @access protected
+     * @var string $yahoo
+     */
+    protected $yahoo;
+
+    /**
+     *
+     * @access protected
+     * @var Boolean $yahooPublic
+     */
+    protected $yahooPublic = false;
 
     /**
      *
@@ -177,278 +202,141 @@ class Profile extends AbstractProfile
         return $this->id;
     }
 
+
     /**
-     * Get avatarIsRemote
+     * Get birthDate
      *
-     * @return boolean
+     * @return \Date
      */
-    public function getAvatarIsRemote()
+    public function getBirthDate()
     {
-        return $this->avatarIsRemote;
+        return $this->birthDate;
     }
 
     /**
-     * Set avatarIsRemote
+     * Set birthDate
      *
-     * @param  boolean $avatarIsRemote
+     * @param  \Date  $birthDate
      * @return Profile
      */
-    public function setAvatarIsRemote($avatarIsRemote)
+    public function setBirthDate(\Datetime $birthDate)
     {
-        $this->avatarIsRemote = $avatarIsRemote;
+        $this->birthDate = $birthDate;
 
         return $this;
     }
 
     /**
-     * Get avatar
+     * Get realName
      *
      * @return string
      */
-    public function getAvatar()
+    public function getRealName()
     {
-        return $this->avatar;
+        return $this->realName;
     }
 
     /**
-     * Set avatar
+     * Set realName
      *
-     * @param  string  $avatar
+     * @param  string  $realName
      * @return Profile
      */
-    public function setAvatar($avatar)
+    public function setRealName($realName)
     {
-        $this->avatar = $avatar;
+        $this->realName = $realName;
 
         return $this;
     }
 
     /**
-     * Get aim
+     * Get locationCountry
      *
      * @return string
      */
-    public function getAim()
+    public function getLocationCountry()
     {
-        return $this->aim;
+        return $this->locationCountry;
     }
 
     /**
-     * Set aim
+     * Set locationCountry
      *
-     * @param  string  $aim
+     * @param  string  $locationCountry
      * @return Profile
      */
-    public function setAim($aim)
+    public function setLocationCountry($locationCountry)
     {
-        $this->aim = $aim;
+        $this->locationCountry = $locationCountry;
 
         return $this;
     }
 
     /**
-     * Get aimIsPublic
-     *
-     * @return boolean
-     */
-    public function getAimIsPublic()
-    {
-        return $this->aimIsPublic;
-    }
-
-    /**
-     * Set aimIsPublic
-     *
-     * @param  boolean $aimIsPublic
-     * @return Profile
-     */
-    public function setAimIsPublic($aimIsPublic)
-    {
-        $this->aimIsPublic = $aimIsPublic;
-
-        return $this;
-    }
-
-    /**
-     * Get msn
+     * Get locationCity
      *
      * @return string
      */
-    public function getMsn()
+    public function getLocationCity()
     {
-        return $this->msn;
+        return $this->locationCity;
     }
 
     /**
-     * Set msn
+     * Set locationCity
      *
-     * @param  string  $msn
+     * @param  string  $locationCity
      * @return Profile
      */
-    public function setMsn($msn)
+    public function setLocationCity($locationCity)
     {
-        $this->msn = $msn;
+        $this->locationCity = $locationCity;
 
         return $this;
     }
 
     /**
-     * Get msnIsPublic
-     *
-     * @return boolean
-     */
-    public function getMsnIsPublic()
-    {
-        return $this->msnIsPublic;
-    }
-
-    /**
-     * Set msnIsPublic
-     *
-     * @param  boolean $msnIsPublic
-     * @return Profile
-     */
-    public function setMsnIsPublic($msnIsPublic)
-    {
-        $this->msnIsPublic = $msnIsPublic;
-
-        return $this;
-    }
-
-    /**
-     * Get icq
+     * Get Company
      *
      * @return string
      */
-    public function getIcq()
+    public function getCompany()
     {
-        return $this->icq;
+        return $this->company;
     }
 
     /**
-     * Set icq
+     * Set company
      *
-     * @param  string  $icq
+     * @param  string  $company
      * @return Profile
      */
-    public function setIcq($icq)
+    public function setCompany($company)
     {
-        $this->icq = $icq;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * Get icqIsPublic
-     *
-     * @return boolean
-     */
-    public function getIcqIsPublic()
-    {
-        return $this->icqIsPublic;
-    }
-
-    /**
-     * Set icqIsPublic
-     *
-     * @param  boolean $icqIsPublic
-     * @return Profile
-     */
-    public function setIcqIsPublic($icqIsPublic)
-    {
-        $this->icqIsPublic = $icqIsPublic;
-
-        return $this;
-    }
-
-    /**
-     * Get yahoo
+     * Get position
      *
      * @return string
      */
-    public function getYahoo()
+    public function getPosition()
     {
-        return $this->yahoo;
+        return $this->position;
     }
 
     /**
-     * Set yahoo
+     * Set position
      *
-     * @param  string  $yahoo
+     * @param  string  $position
      * @return Profile
      */
-    public function setYahoo($yahoo)
+    public function setPosition($position)
     {
-        $this->yahoo = $yahoo;
-
-        return $this;
-    }
-
-    /**
-     * Get yahooIsPublic
-     *
-     * @return boolean
-     */
-    public function getYahooIsPublic()
-    {
-        return $this->yahooIsPublic;
-    }
-
-    /**
-     * Set yahooIsPublic
-     *
-     * @param  boolean $yahooIsPublic
-     * @return Profile
-     */
-    public function setYahooIsPublic($yahooIsPublic)
-    {
-        $this->yahooIsPublic = $yahooIsPublic;
-
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set website
-     *
-     * @param  string  $website
-     * @return Profile
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * Set location
-     *
-     * @param  string  $location
-     * @return Profile
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
+        $this->position = $position;
 
         return $this;
     }
@@ -495,6 +383,419 @@ class Profile extends AbstractProfile
     public function setSignature($signature)
     {
         $this->signature = $signature;
+
+        return $this;
+    }
+
+    /**
+     * Get avatarRemote
+     *
+     * @return boolean
+     */
+    public function isAvatarRemote()
+    {
+        return $this->avatarRemote;
+    }
+
+    /**
+     * Set avatarRemote
+     *
+     * @param  boolean $avatarRemote
+     * @return Profile
+     */
+    public function setAvatarRemote($avatarRemote)
+    {
+        $this->avatarRemote = $avatarRemote;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param  string  $avatar
+     * @return Profile
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Has website
+     *
+     * @return bool
+     */
+    public function hasWebsite()
+    {
+		if ($this->getWebsite()) {
+			return true;
+		}
+		
+		return false;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set website
+     *
+     * @param  string  $website
+     * @return Profile
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+    /**
+     * Has blogUrl
+     *
+     * @return bool
+     */
+    public function hasBlogUrl()
+    {
+		if ($this->getBlogUrl()) {
+			return true;
+		}
+		
+		return false;
+    }
+
+    /**
+     * Get blogUrl
+     *
+     * @return string
+     */
+    public function getBlogUrl()
+    {
+        return $this->blogUrl;
+    }
+
+    /**
+     * Set blogUrl
+     *
+     * @param  string  $blogUrl
+     * @return Profile
+     */
+    public function setBlogUrl($blogUrl)
+    {
+        $this->blogUrl = $blogUrl;
+
+        return $this;
+    }
+
+    /**
+     * Has blogFeedUrl
+     *
+     * @return bool
+     */
+    public function hasBlogFeedUrl()
+    {
+		if ($this->getBlogFeedUrl()) {
+			return true;
+		}
+		
+		return false;
+    }
+
+    /**
+     * Get blogFeedUrl
+     *
+     * @return string
+     */
+    public function getBlogFeedUrl()
+    {
+        return $this->blogFeedUrl;
+    }
+
+    /**
+     * Set blogFeedUrl
+     *
+     * @param  string  $blogFeedUrl
+     * @return Profile
+     */
+    public function setBlogFeedUrl($blogFeedUrl)
+    {
+        $this->blogFeedUrl = $blogFeedUrl;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Has aim
+	 * 
+	 * @return bool
+	 */
+	public function hasAim()
+	{
+		if ($this->getAim()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+    /**
+     * Get aim
+     *
+     * @return string
+     */
+    public function getAim()
+    {
+        return $this->aim;
+    }
+
+    /**
+     * Set aim
+     *
+     * @param  string  $aim
+     * @return Profile
+     */
+    public function setAim($aim)
+    {
+        $this->aim = $aim;
+
+        return $this;
+    }
+
+    /**
+     * Is aimPublic
+     *
+     * @return boolean
+     */
+    public function isAimPublic()
+    {
+        return $this->aimPublic;
+    }
+
+    /**
+     * Set aimPublic
+     *
+     * @param  boolean $aimPublic
+     * @return Profile
+     */
+    public function setAimPublic($aimPublic)
+    {
+        $this->aimPublic = $aimPublic;
+
+        return $this;
+    }
+
+	/**
+	 * Has msn
+	 * 
+	 * @return bool
+	 */
+	public function hasMsn()
+	{
+		if ($this->getMsn()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+    /**
+     * Get msn
+     *
+     * @return string
+     */
+    public function getMsn()
+    {
+        return $this->msn;
+    }
+
+    /**
+     * Set msn
+     *
+     * @param  string  $msn
+     * @return Profile
+     */
+    public function setMsn($msn)
+    {
+        $this->msn = $msn;
+
+        return $this;
+    }
+
+    /**
+     * Is msnPublic
+     *
+     * @return boolean
+     */
+    public function isMsnPublic()
+    {
+        return $this->msnPublic;
+    }
+
+    /**
+     * Set msnPublic
+     *
+     * @param  boolean $msnPublic
+     * @return Profile
+     */
+    public function setMsnPublic($msnPublic)
+    {
+        $this->msnPublic = $msnPublic;
+
+        return $this;
+    }
+
+	/**
+	 * Has icq
+	 * 
+	 * @return bool
+	 */
+	public function hasIcq()
+	{
+		if ($this->getIcq()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+    /**
+     * Get icq
+     *
+     * @return string
+     */
+    public function getIcq()
+    {
+        return $this->icq;
+    }
+
+    /**
+     * Set icq
+     *
+     * @param  string  $icq
+     * @return Profile
+     */
+    public function setIcq($icq)
+    {
+        $this->icq = $icq;
+
+        return $this;
+    }
+
+    /**
+     * Is icqPublic
+     *
+     * @return boolean
+     */
+    public function isIcqPublic()
+    {
+        return $this->icqPublic;
+    }
+
+    /**
+     * Set icqPublic
+     *
+     * @param  boolean $icqPublic
+     * @return Profile
+     */
+    public function setIcqPublic($icqPublic)
+    {
+        $this->icqPublic = $icqPublic;
+
+        return $this;
+    }
+
+	/**
+	 * Has yahoo
+	 * 
+	 * @return bool
+	 */
+	public function hasYahoo()
+	{
+		if ($this->getYahoo()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+    /**
+     * Get yahoo
+     *
+     * @return string
+     */
+    public function getYahoo()
+    {
+        return $this->yahoo;
+    }
+
+    /**
+     * Set yahoo
+     *
+     * @param  string  $yahoo
+     * @return Profile
+     */
+    public function setYahoo($yahoo)
+    {
+        $this->yahoo = $yahoo;
+
+        return $this;
+    }
+
+    /**
+     * Is yahooPublic
+     *
+     * @return boolean
+     */
+    public function isYahooPublic()
+    {
+        return $this->yahooPublic;
+    }
+
+    /**
+     * Set yahooPublic
+     *
+     * @param  boolean $yahooPublic
+     * @return Profile
+     */
+    public function setYahooPublic($yahooPublic)
+    {
+        $this->yahooPublic = $yahooPublic;
 
         return $this;
     }

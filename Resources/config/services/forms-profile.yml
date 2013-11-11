@@ -1,0 +1,84 @@
+parameters:
+
+    # Service Parameters defined in app/config
+
+services:
+
+    #
+    # Profile Types Forms.
+    #
+    ccdn_user_profile.form.type.avatar:
+        class: %ccdn_user_profile.form.type.avatar.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    ccdn_user_profile.form.type.personal:
+        class: %ccdn_user_profile.form.type.personal.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    ccdn_user_profile.form.type.info:
+        class: %ccdn_user_profile.form.type.info.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    ccdn_user_profile.form.type.contact:
+        class: %ccdn_user_profile.form.type.contact.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    ccdn_user_profile.form.type.bio:
+        class: %ccdn_user_profile.form.type.bio.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    ccdn_user_profile.form.type.signature:
+        class: %ccdn_user_profile.form.type.signature.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%
+
+    #
+    # Profile Form Handlers.
+    #
+    ccdn_user_profile.form.handler.avatar:
+        class: %ccdn_user_profile.form.handler.avatar.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.avatar
+            - @ccdn_user_profile.model.user
+
+    ccdn_user_profile.form.handler.personal:
+        class: %ccdn_user_profile.form.handler.personal.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.personal
+            - @ccdn_user_profile.model.user
+
+    ccdn_user_profile.form.handler.info:
+        class: %ccdn_user_profile.form.handler.info.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.info
+            - @ccdn_user_profile.model.user
+
+    ccdn_user_profile.form.handler.contact:
+        class: %ccdn_user_profile.form.handler.contact.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.contact
+            - @ccdn_user_profile.model.user
+
+    ccdn_user_profile.form.handler.bio:
+        class: %ccdn_user_profile.form.handler.bio.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.bio
+            - @ccdn_user_profile.model.user
+
+    ccdn_user_profile.form.handler.signature:
+        class:  %ccdn_user_profile.form.handler.signature.class%
+        arguments:
+            - @form.factory
+            - @ccdn_user_profile.form.type.signature
+            - @ccdn_user_profile.model.user
+

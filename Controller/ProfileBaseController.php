@@ -13,6 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Controller;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 use CCDNUser\ProfileBundle\Controller\BaseController;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
@@ -32,14 +34,15 @@ class ProfileBaseController extends BaseController
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                         $profile
+     * @param  \Symfony\Component\Security\Core\User\UserInterface            $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdatePersonalFormHandler
      */
-    public function getFormHandlerToEditPersonal(Profile $profile)
+    public function getFormHandlerToEditPersonal(UserInterface $user)
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.personal');
 
-        $formHandler->setProfile($profile);
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
 
         return $formHandler;
     }
@@ -47,14 +50,31 @@ class ProfileBaseController extends BaseController
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                        $profile
+     * @param  \Symfony\Component\Security\Core\User\UserInterface        $user
+     * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateInfoFormHandler
+     */
+    public function getFormHandlerToEditInfo(UserInterface $user)
+    {
+        $formHandler = $this->container->get('ccdn_user_profile.form.handler.info');
+
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
+
+        return $formHandler;
+    }
+
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface           $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateContactFormHandler
      */
-    public function getFormHandlerToEditContact(Profile $profile)
+    public function getFormHandlerToEditContact(UserInterface $user)
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.contact');
 
-        $formHandler->setProfile($profile);
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
 
         return $formHandler;
     }
@@ -62,14 +82,15 @@ class ProfileBaseController extends BaseController
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                       $profile
+     * @param  \Symfony\Component\Security\Core\User\UserInterface          $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateAvatarFormHandler
      */
-    public function getFormHandlerToEditAvatar(Profile $profile)
+    public function getFormHandlerToEditAvatar(UserInterface $user)
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.avatar');
 
-        $formHandler->setProfile($profile);
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
 
         return $formHandler;
     }
@@ -77,14 +98,15 @@ class ProfileBaseController extends BaseController
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                    $profile
+     * @param  \Symfony\Component\Security\Core\User\UserInterface       $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateBioFormHandler
      */
-    public function getFormHandlerToEditBio(Profile $profile)
+    public function getFormHandlerToEditBio(UserInterface $user)
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.bio');
 
-        $formHandler->setProfile($profile);
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
 
         return $formHandler;
     }
@@ -92,14 +114,15 @@ class ProfileBaseController extends BaseController
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                          $profile
+     * @param  \Symfony\Component\Security\Core\User\UserInterface             $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\UpdateSignatureFormHandler
      */
-    public function getFormHandlerToEditSignature(Profile $profile)
+    public function getFormHandlerToEditSignature(UserInterface $user)
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.signature');
 
-        $formHandler->setProfile($profile);
+		$formHandler->setRequest($this->getRequest());
+        $formHandler->setUser($user);
 
         return $formHandler;
     }

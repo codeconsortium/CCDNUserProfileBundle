@@ -7,45 +7,22 @@ CCDNUser\ProfileBundle\Entity\Profile:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        avatarIsRemote:
-            type: boolean
-            column: avatar_is_remote
-            nullable: false
-        avatar:
+        birthDate:
+            type: date
+            nullable: true
+        realName:
             type: string
             nullable: true
-        aimIsPublic:
-            type: boolean
-            column: aim_is_public
-            nullable: false
-        aim:
+        locationCountry:
             type: string
             nullable: true
-        msnIsPublic:
-            type: boolean
-            column: msn_is_public
-            nullable: false
-        msn:
+        locationCity:
             type: string
             nullable: true
-        icqIsPublic:
-            type: boolean
-            column: icq_is_public
-            nullable: false
-        icq:
+        company:
             type: string
             nullable: true
-        yahooIsPublic:
-            type: boolean
-            column: yahoo_is_public
-            nullable: false
-        yahoo:
-            type: string
-            nullable: true
-        website:
-            type: string
-            nullable: true
-        location:
+        position:
             type: string
             nullable: true
         bio:
@@ -53,6 +30,50 @@ CCDNUser\ProfileBundle\Entity\Profile:
             nullable: true
         signature:
             type: text
+            nullable: true
+        avatarRemote:
+            type: boolean
+            column: avatar_is_remote
+            nullable: false
+        avatar:
+            type: string
+            nullable: true
+        website:
+            type: string
+            nullable: true
+        blogUrl:
+            type: string
+            nullable: true
+        blogFeedUrl:
+            type: string
+            nullable: true
+        aimPublic:
+            type: boolean
+            column: aim_is_public
+            nullable: false
+        aim:
+            type: string
+            nullable: true
+        msnPublic:
+            type: boolean
+            column: msn_is_public
+            nullable: false
+        msn:
+            type: string
+            nullable: true
+        icqPublic:
+            type: boolean
+            column: icq_is_public
+            nullable: false
+        icq:
+            type: string
+            nullable: true
+        yahooPublic:
+            type: boolean
+            column: yahoo_is_public
+            nullable: false
+        yahoo:
+            type: string
             nullable: true
     oneToOne:
         user:

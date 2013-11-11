@@ -361,7 +361,7 @@ class Profile implements ProfileInterface
                 $badges = array('black', 'Banned');
             } else {
                 if ($this->user->hasRole('ROLE_USER')) {
-                    $badges = array('blue', 'Member');
+                    $badges = array('blue', 'Profile');
                 }
 
                 if ($this->user->hasRole('ROLE_MODERATOR')) {

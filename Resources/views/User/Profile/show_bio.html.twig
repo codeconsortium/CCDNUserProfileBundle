@@ -1,0 +1,21 @@
+{% extends 'CCDNUserProfileBundle:Common:Layout/base.html.twig' %}
+
+{% set LayoutTemplate = ccdn_user_profile.profile.show.bio.layout_template %}
+
+{% block title %}{{- 'title.profile.show' | trans({ '%name%': user.getUsername()}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}{% endblock %}
+
+
+
+{% block body_content %}
+
+	{%- spaceless -%}
+
+	{%- include 'CCDNUserProfileBundle:User:Profile/Partial/item_header.html.twig' -%}
+
+	{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_biography.html.twig' -%}
+
+	{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_signature.html.twig' -%}
+
+	{%- endspaceless -%}
+
+{% endblock body_content %}

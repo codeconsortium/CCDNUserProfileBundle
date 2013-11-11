@@ -30,11 +30,42 @@ class DashboardIntegrator
 {
     /**
      *
+     * @access protected
+     * @var bool $requiresLogin
+     */
+    protected $requiresLogin;
+
+    /**
+     *
+     * @access public
+     * @param bool $requiresLogin
+     */
+    public function __construct($requiresLogin)
+    {
+        $this->requiresLogin = $requiresLogin;
+    }
+
+    /**
+     *
      * @access public
      * @param CCDNComponent\DashboardBundle\Component\Integrator\Model\BuilderInterface $builder
      */
     public function build(BuilderInterface $builder)
     {
+        $builder
+            ->addCategory('community')
+                ->setLabel('ccdn_user_profile.dashboard.categories.user', array(), 'CCDNUserProfileBundle')
+                ->addLinks()
+                    ->addLink('members')
+                        ->setAuthRole(($this->requiresLogin ? 'ROLE_USER': null))
+                        ->setRoute('ccdn_user_profile_index')
+                        ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_users.png')
+                        ->setLabel('ccdn_user_profile.title.members', array(), 'CCDNUserProfileBundle')
+                    ->end()
+                ->end()
+            ->end()
+        ;
+		
         $builder
             ->addCategory('profile')
                 ->setLabel('ccdn_user_profile.dashboard.categories.profile', array(), 'CCDNUserProfileBundle')
@@ -53,33 +84,33 @@ class DashboardIntegrator
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.dashboard.links.show_profile', array(), 'CCDNUserProfileBundle')
                     ->end()
-                    ->addLink('ccdn_user_profile_edit_personal')
+                    ->addLink('ccdn_user_profile_personal_edit')
                         ->setAuthRole('ROLE_USER')
-                        ->setRoute('ccdn_user_profile_edit_personal')
+                        ->setRoute('ccdn_user_profile_personal_edit')
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.title.profile.edit_personal', array(), 'CCDNUserProfileBundle')
                     ->end()
                     ->addLink('ccdn_user_profile_contact')
                         ->setAuthRole('ROLE_USER')
-                        ->setRoute('ccdn_user_profile_edit_contact')
+                        ->setRoute('ccdn_user_profile_contact_edit')
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.title.profile.edit_contact', array(), 'CCDNUserProfileBundle')
                     ->end()
-                    ->addLink('ccdn_user_profile_edit_avatar')
+                    ->addLink('ccdn_user_profile_avatar_edit')
                         ->setAuthRole('ROLE_USER')
-                        ->setRoute('ccdn_user_profile_edit_avatar')
+                        ->setRoute('ccdn_user_profile_avatar_edit')
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.title.profile.change_avatar', array(), 'CCDNUserProfileBundle')
                     ->end()
-                    ->addLink('ccdn_user_profile_edit_bio')
+                    ->addLink('ccdn_user_profile_bio_edit')
                         ->setAuthRole('ROLE_USER')
-                        ->setRoute('ccdn_user_profile_edit_bio')
+                        ->setRoute('ccdn_user_profile_bio_edit')
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.title.profile.edit_bio', array(), 'CCDNUserProfileBundle')
                     ->end()
-                    ->addLink('ccdn_user_profile_edit_signature')
+                    ->addLink('ccdn_user_profile_signature_edit')
                         ->setAuthRole('ROLE_USER')
-                        ->setRoute('ccdn_user_profile_edit_signature')
+                        ->setRoute('ccdn_user_profile_signature_edit')
                         ->setIcon('/bundles/ccdncomponentcommon/images/icons/Black/32x32/32x32_user.png')
                         ->setLabel('ccdn_user_profile.title.profile.edit_signature', array(), 'CCDNUserProfileBundle')
                     ->end()

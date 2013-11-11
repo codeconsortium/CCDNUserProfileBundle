@@ -64,9 +64,15 @@ class BaseController extends ContainerAware
 
     /**
      *
-     * @var \CCDNUser\ProfileBundle\Manager\ProfileManager $profileManager
+     * @var \CCDNUser\ProfileBundle\Model\Model\UserModel $userModel
      */
-    private $profileManager;
+    private $userModel;
+
+    /**
+     *
+     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
+     */
+    private $profileModel;
 
     /**
      *
@@ -324,19 +330,33 @@ class BaseController extends ContainerAware
 	{
 		return $this->getRequest()->query->get($query, $default);
 	}
-	
+
     /**
      *
      * @access protected
-     * @return \CCDNUser\ProfileBundle\Manager\ProfileManager
+     * @return \CCDNUser\ProfileBundle\Model\Model\UserModel
      */
-    protected function getProfileManager()
+    protected function getUserModel()
     {
-        if (null == $this->profileManager) {
-            $this->profileManager = $this->container->get('ccdn_user_profile.manager.profile');
+        if (null == $this->userModel) {
+            $this->userModel = $this->container->get('ccdn_user_profile.model.user');
         }
 
-        return $this->profileManager;
+        return $this->userModel;
+    }
+
+    /**
+     *
+     * @access protected
+     * @return \CCDNUser\ProfileBundle\Model\Model\ProfileModel
+     */
+    protected function getProfileModel()
+    {
+        if (null == $this->profileModel) {
+            $this->profileModel = $this->container->get('ccdn_user_profile.model.profile');
+        }
+
+        return $this->profileModel;
     }
 
     /**
