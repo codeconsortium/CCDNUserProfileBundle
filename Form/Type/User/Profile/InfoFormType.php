@@ -54,10 +54,17 @@ class InfoFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('real_name', 'text',
+                array(
+                    'required'           => false,
+                    'label'              => 'form.label.real_name',
+                    'translation_domain' => 'CCDNUserProfileBundle',
+                )
+            )
             ->add('birth_date', 'date',
                 array(
                     'required'           => false,
-                    'label'              => 'form.label.location.birth_date',
+                    'label'              => 'form.label.birth_date',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )

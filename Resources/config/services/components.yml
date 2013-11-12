@@ -13,3 +13,17 @@ services:
             - %ccdn_user_profile.member.list.requires_login%
         tags:
             - { name: ccdn_component_dashboard.integrator }
+
+    #
+    # Crumbs.
+    #
+    ccdn_user_profile.component.crumb_factory:
+        class: %ccdn_user_profile.component.crumb_factory.class%
+        arguments:
+            - @translator
+            - @router
+
+    ccdn_user_profile.component.crumb_builder:
+        class: %ccdn_user_profile.component.crumb_builder.class%
+        arguments:
+            - @ccdn_user_profile.component.crumb_factory

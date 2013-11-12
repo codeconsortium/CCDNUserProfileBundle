@@ -1,6 +1,5 @@
 dashboard:
     pages:
-        account:             "Account"
         profile:             "Profile"
     categories:
         user:                "User"
@@ -16,22 +15,32 @@ title:
     members:                 "Members"
     profile:
         show:                "%name%'s Profile"
-        edit_personal:       "Edit Info"
+        edit_personal:       "Edit Personal"
+        edit_info:           "Edit Info"
         edit_contact:        "Edit Contact"
         change_avatar:       "Change Avatar"
         edit_bio:            "Edit Bio"
         edit_signature:      "Edit Signature"
 
 crumbs:
-    members:                 "Members"
+    member:
+        index:               "Members"
     profile:
-        show:                "%name%'s Profile"
-        edit:
-            personal:        "Edit Profile Personal Details"
-            contact:         "Edit Profile Contact Details"
-            avatar:          "Edit Profile Avatar"
-            bio:             "Edit Profile Bio"
-            signature:       "Edit Profile Signature"
+        overview:
+            show:            "%username%'s Profile"
+        bio:
+            show:            "%username%'s Profile"
+            edit:            "Edit Profile Bio"
+        personal:
+            edit:            "Edit Profile Personal Details"
+        info:
+            edit:            "Edit Profile Info"
+        avatar:
+            edit:            "Edit Profile Avatar"
+        signature:
+            edit:            "Edit Profile Signature"
+        contact:
+            edit:            "Edit Profile Contact Details"
 
 sidebar:
     header:
@@ -39,20 +48,28 @@ sidebar:
         tools:               "Tools"
 
 link:
-    members:                 "Members"
-    view:                    "Profile"
-    view_named:              "%name%'s Profile"
-    edit:                    "Edit Profile"
+#    members:                 "Members"
+#    view:                    "Profile"
+#    view_named:              "%name%'s Profile"
+#    edit:                    "Edit Profile"
     overview:                "Overview"
     bio:                     "Bio"
-    edit:                    "Edit"
+#    edit:                    "Edit"
 
 form:
     required:                "This field is required"
     label:
         username:            "Username"
-        location:            "Location"
+        real_name:           "Real Name"
+        birth_date:          "Birth Date"
+        company:             "Company"
+        position:            "Position"
+        location:
+            country:         "Country"
+            city:            "City"
         website:             "Website"
+        blog_url:            "Blog Url"
+        blog_feed_url:       "Blog Feed Url"
         aim:                 "AIM"
         aim_is_public:       "AIM is Public"
         msn:                 "MSN"
@@ -69,21 +86,28 @@ form:
         update:              "Update"
         save:                "Save Changes"
         cancel:              "Cancel"
+        change_avatar:       "Change Avatar"
 
 generic:
     thead:
-        filter.all:    "All"
+        filter.all:          "All"
         username:            "Username"
+        real_name:           "Name"
+        birthday:            "Birthday"
+        company:             "Company"
+        position:            "Position"
         location:            "Location"
         website:             "Website"
         aim:                 "AIM"
         msn:                 "MSN"
         icq:                 "ICQ"
         yahoo:               "Yahoo"
+        blog:                "Blog"
+        blog_feed:           "Blog Feed"
         profile_since:       "profile Since"
         member_since:        "Member Since"
         last_logged_in:      "Last Login"
-        none:          "No members were found."
+        none:                "No members were found."
     profile:
         personal:            "Info"
         contact:

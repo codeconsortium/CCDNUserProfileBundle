@@ -56,24 +56,28 @@ class ContactFormType extends AbstractType
         $builder
             ->add('website', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.website',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('blog_url', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.blog_url',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('blog_feed_url', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.blog_feed_url',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
             ->add('msn', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.msn',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
@@ -87,6 +91,7 @@ class ContactFormType extends AbstractType
             )
             ->add('yahoo', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.yahoo',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
@@ -100,6 +105,7 @@ class ContactFormType extends AbstractType
             )
             ->add('aim', null,
                 array(
+                    'required'           => false,
                     'label'              => 'form.label.aim',
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )

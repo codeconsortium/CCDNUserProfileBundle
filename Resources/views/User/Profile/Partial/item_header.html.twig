@@ -12,13 +12,12 @@
 				" width="140" height="140" alt="foo" class="img-thumbnail">
 				
 				{%- if is_granted('ROLE_USER') -%}
-					{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="text-center" style="width: 140px;">
 							<br>
 							<a href="{{- path('ccdn_user_profile_avatar_edit', {'userId': user.id}) -}}" class="btn btn-default btn-block">
 								
-								Change Avatar
-								{#{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}#}
+								{{- 'form.button.change_avatar' |trans({}, 'CCDNUserProfileBundle') -}}
 								
 							</a>
 						</div>
@@ -28,10 +27,14 @@
 			<div style="margin-left: 160px;">
 				<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}" class="lead">
 					{{- user.getUsername() -}}
+					
+					{%- if profile.getRealName() -%}
+						&nbsp;AKA&nbsp;{{- profile.getRealName() -}}
+					{%- endif -%}
 				</a>
 				
 				{%- if is_granted('ROLE_USER') -%}
-					{%- if user.id == app.user.id or is_granted('ROLE_ADMIN') -%}
+					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="pull-right btn-right">
 							<a class="btn btn-default" href="{{- path('ccdn_user_profile_personal_edit', {'userId': user.id}) -}}">
 								{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}

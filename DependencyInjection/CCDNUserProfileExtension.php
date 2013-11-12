@@ -195,6 +195,8 @@ class CCDNUserProfileExtension extends Extension
     private function getComponentSection(array $config, ContainerBuilder $container)
     {
         $container->setParameter('ccdn_user_profile.component.dashboard.integrator.class', $config['component']['dashboard']['integrator']['class']);
+        $container->setParameter('ccdn_user_profile.component.crumb_factory.class', $config['component']['crumb_factory']['class']);
+        $container->setParameter('ccdn_user_profile.component.crumb_builder.class', $config['component']['crumb_builder']['class']);
 
         return $this;
     }

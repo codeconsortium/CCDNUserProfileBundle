@@ -5,6 +5,15 @@
 {% block title %}{{- 'title.profile.show' | trans({ '%name%': user.getUsername()}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
 
+{% block sidebar %}
+	{%- spaceless -%}
+
+    {{ parent() }}
+	{%- include 'CCDNUserProfileBundle:Common:Layout/Sidebar/profile_sidebar.html.twig' -%}
+	
+	{%- endspaceless -%}
+{% endblock sidebar %}
+
 
 {% block body_content %}
 

@@ -47,8 +47,9 @@ class MemberController extends BaseController
 		} else {
 	        $membersPager = $this->getUserModel()->findAllUsersWithProfilePaginated($page);
 		}
-		//ldd($membersPager->getItems());
+
         return $this->renderResponse('CCDNUserProfileBundle:User:Member/list.html.', array(
+			'crumbs' => $this->getCrumbs()->addMemberIndex(),
             'pager' => $membersPager,
 			'alpha' => $alpha,
         ));

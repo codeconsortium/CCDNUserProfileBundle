@@ -54,13 +54,6 @@ class PersonalFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('real_name', 'text',
-                array(
-                    'required'           => false,
-                    'label'              => 'form.label.location.name',
-                    'translation_domain' => 'CCDNUserProfileBundle',
-                )
-            )
             ->add('location_country', 'country',
                 array(
                     'required'           => false,

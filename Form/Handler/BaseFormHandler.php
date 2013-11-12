@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the CCDNMessage MessageBundle
+ * This file is part of the CCDNUser ProfileBundle
  *
  * (c) CCDN (c) CodeConsortium <http://www.codeconsortium.com/>
  *
@@ -18,13 +18,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  *
- * @category CCDNMessage
- * @package  MessageBundle
+ * @category CCDNUser
+ * @package  ProfileBundle
  *
  * @author   Reece Fowell <reece@codeconsortium.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @version  Release: 2.0
- * @link     https://github.com/codeconsortium/CCDNMessageMessageBundle
+ * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
 class BaseFormHandler
@@ -68,7 +68,7 @@ class BaseFormHandler
      *
      * @access public
      * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-     * @return \CCDNMessage\MessageBundle\Form\Handler\BaseFormHandler
+     * @return \CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler
      */
     public function setUser(UserInterface $user)
     {
@@ -81,7 +81,7 @@ class BaseFormHandler
      *
      * @access public
      * @param  \Symfony\Component\HttpFoundation\Request           $request
-     * @return \CCDNMessage\MessageBundle\Form\Handler\BaseFormHandler
+     * @return \CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler
      */
     public function setRequest(Request $request)
     {

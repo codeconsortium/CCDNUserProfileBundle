@@ -1,6 +1,6 @@
 {%- spaceless -%}
 
-	{%- if (profile.getUser().getId() == app.user.id)
+	{%- if (profile.getUser() == app.user)
 		or is_granted('ROLE_ADMIN')
 		or profile.getBio()
 	-%}
@@ -15,7 +15,7 @@
 
 					<div class="col-md-5 text-right">
 						{%- if is_granted('ROLE_USER') -%}
-							{%- if profile.getUser().getId() == app.user.id or is_granted('ROLE_ADMIN') -%}
+							{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 								<div class="pull-right btn-right">
 									<a class="btn btn-default" href="{{- path('ccdn_user_profile_bio_edit', {'userId': user.id}) -}}">
 										{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
@@ -33,16 +33,15 @@
 					</blockqoute>
 				{%- else -%}
 					{%- if is_granted('ROLE_USER') -%}
-						{%- if profile.getUser() is not null -%}
-							{%- if profile.getUser.id == app.user.id -%}
-								<div class="alert alert-warning">
-									{{- 'generic.profile.bio.none_owner' | trans({}, 'CCDNUserProfileBundle') -}}
-								</div>
-							{%- endif -%}
+						{%- if profile.getUser() == app.user -%}
+							<div class="alert alert-warning">
+								{{- 'generic.profile.bio.none_owner' | trans({}, 'CCDNUserProfileBundle') -}}
+							</div>
 						{%- endif -%}
 					{%- endif -%}
 				{%- endif -%}
 			</div>
 		</div>
 	{%- endif -%}
+
 {%- endspaceless -%}

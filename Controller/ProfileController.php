@@ -37,7 +37,7 @@ class ProfileController extends ProfileBaseController
      */
     public function showOverviewAction($userId)
     {
-        if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
+        if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == true) {
             $this->isAuthorised('ROLE_USER');
         }
 		
@@ -47,16 +47,11 @@ class ProfileController extends ProfileBaseController
 		
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
-        //$crumbs = $this->getCrumbs()
-        //    ->add($this->trans('crumbs.profile.show', array('%name%' => $profile->getUsernameBDI())), $this->path('ccdn_user_profile_show_by_id', array('profileId' => $profile->getId())));
-
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_overview.html.',
-            array(
-                //'crumbs' => $crumbs,
-                'user' => $user,
-                'profile' => $user->getProfile(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_overview.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileOverviewShow($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+        ));
     }
 
     /**
@@ -68,7 +63,7 @@ class ProfileController extends ProfileBaseController
      */
     public function showBioAction($userId)
     {
-        if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == 'true') {
+        if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == true) {
             $this->isAuthorised('ROLE_USER');
         }
 
@@ -78,12 +73,11 @@ class ProfileController extends ProfileBaseController
 		
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 		
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_bio.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_bio.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileBioShow($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+        ));
     }
 
     /**
@@ -115,13 +109,12 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_personal.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_personal.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfilePersonalEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 
     /**
@@ -153,13 +146,12 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_info.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_info.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileInfoEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 
     /**
@@ -191,13 +183,12 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_contact.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_contact.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileContactEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 
     /**
@@ -229,13 +220,12 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_avatar.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_avatar.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileAvatarEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 
     /**
@@ -267,13 +257,12 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_bio.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_bio.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileBioEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 
     /**
@@ -305,12 +294,11 @@ class ProfileController extends ProfileBaseController
             return $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         }
 
-        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_signature.html.',
-            array(
-                'user' => $user,
-                'profile' => $user->getProfile(),
-                'form' => $formHandler->getForm()->createView(),
-            )
-        );
+        return $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_signature.html.', array(
+			'crumbs' => $this->getCrumbs()->addProfileSignatureEdit($user),
+            'user' => $user,
+            'profile' => $user->getProfile(),
+            'form' => $formHandler->getForm()->createView(),
+		));
     }
 }
