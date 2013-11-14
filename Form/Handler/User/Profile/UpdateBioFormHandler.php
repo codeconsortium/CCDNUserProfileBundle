@@ -16,7 +16,10 @@ namespace CCDNUser\ProfileBundle\Form\Handler\User\Profile;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 
+use CCDNUser\ProfileBundle\Component\Dispatcher\ProfileEvents;
+use CCDNUser\ProfileBundle\Component\Dispatcher\Event\UserProfileEvent;
 use CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler;
 use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
@@ -51,12 +54,14 @@ class UpdateBioFormHandler extends BaseFormHandler
     /**
      *
      * @access public
-     * @param \Symfony\Component\Form\FormFactory                $factory
-     * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType      $bioFormType
-     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface $userModel
+     * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
+     * @param \Symfony\Component\Form\FormFactory                              $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType                    $bioFormType
+     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $userModel
      */
-    public function __construct(FormFactory $factory, $bioFormType, ModelInterface $userModel)
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $bioFormType, ModelInterface $userModel)
     {
+		$this->dispatcher = $dispatcher;
         $this->factory = $factory;
         $this->bioFormType = $bioFormType;
 
@@ -71,6 +76,8 @@ class UpdateBioFormHandler extends BaseFormHandler
     public function getForm()
     {
         if (null == $this->form) {
+            $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_INITIALISE, new UserProfileEvent($this->request, $this->user->getProfile()));
+			
             $this->form = $this->factory->create($this->bioFormType, $this->user->getProfile());
         }
 
@@ -85,6 +92,10 @@ class UpdateBioFormHandler extends BaseFormHandler
      */
     protected function onSuccess(Profile $profile)
     {
-        return $this->userModel->updateProfile($profile);
+        $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_SUCCESS, new UserProfileEvent($this->request, $profile));
+		
+        $this->userModel->updateProfile($profile);
+		
+        $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_COMPLETE, new UserProfileEvent($this->request, $profile));
     }
 }

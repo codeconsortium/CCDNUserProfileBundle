@@ -197,6 +197,7 @@ class CCDNUserProfileExtension extends Extension
         $container->setParameter('ccdn_user_profile.component.dashboard.integrator.class', $config['component']['dashboard']['integrator']['class']);
         $container->setParameter('ccdn_user_profile.component.crumb_factory.class', $config['component']['crumb_factory']['class']);
         $container->setParameter('ccdn_user_profile.component.crumb_builder.class', $config['component']['crumb_builder']['class']);
+        $container->setParameter('ccdn_user_profile.component.event_listener.flash.class', $config['component']['event_listener']['flash']['class']);
 
         return $this;
     }

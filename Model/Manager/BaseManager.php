@@ -60,14 +60,14 @@ abstract class BaseManager
     /**
      *
      * @access protected
-     * @var \CCDNProfile\ProfileBundle\Model\Manager\ManagerInterface $gateway
+     * @var \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface $gateway
      */
     protected $gateway;
 
     /**
      *
      * @access protected
-     * @var \CCDNProfile\ProfileBundle\Model\Model\ModelInterface $model
+     * @var \CCDNUser\ProfileBundle\Model\Model\ModelInterface $model
      */
     protected $model;
 

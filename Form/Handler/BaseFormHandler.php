@@ -46,7 +46,7 @@ class BaseFormHandler
     /**
      *
      * @access protected
-     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
+     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      */
     protected $dispatcher;
 
@@ -107,7 +107,9 @@ class BaseFormHandler
                 if ($this->getSubmitAction() == 'post') {
                     $formData = $this->form->getData();
 
-                    return $this->onSuccess($formData);
+                    $this->onSuccess($formData);
+					
+					return true;
                 }
             }
         }

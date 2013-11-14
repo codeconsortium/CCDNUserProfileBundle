@@ -27,3 +27,12 @@ services:
         class: %ccdn_user_profile.component.crumb_builder.class%
         arguments:
             - @ccdn_user_profile.component.crumb_factory
+
+    #
+    # Event Subscribers.
+    #
+    ccdn_user_profile.component.event_listener.flash:
+        class: %ccdn_user_profile.component.event_listener.flash.class%
+        arguments: [@session]
+        tags:
+            - { name: kernel.event_subscriber }

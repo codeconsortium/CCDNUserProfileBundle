@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  *
@@ -55,6 +56,12 @@ class BaseController extends ContainerAware
      * @var \Symfony\Component\HttpFoundation\Request $request
      */
     protected $request;
+
+    /**
+     *
+     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher;
+     */
+    protected $dispatcher;
 
     /**
      *
@@ -306,6 +313,15 @@ class BaseController extends ContainerAware
         }
 
         return true;
+    }
+
+    protected function dispatch($name, Event $event)
+    {
+        if (! $this->dispatcher) {
+            $this->dispatcher = $this->container->get('event_dispatcher');
+        }
+
+        $this->dispatcher->dispatch($name, $event);
     }
 
     /**
