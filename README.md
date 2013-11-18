@@ -2,14 +2,12 @@ CCDNUser ProfileBundle README.
 ==============================
 
 
-## Notes:  
-  
-This bundle is for the symfony framework and requires Symfony 2.1.x and PHP 5.4
-  
-This project uses Doctrine 2.1.x and so does not require any specific database.
-  
+## Notes: 
 
-This file is part of the CCDNUser bundles(s)
+This bundle is for the symfony framework and requires Symfony >= 2.1.x and PHP >= 5.3.2
+  
+This project uses Doctrine >= 2.1.x and so does not require any specific database.
+  
 
 &copy; CCDN &copy; [CodeConsortium](http://www.codeconsortium.com/)
 
@@ -18,18 +16,19 @@ Available on:
 * [Packagist](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle)
 * [KnpBundles](http://knpbundles.com/codeconsortium/CCDNUserProfileBundle)
 
-Icons courtesy of [PC.de Icons](http://pc.de/icons/) licensed under [Creative Commons](http://creativecommons.org/licenses/by/3.0/).
 Theme and Sprite graphics courtesy of [twitter bootstrap](http://twitter.github.com/bootstrap/index.html) and [GLYPHICONS](http://glyphicons.com/).
 
 Other graphics are works of CodeConsortium.
 
 For the full copyright and license information, please view the [LICENSE](http://github.com/codeconsortium/CCDNUserProfileBundle/blob/master/Resources/meta/LICENSE) file that was distributed with this source code.
 
+[![Build Status](https://secure.travis-ci.org/codeconsortium/CCDNUserProfileBundle.png)](https://travis-ci.org/codeconsortium/CCDNUserProfileBundle) [![Latest Stable Version](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/v/stable.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle) [![Total Downloads](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/downloads.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle)
+
+[![knpbundles.com](http://knpbundles.com/codeconsortium/CCDNUserProfileBundle/badge-short)](http://knpbundles.com/codeconsortium/CCDNUserProfileBundle) 
+
 ## Description:
 
-This is a complimentary ProfileBundle for [CCDNUser UserBundle](https://github.com/codeconsortium/CCDNUserUserBundle) for Symfony (2.1.x).
-
-You will need to look at [CCDNUser UserBundle](https://github.com/codeconsortium/CCDNUserUserBundle) and install it along with its dependencies before using this bundle.
+This is a ProfileBundle for Symfony (>= 2.1.x) for building a public profile for your community site.
 
 ## Features.
 
