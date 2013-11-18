@@ -15,7 +15,7 @@
 					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="text-center" style="width: 140px;">
 							<br>
-							<a href="{{- path('ccdn_user_profile_avatar_edit', {'userId': user.id}) -}}" class="btn btn-default btn-block">
+							<a id="edit_profile[avatar]" href="{{- path('ccdn_user_profile_avatar_edit', {'userId': user.id}) -}}" class="btn btn-default btn-block">
 								
 								{{- 'form.button.change_avatar' |trans({}, 'CCDNUserProfileBundle') -}}
 								
@@ -36,7 +36,7 @@
 				{%- if is_granted('ROLE_USER') -%}
 					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="pull-right btn-right">
-							<a class="btn btn-default" href="{{- path('ccdn_user_profile_personal_edit', {'userId': user.id}) -}}">
+							<a id="edit_profile[personal]" class="btn btn-default" href="{{- path('ccdn_user_profile_personal_edit', {'userId': user.id}) -}}">
 								{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
 							</a>
 						</div>
@@ -75,8 +75,7 @@
 							<tr>
 								<td class="right">{{- 'generic.thead.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>
 								<td class="left">
-									<bdi>{{- user.getProfile().getLocationCity() -}}</bdi>,&nbsp;
-									<bdi>{{- user.getProfile().getLocationCountry() -}}</bdi>
+									<bdi>{{- user.getProfile().getLocationCity() -}}, {{ user.getProfile().getLocationCountry() -}}</bdi>
 								</td>
 							</tr>
 						{%- endif -%}

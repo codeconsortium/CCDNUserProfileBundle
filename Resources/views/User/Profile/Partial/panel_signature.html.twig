@@ -17,7 +17,7 @@
 						{%- if is_granted('ROLE_USER') -%}
 							{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 								<div class="pull-right btn-right">
-									<a class="btn btn-default" href="{{- path('ccdn_user_profile_signature_edit', {'userId': user.id}) -}}">
+									<a id="edit_profile[signature]" class="btn btn-default" href="{{- path('ccdn_user_profile_signature_edit', {'userId': user.id}) -}}">
 										{{- 'form.button.update' |trans({}, 'CCDNUserProfileBundle') -}}
 									</a>
 								</div>

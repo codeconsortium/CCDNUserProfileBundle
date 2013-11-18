@@ -61,7 +61,7 @@ class InfoFormType extends AbstractType
                     'translation_domain' => 'CCDNUserProfileBundle',
                 )
             )
-            ->add('birth_date', 'date',
+            ->add('birth_date', 'birthday',
                 array(
                     'required'           => false,
                     'label'              => 'form.label.birth_date',
