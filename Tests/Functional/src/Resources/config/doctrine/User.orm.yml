@@ -1,0 +1,20 @@
+CCDNUser\ProfileBundle\Tests\Functional\src\Entity\User:
+    type: entity
+    table: cc_user
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        registeredDate:
+            type: datetime
+            column: registered_date
+    oneToOne:
+        profile:
+            targetEntity: CCDNUser\ProfileBundle\Entity\Profile
+            cascade: ["persist"]
+            nullable: true
+            joinColumn:
+                name: fk_profile_id
+                referencedColumnName: id
+                onDelete: SET NULL

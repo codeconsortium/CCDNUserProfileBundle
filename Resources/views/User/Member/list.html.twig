@@ -43,8 +43,8 @@
 					<th class="center">{{- 'generic.thead.website' | trans({}, 'CCDNUserProfileBundle') -}}</th>
 					<th class="center">{{- 'generic.thead.aim' | trans({}, 'CCDNUserProfileBundle') -}}</th>
 					<th class="center">{{- 'generic.thead.msn' | trans({}, 'CCDNUserProfileBundle') -}}</th>
-					<th class="center">{{- 'generic.thead.icq' | trans({}, 'CCDNUserProfileBundle') -}}</th>
 					<th class="center">{{- 'generic.thead.yahoo' | trans({}, 'CCDNUserProfileBundle') -}}</th>
+					<th class="center">{{- 'generic.thead.icq' | trans({}, 'CCDNUserProfileBundle') -}}</th>
 					<th class="center {%- if pager.isSorted('u.registeredDate') %} sorted{%- endif -%}">
 						{{- knp_pagination_sortable(pager, 'generic.thead.member_since' | trans({}, 'CCDNUserProfileBundle'), 'u.registeredDate') -}}
 					</th>
@@ -65,30 +65,46 @@
 						</td>
 						<td class="center">
 							{%- if user.profile.hasAim() and user.profile.isAimPublic() -%}
-								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getAim() : path(ccdn_user_profile.member.login_route) -}}">
+								{%- if is_granted('ROLE_USER') -%}
+									<a href="mailto: {{- user.profile.getAim() -}}">
+										<i class="icon-envelope"></i>
+									</a>
+								{%- else -%}
 									<i class="icon-envelope"></i>
-								</a>
+								{%- endif -%}
 							{%- endif -%}
 						</td>
 						<td class="center">
 							{%- if user.profile.hasMsn() and user.profile.isMsnPublic() -%}
-								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getMsn() : path(ccdn_user_profile.member.login_route) -}}">
+								{%- if is_granted('ROLE_USER') -%}
+									<a href="mailto: {{- user.profile.getMsn() -}}">
+										<i class="icon-envelope"></i>
+									</a>
+								{%- else -%}
 									<i class="icon-envelope"></i>
-								</a>
-							{%- endif -%}
-						</td>
-						<td class="center">
-							{%- if user.profile.hasIcq() and user.profile.isIcqPublic() -%}
-								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getIcq() : path(ccdn_user_profile.member.login_route) -}}">
-									<i class="icon-envelope"></i>
-								</a>
+								{%- endif -%}
 							{%- endif -%}
 						</td>
 						<td class="center">
 							{%- if user.profile.hasYahoo() and user.profile.isYahooPublic() -%}
-								<a href="{{- (is_granted('ROLE_USER')) ? 'mailto:' ~ user.profile.getYahoo() : path(ccdn_user_profile.member.login_route) -}}">
+								{%- if is_granted('ROLE_USER') -%}
+									<a href="mailto: {{- user.profile.getYahoo() -}}">
+										<i class="icon-envelope"></i>
+									</a>
+								{%- else -%}
 									<i class="icon-envelope"></i>
-								</a>
+								{%- endif -%}
+							{%- endif -%}
+						</td>
+						<td class="center">
+							{%- if user.profile.hasIcq() and user.profile.isIcqPublic() -%}
+								{%- if is_granted('ROLE_USER') -%}
+									<a href="http://people.icq.com/{{- user.profile.getIcq() -}}">
+										<i class="icon-envelope"></i>
+									</a>
+								{%- else -%}
+									<i class="icon-envelope"></i>
+								{%- endif -%}
 							{%- endif -%}
 						</td>
 						<td class="center">

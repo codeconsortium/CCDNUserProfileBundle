@@ -47,9 +47,9 @@ class UpdateInfoFormHandler extends BaseFormHandler
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Model\UserModel $userModel
+     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
      */
-    protected $userModel;
+    protected $profileModel;
 
     /**
      *
@@ -57,15 +57,15 @@ class UpdateInfoFormHandler extends BaseFormHandler
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      * @param \Symfony\Component\Form\FormFactory                              $factory
      * @param \CCDNUser\ProfileBundle\Form\Type\PersonalFormType               $infoFormType
-     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $userModel
+     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $profileModel
      */
-    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $infoFormType, ModelInterface $userModel)
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $infoFormType, ModelInterface $profileModel)
     {
 		$this->dispatcher = $dispatcher;
         $this->factory = $factory;
         $this->infoFormType = $infoFormType;
 
-        $this->userModel = $userModel;
+        $this->profileModel = $profileModel;
     }
 
     /**
@@ -94,7 +94,7 @@ class UpdateInfoFormHandler extends BaseFormHandler
     {
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_INFO_SUCCESS, new UserProfileEvent($this->request, $profile));
 		
-        $this->userModel->updateProfile($profile);
+        $this->profileModel->updateProfile($profile);
 		
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_INFO_COMPLETE, new UserProfileEvent($this->request, $profile));
     }

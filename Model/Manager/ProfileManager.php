@@ -33,53 +33,37 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  */
 class ProfileManager extends BaseManager implements ManagerInterface
 {
-    /**
-     *
-     * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
-     * @return self
-     */
-    public function updateProfile(Profile $profile)
-    {
-        // update the profile record
-        $this
-            ->persist($profile)
-            ->flush();
+	/**
+	 * 
+	 * @access public
+	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
+	 */
+	public function updateProfile(Profile $profile)
+	{
+		$this->persist($profile);
+		$this->flush();
+		
+		return $this;
+	}
 
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param  $profile
-     * @return self
-     */
-    public function insert($profile)
-    {
-        $this->persist($profile);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param  Symfony\Component\Security\Core\User\UserInterface $user
-     * @return \CCDNUser\ProfileBundle\Entity\Profile
-     */
-    public function connectProfileWithUser(UserInterface $user)
-    {
-        $profile = $user->getProfile();
-
-        $profile->setUser($user);
-        $user->setProfile($profile);
-
-        $this->persist($user, $profile);
-        $this->flush();
-
-        $this->refresh($user, $profile);
-
-        return $profile;
-    }
+//    /**
+//     *
+//     * @access public
+//     * @param  Symfony\Component\Security\Core\User\UserInterface $user
+//     * @return \CCDNUser\ProfileBundle\Entity\Profile
+//     */
+//    public function connectProfileWithUser(UserInterface $user)
+//    {
+//        $profile = $user->getProfile();
+//
+//        $profile->setUser($user);
+//        $user->setProfile($profile);
+//
+//        $this->persist($user, $profile);
+//        $this->flush();
+//
+//        $this->refresh($user, $profile);
+//
+//        return $profile;
+//    }
 }

@@ -11,13 +11,9 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Model;
+namespace CCDNUser\ProfileBundle\Tests\Manager;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
-use CCDNUser\ProfileBundle\Model\Model\BaseModel;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
-use CCDNUser\ProfileBundle\Entity\Profile;
+use CCDNUser\ProfileBundle\Tests\TestBase;
 
 /**
  *
@@ -26,19 +22,19 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  *
  * @author   Reece Fowell <reece@codeconsortium.com>
  * @license  http://opensource.org/licenses/MIT MIT
- * @version  Release: 2.0
+ * @version  Release: 1.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileModel extends BaseModel implements ModelInterface
+class UserManagerTest extends TestBase
 {
-	/**
-	 * 
-	 * @access public
-	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
-	 */
-	public function updateProfile(Profile $profile)
+	public function testCheckUserHasProfile()
 	{
-		return $this->getManager()->updateProfile($profile);
+		$users = $this->addFixturesForUsers();
+		$this->getUserModel()->checkUserHasProfile($users['tom']);
+		$userFound = $this->getUserModel()->findOneUserWithProfileById($users['tom']->getId());
+		$this->assertNotNull($userFound);
+		$this->assertSame($users['tom']->getId(), $userFound->getId());
+		$this->assertNotNull($userFound->getProfile());
 	}
 }

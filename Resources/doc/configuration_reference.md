@@ -43,13 +43,6 @@ ccdn_user_profile:
         enable_bb_parser:     true
     item_signature:
         enable_bb_parser:     true
-    sidebar:
-        members_route:        ccdn_user_profile_member_index
-        account_route:        ccdn_user_user_account_show
-        registration_route:   fos_user_registration_register
-        login_route:          fos_user_security_login
-        logout_route:         fos_user_security_logout
-        reset_route:          fos_user_resetting_request
 
 ```
 

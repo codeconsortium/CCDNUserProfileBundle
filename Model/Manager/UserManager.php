@@ -17,7 +17,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 use CCDNUser\ProfileBundle\Model\Manager\ManagerInterface;
 use CCDNUser\ProfileBundle\Model\Manager\BaseManager;
-
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -49,19 +48,6 @@ class UserManager extends BaseManager implements ManagerInterface
 			$this->flush();
 			$this->refresh($user);
 		}
-		
-		return $this;
-	}
-
-	/**
-	 * 
-	 * @access public
-	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
-	 */
-	public function updateProfile(Profile $profile)
-	{
-		$this->persist($profile);
-		$this->flush();
 		
 		return $this;
 	}

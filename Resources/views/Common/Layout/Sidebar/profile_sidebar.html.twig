@@ -4,10 +4,12 @@
 	<ul class="nav nav-pills nav-stacked">
 
 		{%- if route == 'ccdn_user_profile_show'
-		 or route == 'ccdn_user_profile_show_by_id'
-		 or route == 'ccdn_user_profile_personal_edit'
-		 or route == 'ccdn_user_profile_contact_edit'
-		 or route == 'ccdn_user_profile_avatar_edit' -%}
+		    or route == 'ccdn_user_profile_show_by_id'
+		    or route == 'ccdn_user_profile_personal_edit'
+		    or route == 'ccdn_user_profile_info_edit'
+		    or route == 'ccdn_user_profile_contact_edit'
+			or route == 'ccdn_user_profile_avatar_edit'
+		-%}
 			<li class="active">
 				<a href="{{- path(route, {'userId': user.id}) -}}">
 					<i class="icon-user"></i>
@@ -24,8 +26,9 @@
 		{%- endif -%}
 
 		{%- if route == 'ccdn_user_profile_show_bio_by_id'
-		or route == 'ccdn_user_profile_bio_edit'
-		or route == 'ccdn_user_profile_signature_edit' -%}
+		    or route == 'ccdn_user_profile_bio_edit'
+		    or route == 'ccdn_user_profile_signature_edit'
+		-%}
 			<li class="active">
 				<a href="{{- path(route, {'userId': user.id}) -}}">
 					<i class="icon-book"></i>

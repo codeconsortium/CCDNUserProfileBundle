@@ -47,9 +47,9 @@ class UpdateSignatureFormHandler extends BaseFormHandler
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Model\UserModel $userModel
+     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
      */
-    protected $userModel;
+    protected $profileModel;
 
     /**
      *
@@ -57,15 +57,15 @@ class UpdateSignatureFormHandler extends BaseFormHandler
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      * @param \Symfony\Component\Form\FormFactory                              $factory
      * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType              $signatureFormType
-     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $userModel
+     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $profileModel
      */
-    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $signatureFormType, ModelInterface $userModel)
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $signatureFormType, ModelInterface $profileModel)
     {
 		$this->dispatcher = $dispatcher;
         $this->factory = $factory;
         $this->signatureFormType = $signatureFormType;
 
-        $this->userModel = $userModel;
+        $this->profileModel = $profileModel;
     }
 
     /**
@@ -94,7 +94,7 @@ class UpdateSignatureFormHandler extends BaseFormHandler
     {
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_SIGNATURE_SUCCESS, new UserProfileEvent($this->request, $profile));
 		
-        $this->userModel->updateProfile($profile);
+        $this->profileModel->updateProfile($profile);
 		
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_SIGNATURE_COMPLETE, new UserProfileEvent($this->request, $profile));
     }

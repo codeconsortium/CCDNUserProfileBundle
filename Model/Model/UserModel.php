@@ -127,14 +127,4 @@ class UserModel extends BaseModel implements ModelInterface
 	{
 		return $this->getManager()->checkUserHasProfile($user);
 	}
-
-	/**
-	 * 
-	 * @access public
-	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
-	 */
-	public function updateProfile(Profile $profile)
-	{
-		return $this->getManager()->updateProfile($profile);
-	}
 }

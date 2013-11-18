@@ -46,7 +46,7 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.avatar
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 
     ccdn_user_profile.form.handler.personal:
         class: %ccdn_user_profile.form.handler.personal.class%
@@ -54,7 +54,7 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.personal
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 
     ccdn_user_profile.form.handler.info:
         class: %ccdn_user_profile.form.handler.info.class%
@@ -62,7 +62,7 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.info
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 
     ccdn_user_profile.form.handler.contact:
         class: %ccdn_user_profile.form.handler.contact.class%
@@ -70,7 +70,7 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.contact
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 
     ccdn_user_profile.form.handler.bio:
         class: %ccdn_user_profile.form.handler.bio.class%
@@ -78,7 +78,7 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.bio
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 
     ccdn_user_profile.form.handler.signature:
         class:  %ccdn_user_profile.form.handler.signature.class%
@@ -86,5 +86,5 @@ services:
             - @event_dispatcher
             - @form.factory
             - @ccdn_user_profile.form.type.signature
-            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
 

@@ -18,4 +18,4 @@ services:
         class: %ccdn_user_profile.model.profile.class%
         arguments:
             - @ccdn_user_profile.repository.user
-            - @ccdn_user_profile.manager.user
+            - @ccdn_user_profile.manager.profile
