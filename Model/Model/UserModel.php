@@ -41,7 +41,7 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findAllUsersWithProfilePaginated($page = 1, $itemsPerPage = 25)
     {
-        $pager = $this->getRepository()->findAllUsersWithProfilePaginated($page = 1, $itemsPerPage = 25);
+        $pager = $this->getRepository()->findAllUsersWithProfilePaginated($page, $itemsPerPage);
 		
 		$users = $pager->getItems();
 		foreach ($users as $user) {
@@ -61,7 +61,7 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25)
 	{
-        $pager = $this->getRepository()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25);
+        $pager = $this->getRepository()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page, $itemsPerPage);
 		
 		$users = $pager->getItems();
 		foreach ($users as $user) {
