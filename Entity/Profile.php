@@ -188,7 +188,6 @@ class Profile extends AbstractProfile
      */
     public function __construct()
     {
-        //parent::__construct();
         // your own logic
     }
 

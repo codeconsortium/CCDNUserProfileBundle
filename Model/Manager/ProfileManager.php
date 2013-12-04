@@ -13,11 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Model\Manager;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 use CCDNUser\ProfileBundle\Model\Manager\ManagerInterface;
 use CCDNUser\ProfileBundle\Model\Manager\BaseManager;
-
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -45,25 +42,4 @@ class ProfileManager extends BaseManager implements ManagerInterface
 		
 		return $this;
 	}
-
-//    /**
-//     *
-//     * @access public
-//     * @param  Symfony\Component\Security\Core\User\UserInterface $user
-//     * @return \CCDNUser\ProfileBundle\Entity\Profile
-//     */
-//    public function connectProfileWithUser(UserInterface $user)
-//    {
-//        $profile = $user->getProfile();
-//
-//        $profile->setUser($user);
-//        $user->setProfile($profile);
-//
-//        $this->persist($user, $profile);
-//        $this->flush();
-//
-//        $this->refresh($user, $profile);
-//
-//        return $profile;
-//    }
 }

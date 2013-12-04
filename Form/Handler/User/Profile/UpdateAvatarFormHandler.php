@@ -15,9 +15,7 @@ namespace CCDNUser\ProfileBundle\Form\Handler\User\Profile;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
-
 use CCDNUser\ProfileBundle\Component\Dispatcher\ProfileEvents;
 use CCDNUser\ProfileBundle\Component\Dispatcher\Event\UserProfileEvent;
 use CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler;

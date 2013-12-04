@@ -13,12 +13,10 @@
 
 namespace CCDNUser\ProfileBundle\Model\Gateway;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 use Doctrine\ORM\QueryBuilder;
-
 use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
 use CCDNUser\ProfileBundle\Model\Gateway\BaseGateway;
+use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
  *

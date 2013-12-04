@@ -30,55 +30,5 @@ use CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface;
  */
 class ProfileRepository extends BaseRepository implements RepositoryInterface
 {
-//    /**
-//     *
-//     * @access protected
-//     * @param  int                                    $profileId
-//     * @return \CCDNUser\ProfileBundle\Entity\Profile
-//     */
-//    protected function getProfileById($profileId)
-//    {
-//        $profile = $this->em->createQueryBuilder()
-//            ->select('p')
-//            ->from('CCDNUserProfileBundle:Profile', 'p')
-//            ->where('p.id = :id')
-//            ->setParameters(
-//                array(
-//                    ':id' => $profileId,
-//                )
-//            )
-//            ->getQuery()
-//            ->getSingleResult();
-//
-//        return $profile;
-//    }
-//
-//    /**
-//     *
-//     * @access public
-//     * @param  int                                    $profileId
-//     * @param  $securityContext
-//     * @return \CCDNUser\ProfileBundle\Entity\Profile
-//     */
-//    public function getProfile($profileId, $securityContext)
-//    {
-//        if ($profileId == null || $profileId == 0 || ! is_numeric($profileId)) {
-//            if (! $securityContext->isGranted('ROLE_USER')) {
-//                throw new NotFoundHttpException('User not found!');
-//            }
-//
-//            $user = $securityContext->getToken()->getUser();
-//            $profile = $this->connectProfileWithUser($user);
-//        } else {
-//            $profile = $this->getProfileById($profileId);
-//        }
-//
-//        if (! $profile) {
-//            throw new NotFoundHttpException('User not found!');
-//        }
-//
-//        $profile = $this->getProfileProvider()->setup($profile);
-//
-//        return $profile;
-//    }
+
 }

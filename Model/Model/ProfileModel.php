@@ -13,8 +13,6 @@
 
 namespace CCDNUser\ProfileBundle\Model\Model;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 use CCDNUser\ProfileBundle\Model\Model\BaseModel;
 use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;

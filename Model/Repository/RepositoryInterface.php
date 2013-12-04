@@ -17,6 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 
 use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
 
 /**
  *
@@ -45,7 +46,7 @@ interface RepositoryInterface
      * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
      * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
      */
-    public function setModel($model);
+    public function setModel(ModelInterface $model);
 
     /**
      *

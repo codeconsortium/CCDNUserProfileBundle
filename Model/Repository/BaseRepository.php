@@ -17,6 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 
 use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
 
 /**
  *
@@ -72,7 +73,7 @@ abstract class BaseRepository
      * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
      * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
      */
-    public function setModel($model)
+    public function setModel(ModelInterface $model)
     {
         $this->model = $model;
 

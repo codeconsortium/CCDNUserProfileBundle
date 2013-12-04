@@ -22,7 +22,6 @@
 	    "doctrine/doctrine-bundle": "1.1.*",
 	    "twig/extensions": "1.0.*@dev",
 		"knplabs/knp-paginator-bundle": "2.3.*@dev",
-        "excelwebzone/recaptcha-bundle": "dev-master"
     },
 	"require-dev": {
 	    "symfony/swiftmailer-bundle": "2.1.*",

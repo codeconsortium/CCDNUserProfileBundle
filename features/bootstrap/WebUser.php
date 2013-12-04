@@ -16,6 +16,7 @@ namespace CCDNUser\ProfileBundle\features\bootstrap;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use CCDNUser\ProfileBundle\features\bootstrap\DataContext;
 
 /**
  *

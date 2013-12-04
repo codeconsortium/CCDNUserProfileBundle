@@ -14,13 +14,11 @@
 namespace CCDNUser\ProfileBundle\features\bootstrap;
 
 use Behat\MinkExtension\Context\RawMinkContext;
-use Behat\Mink\Element\NodeElement;
-
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Component\HttpKernel\KernelInterface;
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use CCDNUser\ProfileBundle\features\bootstrap\WebUser;
 
 /**
  *
@@ -150,7 +148,6 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
 			ldd($has);
             return false;
         };
-		//ldd($fields);
 
         WebTestCase::assertTrue(call_user_func_array($filterFunc, array($fields['year']->findAll('css', 'option'), $date->format('Y'))));
         WebTestCase::assertTrue(call_user_func_array($filterFunc, array($fields['month']->findAll('css', 'option'), $date->format('M'))));
