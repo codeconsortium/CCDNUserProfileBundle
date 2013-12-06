@@ -11,15 +11,11 @@ services:
         class: %ccdn_user_profile.manager.user.class%
         arguments:
             - @event_dispatcher
-            - @doctrine
-            - @security.context
             - @ccdn_user_profile.gateway.user
 
     ccdn_user_profile.manager.profile:
         class: %ccdn_user_profile.manager.profile.class%
         arguments:
             - @event_dispatcher
-            - @doctrine
-            - @security.context
             - @ccdn_user_profile.gateway.profile
 

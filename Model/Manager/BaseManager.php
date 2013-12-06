@@ -14,8 +14,6 @@
 namespace CCDNUser\ProfileBundle\Model\Manager;
 
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
-use Symfony\Component\Security\Core\SecurityContext;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\QueryBuilder;
 use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
 use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
@@ -34,27 +32,6 @@ use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
  */
 abstract class BaseManager
 {
-    /**
-     *
-     * @access protected
-     * @var \Doctrine\Bundle\DoctrineBundle\Registry $doctrine
-     */
-    protected $doctrine;
-
-    /**
-     *
-     * @access protected
-     * @var \Doctrine\ORM\EntityManager $em
-     */
-    protected $em;
-
-    /**
-     *
-     * @access protected
-     * @var \Symfony\Component\Security\Core\SecurityContext $securityContext
-     */
-    protected $securityContext;
-
     /**
      *
      * @access protected
@@ -80,16 +57,11 @@ abstract class BaseManager
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
-     * @param \Doctrine\Bundle\DoctrineBundle\Registry                          $doctrine
-     * @param \Symfony\Component\Security\Core\SecurityContext                  $securityContext
      * @param \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface            $gateway
      */
-    public function __construct(ContainerAwareEventDispatcher $dispatcher, Registry $doctrine, SecurityContext $securityContext, GatewayInterface $gateway)
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, GatewayInterface $gateway)
     {
 		$this->dispatcher = $dispatcher;
-        $this->doctrine = $doctrine;
-        $this->em = $doctrine->getEntityManager();
-        $this->securityContext = $securityContext;
         $this->gateway = $gateway;
     }
 
@@ -104,27 +76,6 @@ abstract class BaseManager
         $this->model = $model;
 
         return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param  string $role
-     * @return bool
-     */
-    public function isGranted($role)
-    {
-        return $this->securityContext->isGranted($role);
-    }
-
-    /**
-     *
-     * @access public
-     * @return \Symfony\Component\Security\Core\User\UserInterface
-     */
-    public function getUser()
-    {
-        return $this->securityContext->getToken()->getUser();
     }
 
     /**
@@ -195,12 +146,12 @@ abstract class BaseManager
     /**
      *
      * @access public
-     * @param  $entity
+     * @param  Object                                                 $entity
      * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
      */
     public function persist($entity)
     {
-        $this->em->persist($entity);
+        $this->gateway->persist($entity);
 
         return $this;
     }
@@ -208,12 +159,12 @@ abstract class BaseManager
     /**
      *
      * @access public
-     * @param  $entity
+     * @param  Object                                                 $entity
      * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
      */
     public function remove($entity)
     {
-        $this->em->remove($entity);
+        $this->gateway->remove($entity);
 
         return $this;
     }
@@ -225,7 +176,7 @@ abstract class BaseManager
      */
     public function flush()
     {
-        $this->em->flush();
+        $this->gateway->flush();
 
         return $this;
     }
@@ -233,12 +184,12 @@ abstract class BaseManager
     /**
      *
      * @access public
-     * @param  $entity
+     * @param  Object                                                 $entity
      * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
      */
     public function refresh($entity)
     {
-        $this->em->refresh($entity);
+        $this->gateway->refresh($entity);
 
         return $this;
     }

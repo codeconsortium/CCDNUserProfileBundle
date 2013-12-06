@@ -10,11 +10,9 @@ services:
     ccdn_user_profile.repository.user:
         class: %ccdn_user_profile.repository.user.class%
         arguments:
-            - @doctrine.orm.entity_manager
             - @ccdn_user_profile.gateway.user
 
     ccdn_user_profile.repository.profile:
         class: %ccdn_user_profile.repository.profile.class%
         arguments:
-            - @doctrine.orm.entity_manager
             - @ccdn_user_profile.gateway.profile

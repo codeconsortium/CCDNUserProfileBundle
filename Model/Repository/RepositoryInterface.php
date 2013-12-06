@@ -13,9 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Model\Repository;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
-
 use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
 use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
 
@@ -35,10 +33,9 @@ interface RepositoryInterface
     /**
      *
      * @access public
-     * @param  \Doctrine\Common\Persistence\ObjectManager             $em
      * @param  \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface $gateway
      */
-    public function __construct(ObjectManager $em, GatewayInterface $gateway);
+    public function __construct(GatewayInterface $gateway);
 
     /**
      *
