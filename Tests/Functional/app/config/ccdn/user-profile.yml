@@ -1,0 +1,4 @@
+ccdn_user_profile:
+    entity:
+        user:
+            class: CCDNUser\ProfileBundle\Tests\Functional\src\Entity\User
