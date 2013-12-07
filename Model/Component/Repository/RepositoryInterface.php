@@ -11,11 +11,11 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Repository;
+namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
 use Doctrine\ORM\QueryBuilder;
-use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 
 /**
  *
@@ -33,22 +33,22 @@ interface RepositoryInterface
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface $gateway
+     * @param  \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface $gateway
      */
     public function __construct(GatewayInterface $gateway);
 
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
-     * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
+     * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface           $model
+     * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function setModel(ModelInterface $model);
 
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function getGateway();
 

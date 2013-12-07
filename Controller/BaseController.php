@@ -70,13 +70,13 @@ class BaseController extends ContainerAware
 
     /**
      *
-     * @var \CCDNUser\ProfileBundle\Model\Model\UserModel $userModel
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\UserModel $userModel
      */
     private $userModel;
 
     /**
      *
-     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel $profileModel
      */
     private $profileModel;
 
@@ -349,7 +349,7 @@ class BaseController extends ContainerAware
     /**
      *
      * @access protected
-     * @return \CCDNUser\ProfileBundle\Model\Model\UserModel
+     * @return \CCDNUser\ProfileBundle\Model\FrontModel\UserModel
      */
     protected function getUserModel()
     {
@@ -363,7 +363,7 @@ class BaseController extends ContainerAware
     /**
      *
      * @access protected
-     * @return \CCDNUser\ProfileBundle\Model\Model\ProfileModel
+     * @return \CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel
      */
     protected function getProfileModel()
     {

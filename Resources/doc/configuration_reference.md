@@ -18,24 +18,24 @@ ccdn_user_profile:                    # Required
             class:                    CCDNUser\ProfileBundle\Entity\Profile
     gateway:
         user:
-            class:                    CCDNUser\ProfileBundle\Model\Gateway\UserGateway
+            class:                    CCDNUser\ProfileBundle\Model\Component\Gateway\UserGateway
         profile:
-            class:                    CCDNUser\ProfileBundle\Model\Gateway\ProfileGateway
+            class:                    CCDNUser\ProfileBundle\Model\Component\Gateway\ProfileGateway
     model:
         user:
-            class:                    CCDNUser\ProfileBundle\Model\Model\UserModel
+            class:                    CCDNUser\ProfileBundle\Model\FrontModel\UserModel
         profile:
-            class:                    CCDNUser\ProfileBundle\Model\Model\ProfileModel
+            class:                    CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel
     repository:
         user:
-            class:                    CCDNUser\ProfileBundle\Model\Repository\UserRepository
+            class:                    CCDNUser\ProfileBundle\Model\Component\Repository\UserRepository
         profile:
-            class:                    CCDNUser\ProfileBundle\Model\Repository\ProfileRepository
+            class:                    CCDNUser\ProfileBundle\Model\Component\Repository\ProfileRepository
     manager:
         user:
-            class:                    CCDNUser\ProfileBundle\Model\Manager\UserManager
+            class:                    CCDNUser\ProfileBundle\Model\Component\Manager\UserManager
         profile:
-            class:                    CCDNUser\ProfileBundle\Model\Manager\ProfileManager
+            class:                    CCDNUser\ProfileBundle\Model\Component\Manager\ProfileManager
     form:
         type:
             avatar:

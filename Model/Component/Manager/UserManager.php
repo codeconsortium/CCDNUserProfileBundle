@@ -11,10 +11,12 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Model;
+namespace CCDNUser\ProfileBundle\Model\Component\Manager;
 
-use CCDNUser\ProfileBundle\Model\Model\BaseModel;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface;
+use CCDNUser\ProfileBundle\Model\Component\Manager\BaseManager;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -28,15 +30,25 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileModel extends BaseModel implements ModelInterface
+class UserManager extends BaseManager implements ManagerInterface
 {
 	/**
 	 * 
 	 * @access public
-	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
+	 * @param  \Symfony\Component\Security\Core\User\UserInterface $user
 	 */
-	public function updateProfile(Profile $profile)
+	public function checkUserHasProfile(UserInterface $user)
 	{
-		return $this->getManager()->updateProfile($profile);
+		if (null == $user->getProfile()) {
+			$profile = new Profile();
+			$profile->setUser($user);
+			$user->setProfile($profile);
+
+			$this->persist($profile);
+			$this->flush();
+			$this->refresh($user);
+		}
+		
+		return $this;
 	}
 }

@@ -11,11 +11,12 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Repository;
+namespace CCDNUser\ProfileBundle\Model\Component\Manager;
 
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Doctrine\ORM\QueryBuilder;
-use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 
 /**
  *
@@ -28,39 +29,47 @@ use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  * @abstract
- *
  */
-abstract class BaseRepository
+abstract class BaseManager
 {
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface $gateway
+     * @var \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface $gateway
      */
     protected $gateway;
 
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Model\ModelInterface $model
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface $model
      */
     protected $model;
 
     /**
      *
-     * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface $gateway
+     * @access protected
+     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
      */
-    public function __construct(GatewayInterface $gateway)
+    protected $dispatcher;
+
+    /**
+     *
+     * @access public
+     * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
+     * @param \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface            $gateway
+     */
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, GatewayInterface $gateway)
     {
+		$this->dispatcher = $dispatcher;
         $this->gateway = $gateway;
     }
 
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
-     * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
+     * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface           $model
+     * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function setModel(ModelInterface $model)
     {
@@ -72,7 +81,7 @@ abstract class BaseRepository
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function getGateway()
     {
@@ -132,5 +141,56 @@ abstract class BaseRepository
     public function all(QueryBuilder $qb)
     {
         return $this->gateway->all($qb);
+    }
+
+    /**
+     *
+     * @access public
+     * @param  Object                                                 $entity
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
+     */
+    public function persist($entity)
+    {
+        $this->gateway->persist($entity);
+
+        return $this;
+    }
+
+    /**
+     *
+     * @access public
+     * @param  Object                                                 $entity
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
+     */
+    public function remove($entity)
+    {
+        $this->gateway->remove($entity);
+
+        return $this;
+    }
+
+    /**
+     *
+     * @access public
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
+     */
+    public function flush()
+    {
+        $this->gateway->flush();
+
+        return $this;
+    }
+
+    /**
+     *
+     * @access public
+     * @param  Object                                                 $entity
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
+     */
+    public function refresh($entity)
+    {
+        $this->gateway->refresh($entity);
+
+        return $this;
     }
 }

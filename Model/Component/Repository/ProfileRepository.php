@@ -11,10 +11,10 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Repository;
+namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
-use CCDNUser\ProfileBundle\Model\Repository\BaseRepository;
-use CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface;
+use CCDNUser\ProfileBundle\Model\Component\Repository\BaseRepository;
+use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
 
 /**
  * ProfileRepository

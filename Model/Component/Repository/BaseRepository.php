@@ -11,12 +11,11 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Manager;
+namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Doctrine\ORM\QueryBuilder;
-use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 
 /**
  *
@@ -29,47 +28,39 @@ use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  * @abstract
+ *
  */
-abstract class BaseManager
+abstract class BaseRepository
 {
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface $gateway
+     * @var \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface $gateway
      */
     protected $gateway;
 
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Model\ModelInterface $model
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface $model
      */
     protected $model;
 
     /**
      *
-     * @access protected
-     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
-     */
-    protected $dispatcher;
-
-    /**
-     *
      * @access public
-     * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
-     * @param \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface            $gateway
+     * @param  \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface $gateway
      */
-    public function __construct(ContainerAwareEventDispatcher $dispatcher, GatewayInterface $gateway)
+    public function __construct(GatewayInterface $gateway)
     {
-		$this->dispatcher = $dispatcher;
         $this->gateway = $gateway;
     }
 
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
-     * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
+     * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface           $model
+     * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function setModel(ModelInterface $model)
     {
@@ -81,7 +72,7 @@ abstract class BaseManager
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function getGateway()
     {
@@ -141,56 +132,5 @@ abstract class BaseManager
     public function all(QueryBuilder $qb)
     {
         return $this->gateway->all($qb);
-    }
-
-    /**
-     *
-     * @access public
-     * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
-     */
-    public function persist($entity)
-    {
-        $this->gateway->persist($entity);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
-     */
-    public function remove($entity)
-    {
-        $this->gateway->remove($entity);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
-     */
-    public function flush()
-    {
-        $this->gateway->flush();
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access public
-     * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
-     */
-    public function refresh($entity)
-    {
-        $this->gateway->refresh($entity);
-
-        return $this;
     }
 }

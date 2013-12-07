@@ -98,20 +98,20 @@ class TestBase extends WebTestCase
 
     /**
      *
-     * @var \CCDNUser\ProfileBundle\Model\Model\UserModel $userModel
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\UserModel $userModel
      */
     private $userModel;
 
     /**
      *
-     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel $profileModel
      */
     private $profileModel;
 
     /**
      *
      * @access protected
-     * @return \CCDNUser\ProfileBundle\Model\Model\UserModel
+     * @return \CCDNUser\ProfileBundle\Model\FrontModel\UserModel
      */
     protected function getUserModel()
     {
@@ -125,7 +125,7 @@ class TestBase extends WebTestCase
     /**
      *
      * @access protected
-     * @return \CCDNUser\ProfileBundle\Model\Model\ProfileModel
+     * @return \CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel
      */
     protected function getProfileModel()
     {

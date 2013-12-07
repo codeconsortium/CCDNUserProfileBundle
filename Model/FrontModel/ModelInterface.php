@@ -11,10 +11,10 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Model;
+namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
-use CCDNUser\ProfileBundle\Model\Manager\ManagerInterface;
-use CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface;
+use CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface;
+use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
 
 /**
  *
@@ -33,22 +33,22 @@ interface ModelInterface
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface $repository
-     * @param \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface       $manager
+     * @param \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface $repository
+     * @param \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface       $manager
      */
     public function __construct(RepositoryInterface $repository, ManagerInterface $manager);
 
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function getRepository();
 
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
      */
     public function getManager();
 }

@@ -11,14 +11,12 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Gateway;
-
-use Symfony\Component\Security\Core\User\UserInterface;
+namespace CCDNUser\ProfileBundle\Model\Component\Gateway;
 
 use Doctrine\ORM\QueryBuilder;
-
-use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Gateway\BaseGateway;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\BaseGateway;
+use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
  *
@@ -31,14 +29,14 @@ use CCDNUser\ProfileBundle\Model\Gateway\BaseGateway;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserGateway extends BaseGateway implements GatewayInterface
+class ProfileGateway extends BaseGateway implements GatewayInterface
 {
     /**
      *
      * @access private
      * @var string $queryAlias
      */
-    protected $queryAlias = 'u';
+    protected $queryAlias = 'p';
 
     /**
      *
@@ -47,7 +45,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
      * @param  Array                                               $parameters
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
-    public function findUser(QueryBuilder $qb = null, $parameters = null)
+    public function findProfile(QueryBuilder $qb = null, $parameters = null)
     {
         if (null == $qb) {
             $qb = $this->createSelectQuery();
@@ -63,7 +61,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
      * @param  Array                                        $parameters
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function findUsers(QueryBuilder $qb = null, $parameters = null)
+    public function findProfiles(QueryBuilder $qb = null, $parameters = null)
     {
         if (null == $qb) {
             $qb = $this->createSelectQuery();
@@ -79,7 +77,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
      * @param  Array                      $parameters
      * @return int
      */
-    public function countUsers(QueryBuilder $qb = null, $parameters = null)
+    public function countProfiles(QueryBuilder $qb = null, $parameters = null)
     {
         if (null == $qb) {
             $qb = $this->createCountQuery();
@@ -101,12 +99,12 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function persistUser(UserInterface $user)
+    public function persistProfile(Profile $profile)
     {
-        $this->persist($user)->flush();
+        $this->persist($profile)->flush();
 
         return $this;
     }
@@ -114,12 +112,12 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function updateUser(UserInterface $user)
+    public function updateProfile(Profile $profile)
     {
-        $this->persist($user)->flush();
+        $this->persist($profile)->flush();
 
         return $this;
     }
@@ -127,12 +125,12 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function deleteUser(UserInterface $user)
+    public function deleteProfile(Profile $profile)
     {
-        $this->remove($user)->flush();
+        $this->remove($profile)->flush();
 
         return $this;
     }

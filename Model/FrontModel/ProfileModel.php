@@ -11,10 +11,10 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Manager;
+namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
-use CCDNUser\ProfileBundle\Model\Manager\ManagerInterface;
-use CCDNUser\ProfileBundle\Model\Manager\BaseManager;
+use CCDNUser\ProfileBundle\Model\FrontModel\BaseModel;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -28,7 +28,7 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileManager extends BaseManager implements ManagerInterface
+class ProfileModel extends BaseModel implements ModelInterface
 {
 	/**
 	 * 
@@ -37,9 +37,6 @@ class ProfileManager extends BaseManager implements ManagerInterface
 	 */
 	public function updateProfile(Profile $profile)
 	{
-		$this->persist($profile);
-		$this->flush();
-		
-		return $this;
+		return $this->getManager()->updateProfile($profile);
 	}
 }

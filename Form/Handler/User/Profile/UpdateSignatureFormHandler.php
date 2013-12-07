@@ -19,7 +19,7 @@ use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use CCDNUser\ProfileBundle\Component\Dispatcher\ProfileEvents;
 use CCDNUser\ProfileBundle\Component\Dispatcher\Event\UserProfileEvent;
 use CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -45,7 +45,7 @@ class UpdateSignatureFormHandler extends BaseFormHandler
     /**
      *
      * @access protected
-     * @var \CCDNUser\ProfileBundle\Model\Model\ProfileModel $profileModel
+     * @var \CCDNUser\ProfileBundle\Model\FrontModel\ProfileModel $profileModel
      */
     protected $profileModel;
 
@@ -55,7 +55,7 @@ class UpdateSignatureFormHandler extends BaseFormHandler
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      * @param \Symfony\Component\Form\FormFactory                              $factory
      * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType              $signatureFormType
-     * @param \CCDNUser\ProfileBundle\Model\Model\ModelInterface               $profileModel
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface               $profileModel
      */
     public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $signatureFormType, ModelInterface $profileModel)
     {

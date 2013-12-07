@@ -11,12 +11,12 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Manager;
+namespace CCDNUser\ProfileBundle\Model\Component\Manager;
 
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Doctrine\ORM\QueryBuilder;
-use CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 
 /**
  *
@@ -35,22 +35,22 @@ interface ManagerInterface
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher  $dispatcher
-     * @param \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface            $gateway
+     * @param \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface            $gateway
      */
     public function __construct(ContainerAwareEventDispatcher $dispatcher, GatewayInterface $gateway);
 
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Model\Model\ModelInterface           $model
-     * @return \CCDNUser\ProfileBundle\Model\Repository\RepositoryInterface
+     * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface           $model
+     * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function setModel(ModelInterface $model);
 
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Gateway\GatewayInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function getGateway();
 
@@ -98,7 +98,7 @@ interface ManagerInterface
      *
      * @access public
      * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
      */
     public function persist($entity);
 
@@ -106,14 +106,14 @@ interface ManagerInterface
      *
      * @access public
      * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
      */
     public function remove($entity);
 
     /**
      *
      * @access public
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
      */
     public function flush();
 
@@ -121,7 +121,7 @@ interface ManagerInterface
      *
      * @access public
      * @param  Object                                                 $entity
-     * @return \CCDNUser\ProfileBundle\Model\Manager\ManagerInterface
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface
      */
     public function refresh($entity);
 }

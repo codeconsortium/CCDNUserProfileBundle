@@ -11,11 +11,11 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Model;
+namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use CCDNUser\ProfileBundle\Model\Model\BaseModel;
-use CCDNUser\ProfileBundle\Model\Model\ModelInterface;
+use CCDNUser\ProfileBundle\Model\FrontModel\BaseModel;
+use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 
 /**
  *
