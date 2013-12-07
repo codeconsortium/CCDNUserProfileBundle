@@ -181,7 +181,6 @@ If you wish to use default texts provided in this bundle, you have to make sure 
 
 ``` yaml
 # app/config/config.yml
-
 framework:
     translator: ~
 ```
