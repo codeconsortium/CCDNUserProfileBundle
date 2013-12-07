@@ -89,9 +89,6 @@ class CCDNUserProfileBundle extends Bundle
                         ),
                     ),
                 ),
-                'sidebar' => array(
-                    'links' => $this->container->getParameter('ccdn_user_profile.sidebar.links'),
-                ),
             )
         ); // End Twig Globals.
     }

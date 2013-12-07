@@ -7,14 +7,11 @@ use CCDNUser\ProfileBundle\Entity\Profile;
 
 class User extends BaseUser
 {
-    public function __construct()
-    {
-        parent::__construct();
-		
-        // your own logic
-		$this->registeredDate = new \Datetime('now');
-    }
-
+    /**
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Entity\Profile $profile
+     */
 	protected $profile;
 
     /**
@@ -23,6 +20,14 @@ class User extends BaseUser
      * @var \DateTime $registeredDate
      */
     protected $registeredDate;
+
+    public function __construct()
+    {
+        parent::__construct();
+		
+        // your own logic
+		$this->registeredDate = new \Datetime('now');
+    }
 
 	public function setProfile(Profile $profile)
 	{

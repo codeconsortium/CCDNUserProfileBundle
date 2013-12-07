@@ -55,9 +55,6 @@ class CCDNUserProfileExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
-        $container->setParameter('ccdn_user_profile.template.pager_theme', $config['template']['pager_theme']);
-
         // Class file namespaces.
         $this->getEntitySection($config, $container);
         $this->getGatewaySection($config, $container);
@@ -68,10 +65,12 @@ class CCDNUserProfileExtension extends Extension
         $this->getComponentSection($config, $container);
 
         // Configuration stuff.
+        $container->setParameter('ccdn_user_profile.template.engine', $config['template']['engine']);
+        $container->setParameter('ccdn_user_profile.template.pager_theme', $config['template']['pager_theme']);
+
         $this->getSEOSection($config, $container);
         $this->getMemberSection($config, $container);
         $this->getProfileSection($config, $container);
-        $this->getSidebarSection($config, $container);
 
         // Load Service definitions.
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -269,20 +268,6 @@ class CCDNUserProfileExtension extends Extension
         $container->setParameter('ccdn_user_profile.profile.show.overview.last_login_datetime_format', $config['profile']['show']['overview']['last_login_datetime_format']);
 
         $container->setParameter('ccdn_user_profile.profile.show.bio.layout_template', $config['profile']['show']['bio']['layout_template']);
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access private
-     * @param  array                                                                $config
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder              $container
-     * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
-     */
-    private function getSidebarSection(array $config, ContainerBuilder $container)
-    {
-        $container->setParameter('ccdn_user_profile.sidebar.links', $config['sidebar']['links']);
 
         return $this;
     }

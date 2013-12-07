@@ -1,13 +1,9 @@
-Installing CCDNUser ProfileBundle 1.x
+Installing CCDNUser ProfileBundle 2.x
 =====================================
 
 ## Dependencies:
 
-1. [PagerFantaBundle](http://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
-2. [CCDNComponent CommonBundle](https://github.com/codeconsortium/CCDNComponentCommonBundle).
-3. [CCDNComponent BBCodeBundle](https://github.com/codeconsortium/CCDNComponentBBCodeBundle).
-4. [CCDNComponent CrumbTrailBundle](https://github.com/codeconsortium/CCDNComponentCrumbTrailBundle).
-5. [CCDNComponent DashboardBundle](https://github.com/codeconsortium/CCDNComponentDashboardBundle).
+> Note you will need a User Bundle so that you can map the UserInterface to your own User entity. You can use whatecer User Bundle you prefer. FOSUserBundle is highly rated.
 
 ## Installation:
 
@@ -16,7 +12,8 @@ Installation takes only 4 steps:
 1. Download and install dependencies via Composer.
 2. Register bundles with AppKernel.php.
 3. Update your app/config/routing.yml.
-4. Update your database schema.
+4. Update your app/config/config.yml.
+5. Update your database schema.
 
 ### Step 1: Download and install dependencies via Composer.
 
@@ -32,8 +29,6 @@ Append the following to end of your applications composer.json file (found in th
     }
 }
 ```
-
-NOTE: Please replace ``dev-master`` in the snippet above with the latest stable branch, for example ``2.0.*``.
 
 Then, you can install the new dependencies by running Composer's ``update``
 command from the directory where your ``composer.json`` file is located:
@@ -69,9 +64,79 @@ CCDNUserProfileBundle:
     prefix: /
 ```
 
-You can change the route of the standalone route to any route you like, it is included for convenience.
+### Step 4: Update your app/config/config.yml.
 
-### Step 4: Update your database schema.
+In your app/config/config.yml add:
+
+``` yml
+# app/config/config.yml
+ccdn_user_profile:
+    entity:
+        user:
+            class: Acme\YourUserBundle\Entity\User
+```
+
+Replace Acme\YourUserBundle\Entity\User with the user class of your chosen user bundle.
+
+### Step 5: Update your user entity.
+
+In order for the bundle to function correctly you need to add the following to your user entity:
+
+``` php
+/**
+ *
+ * @access protected
+ * @var \CCDNUser\ProfileBundle\Entity\Profile $profile
+ */
+protected $profile;
+
+/**
+ *
+ * @access protected
+ * @var \DateTime $registeredDate
+ */
+protected $registeredDate;
+
+public function __construct()
+{
+    parent::__construct();
+	
+    // your own logic
+	$this->registeredDate = new \Datetime('now');
+}
+
+public function setProfile(Profile $profile)
+{
+	$this->profile = $profile;
+}
+
+public function getProfile()
+{
+	return $this->profile;
+}
+
+/**
+ * Get registeredDate
+ *
+ * @return \Datetime
+ */
+public function getRegisteredDate()
+{
+    return $this->registeredDate;
+}
+
+/**
+ * Set registeredDate
+ *
+ * @param  \Datetime $registeredDate
+ */
+public function setRegisteredDate(\Datetime $registeredDate)
+{
+    $this->registeredDate = $registeredDate;
+}
+```
+
+### Step 6: Update your database schema.
 
 Make sure to add the ProfileBundle to doctrines mapping configuration:
 
@@ -83,11 +148,10 @@ doctrine:
         default_entity_manager: default
         auto_generate_proxy_classes: "%kernel.debug%"
         resolve_target_entities:
-            Symfony\Component\Security\Core\User\UserInterface: FOS\UserBundle\Entity\User
+            Symfony\Component\Security\Core\User\UserInterface: Acme\YourUserBundle\Entity\User
         entity_managers:
             default:
                 mappings:
-                    FOSUserBundle: ~
                     CCDNUserProfileBundle:
                         mapping:              true
                         type:                 yml
@@ -97,91 +161,7 @@ doctrine:
                         is_bundle:            true
 ```
 
-ProfileBundle uses the ProfileProvider of the CommonBundle and overrides it, allowing all references of a username via the method profilePath() to point to a users profile.
-
-You will need to add this to your app/config/ccdn/component-common.yml file in order for this to work. This step is also required for ProfileBundle to work.
-
-``` yml
-ccdn_component_common:
-    service:
-        provider:
-            profile_provider:
-                class: CCDNUser\ProfileBundle\Component\Provider\Profile\ProfileProvider
-```
-
-If you are not using CCDNUserUserBundle, you will need to create a child bundle in order to override the default one-to-one relation of profile to user entity
- (which by default profile bundles maps to CCDNUserUserBundle).
-
-To create a child bundle, add this to your bundles main file (i.e; AcmeProfileBundle.php)
-
-``` php
-class AcmeProfileBundle extends Bundle
-{
-
-    public function getParent()
-    {
-		// This lets Symfony know AcmeProfileBundle inherits everything from CCDNUserProfileBundle.
-        return 'CCDNUserProfileBundle';
-    }
-}
-```
-
-It is also recommended in order for the bundle to function correctly that you add the following to your user entity:
-
-``` php
-/**
- * Setup Profile before being persisted.
- *
- */
-public function prePersistAddProfile()
-{
-	if (null == $this->profile) {
-		$this->profile = new Profile();
-		
-		$this->profile->setUser($this);			
-	}
-}
-
-/**
- * Get profile
- *
- * @return CCDNUser\ProfileBundle\Entity\Profile
- */
-public function getProfile()
-{
-    if (null == $this->profile) {
-        $this->profile = new Profile();
-        $this->profile->setUser($this);
-    }
-		
-    return $this->profile;
-}
-	
-/**
- * Set profile
- *
- * @param CCDNUser\ProfileBundle\Entity\Profile $profile
- * @return User
- */
-public function setProfile(Profile $profile = null)
-{
-    $this->profile = $profile;
-
-    if (null == $this->profile) {
-        $this->profile = new Profile();
-        $this->profile->setUser($this);
-    }
-				
-	return $this;
-}
-```
-
-This will ensure that when a profile does not exist, one can be lazily created, and the manager will persist this later on if it does not have a valid id.
-
-You should add the prePersistAddProfile to your User entities lifecycle callbacks.
-
-#### Copy over the contents of ProfileBundle/Resources/config/doctrine/Profile.orm.yml to your child bundle and change the user entity you wish profile bundle to relate to.
-
+Replace Acme\YourUserBundle\Entity\User with the user class of your chosen user bundle.
 
 From your projects root Symfony directory on the command line run:
 

@@ -50,6 +50,13 @@ class Configuration implements ConfigurationInterface
     /**
      *
      * @access protected
+     * @var string $defaultValuePaginatorTheme
+     */
+    protected $defaultValuePaginatorTheme = 'CCDNUserProfileBundle:Common:Paginator/twitter_bootstrap.html.twig';
+
+    /**
+     *
+     * @access protected
      * @var string $defaultValueAvatarUrl
      */
     protected $defaultValueAvatarUrl = '/bundles/ccdnuserprofile/img/avatar_anonymous.gif';
@@ -73,7 +80,7 @@ class Configuration implements ConfigurationInterface
                     ->canBeUnset()
                     ->children()
                         ->scalarNode('engine')->defaultValue('twig')->end()
-                        ->scalarNode('pager_theme')->defaultValue('CCDNUserProfileBundle:Common:Paginator/twitter_bootstrap.html.twig')->end()
+                        ->scalarNode('pager_theme')->defaultValue($this->defaultValuePaginatorTheme)->end()
                     ->end()
                 ->end()
             ->end()
@@ -92,7 +99,6 @@ class Configuration implements ConfigurationInterface
         $this->addSEOSection($rootNode);
         $this->addMemberSection($rootNode);
         $this->addProfileSection($rootNode);
-        $this->addSidebarSection($rootNode);
 
         return $treeBuilder;
     }
@@ -106,7 +112,8 @@ class Configuration implements ConfigurationInterface
     private function addEntitySection(ArrayNodeDefinition $node)
     {
         $node
-            ->addDefaultsIfNotSet()
+            ->isRequired()
+            ->cannotBeEmpty()
             ->children()
                 ->arrayNode('entity')
                     ->isRequired()
@@ -618,40 +625,6 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode('layout_template')->defaultValue($this->defaultValueLayoutTemplate)->end()
                                     ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
-
-        return $this;
-    }
-
-    /**
-     *
-     * @access private
-     * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
-     * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
-     */
-    private function addSidebarSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->addDefaultsIfNotSet()
-            ->canBeUnset()
-            ->children()
-                ->arrayNode('sidebar')
-                    ->addDefaultsIfNotSet()
-                    ->canBeUnset()
-                    ->children()
-                        ->arrayNode('links')
-                            ->prototype('array')
-                                ->children()
-                                    ->scalarNode('bundle')->end()
-                                    ->scalarNode('label')->end()
-                                    ->scalarNode('route')->defaultNull()->end()
-                                    ->scalarNode('path')->defaultNull()->end()
                                 ->end()
                             ->end()
                         ->end()
