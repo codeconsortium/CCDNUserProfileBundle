@@ -13,6 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface;
 use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
 
@@ -46,12 +47,22 @@ abstract class BaseModel
 
     /**
      *
-     * @access public
-     * @param \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface $repository
-     * @param \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface       $manager
+     * @access protected
+     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      */
-    public function __construct(RepositoryInterface $repository, ManagerInterface $manager)
+    protected $dispatcher;
+
+    /**
+     *
+     * @access public
+	 * @param  \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher       $dispatcher
+     * @param  \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface $repository
+     * @param  \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface       $manager
+     */
+    public function __construct(ContainerAwareEventDispatcher $dispatcher, RepositoryInterface $repository, ManagerInterface $manager)
     {
+		$this->dispatcher = $dispatcher;
+		
         $repository->setModel($this);
         $this->repository = $repository;
 

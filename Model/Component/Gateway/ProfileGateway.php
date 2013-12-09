@@ -99,7 +99,7 @@ class ProfileGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function persistProfile(Profile $profile)
@@ -112,7 +112,7 @@ class ProfileGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function updateProfile(Profile $profile)
@@ -125,7 +125,7 @@ class ProfileGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile                 $profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function deleteProfile(Profile $profile)
@@ -134,4 +134,14 @@ class ProfileGateway extends BaseGateway implements GatewayInterface
 
         return $this;
     }
+
+	/**
+	 * 
+	 * @access public
+	 * @return \CCDNUser\ProfileBundle\Entity\Profile
+	 */
+	public function createProfile()
+	{
+		return new $this->entityClass();
+	}
 }

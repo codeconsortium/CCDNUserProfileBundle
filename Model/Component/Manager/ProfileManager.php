@@ -33,6 +33,28 @@ class ProfileManager extends BaseManager implements ManagerInterface
 	/**
 	 * 
 	 * @access public
+	 * @return \CCDNUser\ProfileBundle\Entity\Profile
+	 */
+	public function createProfile()
+	{
+		return $this->gateway->createProfile();
+	}
+
+	/**
+	 * 
+	 * @access public
+	 * @param  \CCDNUser\ProfileBundle\Entity\Profile
+	 */
+	public function saveProfile(Profile $profile)
+	{
+		$this->gateway->saveProfile($profile);
+		
+		return $this;
+	}
+
+	/**
+	 * 
+	 * @access public
 	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
 	 */
 	public function updateProfile(Profile $profile)

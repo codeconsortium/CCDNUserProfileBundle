@@ -33,6 +33,28 @@ class ProfileModel extends BaseModel implements ModelInterface
 	/**
 	 * 
 	 * @access public
+	 * @return \CCDNUser\ProfileBundle\Entity\Profile
+	 */
+	public function createProfile()
+	{
+		return $this->getManager()->createProfile();
+	}
+
+	/**
+	 * 
+	 * @access public
+	 * @param  \CCDNUser\ProfileBundle\Entity\Profile
+	 */
+	public function saveProfile(Profile $profile)
+	{
+		$this->getManager()->saveProfile($profile);
+		
+		return $this;
+	}
+
+	/**
+	 * 
+	 * @access public
 	 * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
 	 */
 	public function updateProfile(Profile $profile)
