@@ -110,7 +110,7 @@ class UserModel extends BaseModel implements ModelInterface
 	public function findOneUserWithProfileById($userId)
 	{
 		$user = $this->getRepository()->findOneUserWithProfileById($userId);
-		
+
 		$this->checkUserHasProfile($user);
 		
 		return $user;

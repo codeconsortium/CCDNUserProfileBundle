@@ -95,7 +95,7 @@ interface GatewayInterface
      * @param  \Doctrine\ORM\QueryBuilder $qb
      * @param  int                        $itemsPerPage
      * @param  int                        $page
-     * @return \Pagerfanta\Pagerfanta
+     * @return \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination
      */
     public function paginateQuery(QueryBuilder $qb, $itemsPerPage, $page);
 

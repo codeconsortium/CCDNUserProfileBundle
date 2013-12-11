@@ -43,7 +43,7 @@ class ProfileController extends ProfileBaseController
             $this->isAuthorised('ROLE_USER');
         }
 		
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -69,7 +69,7 @@ class ProfileController extends ProfileBaseController
             $this->isAuthorised('ROLE_USER');
         }
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -92,7 +92,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -131,7 +131,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -170,7 +170,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -209,7 +209,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -248,7 +248,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		
@@ -287,7 +287,7 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId) {
+		if (null == $userId || $userId == 0) {
 			$userId = $this->getUser()->getId();
 		}
 		

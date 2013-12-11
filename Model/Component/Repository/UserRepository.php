@@ -43,7 +43,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $qb
 			->leftJoin('u.profile', 'p')
-				->addOrderBy('u.username', 'DESC')
+			->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
 
