@@ -1,6 +1,7 @@
 CCDNUser ProfileBundle README.
 ==============================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23/mini.png)](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23) [![Build Status](https://secure.travis-ci.org/codeconsortium/CCDNUserProfileBundle.png)](https://travis-ci.org/codeconsortium/CCDNUserProfileBundle) [![Latest Stable Version](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/v/stable.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle) [![Total Downloads](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/downloads.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle)
 
 ## Notes: 
 
@@ -21,8 +22,6 @@ Theme and Sprite graphics courtesy of [twitter bootstrap](http://twitter.github.
 Other graphics are works of CodeConsortium.
 
 For the full copyright and license information, please view the [LICENSE](http://github.com/codeconsortium/CCDNUserProfileBundle/blob/master/Resources/meta/LICENSE) file that was distributed with this source code.
-
-[![Build Status](https://secure.travis-ci.org/codeconsortium/CCDNUserProfileBundle.png)](https://travis-ci.org/codeconsortium/CCDNUserProfileBundle) [![Latest Stable Version](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/v/stable.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle) [![Total Downloads](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/downloads.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23/big.png)](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23)
 [![knpbundles.com](http://knpbundles.com/codeconsortium/CCDNUserProfileBundle/badge-short)](http://knpbundles.com/codeconsortium/CCDNUserProfileBundle) 
