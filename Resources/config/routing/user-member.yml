@@ -1,5 +1,3 @@
 ccdn_user_profile_member_index:
     pattern:  /
     defaults: { _controller: CCDNUserProfileBundle:Member:show, _locale: en }
-
-

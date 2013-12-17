@@ -55,11 +55,11 @@ class UpdateBioFormHandler extends BaseFormHandler
      * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
      * @param \Symfony\Component\Form\FormFactory                              $factory
      * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType                    $bioFormType
-     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface               $profileModel
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
      */
     public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $bioFormType, ModelInterface $profileModel)
     {
-		$this->dispatcher = $dispatcher;
+        $this->dispatcher = $dispatcher;
         $this->factory = $factory;
         $this->bioFormType = $bioFormType;
 
@@ -75,7 +75,7 @@ class UpdateBioFormHandler extends BaseFormHandler
     {
         if (null == $this->form) {
             $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_INITIALISE, new UserProfileEvent($this->request, $this->user->getProfile()));
-			
+
             $this->form = $this->factory->create($this->bioFormType, $this->user->getProfile());
         }
 
@@ -91,9 +91,9 @@ class UpdateBioFormHandler extends BaseFormHandler
     protected function onSuccess(Profile $profile)
     {
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_SUCCESS, new UserProfileEvent($this->request, $profile));
-		
+
         $this->profileModel->updateProfile($profile);
-		
+
         $this->dispatcher->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_COMPLETE, new UserProfileEvent($this->request, $profile));
     }
 }

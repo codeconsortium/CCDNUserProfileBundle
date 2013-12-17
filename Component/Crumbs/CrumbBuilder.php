@@ -92,123 +92,123 @@ class CrumbBuilder extends BaseCrumbBuilder
         ;
     }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfilePersonalEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.personal.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_personal_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfilePersonalEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.personal.edit',
+                array(
+                    'route' => 'ccdn_user_profile_personal_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfileInfoEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.info.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_info_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfileInfoEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.info.edit',
+                array(
+                    'route' => 'ccdn_user_profile_info_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfileContactEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.contact.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_contact_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfileContactEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.contact.edit',
+                array(
+                    'route' => 'ccdn_user_profile_contact_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfileAvatarEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.avatar.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_avatar_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfileAvatarEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.avatar.edit',
+                array(
+                    'route' => 'ccdn_user_profile_avatar_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfileBioEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.bio.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_bio_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfileBioEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.bio.edit',
+                array(
+                    'route' => 'ccdn_user_profile_bio_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 
-	/**
-	 *
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
-	 * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
-	 */
-	public function addProfileSignatureEdit(UserInterface $user)
-	{
-	    return $this->addProfileOverviewShow($user)
-	        ->add('crumbs.profile.signature.edit',
-	            array(
-	                'route' => 'ccdn_user_profile_signature_edit',
-	                'params' => array(
-	                    'userId' => $user->getId()
-	                )
-	            )
-	        )
-	    ;
-	}
+    /**
+     *
+     * @access public
+     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
+     */
+    public function addProfileSignatureEdit(UserInterface $user)
+    {
+        return $this->addProfileOverviewShow($user)
+            ->add('crumbs.profile.signature.edit',
+                array(
+                    'route' => 'ccdn_user_profile_signature_edit',
+                    'params' => array(
+                        'userId' => $user->getId()
+                    )
+                )
+            )
+        ;
+    }
 }

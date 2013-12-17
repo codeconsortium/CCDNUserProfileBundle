@@ -10,7 +10,7 @@
 
     {{ parent() }}
 	{%- include 'CCDNUserProfileBundle:Common:Layout/Sidebar/profile_sidebar.html.twig' -%}
-	
+
 	{%- endspaceless -%}
 {% endblock sidebar %}
 
@@ -24,17 +24,17 @@
 	<div class="row">
 		<div class="col-md-6">
 			{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_info.html.twig' -%}
-	
+
 			{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_contact.html.twig' -%}
 		</div>
-	
+
 		<div class="col-md-6">
 			{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_biography.html.twig' -%}
 
 			{%- include 'CCDNUserProfileBundle:User:Profile/Partial/panel_signature.html.twig' -%}
 		</div>
 	</div>
-	
+
 	{%- endspaceless -%}
 
 {% endblock body_content %}

@@ -6,4 +6,3 @@ CCDNUserProfileBundle-User-Member:
 CCDNUserProfileBundle-User-Profile:
     resource: "@CCDNUserProfileBundle/Resources/config/routing/user-profile.yml"
     prefix: /{_locale}/profile
-

@@ -40,13 +40,13 @@ class UserModel extends BaseModel implements ModelInterface
     public function findAllUsersWithProfilePaginated($page = 1, $itemsPerPage = 25)
     {
         $pager = $this->getRepository()->findAllUsersWithProfilePaginated($page, $itemsPerPage);
-		
-		$users = $pager->getItems();
-		foreach ($users as $user) {
-			$this->checkUserHasProfile($user);
-		}
-		
-		return $pager;
+
+        $users = $pager->getItems();
+        foreach ($users as $user) {
+            $this->checkUserHasProfile($user);
+        }
+
+        return $pager;
     }
 
     /**
@@ -58,16 +58,16 @@ class UserModel extends BaseModel implements ModelInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25)
-	{
+    {
         $pager = $this->getRepository()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page, $itemsPerPage);
-		
-		$users = $pager->getItems();
-		foreach ($users as $user) {
-			$this->checkUserHasProfile($user);
-		}
-		
-		return $pager;
-	}
+
+        $users = $pager->getItems();
+        foreach ($users as $user) {
+            $this->checkUserHasProfile($user);
+        }
+
+        return $pager;
+    }
 
     /**
      *
@@ -76,15 +76,15 @@ class UserModel extends BaseModel implements ModelInterface
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
     public function findOneUserWithProfile($userId)
-	{
-		if (is_numeric($userId)) {
-			$user = $this->findOneUserWithProfileById($userId);
-		} else {
-			$user = $this->findOneUserWithProfileByUsername($userId);
-		}
-		
-		return $user;
-	}
+    {
+        if (is_numeric($userId)) {
+            $user = $this->findOneUserWithProfileById($userId);
+        } else {
+            $user = $this->findOneUserWithProfileByUsername($userId);
+        }
+
+        return $user;
+    }
 
     /**
      *
@@ -92,14 +92,14 @@ class UserModel extends BaseModel implements ModelInterface
      * @param  string                                              $username
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
-	public function findOneUserWithProfileByUsername($username)
-	{
-		$user = $this->getRepository()->findOneUserWithProfileByUsername($username);
-		
-		$this->checkUserHasProfile($user);
-		
-		return $user;
-	}
+    public function findOneUserWithProfileByUsername($username)
+    {
+        $user = $this->getRepository()->findOneUserWithProfileByUsername($username);
+
+        $this->checkUserHasProfile($user);
+
+        return $user;
+    }
 
     /**
      *
@@ -107,22 +107,22 @@ class UserModel extends BaseModel implements ModelInterface
      * @param  int                                                 $userId
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
-	public function findOneUserWithProfileById($userId)
-	{
-		$user = $this->getRepository()->findOneUserWithProfileById($userId);
+    public function findOneUserWithProfileById($userId)
+    {
+        $user = $this->getRepository()->findOneUserWithProfileById($userId);
 
-		$this->checkUserHasProfile($user);
-		
-		return $user;
-	}
+        $this->checkUserHasProfile($user);
 
-	/**
-	 * 
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-	 */
-	public function checkUserHasProfile(UserInterface $user)
-	{
-		return $this->getManager()->checkUserHasProfile($user);
-	}
+        return $user;
+    }
+
+    /**
+     *
+     * @access public
+     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     */
+    public function checkUserHasProfile(UserInterface $user)
+    {
+        return $this->getManager()->checkUserHasProfile($user);
+    }
 }

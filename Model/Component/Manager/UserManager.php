@@ -32,23 +32,23 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  */
 class UserManager extends BaseManager implements ManagerInterface
 {
-	/**
-	 * 
-	 * @access public
-	 * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-	 */
-	public function checkUserHasProfile(UserInterface $user)
-	{
-		if (null == $user->getProfile()) {
-			$profile = new Profile();
-			$profile->setUser($user);
-			$user->setProfile($profile);
+    /**
+     *
+     * @access public
+     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     */
+    public function checkUserHasProfile(UserInterface $user)
+    {
+        if (null == $user->getProfile()) {
+            $profile = new Profile();
+            $profile->setUser($user);
+            $user->setProfile($profile);
 
-			$this->persist($profile);
-			$this->flush();
-			$this->refresh($user);
-		}
-		
-		return $this;
-	}
+            $this->persist($profile);
+            $this->flush();
+            $this->refresh($user);
+        }
+
+        return $this;
+    }
 }

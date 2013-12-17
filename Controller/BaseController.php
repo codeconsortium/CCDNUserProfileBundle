@@ -341,10 +341,10 @@ class BaseController extends ContainerAware
         return $action;
     }
 
-	protected function getQuery($query, $default)
-	{
-		return $this->getRequest()->query->get($query, $default);
-	}
+    protected function getQuery($query, $default)
+    {
+        return $this->getRequest()->query->get($query, $default);
+    }
 
     /**
      *

@@ -218,8 +218,8 @@ class CCDNUserProfileExtension extends Extension
     /**
      *
      * @access private
-     * @param  array                                                              $config
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder            $container
+     * @param  array                                                                $config
+     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder              $container
      * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
      */
     private function getMemberSection(array $config, ContainerBuilder $container)

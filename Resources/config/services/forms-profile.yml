@@ -87,4 +87,3 @@ services:
             - @form.factory
             - @ccdn_user_profile.form.type.signature
             - @ccdn_user_profile.model.profile
-

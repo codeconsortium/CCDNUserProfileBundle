@@ -10,15 +10,15 @@
 						{{- ccdn_user_profile.profile.fallback_avatar -}}
 					{%- endif -%}
 				" width="140" height="140" alt="foo" class="img-thumbnail">
-				
+
 				{%- if is_granted('ROLE_USER') -%}
 					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="text-center" style="width: 140px;">
 							<br>
 							<a id="edit_profile[avatar]" href="{{- path('ccdn_user_profile_avatar_edit', {'userId': user.id}) -}}" class="btn btn-default btn-block">
-								
+
 								{{- 'form.button.change_avatar' |trans({}, 'CCDNUserProfileBundle') -}}
-								
+
 							</a>
 						</div>
 					{%- endif -%}
@@ -27,12 +27,12 @@
 			<div style="margin-left: 160px;">
 				<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}" class="lead">
 					{{- user.getUsername() -}}
-					
+
 					{%- if profile.getRealName() -%}
 						&nbsp;AKA&nbsp;{{- profile.getRealName() -}}
 					{%- endif -%}
 				</a>
-				
+
 				{%- if is_granted('ROLE_USER') -%}
 					{%- if profile.getUser() == app.user or is_granted('ROLE_ADMIN') -%}
 						<div class="pull-right btn-right">
@@ -44,7 +44,7 @@
 				{%- endif -%}
 			</div>
 		</div>
-	
+
 		<div class="panel-body">
 			<div style="margin-left: 160px;">
 				<table class="table">
@@ -70,7 +70,7 @@
 								</td>
 							</tr>
 						{%- endif -%}
-				
+
 						{%- if user.getProfile().getLocationCountry() is not null -%}
 							<tr>
 								<td class="right">{{- 'generic.thead.location'|trans({}, 'CCDNUserProfileBundle') -}}</td>

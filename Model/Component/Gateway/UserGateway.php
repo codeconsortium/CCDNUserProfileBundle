@@ -101,7 +101,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
+     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function persistUser(UserInterface $user)
@@ -114,7 +114,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
+     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function updateUser(UserInterface $user)
@@ -127,7 +127,7 @@ class UserGateway extends BaseGateway implements GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface    $user
+     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function deleteUser(UserInterface $user)

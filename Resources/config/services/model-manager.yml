@@ -18,4 +18,3 @@ services:
         arguments:
             - @event_dispatcher
             - @ccdn_user_profile.gateway.profile
-

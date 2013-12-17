@@ -39,19 +39,19 @@ class MemberController extends BaseController
             $this->isAuthorised('ROLE_USER');
         }
 
-		$page = $this->getQuery('page', 1);
-		$alpha = $this->getQuery('alpha', null);
-		
-		if ($alpha) {
-			$membersPager = $this->getUserModel()->findAllUsersWithProfileFilteredAtoZPaginated($page, $alpha);
-		} else {
-	        $membersPager = $this->getUserModel()->findAllUsersWithProfilePaginated($page);
-		}
+        $page = $this->getQuery('page', 1);
+        $alpha = $this->getQuery('alpha', null);
+
+        if ($alpha) {
+            $membersPager = $this->getUserModel()->findAllUsersWithProfileFilteredAtoZPaginated($page, $alpha);
+        } else {
+            $membersPager = $this->getUserModel()->findAllUsersWithProfilePaginated($page);
+        }
 
         return $this->renderResponse('CCDNUserProfileBundle:User:Member/list.html.', array(
-			'crumbs' => $this->getCrumbs()->addMemberIndex(),
+            'crumbs' => $this->getCrumbs()->addMemberIndex(),
             'pager' => $membersPager,
-			'alpha' => $alpha,
+            'alpha' => $alpha,
         ));
     }
 }

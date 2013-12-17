@@ -42,8 +42,8 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $qb = $this->createSelectQuery(array('u'));
 
         $qb
-			->leftJoin('u.profile', 'p')
-			->addOrderBy('u.username', 'DESC')
+            ->leftJoin('u.profile', 'p')
+            ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
 
@@ -66,7 +66,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $qb
             ->where('u.username LIKE :filter')
-			->leftJoin('u.profile', 'p')
+            ->leftJoin('u.profile', 'p')
             ->setParameters($params)
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
@@ -82,20 +82,20 @@ class UserRepository extends BaseRepository implements RepositoryInterface
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
     public function findOneUserWithProfileByUsername($username)
-	{
+    {
         $qb = $this->createSelectQuery(array('u'));
 
         $params = array(':username' => $username);
 
         $qb
             ->where('u.username = :username')
-			->leftJoin('u.profile', 'p')
+            ->leftJoin('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
-		
-		return $this->gateway->findUser($qb, $params);
-	}
+
+        return $this->gateway->findUser($qb, $params);
+    }
 
     /**
      *
@@ -104,18 +104,18 @@ class UserRepository extends BaseRepository implements RepositoryInterface
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
     public function findOneUserWithProfileById($userId)
-	{
+    {
         $qb = $this->createSelectQuery(array('u'));
 
         $params = array(':userId' => $userId);
 
         $qb
             ->where('u.id = :userId')
-			->leftJoin('u.profile', 'p')
+            ->leftJoin('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
-		
-		return $this->gateway->findUser($qb, $params);
-	}
+
+        return $this->gateway->findUser($qb, $params);
+    }
 }

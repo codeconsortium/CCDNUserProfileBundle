@@ -57,12 +57,12 @@ class FlashListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-		    ProfileEvents::USER_PROFILE_UPDATE_AVATAR_COMPLETE    => 'onProfileUpdateComplete',
-		    ProfileEvents::USER_PROFILE_UPDATE_BIO_COMPLETE       => 'onProfileUpdateComplete',
-		    ProfileEvents::USER_PROFILE_UPDATE_CONTACT_COMPLETE   => 'onProfileUpdateComplete',
-		    ProfileEvents::USER_PROFILE_UPDATE_INFO_COMPLETE      => 'onProfileUpdateComplete',
-		    ProfileEvents::USER_PROFILE_UPDATE_PERSONAL_COMPLETE  => 'onProfileUpdateComplete',
-		    ProfileEvents::USER_PROFILE_UPDATE_SIGNATURE_COMPLETE => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_AVATAR_COMPLETE    => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_BIO_COMPLETE       => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_CONTACT_COMPLETE   => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_INFO_COMPLETE      => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_PERSONAL_COMPLETE  => 'onProfileUpdateComplete',
+            ProfileEvents::USER_PROFILE_UPDATE_SIGNATURE_COMPLETE => 'onProfileUpdateComplete',
         );
     }
 

@@ -1,11 +1,13 @@
 dashboard:
     pages:
         profile:             "Profile"
+        community:           "Community"
     categories:
-        user:                "User"
+        community:           "Community"
         profile:             "Profile"
     links:
-        show_profile:        "Show Profile"
+        members:             "Members"
+        show_profile:        "My Profile"
 
 layout:
     header:
@@ -87,6 +89,8 @@ form:
         save:                "Save Changes"
         cancel:              "Cancel"
         change_avatar:       "Change Avatar"
+
+filter-all: "All"
 
 generic:
     thead:

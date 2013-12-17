@@ -62,10 +62,10 @@ abstract class BaseGateway
     /**
      *
      * @access public
-     * @param  \Doctrine\Common\Persistence\ObjectManager $em
-     * @param  string                                     $entityClass
-     * @param  \Knp\Component\Pager\Paginator             $paginator
-     * @param  string                                     $pagerTheme
+     * @param \Doctrine\Common\Persistence\ObjectManager $em
+     * @param string                                     $entityClass
+     * @param \Knp\Component\Pager\Paginator             $paginator
+     * @param string                                     $pagerTheme
      */
     public function __construct(ObjectManager $em, $entityClass, Paginator $paginator = null, $pagerTheme = null)
     {
@@ -75,8 +75,8 @@ abstract class BaseGateway
 
         $this->entityClass = $entityClass;
         $this->em = $em;
-		$this->paginator = $paginator;
-		$this->pagerTheme = $pagerTheme;
+        $this->paginator = $paginator;
+        $this->pagerTheme = $pagerTheme;
     }
 
     /**
@@ -192,16 +192,16 @@ abstract class BaseGateway
      */
     public function paginateQuery(QueryBuilder $qb, $itemsPerPage, $page)
     {
-		$pager = $this->paginator->paginate($qb, $page, $itemsPerPage);
+        $pager = $this->paginator->paginate($qb, $page, $itemsPerPage);
         $pager->setTemplate($this->pagerTheme);
-		
-		return $pager;
+
+        return $pager;
     }
 
     /**
      *
      * @access public
-     * @param  Object                                                 $entity
+     * @param  Object                                                           $entity
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function persist($entity)
@@ -214,7 +214,7 @@ abstract class BaseGateway
     /**
      *
      * @access public
-     * @param  Object                                                 $entity
+     * @param  Object                                                           $entity
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function remove($entity)
@@ -239,7 +239,7 @@ abstract class BaseGateway
     /**
      *
      * @access public
-     * @param  Object                                                 $entity
+     * @param  Object                                                           $entity
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
     public function refresh($entity)

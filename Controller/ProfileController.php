@@ -42,15 +42,15 @@ class ProfileController extends ProfileBaseController
         if ($this->container->getParameter('ccdn_user_profile.profile.show.requires_login') == true) {
             $this->isAuthorised('ROLE_USER');
         }
-		
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
         return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_overview.html.', array(
-			'crumbs' => $this->getCrumbs()->addProfileOverviewShow($user),
+            'crumbs' => $this->getCrumbs()->addProfileOverviewShow($user),
             'user' => $user,
             'profile' => $user->getProfile(),
         ));
@@ -69,14 +69,14 @@ class ProfileController extends ProfileBaseController
             $this->isAuthorised('ROLE_USER');
         }
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
-		
+
         return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_bio.html.', array(
-			'crumbs' => $this->getCrumbs()->addProfileBioShow($user),
+            'crumbs' => $this->getCrumbs()->addProfileBioShow($user),
             'user' => $user,
             'profile' => $user->getProfile(),
         ));
@@ -92,10 +92,10 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
@@ -108,17 +108,17 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_personal.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfilePersonalEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_personal.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfilePersonalEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
-		
+
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_PERSONAL_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 
     /**
@@ -131,10 +131,10 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
@@ -147,17 +147,17 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_info.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfileInfoEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_info.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfileInfoEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
 
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_INFO_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 
     /**
@@ -170,12 +170,12 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
-		
+
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
             $this->isAuthorised('ROLE_ADMIN');
@@ -186,17 +186,17 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_contact.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfileContactEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_contact.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfileContactEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
 
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_CONTACT_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 
     /**
@@ -209,10 +209,10 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
@@ -225,17 +225,17 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_avatar.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfileAvatarEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_avatar.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfileAvatarEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
 
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_AVATAR_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 
     /**
@@ -248,10 +248,10 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
@@ -264,17 +264,17 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_bio.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfileBioEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_bio.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfileBioEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
 
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_BIO_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 
     /**
@@ -287,12 +287,12 @@ class ProfileController extends ProfileBaseController
     {
         $this->isAuthorised('ROLE_USER');
 
-		if (null == $userId || $userId == 0) {
-			$userId = $this->getUser()->getId();
-		}
-		
+        if (null == $userId || $userId == 0) {
+            $userId = $this->getUser()->getId();
+        }
+
         $user = $this->getUserModel()->findOneUserWithProfile($userId);
-		
+
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
             $this->isAuthorised('ROLE_ADMIN');
@@ -303,16 +303,16 @@ class ProfileController extends ProfileBaseController
         if ($formHandler->process()) {
             $response = $this->redirectResponse($this->path('ccdn_user_profile_show_bio_by_id', array('userId' => $user->getId())));
         } else {
-	        $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_signature.html.', array(
-				'crumbs' => $this->getCrumbs()->addProfileSignatureEdit($user),
-	            'user' => $user,
-	            'profile' => $user->getProfile(),
-	            'form' => $formHandler->getForm()->createView(),
-			));
+            $response = $this->renderResponse('CCDNUserProfileBundle:User:Profile/edit_signature.html.', array(
+                'crumbs' => $this->getCrumbs()->addProfileSignatureEdit($user),
+                'user' => $user,
+                'profile' => $user->getProfile(),
+                'form' => $formHandler->getForm()->createView(),
+            ));
         }
 
         $this->dispatch(ProfileEvents::USER_PROFILE_UPDATE_SIGNATURE_RESPONSE, new UserProfileResponseEvent($this->getRequest(), $response, $formHandler->getForm()->getData()));
-		
-		return $response;
+
+        return $response;
     }
 }

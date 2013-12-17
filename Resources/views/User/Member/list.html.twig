@@ -2,7 +2,9 @@
 
 {% set LayoutTemplate = ccdn_user_profile.member.list.layout_template %}
 
-{% block title %}{{- 'title.members' | trans({}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}{% endblock -%}
+{% block title %}
+	{{- 'title.members' | trans({}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}
+{% endblock -%}
 
 
 {% block body_content %}
@@ -10,13 +12,13 @@
 	{%- spaceless -%}
 
 	<section>
-		
+
 		<nav class="btn-toolbar center-block text-center clearfix">
 			{%- set route = app.request.attributes.get('_route') -%}
 
-			<div class="btn-group center-block text-center">
+			<div class="btn-group" style="float:none;">
 				<a class="btn btn-default btn-xs{{- alpha is empty ? ' active':'' -}}" href="{{- path('ccdn_user_profile_member_index') -}}">
-					{{- 'generic.thead.filter.all' |trans({}, 'CCDNUserMemberBundle') -}}
+					{{- 'filter-all' |trans({}, 'CCDNUserProfileBundle') -}}
 				</a>
 
 				{%- for letter in "A".."Z" -%}
@@ -33,7 +35,7 @@
 				{{- knp_pagination_render(pager) -}}
 			</nav>
 		</div>
-		
+
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -114,7 +116,7 @@
 				{%- else -%}
 					<tr>
 						<td class="center" colspan="8">
-							{{- 'generic.thead.none' | trans({}, 'CCDNUserMemberBundle') -}}
+							{{- 'generic.thead.none' | trans({}, 'CCDNUserProfileBundle') -}}
 						</td>
 					</tr>
 				{%- endfor -%}

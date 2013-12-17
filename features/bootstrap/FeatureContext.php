@@ -145,7 +145,8 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
                 }
             }
 
-			ldd($has);
+            ldd($has);
+
             return false;
         };
 

@@ -7,9 +7,9 @@
 			or (profile.hasMsn and profile.isMsnPublic)
 			or (profile.hasYahoo and profile.isYahooPublic)
 			or (profile.hasIcq and profile.isIcqPublic)
-			or profile.getWebsite is not null 
-			or profile.getBlogUrl is not null 
-			or profile.getBlogFeedUrl is not null 
+			or profile.getWebsite is not null
+			or profile.getBlogUrl is not null
+			or profile.getBlogFeedUrl is not null
 		-%}
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -33,7 +33,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<table class="table">
 					<tbody>
 						{%- if profile.isAimPublic() is not null and profile.getAim() is not null -%}

@@ -120,13 +120,13 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->children()
                         ->arrayNode('user')
-		                    ->isRequired()
-		                    ->cannotBeEmpty()
+                            ->isRequired()
+                            ->cannotBeEmpty()
                             ->children()
                                 ->scalarNode('class')
-				                    ->isRequired()
-				                    ->cannotBeEmpty()
-								->end()
+                                    ->isRequired()
+                                    ->cannotBeEmpty()
+                                ->end()
                             ->end()
                         ->end()
                         ->arrayNode('profile')
@@ -254,7 +254,6 @@ class Configuration implements ConfigurationInterface
 
         return $this;
     }
-
 
     /**
      *
@@ -465,8 +464,8 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Component\Dispatcher\Listener\FlashListener')->end()
                                     ->end()
                                 ->end()
-							->end()
-						->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end()
@@ -551,7 +550,7 @@ class Configuration implements ConfigurationInterface
                     ->canBeUnset()
                     ->children()
                         ->scalarNode('fallback_avatar')->defaultValue($this->defaultValueAvatarUrl)->end()
-						->arrayNode('edit')
+                        ->arrayNode('edit')
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()

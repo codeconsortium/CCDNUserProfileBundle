@@ -201,7 +201,6 @@ class Profile extends AbstractProfile
         return $this->id;
     }
 
-
     /**
      * Get birthDate
      *
@@ -215,7 +214,7 @@ class Profile extends AbstractProfile
     /**
      * Set birthDate
      *
-     * @param  \Date  $birthDate
+     * @param  \Date   $birthDate
      * @return Profile
      */
     public function setBirthDate(\Datetime $birthDate)
@@ -439,11 +438,11 @@ class Profile extends AbstractProfile
      */
     public function hasWebsite()
     {
-		if ($this->getWebsite()) {
-			return true;
-		}
-		
-		return false;
+        if ($this->getWebsite()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -469,13 +468,6 @@ class Profile extends AbstractProfile
         return $this;
     }
 
-
-
-
-
-
-
-
     /**
      * Has blogUrl
      *
@@ -483,11 +475,11 @@ class Profile extends AbstractProfile
      */
     public function hasBlogUrl()
     {
-		if ($this->getBlogUrl()) {
-			return true;
-		}
-		
-		return false;
+        if ($this->getBlogUrl()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -520,11 +512,11 @@ class Profile extends AbstractProfile
      */
     public function hasBlogFeedUrl()
     {
-		if ($this->getBlogFeedUrl()) {
-			return true;
-		}
-		
-		return false;
+        if ($this->getBlogFeedUrl()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -550,28 +542,19 @@ class Profile extends AbstractProfile
         return $this;
     }
 
+    /**
+     * Has aim
+     *
+     * @return bool
+     */
+    public function hasAim()
+    {
+        if ($this->getAim()) {
+            return true;
+        }
 
-
-
-
-
-
-
-
-
-	/**
-	 * Has aim
-	 * 
-	 * @return bool
-	 */
-	public function hasAim()
-	{
-		if ($this->getAim()) {
-			return true;
-		}
-		
-		return false;
-	}
+        return false;
+    }
 
     /**
      * Get aim
@@ -619,19 +602,19 @@ class Profile extends AbstractProfile
         return $this;
     }
 
-	/**
-	 * Has msn
-	 * 
-	 * @return bool
-	 */
-	public function hasMsn()
-	{
-		if ($this->getMsn()) {
-			return true;
-		}
-		
-		return false;
-	}
+    /**
+     * Has msn
+     *
+     * @return bool
+     */
+    public function hasMsn()
+    {
+        if ($this->getMsn()) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Get msn
@@ -679,19 +662,19 @@ class Profile extends AbstractProfile
         return $this;
     }
 
-	/**
-	 * Has icq
-	 * 
-	 * @return bool
-	 */
-	public function hasIcq()
-	{
-		if ($this->getIcq()) {
-			return true;
-		}
-		
-		return false;
-	}
+    /**
+     * Has icq
+     *
+     * @return bool
+     */
+    public function hasIcq()
+    {
+        if ($this->getIcq()) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Get icq
@@ -739,19 +722,19 @@ class Profile extends AbstractProfile
         return $this;
     }
 
-	/**
-	 * Has yahoo
-	 * 
-	 * @return bool
-	 */
-	public function hasYahoo()
-	{
-		if ($this->getYahoo()) {
-			return true;
-		}
-		
-		return false;
-	}
+    /**
+     * Has yahoo
+     *
+     * @return bool
+     */
+    public function hasYahoo()
+    {
+        if ($this->getYahoo()) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Get yahoo

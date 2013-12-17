@@ -39,7 +39,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.personal');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;
@@ -55,7 +55,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.info');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;
@@ -71,7 +71,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.contact');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;
@@ -87,7 +87,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.avatar');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;
@@ -103,7 +103,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.bio');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;
@@ -119,7 +119,7 @@ class ProfileBaseController extends BaseController
     {
         $formHandler = $this->container->get('ccdn_user_profile.form.handler.signature');
 
-		$formHandler->setRequest($this->getRequest());
+        $formHandler->setRequest($this->getRequest());
         $formHandler->setUser($user);
 
         return $formHandler;

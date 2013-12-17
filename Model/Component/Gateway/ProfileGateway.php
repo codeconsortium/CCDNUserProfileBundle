@@ -135,13 +135,13 @@ class ProfileGateway extends BaseGateway implements GatewayInterface
         return $this;
     }
 
-	/**
-	 * 
-	 * @access public
-	 * @return \CCDNUser\ProfileBundle\Entity\Profile
-	 */
-	public function createProfile()
-	{
-		return new $this->entityClass();
-	}
+    /**
+     *
+     * @access public
+     * @return \CCDNUser\ProfileBundle\Entity\Profile
+     */
+    public function createProfile()
+    {
+        return new $this->entityClass();
+    }
 }

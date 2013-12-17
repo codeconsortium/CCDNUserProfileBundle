@@ -35,23 +35,23 @@ class CCDNUserProfileBundle extends Bundle
     public function boot()
     {
         $twig = $this->container->get('twig');
-		
+
         $twig->addGlobal(
             'ccdn_user_profile',
             array(
                 'seo' => array(
                     'title_length' => $this->container->getParameter('ccdn_user_profile.seo.title_length'),
                 ),
-				'member' => array(
-					'list' => array(
-						'layout_template' => $this->container->getParameter('ccdn_user_profile.member.list.layout_template'),
-						'members_per_page' => $this->container->getParameter('ccdn_user_profile.member.list.members_per_page'),
-						'member_since_datetime_format' => $this->container->getParameter('ccdn_user_profile.member.list.member_since_datetime_format'),
-						'requires_login' => $this->container->getParameter('ccdn_user_profile.member.list.requires_login'),
-					),
-				),
+                'member' => array(
+                    'list' => array(
+                        'layout_template' => $this->container->getParameter('ccdn_user_profile.member.list.layout_template'),
+                        'members_per_page' => $this->container->getParameter('ccdn_user_profile.member.list.members_per_page'),
+                        'member_since_datetime_format' => $this->container->getParameter('ccdn_user_profile.member.list.member_since_datetime_format'),
+                        'requires_login' => $this->container->getParameter('ccdn_user_profile.member.list.requires_login'),
+                    ),
+                ),
                 'profile' => array(
-					'fallback_avatar' => $this->container->getParameter('ccdn_user_profile.profile.fallback_avatar'),
+                    'fallback_avatar' => $this->container->getParameter('ccdn_user_profile.profile.fallback_avatar'),
                     'show' => array(
                         'bio' => array(
                             'layout_template' => $this->container->getParameter('ccdn_user_profile.profile.show.bio.layout_template'),
