@@ -31,7 +31,7 @@
 		</nav>
 
 		<div class="btn-toolbar clearfix">
-			<nav class="span12 btn-right paginate">
+			<nav class="col-md-12 btn-right paginate">
 				{{- knp_pagination_render(pager) -}}
 			</nav>
 		</div>
@@ -61,7 +61,7 @@
 						<td class="center">
 							{%- if user.profile.hasWebsite() -%}
 								<a href="{{- user.profile.getWebsite() -}}" target="_blank">
-									<i class="icon-globe"></i>
+									<i class="glyphicon glyphicon-globe"></i>
 								</a>
 							{%- endif -%}
 						</td>
@@ -69,10 +69,10 @@
 							{%- if user.profile.hasAim() and user.profile.isAimPublic() -%}
 								{%- if is_granted('ROLE_USER') -%}
 									<a href="mailto: {{- user.profile.getAim() -}}">
-										<i class="icon-envelope"></i>
+										<i class="glyphicon glyphicon-envelope"></i>
 									</a>
 								{%- else -%}
-									<i class="icon-envelope"></i>
+									<i class="glyphicon glyphicon-envelope"></i>
 								{%- endif -%}
 							{%- endif -%}
 						</td>
@@ -80,10 +80,10 @@
 							{%- if user.profile.hasMsn() and user.profile.isMsnPublic() -%}
 								{%- if is_granted('ROLE_USER') -%}
 									<a href="mailto: {{- user.profile.getMsn() -}}">
-										<i class="icon-envelope"></i>
+										<i class="glyphicon glyphicon-envelope"></i>
 									</a>
 								{%- else -%}
-									<i class="icon-envelope"></i>
+									<i class="glyphicon glyphicon-envelope"></i>
 								{%- endif -%}
 							{%- endif -%}
 						</td>
@@ -91,10 +91,10 @@
 							{%- if user.profile.hasYahoo() and user.profile.isYahooPublic() -%}
 								{%- if is_granted('ROLE_USER') -%}
 									<a href="mailto: {{- user.profile.getYahoo() -}}">
-										<i class="icon-envelope"></i>
+										<i class="glyphicon glyphicon-envelope"></i>
 									</a>
 								{%- else -%}
-									<i class="icon-envelope"></i>
+									<i class="glyphicon glyphicon-envelope"></i>
 								{%- endif -%}
 							{%- endif -%}
 						</td>
@@ -102,10 +102,10 @@
 							{%- if user.profile.hasIcq() and user.profile.isIcqPublic() -%}
 								{%- if is_granted('ROLE_USER') -%}
 									<a href="http://people.icq.com/{{- user.profile.getIcq() -}}">
-										<i class="icon-envelope"></i>
+										<i class="glyphicon glyphicon-envelope"></i>
 									</a>
 								{%- else -%}
-									<i class="icon-envelope"></i>
+									<i class="glyphicon glyphicon-envelope"></i>
 								{%- endif -%}
 							{%- endif -%}
 						</td>
@@ -124,7 +124,7 @@
 		</table>
 
 		<div class="btn-toolbar">
-			<nav class="span12 btn-right paginate">
+			<nav class="col-md-12 btn-right paginate">
 				{{- knp_pagination_render(pager) -}}
 			</nav>
 		</div>
