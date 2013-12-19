@@ -30,7 +30,7 @@ class UserRepositoryTest extends TestBase
 {
     public function testFindAllUsersWithProfilePaginated()
     {
-		$users = $this->addFixturesForUsers();
+		$this->addFixturesForUsers();
 		$pager = $this->getUserModel()->findAllUsersWithProfilePaginated(1, 25);
 		$items = $pager->getItems();
 		$this->assertCount(4, $items);
@@ -38,7 +38,7 @@ class UserRepositoryTest extends TestBase
 
     public function testFindAllUsersWithProfileFilteredAToZPaginated()
     {
-		$users = $this->addFixturesForUsers();
+		$this->addFixturesForUsers();
 		$pager = $this->getUserModel()->findAllUsersWithProfileFilteredAtoZPaginated('t', 1, 25);
 		$items = $pager->getItems();
 		$this->assertCount(1, $items);
