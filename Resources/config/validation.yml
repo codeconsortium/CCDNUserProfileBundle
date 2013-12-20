@@ -1,4 +1,6 @@
-%ccdn_user_profile.entity.profile.class%:
+
+#%ccdn_user_profile.entity.profile.class%:
+CCDNUser\ProfileBundle\Entity\Profile:
     properties:
         location:
             - Type: { type: string, groups: [update_personal] }
