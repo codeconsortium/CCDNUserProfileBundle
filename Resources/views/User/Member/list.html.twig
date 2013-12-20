@@ -38,9 +38,7 @@
 
 	<section>
 
-		<nav class="btn-toolbar center-block text-center clearfix">
-			{%- set route = app.request.attributes.get('_route') -%}
-
+		<nav class="btn-toolbar center-block text-center clearfix row">
 			<div class="btn-group" style="float:none;">
 				<a class="btn btn-default btn-xs{{- alpha is empty ? ' active':'' -}}" href="{{- path('ccdn_user_profile_member_index') -}}">
 					{{- 'filter-all' |trans({}, 'CCDNUserProfileBundle') -}}
@@ -55,11 +53,7 @@
 			</div>
 		</nav>
 
-		<div class="btn-toolbar clearfix">
-			<nav class="col-md-12 btn-right paginate">
-				{{- knp_pagination_render(pager) -}}
-			</nav>
-		</div>
+		{{- knp_pagination_render(pager) -}}
 
 		<table class="table table-striped table-hover">
 			<thead>
@@ -148,11 +142,7 @@
 			</tbody>
 		</table>
 
-		<div class="btn-toolbar">
-			<nav class="col-md-12 btn-right paginate">
-				{{- knp_pagination_render(pager) -}}
-			</nav>
-		</div>
+		{{- knp_pagination_render(pager) -}}
 
 	</section>
 
