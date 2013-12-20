@@ -18,7 +18,6 @@
 {% endblock javascripts %}
 
 
-
 {% block tool_bar %}
 	{%- spaceless -%}
 
@@ -27,12 +26,7 @@
 
 				<div class="container clearfix">
 					<div class="row" style="padding:10px 0;">
-						<div class="col-md-2">
-							{% block sub_title %}
-							{% endblock sub_title %}
-						</div>
-
-						<div class="col-md-10">
+						<div class="col-md-12">
 							<div class="row">
 								{%- block crumb_trail -%}
 									{%- if crumbs is defined -%}
@@ -49,7 +43,6 @@
 
 	{%- endspaceless -%}
 {% endblock tool_bar %}
-
 
 
 {% block sidebar %}
