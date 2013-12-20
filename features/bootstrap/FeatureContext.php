@@ -138,15 +138,14 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
 
         $date = new \Datetime($dateString);
 
-        $filterFunc = function($options, $has) {
+        $filterFunc = function ($options, $has) {
             foreach ($options as $option) {
                 if ($option->getText() == $has) {
                     return true;
                 }
             }
 
-            ldd($has);
-
+            //ldd($has);
             return false;
         };
 

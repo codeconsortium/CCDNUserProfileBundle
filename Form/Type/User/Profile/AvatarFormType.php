@@ -54,13 +54,13 @@ class AvatarFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar_remote', 'checkbox',
-                array(
-                    'required'           => false,
-                    'label'              => 'form.label.avatar_is_remote',
-                    'translation_domain' => 'CCDNUserProfileBundle',
-                )
-            )
+            //->add('avatar_remote', 'checkbox',
+            //    array(
+            //        'required'           => false,
+            //        'label'              => 'form.label.avatar_is_remote',
+            //        'translation_domain' => 'CCDNUserProfileBundle',
+            //    )
+            //)
             ->add('avatar', null,
                 array(
                     'label'              => 'form.label.avatar',

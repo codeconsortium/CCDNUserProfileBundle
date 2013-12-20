@@ -217,7 +217,7 @@ class Profile extends AbstractProfile
      * @param  \Date   $birthDate
      * @return Profile
      */
-    public function setBirthDate(\Datetime $birthDate)
+    public function setBirthDate(\Datetime $birthDate = null)
     {
         $this->birthDate = $birthDate;
 

@@ -2,47 +2,70 @@
 #%ccdn_user_profile.entity.profile.class%:
 CCDNUser\ProfileBundle\Entity\Profile:
     properties:
-        location:
-            - Type: { type: string, groups: [update_personal] }
+        avatar:
+            - type: { type: string, groups: [update_avatar] }
+            - MaxLength: { limit: 255, groups: [update_avatar] }
+        #    - Url: { protocols: ['http', 'https'], groups: [update_avatar] }
+        #avatarRemote:
+        #    - type: { type: bool, groups: [update_avatar] }
+
+        locationCountry:
+            - type: { type: string, groups: [update_personal] }
+            - MaxLength: { limit: 255, groups: [update_personal] }
+        locationCity:
+            - type: { type: string, groups: [update_personal] }
             - MaxLength: { limit: 255, groups: [update_personal] }
         website:
-            - Type: { type: string, groups: [update_personal] }
+            - type: { type: string, groups: [update_personal] }
             - MaxLength: { limit: 255, groups: [update_personal] }
-#            - Url: { protocols: {'http', 'https'}, groups: [personal] }
 
+        realName:
+            - type: { type: string, groups: [update_info] }
+        birthDate:
+        #    - Type: { type: date, groups: [update_info] }
+        company:
+            - type: { type: string, groups: [update_info] }
+        position:
+            - type: { type: string, groups: [update_info] }
+
+        bio:
+            - Type: { type: string, groups: [update_bio] }
+            - MaxLength: { limit: 2000, groups: [update_bio] }
+        signature:
+            - Type: { type: string, groups: [update_signature] }
+            - MaxLength: { limit: 255, groups: [update_signature] }
+
+        website:
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
+        #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
+        blogUrl:
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
+        #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
+        blogFeedUrl:
+            - Type: { type: string, groups: [update_contact] }
+            - MaxLength: { limit: 255, groups: [update_contact] }
+        #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
         aim:
             - Type: { type: string, groups: [update_contact] }
             - MaxLength: { limit: 255, groups: [update_contact] }
-        aimIsPublic:
+        aimPublic:
             - Type: { type: bool, groups: [update_contact] }
         msn:
             - Type: { type: string, groups: [update_contact] }
             - MaxLength: { limit: 255, groups: [update_contact] }
             - Email: { groups: [update_contact] }
-        msnIsPublic:
+        msnPublic:
             - Type: { type: bool, groups: [update_contact] }
         icq:
             - Type: { type: string, groups: [update_contact] }
             - MaxLength: { limit: 255, groups: [update_contact] }
-        icqIsPublic:
+        icqPublic:
             - Type: { type: bool, groups: [update_contact] }
         yahoo:
             - Type: { type: string, groups: [update_contact] }
             - MaxLength: { limit: 255, groups: [update_contact] }
             - Email: { groups: [update_contact] }
-#        yahooIsPublic:
-#            - Type: { type: bool, groups: [contact] }
-
-        bio:
-            - Type: { type: string, groups: [update_bio] }
-            - MaxLength: { limit: 2000, groups: [update_bio] }
-
-        signature:
-            - Type: { type: string, groups: [update_signature] }
-            - MaxLength: { limit: 255, groups: [update_signature] }
-
-        avatar:
-            - Type: { type: string, groups: [update_avatar] }
-            - MaxLength: { limit: 255, groups: [update_avatar] }
-        avatarIsRemote:
-            - Type: { type: bool, groups: [update_avatar] }
+        yahooPublic:
+            - Type: { type: bool, groups: [update_contact] }
