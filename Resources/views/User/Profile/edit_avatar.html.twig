@@ -9,11 +9,6 @@
 
 {% block title %}{{- 'title.profile.change_avatar' | trans({}, 'CCDNUserProfileBundle') |slice(0, ccdn_user_profile.seo.title_length) -}}{% endblock %}
 
-{% block sub_title %}
-	<a href="{{- path('ccdn_user_profile_show_by_id', {'userId': user.id}) -}}">{{- user.getUsername() -}}</a>
-{% endblock %}
-
-
 {% block sidebar %}
 	{%- spaceless -%}
 
