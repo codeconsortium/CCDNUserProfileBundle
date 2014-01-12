@@ -4,20 +4,20 @@ CCDNUser\ProfileBundle\Entity\Profile:
     properties:
         avatar:
             - Type: { type: string, groups: [update_avatar] }
-            - MaxLength: { limit: 255, groups: [update_avatar] }
+            - Length: { max: 255, groups: [update_avatar] }
         #    - Url: { protocols: ['http', 'https'], groups: [update_avatar] }
         #avatarRemote:
         #    - type: { type: bool, groups: [update_avatar] }
 
         locationCountry:
             - Type: { type: string, groups: [update_personal] }
-            - MaxLength: { limit: 255, groups: [update_personal] }
+            - Length: { max: 255, groups: [update_personal] }
         locationCity:
             - Type: { type: string, groups: [update_personal] }
-            - MaxLength: { limit: 255, groups: [update_personal] }
+            - Length: { max: 255, groups: [update_personal] }
         website:
             - Type: { type: string, groups: [update_personal] }
-            - MaxLength: { limit: 255, groups: [update_personal] }
+            - Length: { max: 255, groups: [update_personal] }
 
         realName:
             - Type: { type: string, groups: [update_info] }
@@ -30,42 +30,42 @@ CCDNUser\ProfileBundle\Entity\Profile:
 
         bio:
             - Type: { type: string, groups: [update_bio] }
-            - MaxLength: { limit: 2000, groups: [update_bio] }
+            - Length: { max: 2000, groups: [update_bio] }
         signature:
             - Type: { type: string, groups: [update_signature] }
-            - MaxLength: { limit: 255, groups: [update_signature] }
+            - Length: { max: 255, groups: [update_signature] }
 
         website:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
         #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
         blogUrl:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
         #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
         blogFeedUrl:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
         #    - Url: { protocols: ['http', 'https'], groups: [update_contact] }
         aim:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
         aimPublic:
             - Type: { type: bool, groups: [update_contact] }
         msn:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
             - Email: { groups: [update_contact] }
         msnPublic:
             - Type: { type: bool, groups: [update_contact] }
         icq:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
         icqPublic:
             - Type: { type: bool, groups: [update_contact] }
         yahoo:
             - Type: { type: string, groups: [update_contact] }
-            - MaxLength: { limit: 255, groups: [update_contact] }
+            - Length: { max: 255, groups: [update_contact] }
             - Email: { groups: [update_contact] }
         yahooPublic:
             - Type: { type: bool, groups: [update_contact] }

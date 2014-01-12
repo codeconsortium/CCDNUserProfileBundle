@@ -15,6 +15,7 @@ namespace CCDNUser\ProfileBundle\Form\Type\User\Profile;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  *
@@ -85,21 +86,21 @@ class InfoFormType extends AbstractType
         ;
     }
 
-    /**
-     *
-     * @access public
-     * @param array $options
-     */
-    public function getDefaultOptions(array $options)
+	/**
+	 * 
+	 * @access public
+	 * @param  \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+	 */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+	    $resolver->setDefaults(array(
             'data_class' 			=> $this->profileClass,
             'csrf_protection' 		=> true,
             'csrf_field_name' 		=> '_token',
             // a unique key to help generate the secret token
             'intention'       		=> 'profile_item_info',
             'validation_groups'		=> array('update_info'),
-        );
+        ));
     }
 
     /**

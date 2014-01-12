@@ -75,7 +75,7 @@ class FlashListener implements EventSubscriberInterface
     {
         if ($event->getProfile()) {
             if ($event->getProfile()->getId()) {
-                $this->session->setFlash('success', 'Successfully updated your Profile');
+                $this->session->getFlashBag()->add('success', 'Successfully updated your Profile');
             }
         }
     }
