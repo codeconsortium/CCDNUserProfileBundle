@@ -15,7 +15,7 @@ namespace CCDNUser\ProfileBundle\Form\Handler\User\Profile;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use CCDNUser\ProfileBundle\Component\Dispatcher\ProfileEvents;
 use CCDNUser\ProfileBundle\Component\Dispatcher\Event\UserProfileEvent;
 use CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler;
@@ -52,12 +52,12 @@ class UpdateBioFormHandler extends BaseFormHandler
     /**
      *
      * @access public
-     * @param \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher $dispatcher
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
      * @param \Symfony\Component\Form\FormFactory                              $factory
      * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType                    $bioFormType
      * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
      */
-    public function __construct(ContainerAwareEventDispatcher $dispatcher, FormFactory $factory, $bioFormType, ModelInterface $profileModel)
+    public function __construct(EventDispatcherInterface $dispatcher, FormFactory $factory, $bioFormType, ModelInterface $profileModel)
     {
         $this->dispatcher = $dispatcher;
         $this->factory = $factory;
