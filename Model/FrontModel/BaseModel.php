@@ -55,7 +55,7 @@ abstract class BaseModel
     /**
      *
      * @access public
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface       $dispatcher
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface            $dispatcher
      * @param \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface $repository
      * @param \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface       $manager
      */

@@ -53,9 +53,9 @@ class UpdatePersonalFormHandler extends BaseFormHandler
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \Symfony\Component\Form\FormFactory                              $factory
-     * @param \CCDNUser\ProfileBundle\Form\Type\PersonalFormType               $personalFormType
-     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
+     * @param \Symfony\Component\Form\FormFactory                         $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\PersonalFormType          $personalFormType
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface     $profileModel
      */
     public function __construct(EventDispatcherInterface $dispatcher, FormFactory $factory, $personalFormType, ModelInterface $profileModel)
     {

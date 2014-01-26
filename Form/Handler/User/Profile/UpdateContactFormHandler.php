@@ -53,9 +53,9 @@ class UpdateContactFormHandler extends BaseFormHandler
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \Symfony\Component\Form\FormFactory                              $factory
-     * @param \CCDNUser\ProfileBundle\Form\Type\ContactFormType                $contactFormType
-     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
+     * @param \Symfony\Component\Form\FormFactory                         $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\ContactFormType           $contactFormType
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface     $profileModel
      */
     public function __construct(EventDispatcherInterface $dispatcher, FormFactory $factory, $contactFormType, ModelInterface $profileModel)
     {

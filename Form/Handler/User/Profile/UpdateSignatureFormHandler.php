@@ -53,9 +53,9 @@ class UpdateSignatureFormHandler extends BaseFormHandler
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \Symfony\Component\Form\FormFactory                              $factory
-     * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType              $signatureFormType
-     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
+     * @param \Symfony\Component\Form\FormFactory                         $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\SignatureFormType         $signatureFormType
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface     $profileModel
      */
     public function __construct(EventDispatcherInterface $dispatcher, FormFactory $factory, $signatureFormType, ModelInterface $profileModel)
     {

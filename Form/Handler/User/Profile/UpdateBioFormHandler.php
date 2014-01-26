@@ -53,9 +53,9 @@ class UpdateBioFormHandler extends BaseFormHandler
      *
      * @access public
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \Symfony\Component\Form\FormFactory                              $factory
-     * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType                    $bioFormType
-     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface          $profileModel
+     * @param \Symfony\Component\Form\FormFactory                         $factory
+     * @param \CCDNUser\ProfileBundle\Form\Type\BioFormType               $bioFormType
+     * @param \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface     $profileModel
      */
     public function __construct(EventDispatcherInterface $dispatcher, FormFactory $factory, $bioFormType, ModelInterface $profileModel)
     {
