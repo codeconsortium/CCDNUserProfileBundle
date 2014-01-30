@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codeconsortium/ccdnuserprofilebundle.png?label=ready)](https://waffle.io/codeconsortium/ccdnuserprofilebundle)
 CCDNUser ProfileBundle README.
 ==============================
 
