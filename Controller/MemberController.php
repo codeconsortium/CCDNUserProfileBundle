@@ -43,7 +43,7 @@ class MemberController extends BaseController
         $alpha = $this->getQuery('alpha', null);
 
         if ($alpha) {
-            $membersPager = $this->getUserModel()->findAllUsersWithProfileFilteredAtoZPaginated($page, $alpha);
+            $membersPager = $this->getUserModel()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page);
         } else {
             $membersPager = $this->getUserModel()->findAllUsersWithProfilePaginated($page);
         }
