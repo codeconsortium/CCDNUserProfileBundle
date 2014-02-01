@@ -1,5 +1,5 @@
-Installing CCDNUser ProfileBundle 2.x
-=====================================
+Installing CCDNUser ProfileBundle.
+==================================
 
 ## Dependencies:
 
@@ -48,11 +48,14 @@ register the new bundle:
 public function registerBundles()
 {
     $bundles = array(
-		new CCDNUser\ProfileBundle\CCDNUserProfileBundle(),
-		...
-	);
+        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+        new CCDNUser\ProfileBundle\CCDNUserProfileBundle(),
+        // ...
+    );
 }
 ```
+
+Notice this include KNP Paginator, which is an important dependency.
 
 ### Step 3: Update your app/config/routing.yml.
 

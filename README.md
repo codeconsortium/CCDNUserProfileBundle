@@ -3,12 +3,11 @@ CCDNUser ProfileBundle README.
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23/mini.png)](https://insight.sensiolabs.com/projects/05540b2f-b043-466a-904e-5078c6102c23) [![Build Status](https://secure.travis-ci.org/codeconsortium/CCDNUserProfileBundle.png)](https://travis-ci.org/codeconsortium/CCDNUserProfileBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/codeconsortium/CCDNUserProfileBundle/badges/quality-score.png?s=6ba4b789f6f2c627596883bc3c6eaa5f82b862a4)](https://scrutinizer-ci.com/g/codeconsortium/CCDNUserProfileBundle/) [![Code Coverage](https://scrutinizer-ci.com/g/codeconsortium/CCDNUserProfileBundle/badges/coverage.png?s=3b3145eb6bf59d513c64ac96dec88f50cc47f952)](https://scrutinizer-ci.com/g/codeconsortium/CCDNUserProfileBundle/) [![Latest Stable Version](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/v/stable.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle) [![Total Downloads](https://poser.pugx.org/codeconsortium/ccdn-user-profile-bundle/downloads.png)](https://packagist.org/packages/codeconsortium/ccdn-user-profile-bundle) [![Stories in Ready](https://badge.waffle.io/codeconsortium/ccdnuserprofilebundle.png?label=ready)](https://waffle.io/codeconsortium/ccdnuserprofilebundle)
 
-## Notes: 
+## Notes:
 
-This bundle is for the symfony framework and requires Symfony >= 2.1.x and PHP >= 5.3.2
-  
+This bundle is for the symfony framework and requires Symfony ~2.4 and PHP >= 5.3.2
+
 This project uses Doctrine >= 2.1.x and so does not require any specific database.
-  
 
 &copy; CCDN &copy; [CodeConsortium](http://www.codeconsortium.com/)
 
@@ -28,7 +27,7 @@ For the full copyright and license information, please view the [LICENSE](http:/
 
 ## Description:
 
-This is a ProfileBundle for Symfony (>= 2.1.x) for building a public profile for your community site.
+This is a ProfileBundle for Symfony for building a public profile for your community site.
 
 ## Features.
 
@@ -65,8 +64,6 @@ All the installation instructions are located in [documentation](http://github.c
 
 > Do NOT use the CLI doctrine/symfony console utility to force an update, data will be lost if you do!
 > Manually run the sql update in the upgrading docs. Always backup your database before updating.
-
-To upgrade to version 1.1.2 please read the [upgrading to version 1.1.2 guide](http://github.com/codeconsortium/CCDNUserProfileBundle/blob/v1.1.2/Resources/doc/upgrading_to_1_1_2.md).
 
 ## License.
 
