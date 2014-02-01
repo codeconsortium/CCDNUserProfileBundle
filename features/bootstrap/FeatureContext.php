@@ -156,4 +156,12 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
         $fields['month']->selectOption($date->format('M'));
         $fields['day']->selectOption($date->format('j'));
     }
+
+    /**
+     * @Then /^I should a profile link for "([^"]*)"$/
+     */
+    public function iShouldAProfileLinkFor($userName)
+    {
+        WebTestCase::assertNotNull($this->getSession()->getPage()->findLink($userName));
+    }
 }

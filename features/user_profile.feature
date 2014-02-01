@@ -113,3 +113,7 @@ Feature: User Profile Traversal
 		And I fill in "ProfileSignature[signature]" with "This is my signature"
         And I press "submit[post]"
 		And I should see "This is my signature"
+
+    Scenario: Filter list of members
+        Given I am on "/en/members/?alpha=U"
+        Then I should a profile link for "user"
