@@ -26,23 +26,15 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">./Tests</directory>
-			<exclude>
-		        <directory>./Resources</directory>
-		        <directory>./vendor</directory>
-			</exclude>
+            <directory>./</directory>
+            <exclude>
+                <directory>DataFixtures</directory>
+                <directory>features</directory>
+                <directory>Resources</directory>
+                <directory>Tests</directory>
+                <directory>vendor</directory>
+            </exclude>
         </whitelist>
-	    <blacklist>
-			<directory>cache</directory>
-			<directory>config</directory>
-			<directory>data</directory>
-			<directory>log</directory>
-			<directory>vendor</directory>
-			<directory>lib/vendor</directory>
-			<directory>plugins</directory>
-			<directory>web</directory>
-			<directory>Resources</directory>
-	    </blacklist>
     </filter>
 
 </phpunit>
