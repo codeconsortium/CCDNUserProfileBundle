@@ -47,7 +47,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_overview.html.', array(
             'crumbs' => $this->getCrumbs()->addProfileOverviewShow($user),
@@ -73,7 +73,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         return $this->renderResponse('CCDNUserProfileBundle:User:Profile/show_bio.html.', array(
             'crumbs' => $this->getCrumbs()->addProfileBioShow($user),
@@ -96,7 +96,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
@@ -135,7 +135,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
@@ -174,7 +174,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
@@ -213,7 +213,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
@@ -252,7 +252,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {
@@ -291,7 +291,7 @@ class ProfileController extends ProfileBaseController
             $userId = $this->getUser()->getId();
         }
 
-        $user = $this->getUserModel()->findOneUserWithProfile($userId);
+        $user = $this->getUserModel()->findOneUserWithProfileById($userId);
 
         // Does the requested $user match our session user id? Or, are we an admin?
         if ($user->getId() != $this->getUser()->getId()) {

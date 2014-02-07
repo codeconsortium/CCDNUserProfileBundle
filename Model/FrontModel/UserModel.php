@@ -72,23 +72,6 @@ class UserModel extends BaseModel implements ModelInterface
     /**
      *
      * @access public
-     * @param  int                                                 $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
-     */
-    public function findOneUserWithProfile($userId)
-    {
-        if (is_numeric($userId)) {
-            $user = $this->findOneUserWithProfileById($userId);
-        } else {
-            $user = $this->findOneUserWithProfileByUsername($userId);
-        }
-
-        return $user;
-    }
-
-    /**
-     *
-     * @access public
      * @param  string                                              $username
      * @return \Symfony\Component\Security\Core\User\UserInterface
      */
