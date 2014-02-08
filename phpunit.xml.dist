@@ -18,6 +18,7 @@
             <directory>./Tests/Repository</directory>
 			<directory>./Tests/Manager</directory>
             <directory>./Tests/EventListener</directory>
+            <directory>./Tests/Unit</directory>
         </testsuite>
     </testsuites>
 
