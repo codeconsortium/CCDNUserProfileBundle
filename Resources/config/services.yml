@@ -3,14 +3,3 @@ parameters:
     # Service Parameters defined in app/config
 
 services:
-
-    # TODO: move to more appropriate place
-    ccdn_user_profile.listener.user_creation:
-        # TODO: move class to bundle variable
-        class: CCDNUser\ProfileBundle\EventListener\ProfileUserCreationListener
-        arguments:
-            - @ccdn_user_profile.factory.profile
-        tags:
-            -
-                name: doctrine.event_listener
-                event: prePersist
