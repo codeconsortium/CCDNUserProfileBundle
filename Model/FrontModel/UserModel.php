@@ -39,14 +39,7 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findAllUsersWithProfilePaginated($page = 1, $itemsPerPage = 25)
     {
-        $pager = $this->getRepository()->findAllUsersWithProfilePaginated($page, $itemsPerPage);
-
-        $users = $pager->getItems();
-        foreach ($users as $user) {
-            $this->checkUserHasProfile($user);
-        }
-
-        return $pager;
+        return $this->getRepository()->findAllUsersWithProfilePaginated($page, $itemsPerPage);
     }
 
     /**
@@ -59,14 +52,7 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25)
     {
-        $pager = $this->getRepository()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page, $itemsPerPage);
-
-        $users = $pager->getItems();
-        foreach ($users as $user) {
-            $this->checkUserHasProfile($user);
-        }
-
-        return $pager;
+        return $this->getRepository()->findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page, $itemsPerPage);
     }
 
     /**
@@ -77,11 +63,7 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findOneUserWithProfileByUsername($username)
     {
-        $user = $this->getRepository()->findOneUserWithProfileByUsername($username);
-
-        $this->checkUserHasProfile($user);
-
-        return $user;
+        return $this->getRepository()->findOneUserWithProfileByUsername($username);
     }
 
     /**
@@ -92,20 +74,6 @@ class UserModel extends BaseModel implements ModelInterface
      */
     public function findOneUserWithProfileById($userId)
     {
-        $user = $this->getRepository()->findOneUserWithProfileById($userId);
-
-        $this->checkUserHasProfile($user);
-
-        return $user;
-    }
-
-    /**
-     *
-     * @access public
-     * @param \Symfony\Component\Security\Core\User\UserInterface $user
-     */
-    public function checkUserHasProfile(UserInterface $user)
-    {
-        return $this->getManager()->checkUserHasProfile($user);
+        return $this->getRepository()->findOneUserWithProfileById($userId);
     }
 }

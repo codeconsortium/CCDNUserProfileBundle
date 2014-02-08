@@ -90,10 +90,10 @@ class TestBase extends WebTestCase
 		foreach ($userNames as $username) {
 			$users[$username] = $this->addNewUser($username, $username . '@foobar.com', 'password');
 		}
-	
-		$this->em->flush();
-	
-		return $users;
+
+        $this->flushDatabaseChanges();
+
+        return $users;
 	}
 
     /**
@@ -134,5 +134,10 @@ class TestBase extends WebTestCase
         }
 
         return $this->profileModel;
+    }
+
+    protected function flushDatabaseChanges()
+    {
+        $this->em->flush();
     }
 }

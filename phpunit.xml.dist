@@ -17,6 +17,7 @@
         <testsuite name="CCDNUser ProfileBundle Test Suite">
             <directory>./Tests/Repository</directory>
 			<directory>./Tests/Manager</directory>
+            <directory>./Tests/EventListener</directory>
         </testsuite>
     </testsuites>
 
