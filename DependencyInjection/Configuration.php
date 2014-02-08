@@ -94,6 +94,7 @@ class Configuration implements ConfigurationInterface
         $this->addManagerSection($rootNode);
         $this->addFormSection($rootNode);
         $this->addComponentSection($rootNode);
+        $this->addFactorySection($rootNode);
 
         // Configuration stuff.
         $this->addSEOSection($rootNode);
@@ -101,6 +102,33 @@ class Configuration implements ConfigurationInterface
         $this->addProfileSection($rootNode);
 
         return $treeBuilder;
+    }
+
+    /**
+     *
+     * @access private
+     * @param  \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     * @return \CCDNUser\ProfileBundle\DependencyInjection\Configuration
+     */
+    private function addFactorySection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('factory')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('profile')
+                            ->addDefaultsIfNotSet()
+                            ->canBeUnset()
+                            ->children()
+                                ->scalarNode('class')->defaultValue('CCDNUser\ProfileBundle\Entity\Factory\ProfileFactory')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 
     /**

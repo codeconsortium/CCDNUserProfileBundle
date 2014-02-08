@@ -56,6 +56,7 @@ class CCDNUserProfileExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         // Class file namespaces.
+        $this->getFactorySection($config, $container);
         $this->getEntitySection($config, $container);
         $this->getGatewaySection($config, $container);
         $this->getModelSection($config, $container);
@@ -75,12 +76,27 @@ class CCDNUserProfileExtension extends Extension
         // Load Service definitions.
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('services/factory.yml');
         $loader->load('services/components.yml');
         $loader->load('services/forms-profile.yml');
         $loader->load('services/model-gateway.yml');
         $loader->load('services/model-repository.yml');
         $loader->load('services/model-manager.yml');
         $loader->load('services/model.yml');
+    }
+
+    /**
+     *
+     * @access private
+     * @param  array                                                                $config
+     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder              $container
+     * @return \CCDNUser\ProfileBundle\DependencyInjection\CCDNUserProfileExtension
+     */
+    private function getFactorySection(array $config, ContainerBuilder $container)
+    {
+        $container->setParameter('ccdn_user_profile.factory.profile.class', $config['factory']['profile']['class']);
+
+        return $this;
     }
 
     /**

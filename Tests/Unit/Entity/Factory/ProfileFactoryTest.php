@@ -36,7 +36,7 @@ class ProfileFactoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->profileFactory = new ProfileFactory();
+        $this->profileFactory = new ProfileFactory('CCDNUser\ProfileBundle\Entity\Profile');
     }
 
     public function testDefaultProfileIsEmptyProfile()

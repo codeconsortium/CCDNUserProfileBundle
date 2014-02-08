@@ -1,0 +1,13 @@
+parameters:
+
+    # Service Parameters defined in app/config
+
+services:
+
+    #
+    # Entity factories.
+    #
+    ccdn_user_profile.factory.profile:
+        class: %ccdn_user_profile.factory.profile.class%
+        arguments:
+            - %ccdn_user_profile.entity.profile.class%

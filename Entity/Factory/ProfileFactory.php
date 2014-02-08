@@ -29,12 +29,25 @@ use CCDNUser\ProfileBundle\Entity\Profile;
 class ProfileFactory implements ProfileFactoryInterface
 {
     /**
+     * @var string
+     */
+    private $profileClass;
+
+    /**
+     * @param string $profileClass
+     */
+    public function __construct($profileClass)
+    {
+        $this->profileClass = $profileClass;
+    }
+
+    /**
      * Creates a default profile for users.
      *
      * @return Profile
      */
     public function createDefaultProfile()
     {
-        return new Profile();
+        return new $this->profileClass();
     }
 }
