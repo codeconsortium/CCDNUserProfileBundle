@@ -13,9 +13,10 @@
 
 namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
-use CCDNUser\ProfileBundle\Model\FrontModel\BaseModel;
-use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
+use CCDNUser\ProfileBundle\Model\Component\Manager\ProfileManagerInterface;
+use CCDNUser\ProfileBundle\Model\Component\Repository\ProfileRepositoryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  *
@@ -28,8 +29,31 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileModel extends BaseModel implements ModelInterface
+class ProfileModel extends BaseModel implements ProfileModelInterface
 {
+    /**
+     *
+     * @access public
+     * @param EventDispatcherInterface $dispatcher
+     * @param ProfileRepositoryInterface $repository
+     * @param ProfileManagerInterface $manager
+     */
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        ProfileRepositoryInterface $repository,
+        ProfileManagerInterface $manager
+    ) {
+        parent::__construct($dispatcher, $repository, $manager);
+    }
+
+    /**
+     * @return ProfileManagerInterface
+     */
+    public function getManager()
+    {
+        return parent::getManager();
+    }
+
     /**
      *
      * @access public
@@ -43,7 +67,8 @@ class ProfileModel extends BaseModel implements ModelInterface
     /**
      *
      * @access public
-     * @param  \CCDNUser\ProfileBundle\Entity\Profile
+     * @param  \CCDNUser\ProfileBundle\Entity\Profile $profile
+     * @return $this
      */
     public function saveProfile(Profile $profile)
     {

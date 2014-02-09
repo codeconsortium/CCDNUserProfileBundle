@@ -34,14 +34,6 @@ interface ManagerInterface
     /**
      *
      * @access public
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface      $dispatcher
-     * @param \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface $gateway
-     */
-    public function __construct(EventDispatcherInterface $dispatcher, GatewayInterface $gateway);
-
-    /**
-     *
-     * @access public
      * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface                $model
      * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */

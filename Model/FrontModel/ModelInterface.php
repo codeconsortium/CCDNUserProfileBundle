@@ -34,15 +34,6 @@ interface ModelInterface
     /**
      *
      * @access public
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface            $dispatcher
-     * @param \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface $repository
-     * @param \CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface       $manager
-     */
-    public function __construct(EventDispatcherInterface $dispatcher, RepositoryInterface $repository, ManagerInterface $manager);
-
-    /**
-     *
-     * @access public
      * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */
     public function getRepository();
