@@ -43,7 +43,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $qb = $this->createSelectQuery(array('u'));
 
         $qb
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
@@ -67,7 +67,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $qb
             ->where('u.username LIKE :filter')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->setParameters($params)
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
@@ -90,7 +90,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $qb
             ->where('u.username = :username')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
@@ -112,7 +112,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $qb
             ->where('u.id = :userId')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
