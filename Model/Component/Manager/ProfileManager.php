@@ -47,7 +47,7 @@ class ProfileManager extends BaseManager implements ManagerInterface
      */
     public function saveProfile(Profile $profile)
     {
-        $this->gateway->saveProfile($profile);
+        $this->gateway->updateProfile($profile);
 
         return $this;
     }

@@ -51,4 +51,17 @@ class UserManager extends BaseManager implements ManagerInterface
 
         return $this;
     }
+
+    /**
+     *
+     * @access public
+     * @param UserInterface $user
+     * @return $this
+     */
+    public function saveUser(UserInterface $user)
+    {
+        $this->persist($user);
+        $this->flush();
+        return $this;
+    }
 }

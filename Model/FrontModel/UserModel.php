@@ -76,4 +76,25 @@ class UserModel extends BaseModel implements ModelInterface
     {
         return $this->getRepository()->findOneUserWithProfileById($userId);
     }
+
+    /**
+     * Returns users that do not have a profile attached.
+     *
+     * @access public
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findAllUsersWithoutProfiles()
+    {
+        return $this->getRepository()->findAllUsersWithoutProfiles();
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return $this
+     */
+    public function saveUser(UserInterface $user)
+    {
+        $this->getManager()->saveUser($user);
+        return $this;
+    }
 }

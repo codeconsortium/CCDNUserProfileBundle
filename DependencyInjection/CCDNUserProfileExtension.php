@@ -79,6 +79,7 @@ class CCDNUserProfileExtension extends Extension
         $loader->load('services.yml');
         $loader->load('services/factory.yml');
         $loader->load('services/event-listener.yml');
+        $loader->load('services/command.yml');
         $loader->load('services/components.yml');
         $loader->load('services/forms-profile.yml');
         $loader->load('services/model-gateway.yml');
