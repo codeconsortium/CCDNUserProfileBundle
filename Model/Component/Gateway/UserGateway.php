@@ -14,11 +14,7 @@
 namespace CCDNUser\ProfileBundle\Model\Component\Gateway;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-
 use Doctrine\ORM\QueryBuilder;
-
-use CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface;
-use CCDNUser\ProfileBundle\Model\Component\Gateway\BaseGateway;
 
 /**
  *
@@ -31,7 +27,7 @@ use CCDNUser\ProfileBundle\Model\Component\Gateway\BaseGateway;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserGateway extends BaseGateway implements GatewayInterface
+class UserGateway extends BaseGateway implements UserGatewayInterface
 {
     /**
      *

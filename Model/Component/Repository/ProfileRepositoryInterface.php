@@ -13,6 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
+use CCDNUser\ProfileBundle\Model\Component\Gateway\ProfileGatewayInterface;
+
 /**
  *
  * @category CCDNUser
@@ -26,4 +28,10 @@ namespace CCDNUser\ProfileBundle\Model\Component\Repository;
  */
 interface ProfileRepositoryInterface extends RepositoryInterface
 {
+    /**
+     *
+     * @access public
+     * @param ProfileGatewayInterface $gateway
+     */
+    public function __construct(ProfileGatewayInterface $gateway);
 }

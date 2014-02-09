@@ -13,8 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
-use CCDNUser\ProfileBundle\Model\Component\Repository\BaseRepository;
-use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
 
 /**
  * ProfileRepository
@@ -28,8 +27,22 @@ use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserRepository extends BaseRepository implements RepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
+    /**
+     * @var UserGatewayInterface
+     */
+    protected $gateway;
+
+    /**
+     * @access public
+     * @param UserGatewayInterface $gateway
+     */
+    public function __construct(UserGatewayInterface $gateway)
+    {
+        parent::__construct($gateway);
+    }
+
     /**
      *
      * @access public
@@ -53,7 +66,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     /**
      *
      * @access public
-     * @param  char                                         $alpha
+     * @param  string                                         $alpha
      * @param  int                                          $page
      * @param  int                                          $itemsPerPage
      * @return \Doctrine\Common\Collections\ArrayCollection
