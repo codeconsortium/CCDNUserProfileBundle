@@ -13,7 +13,6 @@
 
 namespace CCDNUser\ProfileBundle\Controller;
 
-use CCDNUser\ProfileBundle\Controller\ProfileBaseController;
 use CCDNUser\ProfileBundle\Component\Dispatcher\ProfileEvents;
 use CCDNUser\ProfileBundle\Component\Dispatcher\Event\UserProfileResponseEvent;
 

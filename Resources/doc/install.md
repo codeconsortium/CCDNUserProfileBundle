@@ -83,59 +83,70 @@ Replace Acme\YourUserBundle\Entity\User with the user class of your chosen user 
 
 ### Step 5: Update your user entity.
 
-In order for the bundle to function correctly you need to add the following to your user entity:
+In order for the bundle to function correctly, you need to implement the `ProfileUserInterface`. This interface extends
+the Symfony user interface.
+Your user entity would then look like similar to the following:
 
 ``` php
-/**
- *
- * @access protected
- * @var \CCDNUser\ProfileBundle\Entity\Profile $profile
- */
-protected $profile;
+namespace My\Bundle\Entity;
 
-/**
- *
- * @access protected
- * @var \DateTime $registeredDate
- */
-protected $registeredDate;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
-public function __construct()
+class MyUser implements ProfileUserInterface
 {
-    parent::__construct();
-	
-    // your own logic
-	$this->registeredDate = new \Datetime('now');
-}
+    /**
+     *
+     * @access protected
+     * @var \CCDNUser\ProfileBundle\Entity\Profile $profile
+     */
+    protected $profile;
 
-public function setProfile(Profile $profile)
-{
-	$this->profile = $profile;
-}
+    /**
+     *
+     * @access protected
+     * @var \DateTime $registeredDate
+     */
+    protected $registeredDate;
 
-public function getProfile()
-{
-	return $this->profile;
-}
+    public function __construct()
+    {
+        parent::__construct();
 
-/**
- * Get registeredDate
- *
- * @return \Datetime
- */
-public function getRegisteredDate()
-{
-    return $this->registeredDate;
-}
+        // your own logic
+        $this->registeredDate = new \Datetime('now');
+    }
 
-/**
- * Set registeredDate
- *
- * @param  \Datetime $registeredDate
- */
-public function setRegisteredDate(\Datetime $registeredDate)
-{
-    $this->registeredDate = $registeredDate;
+    public function setProfile(Profile $profile)
+    {
+        $this->profile = $profile;
+    }
+
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Get registeredDate
+     *
+     * @return \Datetime
+     */
+    public function getRegisteredDate()
+    {
+        return $this->registeredDate;
+    }
+
+    /**
+     * Set registeredDate
+     *
+     * @param  \Datetime $registeredDate
+     */
+    public function setRegisteredDate(\Datetime $registeredDate)
+    {
+        $this->registeredDate = $registeredDate;
+    }
+
+    // Symfony UserInterface required methods ...
 }
 ```
 
@@ -151,7 +162,7 @@ doctrine:
         default_entity_manager: default
         auto_generate_proxy_classes: "%kernel.debug%"
         resolve_target_entities:
-            Symfony\Component\Security\Core\User\UserInterface: Acme\YourUserBundle\Entity\User
+            CCDNUser\ProfileBundle\Entity\ProfileUserInterface: Acme\YourUserBundle\Entity\User
         entity_managers:
             default:
                 mappings:

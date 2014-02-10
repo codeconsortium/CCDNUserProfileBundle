@@ -13,8 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Gateway;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\QueryBuilder;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -41,7 +41,7 @@ class UserGateway extends BaseGateway implements UserGatewayInterface
      * @access public
      * @param  \Doctrine\ORM\QueryBuilder                          $qb
      * @param  Array                                               $parameters
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findUser(QueryBuilder $qb = null, $parameters = null)
     {
@@ -97,10 +97,10 @@ class UserGateway extends BaseGateway implements UserGatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
-     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function persistUser(UserInterface $user)
+    public function persistUser(ProfileUserInterface $user)
     {
         $this->persist($user)->flush();
 
@@ -110,10 +110,10 @@ class UserGateway extends BaseGateway implements UserGatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
-     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function updateUser(UserInterface $user)
+    public function updateUser(ProfileUserInterface $user)
     {
         $this->persist($user)->flush();
 
@@ -123,10 +123,10 @@ class UserGateway extends BaseGateway implements UserGatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface              $user
-     * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function deleteUser(UserInterface $user)
+    public function deleteUser(ProfileUserInterface $user)
     {
         $this->remove($user)->flush();
 

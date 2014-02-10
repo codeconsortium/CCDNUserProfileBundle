@@ -60,7 +60,7 @@ doctrine:
         #auto_mapping: true
         resolve_target_entities:
             # For testing purposes only
-            'Symfony\Component\Security\Core\User\UserInterface': 'CCDNUser\ProfileBundle\Tests\Functional\src\Entity\User'
+            CCDNUser\ProfileBundle\Entity\ProfileUserInterface: 'CCDNUser\ProfileBundle\Tests\Functional\src\Entity\User'
         entity_managers:
             default:
                 mappings:

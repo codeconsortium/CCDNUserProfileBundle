@@ -16,7 +16,7 @@ namespace CCDNUser\ProfileBundle\Model\FrontModel;
 use CCDNUser\ProfileBundle\Model\Component\Manager\UserManagerInterface;
 use CCDNUser\ProfileBundle\Model\Component\Repository\UserRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -47,7 +47,7 @@ interface UserModelInterface extends ModelInterface
      *
      * @access public
      * @param  int $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileById($userId);
 
@@ -55,16 +55,16 @@ interface UserModelInterface extends ModelInterface
      *
      * @access public
      * @param  string $username
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileByUsername($username);
 
     /**
      *
      * @access public
-     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     * @param ProfileUserInterface $user
      */
-    public function checkUserHasProfile(UserInterface $user);
+    public function checkUserHasProfile(ProfileUserInterface $user);
 
     /**
      *

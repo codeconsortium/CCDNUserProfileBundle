@@ -14,7 +14,7 @@
 namespace CCDNUser\ProfileBundle\Model\Component\Gateway;
 
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -41,35 +41,35 @@ interface UserGatewayInterface extends GatewayInterface
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-     * @return $this
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function persistUser(UserInterface $user);
+    public function persistUser(ProfileUserInterface $user);
 
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-     * @return $this
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function updateUser(UserInterface $user);
+    public function updateUser(ProfileUserInterface $user);
 
     /**
      *
      * @access public
      * @param  \Doctrine\ORM\QueryBuilder $qb
      * @param  Array $parameters
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findUser(QueryBuilder $qb = null, $parameters = null);
 
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface $user
-     * @return $this
+     * @param  ProfileUserInterface $user
+     * @return UserGatewayInterface
      */
-    public function deleteUser(UserInterface $user);
+    public function deleteUser(ProfileUserInterface $user);
 
     /**
      *

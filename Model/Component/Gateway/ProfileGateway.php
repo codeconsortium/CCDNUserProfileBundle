@@ -15,6 +15,7 @@ namespace CCDNUser\ProfileBundle\Model\Component\Gateway;
 
 use Doctrine\ORM\QueryBuilder;
 use CCDNUser\ProfileBundle\Entity\Profile;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -41,7 +42,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @access public
      * @param  \Doctrine\ORM\QueryBuilder                          $qb
      * @param  Array                                               $parameters
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findProfile(QueryBuilder $qb = null, $parameters = null)
     {

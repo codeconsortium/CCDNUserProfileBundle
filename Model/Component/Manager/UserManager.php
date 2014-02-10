@@ -13,12 +13,10 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Manager;
 
-use CCDNUser\ProfileBundle\Model\Component\Gateway\ProfileGatewayInterface;
 use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 use CCDNUser\ProfileBundle\Entity\Profile;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -52,10 +50,10 @@ class UserManager extends BaseManager implements UserManagerInterface
     /**
      *
      * @access public
-     * @param \Symfony\Component\Security\Core\User\UserInterface $user
+     * @param ProfileUserInterface $user
      * @return $this
      */
-    public function checkUserHasProfile(UserInterface $user)
+    public function checkUserHasProfile(ProfileUserInterface $user)
     {
         if (null == $user->getProfile()) {
             $profile = new Profile();

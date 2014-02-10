@@ -14,6 +14,7 @@
 namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
 use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  * ProfileRepository
@@ -40,7 +41,7 @@ interface UserRepositoryInterface extends RepositoryInterface
      *
      * @access public
      * @param  int $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileById($userId);
 
@@ -48,7 +49,7 @@ interface UserRepositoryInterface extends RepositoryInterface
      *
      * @access public
      * @param  string $username
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileByUsername($username);
 

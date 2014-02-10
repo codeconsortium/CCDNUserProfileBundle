@@ -14,6 +14,7 @@
 namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
 use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  * ProfileRepository
@@ -91,8 +92,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     /**
      *
      * @access public
-     * @param  string                                              $username
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  string $username
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileByUsername($username)
     {
@@ -113,8 +114,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     /**
      *
      * @access public
-     * @param  int                                                 $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  int $userId
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileById($userId)
     {
