@@ -11,12 +11,9 @@
  * file that was distributed with this source code.
  */
 
-namespace CCDNUser\ProfileBundle\Model\Component\Manager;
+namespace CCDNUser\ProfileBundle\Tests\Unit\Entity\Factory;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
-use CCDNUser\ProfileBundle\Model\Component\Manager\ManagerInterface;
-use CCDNUser\ProfileBundle\Model\Component\Manager\BaseManager;
+use CCDNUser\ProfileBundle\Entity\Factory\ProfileFactory;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
 /**
@@ -24,24 +21,26 @@ use CCDNUser\ProfileBundle\Entity\Profile;
  * @category CCDNUser
  * @package  ProfileBundle
  *
- * @author   Reece Fowell <reece@codeconsortium.com>
+ * @author   Maarten Jacobs <maarten.j.jacobs@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @version  Release: 2.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserManager extends BaseManager implements ManagerInterface
+class ProfileFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     *
-     * @access public
-     * @param UserInterface $user
-     * @return $this
+     * @var ProfileFactory
      */
-    public function saveUser(UserInterface $user)
+    private $profileFactory;
+
+    protected function setUp()
     {
-        $this->persist($user);
-        $this->flush();
-        return $this;
+        $this->profileFactory = new ProfileFactory('CCDNUser\ProfileBundle\Entity\Profile');
+    }
+
+    public function testDefaultProfileIsEmptyProfile()
+    {
+        $this->assertEquals(new Profile(), $this->profileFactory->createDefaultProfile());
     }
 }

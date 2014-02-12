@@ -1,0 +1,15 @@
+parameters:
+
+services:
+
+    #
+    # Event listeners.
+    #
+    ccdn_user_profile.listener.user_creation:
+        class: %ccdn_user_profile.listener.user_creation.class%
+        arguments:
+            - @ccdn_user_profile.factory.profile
+        tags:
+            -
+                name: doctrine.event_listener
+                event: prePersist

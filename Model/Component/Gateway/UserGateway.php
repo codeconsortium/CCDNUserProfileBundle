@@ -136,4 +136,15 @@ class UserGateway extends BaseGateway implements GatewayInterface
 
         return $this;
     }
+
+    /**
+     *
+     * @access public
+     * @param QueryBuilder $qb
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findAll(QueryBuilder $qb)
+    {
+        return $this->all($qb);
+    }
 }

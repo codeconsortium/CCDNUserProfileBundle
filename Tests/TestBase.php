@@ -16,23 +16,24 @@ namespace CCDNUser\ProfileBundle\Tests;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
 
 use CCDNUser\ProfileBundle\Tests\Functional\src\Entity\User;
-use CCDNUser\ProfileBundle\Entity\Profile;
 
 class TestBase extends WebTestCase
 {
     /**
 	 *
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManager
      */
     protected $em;
 
 	/**
 	 *
-	 * @var $container
+	 * @var ContainerInterface
 	 */
-	private $container;
+	protected $container;
 
 	/**
 	 *
@@ -90,10 +91,10 @@ class TestBase extends WebTestCase
 		foreach ($userNames as $username) {
 			$users[$username] = $this->addNewUser($username, $username . '@foobar.com', 'password');
 		}
-	
-		$this->em->flush();
-	
-		return $users;
+
+        $this->flushDatabaseChanges();
+
+        return $users;
 	}
 
     /**
@@ -134,5 +135,10 @@ class TestBase extends WebTestCase
         }
 
         return $this->profileModel;
+    }
+
+    protected function flushDatabaseChanges()
+    {
+        $this->em->flush();
     }
 }

@@ -10,7 +10,7 @@ Feature: User Profile Traversal
           | user1 | user1@foo.com  | root     | 1        | ROLE_USER |
 		  | user2 | user2@foo.com  | root     | 1        | ROLE_USER |
 		  | user3 | user3@foo.com  | root     | 1        | ROLE_USER |
-        And there are following profiles defined:
+        And the following profiles have been filled in:
           | user  | country        | city   | real_name | birthday | company        | position | bio | signature | msn           | aim           | yahoo           | icq  |
 		  | user2 | United Kingdom | London | Reece     | 1/1/1987 | CodeConsortium | CEO      |     |           | reece@msn.com | reece@aim.com | reece@yahoo.com | 1234 |
 

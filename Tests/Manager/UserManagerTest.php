@@ -31,7 +31,6 @@ class UserManagerTest extends TestBase
 	public function testCheckUserHasProfile()
 	{
 		$users = $this->addFixturesForUsers();
-		$this->getUserModel()->checkUserHasProfile($users['tom']);
 		$userFound = $this->getUserModel()->findOneUserWithProfileById($users['tom']->getId());
 		$this->assertNotNull($userFound);
 		$this->assertSame($users['tom']->getId(), $userFound->getId());
