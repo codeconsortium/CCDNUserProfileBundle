@@ -15,6 +15,7 @@ namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
 use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
 use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * ProfileRepository
@@ -56,7 +57,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $qb = $this->createSelectQuery(array('u'));
 
         $qb
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
@@ -80,7 +81,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         $qb
             ->where('u.username LIKE :filter')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->setParameters($params)
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
@@ -103,7 +104,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         $qb
             ->where('u.username = :username')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
@@ -125,11 +126,22 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         $qb
             ->where('u.id = :userId')
-            ->leftJoin('u.profile', 'p')
+            ->join('u.profile', 'p')
             ->addOrderBy('u.username', 'DESC')
             ->addOrderBy('u.registeredDate', 'DESC')
         ;
 
         return $this->gateway->findUser($qb, $params);
+    }
+
+    public function findAllUsersWithoutProfiles()
+    {
+        /** @var QueryBuilder $qb */
+        $qb = $this->createSelectQuery(array('u'));
+        $qb
+            ->leftJoin('u.profile', 'p')
+            ->where('p.id IS NULL')
+        ;
+        return $this->gateway->findAll($qb);
     }
 }

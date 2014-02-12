@@ -42,6 +42,7 @@ interface UserManagerInterface extends ManagerInterface
      *
      * @access public
      * @param ProfileUserInterface $user
+     * @return $this
      */
-    public function checkUserHasProfile(ProfileUserInterface $user);
+    public function saveUser(ProfileUserInterface $user);
 }

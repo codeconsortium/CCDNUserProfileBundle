@@ -1,0 +1,13 @@
+parameters:
+
+services:
+
+    ccdn_user_profile.command.migrate_user:
+        class: CCDNUser\ProfileBundle\Command\MigrateUsersCommand
+        arguments:
+            - @ccdn_user_profile.model.user
+            - @ccdn_user_profile.model.profile
+            - @ccdn_user_profile.factory.profile
+        tags:
+            -
+                name: console.command

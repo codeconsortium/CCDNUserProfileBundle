@@ -31,7 +31,7 @@ use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
  */
 class UserManager extends BaseManager implements UserManagerInterface
 {
-    /**
+	/**
      * @var UserGatewayInterface
      */
     protected $gateway;
@@ -53,18 +53,10 @@ class UserManager extends BaseManager implements UserManagerInterface
      * @param ProfileUserInterface $user
      * @return $this
      */
-    public function checkUserHasProfile(ProfileUserInterface $user)
+    public function saveUser(ProfileUserInterface $user)
     {
-        if (null == $user->getProfile()) {
-            $profile = new Profile();
-            $profile->setUser($user);
-            $user->setProfile($profile);
-
-            $this->persist($profile);
-            $this->flush();
-            $this->refresh($user);
-        }
-
+        $this->persist($user);
+        $this->flush();
         return $this;
     }
 }

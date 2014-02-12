@@ -189,6 +189,15 @@ Take the SQL that is output and update your database manually.
 
 > Please take care when updating your database, check the output SQL before applying it.
 
+### Post-installation: migrating existing users
+
+If you have pre-existing users, you need to migrate them to attach a default profile. This bundle contains a task which
+does this for you. It can be run with:
+
+``` bash
+$ php app/console ccdn-user-profile:migrate-users
+```
+
 ### Translations
 
 If you wish to use default texts provided in this bundle, you have to make sure you have translator enabled in your config.
