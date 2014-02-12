@@ -3,17 +3,19 @@ Installing CCDNUser ProfileBundle.
 
 ## Dependencies:
 
-> Note you will need a User Bundle so that you can map the UserInterface to your own User entity. You can use whatecer User Bundle you prefer. FOSUserBundle is highly rated.
+> Note you will need a User Bundle so that you can map the ProfileUserInterface to your own User entity.
+> You can use whatever User Bundle you prefer. FOSUserBundle is highly rated.
 
 ## Installation:
 
-Installation takes only 4 steps:
+Installation takes only 5 steps:
 
 1. Download and install dependencies via Composer.
 2. Register bundles with AppKernel.php.
 3. Update your app/config/routing.yml.
 4. Update your app/config/config.yml.
-5. Update your database schema.
+5. Update your user entity.
+6. Update your database schema.
 
 ### Step 1: Download and install dependencies via Composer.
 
