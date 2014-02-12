@@ -62,13 +62,6 @@ interface UserModelInterface extends ModelInterface
     /**
      *
      * @access public
-     * @param ProfileUserInterface $user
-     */
-    public function checkUserHasProfile(ProfileUserInterface $user);
-
-    /**
-     *
-     * @access public
      * @param  int $page
      * @param  int $itemsPerPage
      * @return \Doctrine\Common\Collections\ArrayCollection
@@ -84,4 +77,18 @@ interface UserModelInterface extends ModelInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25);
+
+    /**
+     * @param ProfileUserInterface $user
+     * @return $this
+     */
+    public function saveUser(ProfileUserInterface $user);
+
+    /**
+     * Returns users that do not have a profile attached.
+     *
+     * @access public
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findAllUsersWithoutProfiles();
 }

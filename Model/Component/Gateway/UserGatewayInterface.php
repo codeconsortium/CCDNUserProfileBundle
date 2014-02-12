@@ -79,4 +79,12 @@ interface UserGatewayInterface extends GatewayInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findUsers(QueryBuilder $qb = null, $parameters = null);
+
+    /**
+     *
+     * @access public
+     * @param QueryBuilder $qb
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findAll(QueryBuilder $qb);
 }

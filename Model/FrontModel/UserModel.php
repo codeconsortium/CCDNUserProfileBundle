@@ -104,10 +104,10 @@ class UserModel extends BaseModel implements UserModelInterface
     }
 
     /**
-     * @param UserInterface $user
+     * @param ProfileUserInterface $user
      * @return $this
      */
-    public function saveUser(UserInterface $user)
+    public function saveUser(ProfileUserInterface $user)
     {
         $this->getManager()->saveUser($user);
         return $this;

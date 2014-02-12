@@ -71,4 +71,7 @@ interface UserRepositoryInterface extends RepositoryInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findAllUsersWithProfileFilteredAtoZPaginated($alpha, $page = 1, $itemsPerPage = 25);
+
+
+    public function findAllUsersWithoutProfiles();
 }
