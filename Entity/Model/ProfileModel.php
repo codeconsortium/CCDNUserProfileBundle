@@ -13,7 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Entity\Model;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -32,14 +32,14 @@ abstract class ProfileModel
     /**
      *
      * @access protected
-     * @var Symfony\Component\Security\Core\User\UserInterface $user
+     * @var ProfileUserInterface $user
      */
     protected $user;
 
     /**
      * Get user
      *
-     * @return UserInterface
+     * @return ProfileUserInterface
      */
     public function getUser()
     {
@@ -49,10 +49,10 @@ abstract class ProfileModel
     /**
      * Set user
      *
-     * @param  UserInterface $user
+     * @param  ProfileUserInterface $user
      * @return Profile
      */
-    public function setUser(UserInterface $user = null)
+    public function setUser(ProfileUserInterface $user = null)
     {
         $this->user = $user;
 

@@ -14,7 +14,7 @@
 namespace CCDNUser\ProfileBundle\Form\Handler;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -60,17 +60,17 @@ class BaseFormHandler
     /**
      *
      * @access protected
-     * @var \Symfony\Component\Security\Core\User\UserInterface $user
+     * @var ProfileUserInterface $user
      */
     protected $user;
 
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface  $user
+     * @param  ProfileUserInterface  $user
      * @return \CCDNUser\ProfileBundle\Form\Handler\BaseFormHandler
      */
-    public function setUser(UserInterface $user)
+    public function setUser(ProfileUserInterface $user)
     {
         $this->user = $user;
 

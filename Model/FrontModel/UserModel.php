@@ -13,9 +13,10 @@
 
 namespace CCDNUser\ProfileBundle\Model\FrontModel;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-use CCDNUser\ProfileBundle\Model\FrontModel\BaseModel;
-use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
+use CCDNUser\ProfileBundle\Model\Component\Manager\UserManagerInterface;
+use CCDNUser\ProfileBundle\Model\Component\Repository\UserRepositoryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -28,8 +29,22 @@ use CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserModel extends BaseModel implements ModelInterface
+class UserModel extends BaseModel implements UserModelInterface
 {
+    /**
+     * @access public
+     * @param EventDispatcherInterface $dispatcher
+     * @param UserRepositoryInterface $repository
+     * @param UserManagerInterface $manager
+     */
+    public function __construct(
+        EventDispatcherInterface $dispatcher,
+        UserRepositoryInterface $repository,
+        UserManagerInterface $manager
+    ) {
+        parent::__construct($dispatcher, $repository, $manager);
+    }
+
     /**
      *
      * @access public
@@ -45,7 +60,7 @@ class UserModel extends BaseModel implements ModelInterface
     /**
      *
      * @access public
-     * @param  char                                         $alpha
+     * @param  string                                       $alpha
      * @param  int                                          $page
      * @param  int                                          $itemsPerPage
      * @return \Doctrine\Common\Collections\ArrayCollection
@@ -58,8 +73,8 @@ class UserModel extends BaseModel implements ModelInterface
     /**
      *
      * @access public
-     * @param  string                                              $username
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  string $username
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileByUsername($username)
     {
@@ -69,8 +84,8 @@ class UserModel extends BaseModel implements ModelInterface
     /**
      *
      * @access public
-     * @param  int                                                 $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  int $userId
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileById($userId)
     {
@@ -89,12 +104,28 @@ class UserModel extends BaseModel implements ModelInterface
     }
 
     /**
-     * @param UserInterface $user
+     * @param ProfileUserInterface $user
      * @return $this
      */
-    public function saveUser(UserInterface $user)
+    public function saveUser(ProfileUserInterface $user)
     {
         $this->getManager()->saveUser($user);
         return $this;
+    }
+
+    /**
+     * @return UserRepositoryInterface
+     */
+    public function getRepository()
+    {
+        return parent::getRepository();
+    }
+
+    /**
+     * @return UserManagerInterface
+     */
+    public function getManager()
+    {
+        return parent::getManager();
     }
 }

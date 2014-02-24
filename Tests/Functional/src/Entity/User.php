@@ -2,10 +2,11 @@
 
 namespace CCDNUser\ProfileBundle\Tests\Functional\src\Entity;
 
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use CCDNUser\ProfileBundle\Entity\Profile;
 
-class User extends BaseUser
+class User extends BaseUser implements ProfileUserInterface
 {
     /**
      *

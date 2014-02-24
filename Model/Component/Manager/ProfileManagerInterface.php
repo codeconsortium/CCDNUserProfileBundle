@@ -13,50 +13,49 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Manager;
 
-use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\ProfileGatewayInterface;
 use CCDNUser\ProfileBundle\Entity\Profile;
-use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
  * @category CCDNUser
  * @package  ProfileBundle
  *
- * @author   Reece Fowell <reece@codeconsortium.com>
+ * @author   Maarten Jacobs <maarten.j.jacobs@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @version  Release: 2.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserManager extends BaseManager implements UserManagerInterface
+interface ProfileManagerInterface extends ManagerInterface
 {
-	/**
-     * @var UserGatewayInterface
-     */
-    protected $gateway;
-
     /**
      *
      * @access public
      * @param EventDispatcherInterface $dispatcher
-     * @param UserGatewayInterface $gateway
+     * @param ProfileGatewayInterface $gateway
      */
-    public function __construct(EventDispatcherInterface $dispatcher, UserGatewayInterface $gateway)
-    {
-        parent::__construct($dispatcher, $gateway);
-    }
+    public function __construct(EventDispatcherInterface $dispatcher, ProfileGatewayInterface $gateway);
 
     /**
      *
      * @access public
-     * @param ProfileUserInterface $user
-     * @return $this
+     * @return Profile
      */
-    public function saveUser(ProfileUserInterface $user)
-    {
-        $this->persist($user);
-        $this->flush();
-        return $this;
-    }
+    public function createProfile();
+
+    /**
+     *
+     * @access public
+     * @param  Profile $profile
+     */
+    public function saveProfile(Profile $profile);
+
+    /**
+     *
+     * @access public
+     * @param Profile $profile
+     */
+    public function updateProfile(Profile $profile);
 }

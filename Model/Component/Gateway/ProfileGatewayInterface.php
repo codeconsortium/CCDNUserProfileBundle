@@ -22,21 +22,14 @@ use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
  * @category CCDNUser
  * @package  ProfileBundle
  *
- * @author   Reece Fowell <reece@codeconsortium.com>
+ * @author   Maarten Jacobs <maarten.j.jacobs@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @version  Release: 2.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
+interface ProfileGatewayInterface extends GatewayInterface
 {
-    /**
-     *
-     * @access private
-     * @var string $queryAlias
-     */
-    protected $queryAlias = 'p';
-
     /**
      *
      * @access public
@@ -44,14 +37,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  Array                                               $parameters
      * @return ProfileUserInterface
      */
-    public function findProfile(QueryBuilder $qb = null, $parameters = null)
-    {
-        if (null == $qb) {
-            $qb = $this->createSelectQuery();
-        }
-
-        return $this->one($qb, $parameters);
-    }
+    public function findProfile(QueryBuilder $qb = null, $parameters = null);
 
     /**
      *
@@ -60,14 +46,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  Array                                        $parameters
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function findProfiles(QueryBuilder $qb = null, $parameters = null)
-    {
-        if (null == $qb) {
-            $qb = $this->createSelectQuery();
-        }
-
-        return $this->all($qb, $parameters);
-    }
+    public function findProfiles(QueryBuilder $qb = null, $parameters = null);
 
     /**
      *
@@ -76,24 +55,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  Array                      $parameters
      * @return int
      */
-    public function countProfiles(QueryBuilder $qb = null, $parameters = null)
-    {
-        if (null == $qb) {
-            $qb = $this->createCountQuery();
-        }
-
-        if (null == $parameters) {
-            $parameters = array();
-        }
-
-        $qb->setParameters($parameters);
-
-        try {
-            return $qb->getQuery()->getSingleScalarResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            return 0;
-        }
-    }
+    public function countProfiles(QueryBuilder $qb = null, $parameters = null);
 
     /**
      *
@@ -101,12 +63,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function persistProfile(Profile $profile)
-    {
-        $this->persist($profile)->flush();
-
-        return $this;
-    }
+    public function persistProfile(Profile $profile);
 
     /**
      *
@@ -114,12 +71,7 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function updateProfile(Profile $profile)
-    {
-        $this->persist($profile)->flush();
-
-        return $this;
-    }
+    public function updateProfile(Profile $profile);
 
     /**
      *
@@ -127,20 +79,12 @@ class ProfileGateway extends BaseGateway implements ProfileGatewayInterface
      * @param  \CCDNUser\ProfileBundle\Entity\Profile                           $profile
      * @return \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface
      */
-    public function deleteProfile(Profile $profile)
-    {
-        $this->remove($profile)->flush();
-
-        return $this;
-    }
+    public function deleteProfile(Profile $profile);
 
     /**
      *
      * @access public
      * @return \CCDNUser\ProfileBundle\Entity\Profile
      */
-    public function createProfile()
-    {
-        return new $this->entityClass();
-    }
+    public function createProfile();
 }

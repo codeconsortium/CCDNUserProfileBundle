@@ -13,8 +13,8 @@
 
 namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 
-use CCDNUser\ProfileBundle\Model\Component\Repository\BaseRepository;
-use CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface;
+use CCDNUser\ProfileBundle\Model\Component\Gateway\UserGatewayInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 use Doctrine\ORM\QueryBuilder;
 
 /**
@@ -29,8 +29,22 @@ use Doctrine\ORM\QueryBuilder;
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class UserRepository extends BaseRepository implements RepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
+    /**
+     * @var UserGatewayInterface
+     */
+    protected $gateway;
+
+    /**
+     * @access public
+     * @param UserGatewayInterface $gateway
+     */
+    public function __construct(UserGatewayInterface $gateway)
+    {
+        parent::__construct($gateway);
+    }
+
     /**
      *
      * @access public
@@ -54,7 +68,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     /**
      *
      * @access public
-     * @param  char                                         $alpha
+     * @param  string                                         $alpha
      * @param  int                                          $page
      * @param  int                                          $itemsPerPage
      * @return \Doctrine\Common\Collections\ArrayCollection
@@ -79,8 +93,8 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     /**
      *
      * @access public
-     * @param  string                                              $username
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  string $username
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileByUsername($username)
     {
@@ -101,8 +115,8 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     /**
      *
      * @access public
-     * @param  int                                                 $userId
-     * @return \Symfony\Component\Security\Core\User\UserInterface
+     * @param  int $userId
+     * @return ProfileUserInterface
      */
     public function findOneUserWithProfileById($userId)
     {

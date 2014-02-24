@@ -14,7 +14,7 @@
 namespace CCDNUser\ProfileBundle\EventListener;
 
 use CCDNUser\ProfileBundle\Entity\Factory\ProfileFactoryInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
@@ -54,7 +54,7 @@ class ProfileUserCreationListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if ($entity instanceof UserInterface) {
+        if ($entity instanceof ProfileUserInterface) {
             $profile = $this->profileFactory->createDefaultProfile();
             $profile->setUser($entity);
             $entity->setProfile($profile);

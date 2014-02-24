@@ -16,26 +16,22 @@ namespace CCDNUser\ProfileBundle\Model\Component\Repository;
 use CCDNUser\ProfileBundle\Model\Component\Gateway\ProfileGatewayInterface;
 
 /**
- * ProfileRepository
  *
  * @category CCDNUser
  * @package  ProfileBundle
  *
- * @author   Reece Fowell <reece@codeconsortium.com>
+ * @author   Maarten Jacobs <maarten.j.jacobs@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @version  Release: 2.0
  * @link     https://github.com/codeconsortium/CCDNUserProfileBundle
  *
  */
-class ProfileRepository extends BaseRepository implements ProfileRepositoryInterface
+interface ProfileRepositoryInterface extends RepositoryInterface
 {
     /**
      *
      * @access public
      * @param ProfileGatewayInterface $gateway
      */
-    public function __construct(ProfileGatewayInterface $gateway)
-    {
-        parent::__construct($gateway);
-    }
+    public function __construct(ProfileGatewayInterface $gateway);
 }

@@ -76,7 +76,7 @@ CCDNUser\ProfileBundle\Entity\Profile:
             nullable: true
     oneToOne:
         user:
-            targetEntity: Symfony\Component\Security\Core\User\UserInterface
+            targetEntity: CCDNUser\ProfileBundle\Entity\ProfileUserInterface
             cascade: ["persist"]
             nullable: true
             joinColumn:

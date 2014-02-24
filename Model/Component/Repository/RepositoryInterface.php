@@ -33,13 +33,6 @@ interface RepositoryInterface
     /**
      *
      * @access public
-     * @param \CCDNUser\ProfileBundle\Model\Component\Gateway\GatewayInterface $gateway
-     */
-    public function __construct(GatewayInterface $gateway);
-
-    /**
-     *
-     * @access public
      * @param  \CCDNUser\ProfileBundle\Model\FrontModel\ModelInterface                $model
      * @return \CCDNUser\ProfileBundle\Model\Component\Repository\RepositoryInterface
      */

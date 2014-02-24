@@ -13,7 +13,7 @@
 
 namespace CCDNUser\ProfileBundle\Component\Crumbs;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use CCDNUser\ProfileBundle\Entity\ProfileUserInterface;
 
 /**
  *
@@ -43,10 +43,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileOverviewShow(UserInterface $user)
+    public function addProfileOverviewShow(ProfileUserInterface $user)
     {
         return $this->addMemberIndex()
             ->add(
@@ -69,10 +69,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileBioShow(UserInterface $user)
+    public function addProfileBioShow(ProfileUserInterface $user)
     {
         return $this->addMemberIndex()
             ->add(
@@ -95,10 +95,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfilePersonalEdit(UserInterface $user)
+    public function addProfilePersonalEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.personal.edit',
@@ -115,10 +115,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileInfoEdit(UserInterface $user)
+    public function addProfileInfoEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.info.edit',
@@ -135,10 +135,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileContactEdit(UserInterface $user)
+    public function addProfileContactEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.contact.edit',
@@ -155,10 +155,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileAvatarEdit(UserInterface $user)
+    public function addProfileAvatarEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.avatar.edit',
@@ -175,10 +175,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileBioEdit(UserInterface $user)
+    public function addProfileBioEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.bio.edit',
@@ -195,10 +195,10 @@ class CrumbBuilder extends BaseCrumbBuilder
     /**
      *
      * @access public
-     * @param  \Symfony\Component\Security\Core\User\UserInterface         $user
+     * @param  ProfileUserInterface         $user
      * @return \CCDNUser\ProfileBundle\Component\Crumbs\Factory\CrumbTrail
      */
-    public function addProfileSignatureEdit(UserInterface $user)
+    public function addProfileSignatureEdit(ProfileUserInterface $user)
     {
         return $this->addProfileOverviewShow($user)
             ->add('crumbs.profile.signature.edit',

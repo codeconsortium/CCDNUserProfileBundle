@@ -86,7 +86,7 @@ class UpdateAvatarFormHandler extends BaseFormHandler
      *
      * @access protected
      * @param  \CCDNUser\ProfileBundle\Entity\Profile         $profile
-     * @return \CCDNUser\ProfileBundle\Manager\ProfileManager
+     * @return \CCDNUser\ProfileBundle\Model\Component\Manager\ProfileManager
      */
     protected function onSuccess(Profile $profile)
     {
